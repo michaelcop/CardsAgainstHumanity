@@ -15,6 +15,9 @@ public class User
 	int points;//points in the current game and we are assuming you are only playing one
 	//game at a time
 	
+	BlackCard cardCzarCard;
+	List<WhiteCard> userHand;
+	
 	User(String name)
 	{
 		this.name = name;
@@ -23,6 +26,19 @@ public class User
 	public void setPassWord(String passWord)
 	{
 		this.password = passWord;
+	}
+	
+	public boolean removeFriend(User user)
+	{
+		for(int i=0; i<friends.size(); i++)
+		{
+			if(friends.get(i).name.equals(user.name))
+			{
+				friends.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean hasFriend(User user)
@@ -34,22 +50,17 @@ public class User
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
 	public boolean addFriend(User user)
 	{
-		for(int i=0; i<friends.size(); i++)
+		if(hasFriend(user))
+			return false;
+		else
 		{
-			if(friends.get(i).name.equals(user.name))
-			{
-				return false;
-			}
+			friends.add(user);
+			return true;	
 		}
-		
-		friends.add(user);
-		return true;
-		
 	}
 }
