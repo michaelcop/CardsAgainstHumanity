@@ -1,3 +1,5 @@
+package com.example.cardsagainsthumanity;
+
 import java.util.*;
 
 public class User 
