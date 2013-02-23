@@ -53,6 +53,28 @@ public class Deck
 	
 	public void shuffleDeck()
 	{
+		for(int i=0; i<whiteCards.size(); i++)
+		{
+			int a = (int) (Math.random() * whiteCards.size());
+			int b = (int) (Math.random() * whiteCards.size());
+			WhiteCard tempA = whiteCards.get(a);
+			WhiteCard tempB = whiteCards.get(b);
+			whiteCards.remove(a);
+			whiteCards.remove(b);
+			whiteCards.add(tempA);
+			whiteCards.add(tempB);
+		}
 		
+		for(int i=0; i<blackCards.size(); i++)
+		{
+			int a = (int) (Math.random() * blackCards.size());
+			int b = (int) (Math.random() * blackCards.size());
+			BlackCard tempA = blackCards.get(a);
+			BlackCard tempB = blackCards.get(b);
+			blackCards.remove(a);
+			blackCards.remove(b);
+			blackCards.add(tempA);
+			blackCards.add(tempB);
+		}
 	}
 }
