@@ -4,6 +4,11 @@
     <string name="app_name">Oh The Humanity!</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="logo_descrip">Main menu logo</string>
-
+    
+    <string name="start_descrip">Start game button</string>
+    <string name="join_descrip">Join game button</string>
+    <string name="friends_descrip">Friends game button</string>
+    <string name="stats_descrip">Stats button</string>
+    <string name="howplay_descrip">How to play button</string>
+    
 </resources>

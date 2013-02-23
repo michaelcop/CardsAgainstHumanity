@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/black"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/black" >
+
+    <!-- Menu logo -->
 
     <ImageView
         android:id="@+id/imageView1"
@@ -12,5 +14,65 @@
         android:layout_centerHorizontal="true"
         android:contentDescription="@strings/logo_descrip"
         android:src="@drawable/ohmenulogo" />
+
+    <!-- Create game button -->
+
+
+    <!-- Join game button -->
+
+
+    <!-- Friends logo -->
+
+
+    <!-- Stats button -->
+
+
+    <!-- How to play logo -->
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@strings/create_descrip"
+        android:src="@drawable/create" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton2"
+        android:layout_below="@+id/imageButton2"
+        android:contentDescription="@strings/friends_descrip"
+        android:src="@drawable/friends" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton3"
+        android:layout_below="@+id/imageButton3"
+        android:contentDescription="@strings/stats_descrip"
+        android:src="@drawable/stats" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton4"
+        android:layout_below="@+id/imageButton4"
+        android:contentDescription="@strings/howplay_descrip"
+        android:src="@drawable/howplay" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:layout_below="@+id/imageButton1"
+        android:contentDescription="@strings/join_descrip"
+        android:src="@drawable/joingame" />
 
 </RelativeLayout>
