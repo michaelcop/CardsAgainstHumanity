@@ -98,6 +98,7 @@
         android:layout_marginTop="26dp"
         android:minWidth="70dip"
         android:text="Log In"
+        android:onClick=""
         android:textColor="@color/white" />
 
 </RelativeLayout>
