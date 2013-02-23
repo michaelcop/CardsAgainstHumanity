@@ -31,13 +31,25 @@ public class User
 		{
 			if(friends.get(i).name.equals(user.name))
 			{
-				
+				return true;
 			}
 		}
+		
+		return false;
 	}
 	
 	public boolean addFriend(User user)
 	{
+		for(int i=0; i<friends.size(); i++)
+		{
+			if(friends.get(i).name.equals(user.name))
+			{
+				return false;
+			}
+		}
+		
+		friends.add(user);
+		return true;
 		
 	}
 }
