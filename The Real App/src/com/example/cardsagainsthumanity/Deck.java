@@ -50,4 +50,9 @@ public class Deck
 			
 		}
 	}
+	
+	public void shuffleDeck()
+	{
+		
+	}
 }
