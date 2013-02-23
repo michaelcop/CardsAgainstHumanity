@@ -1,1 +1,6 @@
 The TODO list for the project and who is doing it and the timelines.
+
+
+Design and set up database - 2/23
+Start page gui - 2/23
+Classes for the simple things(users, cards, games) - 2/23
