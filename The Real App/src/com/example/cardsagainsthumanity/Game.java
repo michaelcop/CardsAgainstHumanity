@@ -27,7 +27,12 @@ public class Game
 	{
 		for(int i=0; i<numGameRounds; i++)
 		{
-			
+			//Select Czar for round i
+			//Czar pulls black card
+			//Polls for white cards from users
+			//Present white cards to Czar
+			//Czar selects card
+			//Add point to winner
 		}
 	}
 	
