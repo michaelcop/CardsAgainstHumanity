@@ -6,57 +6,98 @@
     android:background="@color/black"
     tools:context=".StartPage"
     tools:ignore="HardcodedText" >
-    
-    
+
+    <!-- Logo -->
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:contentDescription="App logo"
         android:scaleType="fitCenter"
         android:src="@drawable/ohlogo" />
+
+    <!-- Username label -->
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/logo"
+        android:layout_marginLeft="17dp"
+        android:text="Username"
+        android:textColor="#FFFFFF" />
+
+
+    <!-- Username Input -->
 
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="190dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
         android:ems="10"
-        android:text="Username"
+        android:hint="Username"
         android:textColor="#FFFFFF"
-        android:textStyle="normal" >
+        android:textColorHint="#FFFFFF" >
 
-        <requestFocus />
-        
-        
+        <requestFocus android:layout_height="wrap_content" />
     </EditText>
+
+    <!-- Password label -->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="30dp"
+        android:text="Password"
+        android:textColor="#FFFFFF" />
+
+    <!-- Password Input -->
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="85dp"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
         android:ems="10"
-        android:text="Password"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFFF"
+        android:textColorHint="#FFFFFF" />
+
+      <!-- Create Account button -->
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="44dp"
+        android:text="Create Account"
         android:textColor="#FFFFFF" />
 
-    <EditText
-        android:id="@+id/editText3"
+      <!-- Log In button -->
+
+    <Button
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:inputType="textPassword"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="26dp"
+        android:minWidth="70dip"
+        android:text="Log In"
         android:textColor="#FFFFFF" />
-    
-    
-</RelativeLayout>
 
+</RelativeLayout>
