@@ -29,7 +29,7 @@
         android:layout_below="@+id/logo"
         android:layout_marginLeft="17dp"
         android:text="Username"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/white" />
 
 
     <!-- Username Input -->
@@ -42,8 +42,8 @@
         android:layout_below="@+id/textView1"
         android:ems="10"
         android:hint="Username"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF" >
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" >
 
         <requestFocus android:layout_height="wrap_content" />
     </EditText>
@@ -58,7 +58,7 @@
         android:layout_below="@+id/editText1"
         android:layout_marginTop="30dp"
         android:text="Password"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/white" />
 
     <!-- Password Input -->
 
@@ -71,8 +71,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#FFFFFFF"
-        android:textColorHint="#FFFFFF" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
       <!-- Create Account button -->
     <Button
@@ -84,7 +84,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="44dp"
         android:text="Create Account"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/white" />
 
       <!-- Log In button -->
 
@@ -98,6 +98,6 @@
         android:layout_marginTop="26dp"
         android:minWidth="70dip"
         android:text="Log In"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/white" />
 
 </RelativeLayout>
