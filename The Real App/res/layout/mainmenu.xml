@@ -15,19 +15,6 @@
         android:contentDescription="@strings/logo_descrip"
         android:src="@drawable/ohmenulogo" />
 
-    <!-- Create game button -->
-
-
-    <!-- Join game button -->
-
-
-    <!-- Friends logo -->
-
-
-    <!-- Stats button -->
-
-
-    <!-- How to play logo -->
 
     <ImageButton
         android:id="@+id/imageButton1"
