@@ -11,6 +11,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-        android:text="Button" />
+        android:text="Press for Fun!" />
 
 </RelativeLayout>
