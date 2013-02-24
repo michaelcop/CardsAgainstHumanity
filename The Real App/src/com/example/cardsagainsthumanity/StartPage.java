@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.app.Activity;
 import android.content.Intent;
+import com.cardsagainsthumanity.Entities.R;
 
 public class StartPage extends Activity {
 	
