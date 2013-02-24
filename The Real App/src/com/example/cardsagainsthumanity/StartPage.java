@@ -28,13 +28,19 @@ public class StartPage extends Activity {
 			
 	        public void onClick(View v) {
 	        	
-	        	password = "test";
-	        	if(inputPassword.getText().toString() == password)
+	        	User user = new User(inputUsername.getText().toString());
+	        	user.setPassword("Test");
+	        	if((inputPassword.getText().toString()).equals(user.getPassword()))
 	        	{
 	        		
 	        	
 		        	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
 	                startActivityForResult(myIntent, 0);
+	        	}
+	        	else{
+	        		inputUsername.setText("NONE");
+	        		
+	        		
 	        	}
 	        	}
 			

@@ -23,11 +23,6 @@ public class User
 		this.name = name;
 	}
 	
-	public void setPassWord(String passWord)
-	{
-		this.password = passWord;
-	}
-	
 	public boolean removeFriend(User user)
 	{
 		for(int i=0; i<friends.size(); i++)
@@ -62,5 +57,13 @@ public class User
 			friends.add(user);
 			return true;	
 		}
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
