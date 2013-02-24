@@ -9,7 +9,7 @@ public class StartPage extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_start_page);
+		setContentView(R.layout.login);
 	}
 
 	@Override
@@ -18,5 +18,11 @@ public class StartPage extends Activity {
 		getMenuInflater().inflate(R.menu.activity_start_page, menu);
 		return true;
 	}
-
+	
+	public void onClick(){
+		
+		
+		return;
+	}
+	
 }
