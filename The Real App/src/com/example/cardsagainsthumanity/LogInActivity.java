@@ -13,7 +13,11 @@ import android.view.View.OnClickListener;
 
 public class LogInActivity extends Activity
 {
-	public void onCreate(Bundle savedInstance State)
+	
+	EditText inputUsername;
+	EditText inputPassword;
+	
+	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
@@ -27,14 +31,14 @@ public class LogInActivity extends Activity
 		{
 			public void onClick(View arg0)
 			{
-				Intent nextScreen = new Intent(getApplicationContext(), MainMenuActivity.class)
+				Intent nextScreen = new Intent(getApplicationContext(), MainMenuActivity.class);
 				
 				nextScreen.putExtra("Username", inputUsername.getText().toString());
 				nextScreen.putExtra("Password", inputPassword.getText().toString());
 				
 				startActivity(nextScreen);
 			}
-		})
+		});
 	}
 	
 
