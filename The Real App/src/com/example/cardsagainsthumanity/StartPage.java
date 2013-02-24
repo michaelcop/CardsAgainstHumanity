@@ -3,6 +3,7 @@ package com.example.cardsagainsthumanity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.app.Activity;
@@ -18,6 +19,7 @@ public class StartPage extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
 		Button v = (Button) findViewById(R.id.button1);
 		
