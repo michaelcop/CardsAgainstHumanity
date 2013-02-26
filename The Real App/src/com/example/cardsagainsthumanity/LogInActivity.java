@@ -1,12 +1,14 @@
 package com.example.cardsagainsthumanity;
 
+import com.cardsagainsthumanity.Entities.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
-import com.cardsagainsthumanity.Entities.R;
+
 
 
 public class LogInActivity extends Activity
