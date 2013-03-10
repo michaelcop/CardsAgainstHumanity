@@ -25,11 +25,8 @@ public class MainMenu extends Activity
 		{
 
 			@Override
-			public void onClick(View v) 
-			{
+			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent myIntent = new Intent(v.getContext(), CreateGame.class);
-                startActivityForResult(myIntent, 0);
 				
 			}
 			
@@ -57,54 +54,8 @@ public class MainMenu extends Activity
 		
 		//How to Play listener end---------------------------------------------
 		
-		//Join listener---------------------------------------------
-		
-		Button join = (Button) findViewById(R.id.joinButton);
-		
-		join.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View v) 
-			{
-				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
-                startActivityForResult(myIntent, 0);
-				
-			}
-			
-		});
-		
-		//Join listener end---------------------------------------------
-		
-		Button friends = (Button) findViewById(R.id.friendsButton);
-		
-		friends.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View v) 
-			{
-				Intent myIntent = new Intent(v.getContext(), FriendsList.class);
-                startActivityForResult(myIntent, 0);
-				
-			}
-			
-		});
+		//Button how = (Button) findViewById(R.id.howButton);
 		
 		
-		Button stats = (Button) findViewById(R.id.statsButton);
-		
-		stats.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View v) 
-			{
-				Intent myIntent = new Intent(v.getContext(), PlayerStats.class);
-                startActivityForResult(myIntent, 0);
-				
-			}
-			
-		});
 	}
 }

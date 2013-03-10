@@ -42,8 +42,8 @@
         android:layout_below="@+id/textView1"
         android:ems="10"
         android:hint="Username"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black" >
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" >
 
         <requestFocus android:layout_height="wrap_content" />
     </EditText>
@@ -72,7 +72,7 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="@color/black"
-        android:textColorHint="@color/black" />
+        android:textColorHint="@color/white" />
 
       <!-- Create Account button -->
     <Button
