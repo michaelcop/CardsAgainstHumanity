@@ -21,7 +21,12 @@
     <string name="fl_title">Friends List</string>
     <string name="cg_title">Create Game</string>
     <string name="jg_title">Join Game</string>
-    <string name="stat_title">Stats</string>
+    
+    <string name="stat_title">Player Stats</string>
+    <string name="games_won">Games Won</string>
+    <string name="games_lost">Games Lost</string>
+    <string name="average_points">Average Points per Game</string>
+    <string name="most_points">Most Points in a Round</string>
     
     
     <string name="temp_construct">Page is under construction!!</string>
