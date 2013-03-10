@@ -19,7 +19,7 @@ public class MainMenu extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainmenu);
 	
-		/*
+		
 		//Create listener----------------------------------------------
 		ImageButton create = (ImageButton) findViewById(R.id.createButton);
 		
@@ -27,7 +27,8 @@ public class MainMenu extends Activity
 		{
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) 
+			{
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), Game.class);
 				startActivityForResult(cGame, 0);
@@ -36,8 +37,53 @@ public class MainMenu extends Activity
 			
 		});
 		
-		//Create listener end----------------------------------------------
+		//Join listener ----------------------------------------------
 		
+		ImageButton join = (ImageButton) findViewById(R.id.joinButton);
+		
+		join.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) 
+			{
+				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
+                startActivityForResult(myIntent, 0);
+				
+			}
+			
+		});
+		
+		
+		ImageButton friends = (ImageButton) findViewById(R.id.friendsButton);
+		
+		friends.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) 
+			{
+				Intent myIntent = new Intent(v.getContext(), FriendsList.class);
+                startActivityForResult(myIntent, 0);
+				
+			}
+			
+		});
+		
+		ImageButton stats = (ImageButton) findViewById(R.id.statsButton);
+		
+		stats.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) 
+			{
+				Intent myIntent = new Intent(v.getContext(), PlayerStats.class);
+                startActivityForResult(myIntent, 0);
+				
+			}
+			
+		});
 		
 		//How to Play listener---------------------------------------------
 		
@@ -56,10 +102,8 @@ public class MainMenu extends Activity
 			
 		});
 		
-		//How to Play listener end---------------------------------------------
 		
-		//Button how = (Button) findViewById(R.id.howButton);
-		*/
+		
 		
 	}
 }
