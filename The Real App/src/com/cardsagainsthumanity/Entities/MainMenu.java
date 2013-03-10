@@ -90,13 +90,12 @@ public class MainMenu extends Activity
 		
 		how.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), HowToPlay.class);
-                startActivityForResult(myIntent, 0);
-				
+                //startActivityForResult(myIntent, 0);
+				startActivity(myIntent);
 			}
 			
 		});
