@@ -1,5 +1,8 @@
 package com.cardsagainsthumanity.Entities;
 
-public class FriendsList {
+import android.app.Activity;
+
+public class FriendsList extends Activity
+{
 
 }
