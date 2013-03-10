@@ -38,9 +38,7 @@ public class StartPage extends Activity {
 	        	user.setPassword("Test");
 	        	
 	        	if((inputPassword.getText().toString()).equals(user.getPassword()))
-	        	{
-	        		
-	        	
+	        	{   	
 		        	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
 	                startActivityForResult(myIntent, 0);
 	        	}
@@ -54,22 +52,22 @@ public class StartPage extends Activity {
 
         }); 
 		
-		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.createaccount);
-
-		Button returns = (Button) findViewById(R.id.button2);
-		returns.setOnClickListener(new OnClickListener()
-		{
-		
-			@Override
-			public void onClick(View v) 
-			{
-				finish();
-			}
-				
-		});
+//		super.onCreate(savedInstanceState);
+//		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		setContentView(R.layout.createaccount);
+//
+//		Button returns = (Button) findViewById(R.id.button2);
+//		returns.setOnClickListener(new OnClickListener()
+//		{
+//		
+//			@Override
+//			public void onClick(View v) 
+//			{
+//				finish();
+//			}
+//				
+//		});
 	}
-	
-	
+//	
+//	
 }
