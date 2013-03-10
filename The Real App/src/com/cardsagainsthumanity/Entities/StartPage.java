@@ -6,7 +6,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.app.Activity;
 import android.content.Intent;
 import com.cardsagainsthumanity.Entities.R;
