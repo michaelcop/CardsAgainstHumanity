@@ -15,8 +15,6 @@ public class FriendsList extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.friendslist);
 
-
-
 		Button returns = (Button) findViewById(R.id.button1);
 		returns.setOnClickListener(new OnClickListener()
 		{

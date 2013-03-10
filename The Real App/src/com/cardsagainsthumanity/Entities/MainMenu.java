@@ -30,7 +30,7 @@ public class MainMenu extends Activity
 			{
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), Game.class);
-				startActivityForResult(cGame, 0);
+				startActivity(cGame);
 				
 			}
 			
@@ -47,7 +47,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
 				
 			}
 			
@@ -63,7 +63,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), FriendsList.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
 				
 			}
 			
@@ -78,7 +78,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), PlayerStats.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
 				
 			}
 			
@@ -94,7 +94,6 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), HowToPlay.class);
-                //startActivityForResult(myIntent, 0);
 				startActivity(myIntent);
 			}
 			

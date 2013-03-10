@@ -19,6 +19,11 @@
     <string name="setting_switch">Change User</string>
     <string name="htp_gotit">Got it!</string>
     <string name="fl_title">Friends List</string>
+    <string name="cg_title">Create Game</string>
+    <string name="jg_title">Join Game</string>
+    
+    
+    <string name="temp_construct">Page is under construction!!</string>
     
     
 </resources>
