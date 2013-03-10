@@ -2,11 +2,15 @@ package com.cardsagainsthumanity.Entities;
 import java.util.*;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.view.Window;
 
 public class Game extends Activity
 {
+
 	private final int maxUser = 6;
 	private int numGameRounds;
+	
 	public int getNumGameRounds() {
 		return numGameRounds;
 	}

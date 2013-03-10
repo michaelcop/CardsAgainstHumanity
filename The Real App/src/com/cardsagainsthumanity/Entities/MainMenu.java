@@ -29,7 +29,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				// TODO Auto-generated method stub
-				Intent cGame = new Intent(v.getContext(), Game.class);
+				Intent cGame = new Intent(v.getContext(), CreateGame.class);
 				startActivity(cGame);
 				
 			}
