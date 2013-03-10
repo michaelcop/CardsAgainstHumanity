@@ -18,10 +18,12 @@ public class StartPage extends Activity {
 	String password;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
+		
 		Button v = (Button) findViewById(R.id.button1);
 		
 		inputUsername = (EditText) findViewById(R.id.editText1);
@@ -29,10 +31,12 @@ public class StartPage extends Activity {
 		
 		v.setOnClickListener(new OnClickListener() {
 			
-	        public void onClick(View v) {
+	        public void onClick(View v) 
+	        {
 	        	
 	        	User user = new User(inputUsername.getText().toString());
 	        	user.setPassword("Test");
+	        	
 	        	if((inputPassword.getText().toString()).equals(user.getPassword()))
 	        	{
 	        		
@@ -40,15 +44,16 @@ public class StartPage extends Activity {
 		        	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
 	                startActivityForResult(myIntent, 0);
 	        	}
-	        	else{
+	        	else
+	        	{
 	        		inputUsername.setText("NONE");
 	        		
 	        		
 	        	}
-	        	}
+        	}
 			
 			
-	        });
+        });
 	        
 	}
 	

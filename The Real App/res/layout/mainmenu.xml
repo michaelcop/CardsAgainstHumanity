@@ -16,9 +16,9 @@
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/ohmenulogo" />
 
-
+ <!--  Create Game -->
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/createButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
@@ -27,39 +27,41 @@
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/create" />
 
+     <!--  Friends List -->
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/friendsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton2"
-        android:layout_below="@+id/imageButton2"
+        android:layout_alignLeft="@+id/joinButton"
+        android:layout_below="@+id/joinButton"
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/friends" />
 
+     <!-- Stats-->
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/statsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton3"
-        android:layout_below="@+id/imageButton3"
+        android:layout_alignLeft="@+id/friendsButton"
+        android:layout_below="@+id/friendsButton"
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/stats" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/howButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton4"
-        android:layout_below="@+id/imageButton4"
+        android:layout_alignLeft="@+id/statsButton"
+        android:layout_below="@+id/statsButton"
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/howplay" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/joinButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_below="@+id/imageButton1"
+        android:layout_alignLeft="@+id/createButton"
+        android:layout_below="@+id/createButton"
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/joingame" />
 
