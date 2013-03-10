@@ -33,15 +33,6 @@
             </intent-filter>
         </activity>
         
-         <activity
-            android:name="com.cardsagainsthumanity.Entities.CreateGame"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="com.cardsagainsthumanity.Entities.CreateGame" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
            <activity
             android:name="com.cardsagainsthumanity.Entities.JoinGame"
             android:label="@string/app_name" >
