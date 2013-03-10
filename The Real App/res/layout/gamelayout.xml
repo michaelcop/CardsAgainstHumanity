@@ -13,46 +13,46 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/card1"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card1" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/card2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card2" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/card3"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card3" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/card4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card4" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/card5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card5" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/card6"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card6" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/card7"
             android:layout_width="151dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Card7" />
 
         <TextView
             android:id="@+id/textView1"
@@ -75,7 +75,7 @@
             android:layout_width="151dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.40"
-            android:text="Medium Text"
+            android:text="Black Card"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white" />
 
