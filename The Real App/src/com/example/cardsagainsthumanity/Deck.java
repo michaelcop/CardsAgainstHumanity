@@ -5,8 +5,7 @@ import java.io.*;
 
 public class Deck 
 {
-	List<WhiteCard> whiteCards;
-	List<BlackCard> blackCards;
+	List<Card> cards;
 	
 	Deck()
 	{
@@ -16,49 +15,27 @@ public class Deck
 	public void initDeck()
 	{
 		//read in cards and shuffle
-		this.whiteCards = new ArrayList<WhiteCard>();
-		this.blackCards = new ArrayList<BlackCard>();
+		this.cards = new ArrayList<Card>();
 	}
-	
-	private void readCards()
+
+	public void getCards()
 	{
-		try
-		{
-			//read cards from file
-			Scanner scBlack = new Scanner(new File("blackCards.txt"));
-			Scanner scWhite = new Scanner(new File("whiteCards.txt"));
-			String blackCardString ="", whiteCardString = "";
-			while(scBlack.hasNext())
-				blackCardString +=  scBlack.next();
-			while(scWhite.hasNext())
-				whiteCardString +=  scWhite.next();
-			String[] blackCards = blackCardString.split("<>");
-			String[] whiteCards = blackCardString.split("<>");
-			
-			//add cards to deck
-			for(String blackCard : blackCards)
-			{
-				this.blackCards.add(new BlackCard(blackCard));
-			}
-			for(String whiteCard : whiteCards)
-			{
-				this.whiteCards.add(new WhiteCard(whiteCard));
-			}
-		}
-		catch(Exception e)
-		{
-			
-		}
+		
 	}
 	
+	private void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+
 	public void shuffleDeck()
 	{
+		/*
 		for(int i=0; i<whiteCards.size(); i++)
 		{
 			int a = (int) (Math.random() * whiteCards.size());
 			int b = (int) (Math.random() * whiteCards.size());
-			WhiteCard tempA = whiteCards.get(a);
-			WhiteCard tempB = whiteCards.get(b);
+			Card tempA = whiteCards.get(a);
+			Card tempB = whiteCards.get(b);
 			whiteCards.remove(a);
 			whiteCards.remove(b);
 			whiteCards.add(tempA);
@@ -76,5 +53,6 @@ public class Deck
 			blackCards.add(tempA);
 			blackCards.add(tempB);
 		}
+		*/
 	}
 }

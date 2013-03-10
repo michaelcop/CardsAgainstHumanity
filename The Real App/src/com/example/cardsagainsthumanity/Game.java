@@ -3,12 +3,56 @@ import java.util.*;
 
 public class Game 
 {
-	final int maxUser = 6;
-	int numGameRounds;
-	Deck deck;
-	List<User> users;
-	int cardCzarIndex;
-	int gameID;
+	private final int maxUser = 6;
+	private int numGameRounds;
+	public int getNumGameRounds() {
+		return numGameRounds;
+	}
+
+	public void setNumGameRounds(int numGameRounds) {
+		this.numGameRounds = numGameRounds;
+	}
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public int getCardCzarIndex() {
+		return cardCzarIndex;
+	}
+
+	public void setCardCzarIndex(int cardCzarIndex) {
+		this.cardCzarIndex = cardCzarIndex;
+	}
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	 void setGameID(int gameID) {
+		this.gameID = gameID;
+	}
+
+	 public int getMaxUser() {
+		return maxUser;
+	}
+
+	private Deck deck;
+	private List<User> users;
+	private int cardCzarIndex;
+	private int gameID;
 	
 	Game()
 	{
