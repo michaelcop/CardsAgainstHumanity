@@ -17,10 +17,9 @@ public class HowToPlay extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.howtoplay);
 	
-	
-	
-	Button returns = (Button) findViewById(R.id.button1);
-	returns.setOnClickListener(new OnClickListener()
+		Button returns = (Button) findViewById(R.id.button1);
+		
+		returns.setOnClickListener(new OnClickListener()
 		{
 	
 			@Override

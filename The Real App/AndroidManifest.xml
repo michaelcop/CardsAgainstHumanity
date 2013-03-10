@@ -13,6 +13,7 @@
         android:icon="@drawable/ohlogo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" android:logo="@drawable/ohlogo">
+        
         <activity
             android:name="com.cardsagainsthumanity.Entities.StartPage"
             android:label="@string/app_name" >
@@ -24,10 +25,47 @@
         </activity>
         
          <activity
+            android:name="com.cardsagainsthumanity.Entities.Game"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.cardsagainsthumanity.Entities.Game" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+           <activity
+            android:name="com.cardsagainsthumanity.Entities.JoinGame"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.cardsagainsthumanity.Entities.JoinGame" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+         <activity
+            android:name="com.cardsagainsthumanity.Entities.FriendsList"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.cardsagainsthumanity.Entities.FriendsList" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+          <activity
+            android:name="com.cardsagainsthumanity.Entities.PlayerStats"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.cardsagainsthumanity.Entities.PlayerStats" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+          
+           <activity
             android:name="com.cardsagainsthumanity.Entities.HowToPlay"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.cardsagainsthumanity.Entities.HowToPlay" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
