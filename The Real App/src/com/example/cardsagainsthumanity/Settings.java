@@ -1,5 +1,6 @@
 package com.example.cardsagainsthumanity;
 
+<<<<<<< HEAD
 public class Settings 
 {
 	private User user;
@@ -40,4 +41,11 @@ public class Settings
 	{
 		
 	}
+=======
+public class Settings {
+	// We need to add some variables and methods here
+	
+	
+	
+>>>>>>> upstream3/master
 }

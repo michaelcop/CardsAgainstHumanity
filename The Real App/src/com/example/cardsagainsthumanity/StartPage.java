@@ -1,28 +1,56 @@
 package com.example.cardsagainsthumanity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.app.Activity;
-import android.view.Menu;
+import android.content.Intent;
+import com.cardsagainsthumanity.Entities.R;
 
 public class StartPage extends Activity {
+	
+	EditText inputUsername;
+	EditText inputPassword;
+	String userName;
+	String password;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_start_page, menu);
-		return true;
+		Button v = (Button) findViewById(R.id.button1);
+		
+		inputUsername = (EditText) findViewById(R.id.editText1);
+		inputPassword = (EditText) findViewById(R.id.editText2);
+		
+		v.setOnClickListener(new OnClickListener() {
+			
+	        public void onClick(View v) {
+	        	
+	        	User user = new User(inputUsername.getText().toString());
+	        	user.setPassword("Test");
+	        	if((inputPassword.getText().toString()).equals(user.getPassword()))
+	        	{
+	        		
+	        	
+		        	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
+	                startActivityForResult(myIntent, 0);
+	        	}
+	        	else{
+	        		inputUsername.setText("NONE");
+	        		
+	        		
+	        	}
+	        	}
+			
+			
+	        });
+	        
 	}
 	
-	public void onClick(){
-		
-		
-		return;
-	}
 	
 }
