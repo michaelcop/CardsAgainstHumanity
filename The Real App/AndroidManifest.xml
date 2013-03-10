@@ -24,6 +24,15 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name="com.cardsagainsthumanity.Entities.CreateAccount"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.cardsagainsthumanity.Entities.CreateAccount" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
          <activity
             android:name="com.cardsagainsthumanity.Entities.Game"
             android:label="@string/app_name" >
