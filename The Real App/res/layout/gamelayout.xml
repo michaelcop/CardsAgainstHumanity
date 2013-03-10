@@ -3,7 +3,8 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:showDividers="none" >
+    android:showDividers="none"
+    android:background="@color/black" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -53,11 +54,13 @@
             android:layout_height="wrap_content"
             android:text="Button" />
 
-        <EditText
-            android:id="@+id/editText2"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:inputType="textMultiLine" />
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -67,22 +70,23 @@
         android:layout_weight="0.30"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="150dp"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="151dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.40"
-            android:text="Button" />
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/editText1"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.58"
-            android:inputType="textMultiLine" >
-
-            <requestFocus />
-        </EditText>
+            android:layout_weight="0.40"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
