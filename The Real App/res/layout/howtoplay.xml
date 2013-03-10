@@ -16,7 +16,8 @@
         android:text="@string/howtoplay"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button1"
