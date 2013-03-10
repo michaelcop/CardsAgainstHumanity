@@ -48,7 +48,10 @@ public class Test extends HttpServlet implements DataSource {
 			ResultSet rs;
 			try {
 				stmt = connection.createStatement();
-				rs = stmt.executeQuery("SELECT * FROM tblUsers");
+				rs = stmt.executeQuery("Select * from tblUsers;");
+				while(rs.next()){
+					out.println("User ID: " + rs.getInt(1) + " Username: " + rs.getString(2));
+				}
 				rs.close();
 				stmt.close();
 				connection.close();
