@@ -47,8 +47,7 @@ public class StartPage extends Activity {
 	        	else
 	        	{
 	        		inputUsername.setText("NONE");
-	        		
-	        		
+	        		System.out.println("Incorrect username or password. Please try again.");	        		
 	        	}
         	}
 			

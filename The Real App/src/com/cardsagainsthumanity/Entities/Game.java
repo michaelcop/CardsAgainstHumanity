@@ -91,7 +91,7 @@ public class Game extends Activity
 		}
 		else
 		{
-			System.out.println("error too many users");
+			System.out.println("Error: Too many users");
 			return false;
 		}
 	}
