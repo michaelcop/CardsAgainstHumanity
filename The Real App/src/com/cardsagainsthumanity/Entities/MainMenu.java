@@ -19,6 +19,7 @@ public class MainMenu extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainmenu);
 	
+		/*
 		//Create listener----------------------------------------------
 		ImageButton create = (ImageButton) findViewById(R.id.createButton);
 		
@@ -58,7 +59,7 @@ public class MainMenu extends Activity
 		//How to Play listener end---------------------------------------------
 		
 		//Button how = (Button) findViewById(R.id.howButton);
-		
+		*/
 		
 	}
 }
