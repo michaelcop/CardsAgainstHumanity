@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.cardsagainsthumanity.Entities.R;
 
@@ -19,7 +20,7 @@ public class MainMenu extends Activity
 		setContentView(R.layout.mainmenu);
 	
 		//Create listener----------------------------------------------
-		Button create = (Button) findViewById(R.id.createButton);
+		ImageButton create = (ImageButton) findViewById(R.id.createButton);
 		
 		create.setOnClickListener(new OnClickListener()
 		{
@@ -39,7 +40,7 @@ public class MainMenu extends Activity
 		
 		//How to Play listener---------------------------------------------
 		
-		Button how = (Button) findViewById(R.id.howButton);
+		ImageButton how = (ImageButton) findViewById(R.id.howButton);
 		
 		how.setOnClickListener(new OnClickListener()
 		{
