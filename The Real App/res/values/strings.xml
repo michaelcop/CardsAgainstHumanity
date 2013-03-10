@@ -23,6 +23,7 @@
     <string name="jg_title">Join Game</string>
     
     <string name="stat_title">Player Stats</string>
+    <string name="player_name">Player Name</string>
     <string name="games_won">Games Won</string>
     <string name="games_lost">Games Lost</string>
     <string name="average_points">Average Points per Game</string>
