@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.cardsagainsthumanity.Entities.MainMenu"></activity>
+        <activity android:name="com.cardsagainsthumanity.Entities.HowToPlay"></activity>
         
     </application>
 
