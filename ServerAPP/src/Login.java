@@ -18,8 +18,10 @@ public class Login extends HttpServlet implements DataSource {
 	private String Tested =  "Not set";
 	Connection connection = null;
 	
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		Tested = (String) request.getAttribute("Tested");
 
 		try {
 		    System.out.println("Loading driver...");
