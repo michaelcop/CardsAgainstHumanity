@@ -13,6 +13,10 @@
     <string name="howtoplay">How to Play</string>
     <string name="returntomenu">Return to Menu</string>
     <string name="rules">The user can select this option from the main menu of the application. Screenshots of actual gameplay will be presented to the user along with brief text description with supplementary instructions. There will be a button at the bottom of the user’s screen titled “Got It!”, if this is clicked then it will return the user to the main menu of the application.</string>
+    <string name="setting_save">Save</string>
+    <string name="setting_notific">Notification</string>
+    <string name="setting_title">Settings</string>
+    <string name="setting_switch">Change User</string>
     
     
 </resources>
