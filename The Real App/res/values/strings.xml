@@ -40,6 +40,15 @@
     
     
     <string name="temp_construct">Page is under construction!!</string>
+    <string name="black_card">Black Card</string>
+    <string name="Card1">Card 1</string>
+    <string name="Card2">Card 2</string>
+    <string name="Card3">Card 3</string>
+    <string name="Card4">Card 4</string>
+    <string name="Card5">Card 5</string>
+    <string name="Card6">Card 6</string>
+    <string name="Card7">Card 7</string>
+    <string name="see_card">Choose a card to see its text.</string>
     
     
 </resources>
