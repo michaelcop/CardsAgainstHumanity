@@ -18,12 +18,82 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="28dp"
         android:text="@string/cg_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="16dp"
+        android:text="@string/numPlayers"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/numPlayers2"
+        android:inputType="number"
+        android:textColor="@color/black" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="20dp"
+        android:text="@string/numRounds"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="@string/numRounds"
+        android:inputType="number"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="20dp"
+        android:text="@string/gameName"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/gameName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/Gray" />
 
 </RelativeLayout>

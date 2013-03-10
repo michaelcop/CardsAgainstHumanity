@@ -50,5 +50,9 @@
     <string name="Card7">Card 7</string>
     <string name="see_card">Choose a card to see its text.</string>
     
+    <string name="numPlayers">Number of Players (3 to 6)</string>
+    <string name="numPlayers2">Number of Players</string>
+    <string name="numRounds">Max Number of Rounds</string>
+    <string name="gameName">Instance Name</string>
     
 </resources>
