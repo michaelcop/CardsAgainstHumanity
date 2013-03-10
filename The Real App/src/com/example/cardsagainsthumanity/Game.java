@@ -1,7 +1,9 @@
 package com.example.cardsagainsthumanity;
 import java.util.*;
 
-public class Game 
+import android.app.Activity;
+
+public class Game extends Activity
 {
 	private final int maxUser = 6;
 	private int numGameRounds;

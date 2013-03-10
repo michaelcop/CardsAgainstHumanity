@@ -27,6 +27,8 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Intent cGame = new Intent(v.getContext(), Game.class);
+				startActivityForResult(cGame, 0);
 				
 			}
 			
