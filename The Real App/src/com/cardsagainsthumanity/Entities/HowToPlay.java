@@ -1,7 +1,6 @@
 package com.cardsagainsthumanity.Entities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -17,5 +16,22 @@ public class HowToPlay extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.howtoplay);
-	}
+	
+	
+	
+	Button returns = (Button) findViewById(R.id.button1);
+	returns.setOnClickListener(new OnClickListener()
+		{
+	
+			@Override
+			public void onClick(View v) 
+			{
+				finish();
+			}
+			
+		});
+	} 
+	
+	
+	
 }
