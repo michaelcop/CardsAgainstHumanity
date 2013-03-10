@@ -6,6 +6,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.app.Activity;
 import android.content.Intent;
 import com.cardsagainsthumanity.Entities.R;
@@ -52,22 +53,19 @@ public class StartPage extends Activity {
 
         }); 
 		
-//		super.onCreate(savedInstanceState);
-//		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		setContentView(R.layout.createaccount);
-//
-//		Button returns = (Button) findViewById(R.id.button2);
-//		returns.setOnClickListener(new OnClickListener()
-//		{
-//		
-//			@Override
-//			public void onClick(View v) 
-//			{
-//				finish();
-//			}
-//				
-//		});
-	}
-//	
-//	
+		Button ca = (Button) findViewById(R.id.button2);
+	
+		ca.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) 
+			{
+				Intent myIntent = new Intent(v.getContext(), CreateAccount.class);
+                startActivity(myIntent);
+				
+			}
+			
+		});
+	}	
 }
