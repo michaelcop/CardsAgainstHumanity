@@ -17,6 +17,7 @@
     <string name="setting_notific">Notifications</string>
     <string name="setting_title">User Options</string>
     <string name="setting_switch">Change User</string>
+    <string name="htp_gotit">Got it!</string>
     
     
 </resources>
