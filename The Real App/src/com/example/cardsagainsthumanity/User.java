@@ -87,7 +87,6 @@ public class User
 		this.name = name;
 	}
 	
-<<<<<<< HEAD
 	public boolean isCardCzar()
 	{
 		return true;
@@ -97,9 +96,6 @@ public class User
 	{
 		this.password = passWord;
 	}
-	
-=======
->>>>>>> upstream3/master
 	public boolean removeFriend(User user)
 	{
 		for(int i=0; i<friends.size(); i++)
@@ -136,6 +132,7 @@ public class User
 		}
 	}
 
+	/*
 	public String getPassword() {
 		return password;
 	}
@@ -143,4 +140,5 @@ public class User
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	*/
 }
