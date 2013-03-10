@@ -4,17 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="77dp"
-        android:text="@string/returntomenu"
-        android:textColor="@color/White" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -26,5 +15,35 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/friend_view"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/friend_invite"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:text="@string/returntomenu"
+        android:textColor="@color/White" />
 
 </RelativeLayout>

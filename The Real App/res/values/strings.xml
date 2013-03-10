@@ -16,9 +16,9 @@
     <string name="setting_save">Save</string>
     <string name="setting_notific">Notifications</string>
     <string name="setting_title">User Options</string>
-    <string name="setting_switch">Change User</string>
+    <string name="setting_switch">Log Out</string>
     <string name="htp_gotit">Got it!</string>
-    <string name="fl_title">Friends List</string>
+    <string name="fl_title">Friends</string>
     <string name="cg_title">Create Game</string>
     <string name="jg_title">Join Game</string>
     <string name="ca_title">Create Account</string>
@@ -27,6 +27,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="repassword">Confirm Password</string>
+    <string name="friend_view">View Friends</string>
+    <string name="friend_invite">Invite a Friend</string>
+    <string name="friend_delete">Delete Friend</string>
     
     <string name="stat_title">Player Stats</string>
     <string name="player_name">Player Name</string>
