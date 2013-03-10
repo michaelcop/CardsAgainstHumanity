@@ -1,4 +1,4 @@
-package com.example.cardsagainsthumanity;
+package com.cardsagainsthumanity.Entities;
 
 import android.os.Bundle;
 import android.view.View;

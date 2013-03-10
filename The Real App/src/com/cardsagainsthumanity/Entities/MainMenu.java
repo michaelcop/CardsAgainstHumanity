@@ -1,4 +1,4 @@
-package com.example.cardsagainsthumanity;
+package com.cardsagainsthumanity.Entities;
 
 import android.app.Activity;
 import android.content.Intent;
