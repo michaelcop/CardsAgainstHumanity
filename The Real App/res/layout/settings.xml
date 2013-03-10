@@ -50,16 +50,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/White" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignRight="@+id/button1"
-        android:layout_marginRight="40dp"
-        android:textColor="@color/White" />
-
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
@@ -68,6 +58,16 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_alignRight="@+id/textView1"
         android:text="@string/returntomenu"
+        android:textColor="@color/White" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/button3"
         android:textColor="@color/White" />
 
 </RelativeLayout>
