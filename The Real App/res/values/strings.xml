@@ -21,6 +21,12 @@
     <string name="fl_title">Friends List</string>
     <string name="cg_title">Create Game</string>
     <string name="jg_title">Join Game</string>
+    <string name="ca_title">Create Account</string>
+    <string name="ca_create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="repassword">Confirm Password</string>
     
     <string name="stat_title">Player Stats</string>
     <string name="player_name">Player Name</string>
