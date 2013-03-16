@@ -23,6 +23,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StartPage extends Activity {
 	
@@ -60,14 +61,15 @@ public class StartPage extends Activity {
 	        	check = "User: "+userName+" login successful!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
+                
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
+                    Toast.makeText(v.getContext(), "Logging in", Toast.LENGTH_SHORT).show();
                     new DownloadWebpageText().execute(stringUrl);
                 } else {
                     login.setText("No network connection available.");
                 }
-                login.setText("Loggin in");
-
+                
         	}
 			
 

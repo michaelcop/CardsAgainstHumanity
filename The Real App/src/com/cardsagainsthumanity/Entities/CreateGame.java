@@ -16,10 +16,13 @@ public class CreateGame extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.creategame);
+		
+		
 		Button returns = (Button) findViewById(R.id.btnReturn);
+		
+		
 		returns.setOnClickListener(new OnClickListener()
 		{
-	
 			@Override
 			public void onClick(View v) 
 			{
@@ -27,5 +30,20 @@ public class CreateGame extends Activity
 			}
 			
 		});
+	
+	
+		Button create = (Button) findViewById(R.id.btnCreate);
+		create.setOnClickListener(new OnClickListener()
+		{
+	
+			@Override
+			public void onClick(View v) 
+			{
+				Intent myIntent = new Intent(v.getContext(), Game.class);
+                startActivity(myIntent);				
+			}
+			
+		});
+	
 	}
 }

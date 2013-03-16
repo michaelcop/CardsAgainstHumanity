@@ -7,16 +7,24 @@ import android.view.Window;
 
 public class Game extends Activity
 {
+	private final int maxUser = 6;
+	private int numGameRounds;
+	private String gameName;
+	private Deck deck;
+	private List<User> users;
+	private int cardCzarIndex;
+	private int gameID;
+	
+	
 	protected void onCreate(Bundle savedInstanceState){ 
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.gamelayout);
-		
-		
 	}
-	private final int maxUser = 6;
-	private int numGameRounds;
-	private String gameName;
+	
+	
+	
+	
 	
 	public String getGameName() {
 		return gameName;
@@ -70,15 +78,7 @@ public class Game extends Activity
 		return maxUser;
 	}
 
-	private Deck deck;
-	private List<User> users;
-	private int cardCzarIndex;
-	private int gameID;
-	
-	Game()
-	{
-		
-	}
+
 	
 	public void createGame()
 	{
