@@ -33,7 +33,6 @@ public class Settings extends Activity
 		
 		saveButton.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v) 
 			{
