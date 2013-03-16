@@ -15,7 +15,7 @@ public class JoinGame extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.joingame);
 
-		Button returns = (Button) findViewById(R.id.button1);
+		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
 		{
 	
