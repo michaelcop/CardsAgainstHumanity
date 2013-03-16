@@ -24,7 +24,7 @@ public class HowToPlay extends Activity
 		mCustomView = new DrawableTest(this);
 		setContentView(mCustomView);
 		*/
-		Button returns = (Button) findViewById(R.id.button1);
+		Button returns = (Button) findViewById(R.id.GotIt);
 		
 		returns.setOnClickListener(new OnClickListener()
 		{

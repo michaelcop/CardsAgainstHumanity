@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/GotIt"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
