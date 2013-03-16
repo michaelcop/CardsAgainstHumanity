@@ -7,12 +7,46 @@ import java.util.*;
 
 import android.app.Activity;
 import android.content.*;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import java.io.*;
 
 public class Settings extends Activity
 {
 	private User user;
 	private Game games;
+	
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.settings);
+		
+		//Save Button listener----------------------------------------------
+		ImageButton saveButton = (ImageButton) findViewById(R.id.SaveButton);
+		
+		saveButton.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v) 
+			{
+				ToggleButton notificationsToggleButton = (ToggleButton) findViewById(R.id.toggleNotificationsButton);
+				if(notificationsToggleButton.isChecked())
+				{
+					Toast.makeText(Settings.this, "Toggle Button is on", Toast.LENGTH_SHORT).show();
+				}
+			}
+			
+		});
+		
+	}
 	
 	public User getUser() {
 		return user;
