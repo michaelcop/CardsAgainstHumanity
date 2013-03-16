@@ -55,7 +55,9 @@ public class MainMenu extends Activity
             return true;
  
         case R.id.menu_preferences:
-            Toast.makeText(MainMenu.this, "Preferences is Selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
+            Intent set = new Intent(MainMenu.this, Settings.class);
+            startActivityForResult(set, 0);
             return true;
  
         default:
