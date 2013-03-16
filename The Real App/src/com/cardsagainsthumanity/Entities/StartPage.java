@@ -54,9 +54,10 @@ public class StartPage extends Activity {
 	        public void onClick(View v) 
 	        {
 	        	//login
-	        
-	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+inputUsername.getText().toString()+"&password="+inputPassword.getText().toString();
-	        	check = "User: "+inputUsername.getText().toString()+" login successful!";
+	        	userName = inputUsername.getText().toString();
+	        	password = inputPassword.getText().toString();
+	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+userName+"&password="+password;
+	        	check = "User: "+userName+" login successful!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -111,7 +112,7 @@ public class StartPage extends Activity {
                 	startActivityForResult(myIntent, 0);
                 }
                 else{
-                	login.setText(check +" @@ "+ results + results.length() + " " + check.length());
+                	login.setText(results);
                 }
 	            
 	            

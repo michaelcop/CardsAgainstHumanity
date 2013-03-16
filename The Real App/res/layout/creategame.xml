@@ -5,7 +5,7 @@
     android:background="@color/Black" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -95,5 +95,14 @@
         android:hint="@string/gameName"
         android:textColor="@color/black"
         android:textColorHint="@color/Gray" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnReturn"
+        android:layout_alignLeft="@+id/btnReturn"
+        android:textColor="@color/white"
+        android:text="@string/Create" />
 
 </RelativeLayout>
