@@ -109,7 +109,10 @@ public class StartPage extends Activity {
 	            //check the result for the what's needed to move on
                 if(results.equalsIgnoreCase(check)){
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
+                	myIntent.putExtra("UserName", userName);
+                	login.setText("");
                 	startActivityForResult(myIntent, 0);
+                	
                 }
                 else{
                 	login.setText(results);
