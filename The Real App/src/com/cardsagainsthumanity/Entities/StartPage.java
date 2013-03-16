@@ -43,7 +43,7 @@ public class StartPage extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
-		v = (Button) findViewById(R.id.button1);
+		v = (Button) findViewById(R.id.LogIn);
 		
 		
 		inputUsername = (EditText) findViewById(R.id.editText1);
@@ -75,7 +75,7 @@ public class StartPage extends Activity {
 
         }); 
 		
-		Button ca = (Button) findViewById(R.id.button2);
+		Button ca = (Button) findViewById(R.id.CreateAccount);
 	
 		ca.setOnClickListener(new OnClickListener()
 		{
