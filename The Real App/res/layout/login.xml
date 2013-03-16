@@ -42,7 +42,6 @@
         android:layout_below="@+id/textView1"
         android:ems="10"
         android:hint="Username"
-        android:background="@color/white"
         android:textColor="@color/black"
         android:textColorHint="@color/black" >
 
@@ -72,7 +71,6 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-         android:background="@color/white"
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
     
