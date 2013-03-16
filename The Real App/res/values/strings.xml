@@ -56,4 +56,7 @@
     <string name="gameName">Instance Name</string>
     <string name="Create">Create Game</string>
     
+    <string name="error"></string>
+    
+    
 </resources>

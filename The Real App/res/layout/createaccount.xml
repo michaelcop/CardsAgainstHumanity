@@ -71,4 +71,14 @@
         android:text="@string/ca_create"
         android:textColor="@color/White" />
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="34dp"
+                android:textColor="@color/White"
+        android:text="@string/error" />
+
 </RelativeLayout>
