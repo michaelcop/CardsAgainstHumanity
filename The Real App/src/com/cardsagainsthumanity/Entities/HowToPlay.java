@@ -17,12 +17,13 @@ public class HowToPlay extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		//Old
-		//setContentView(R.layout.howtoplay);
-	
+		setContentView(R.layout.howtoplay);
+		
+		/*
 		DrawableTest mCustomView;
 		mCustomView = new DrawableTest(this);
 		setContentView(mCustomView);
-		
+		*/
 		Button returns = (Button) findViewById(R.id.button1);
 		
 		returns.setOnClickListener(new OnClickListener()
