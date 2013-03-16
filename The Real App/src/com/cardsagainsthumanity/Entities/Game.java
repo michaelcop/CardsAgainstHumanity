@@ -7,7 +7,13 @@ import android.view.Window;
 
 public class Game extends Activity
 {
-
+	protected void onCreate(Bundle savedInstanceState){ 
+		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.gamelayout);
+		
+		
+	}
 	private final int maxUser = 6;
 	private int numGameRounds;
 	private String gameName;
