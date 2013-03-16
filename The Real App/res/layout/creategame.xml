@@ -28,36 +28,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="16dp"
-        android:text="@string/numPlayers"
-        android:textColor="@color/white" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/numPlayers2"
-        android:inputType="number"
-        android:textColor="@color/black" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
         android:layout_marginTop="20dp"
         android:text="@string/numRounds"
         android:textColor="@color/white" />

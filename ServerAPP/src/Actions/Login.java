@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 
-//@WebServlet(urlPatterns={"/Login"})
+@WebServlet(urlPatterns={"/Login"})
 public class Login extends HttpServlet implements DataSource {
 
 	private String User =  null;
