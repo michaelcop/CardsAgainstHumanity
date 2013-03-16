@@ -15,11 +15,20 @@
         android:theme="@style/AppTheme" android:logo="@drawable/ohlogo">
         
         <activity
-            android:name="com.cardsagainsthumanity.Entities.StartPage"
+            android:name="com.cardsagainsthumanity.Entities.StartActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="com.cardsagainsthumanity.Entities.StartPage"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.StartPage" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
