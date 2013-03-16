@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class AndroidMenusActivity extends Activity{
-
+/*
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.mainmenu);
@@ -27,7 +27,7 @@ public class AndroidMenusActivity extends Activity{
 	     * Event Handling for Individual menu item selected
 	     * Identify single menu item by it's id
 	     * */
-	    @Override
+/*	    @Override
 	    public boolean onOptionsItemSelected(MenuItem item)
 	    {
 	 
@@ -62,6 +62,6 @@ public class AndroidMenusActivity extends Activity{
 	        default:
 	            return super.onOptionsItemSelected(item);
 	        }
-	    }    
+	    }    */
 	 
 	}
