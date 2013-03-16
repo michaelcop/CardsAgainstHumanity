@@ -1,12 +1,6 @@
 package com.cardsagainsthumanity.Entities;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,15 +11,7 @@ import java.net.URL;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -37,10 +23,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import com.cardsagainsthumanity.Entities.R;
 
 public class StartPage extends Activity {
 	
@@ -49,7 +31,10 @@ public class StartPage extends Activity {
 	private String userName;
 	private String password;
     private EditText urlText;
-    private TextView textView;
+    private TextView login;
+    private String results;
+    Button v;
+    String check;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -57,30 +42,30 @@ public class StartPage extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
+		v = (Button) findViewById(R.id.button1);
 		
-		Button v = (Button) findViewById(R.id.button1);
 		
 		inputUsername = (EditText) findViewById(R.id.editText1);
 		inputPassword = (EditText) findViewById(R.id.editText2);
+		login = (TextView) findViewById(R.id.myText);
 		
 		v.setOnClickListener(new OnClickListener() {
 			
 	        public void onClick(View v) 
 	        {
 	        	//login
-	        	String stringUrl = "http://http://54.225.225.185:8080/ServerAPP/Login?User="+inputUsername.getText().toString()+"&password="+inputPassword.getText().toString();
-	        	
+	        
+	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+inputUsername.getText().toString()+"&password="+inputPassword.getText().toString();
+	        	check = "User: "+inputUsername.getText().toString()+" login successful!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
-	        		getSystemService(Context.CONNECTIVITY_SERVICE);
-	                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-	                if (networkInfo != null && networkInfo.isConnected()) {
-	                    new DownloadWebpageText().execute(stringUrl);
-	                } else {
-	                    textView.setText("No network connection available.");
-	                }
-	                
-		        	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
-	                startActivityForResult(myIntent, 0);
+        		getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    new DownloadWebpageText().execute(stringUrl);
+                } else {
+                    login.setText("No network connection available.");
+                }
+                login.setText("Loggin in");
 
         	}
 			
@@ -118,8 +103,18 @@ public class StartPage extends Activity {
 	        // onPostExecute displays the results of the AsyncTask.
 	        @Override
 	        protected void onPostExecute(Object result) {
-	            textView.setText((CharSequence) result);
+	            results = (String) result.toString();
+	            results = results.trim();
 	            //check the result for the what's needed to move on
+                if(results.equalsIgnoreCase(check)){
+                	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
+                	startActivityForResult(myIntent, 0);
+                }
+                else{
+                	login.setText(check +" @@ "+ results + results.length() + " " + check.length());
+                }
+	            
+	            
 	       }
 
 	     }
