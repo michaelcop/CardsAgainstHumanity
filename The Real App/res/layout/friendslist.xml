@@ -27,16 +27,6 @@
         android:textColor="@color/White" />
 
     <Button
-        android:id="@+id/InviteFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:text="@string/friend_invite"
-        android:textColor="@color/White" />
-
-    <Button
         android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +34,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
         android:text="@string/returntomenu"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/InviteFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ViewFriends"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="@string/friend_invite"
         android:textColor="@color/White" />
 
 </RelativeLayout>

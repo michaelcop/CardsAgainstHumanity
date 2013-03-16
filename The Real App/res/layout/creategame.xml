@@ -76,8 +76,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnReturn"
-        android:layout_alignLeft="@+id/btnReturn"
-        android:textColor="@color/white"
-        android:text="@string/Create" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/Create"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

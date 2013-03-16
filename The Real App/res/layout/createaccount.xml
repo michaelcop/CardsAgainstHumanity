@@ -17,17 +17,6 @@
         android:textColor="@color/White"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="48dp"
-        android:text="@string/cancel"
-        android:textColor="@color/White" />
-
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
@@ -85,5 +74,15 @@
         android:layout_centerVertical="true"
         android:textColor="@color/White"
         android:text="THIS IS TEXT" />
+
+    <Button
+        android:id="@+id/Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Create"
+        android:layout_alignBottom="@+id/Create"
+        android:layout_alignRight="@+id/editText1"
+        android:text="@string/cancel"
+        android:textColor="@color/White" />
 
 </RelativeLayout>
