@@ -32,6 +32,7 @@ public class MainMenu extends Activity
 				Intent cGame = new Intent(v.getContext(), CreateGame.class);
 				startActivity(cGame);
 				
+				
 			}
 			
 		});
