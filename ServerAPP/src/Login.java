@@ -76,12 +76,6 @@ public class Login extends HttpServlet implements DataSource {
 							out.println("Password incorrect!");
 						}
 						
-						/*
-						while(rs.next()){
-							out.println("User ID: " + rs.getInt(1) + " Username: " + rs.getString(2));
-						}
-						*/
-						
 					}
 						
 					rs.close();
@@ -94,28 +88,8 @@ public class Login extends HttpServlet implements DataSource {
 				}
 				
 			}
-			
-			/*
-			Statement stmt;
-			ResultSet rs;
-			try {
-				stmt = connection.createStatement();
-				rs = stmt.executeQuery("Select * from tblUsers;");
-				while(rs.next()){
-					out.println("User ID: " + rs.getInt(1) + " Username: " + rs.getString(2));
-				}
-				rs.close();
-				stmt.close();
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			*/
 		
 		}
-
-		
 		
 	}
 
