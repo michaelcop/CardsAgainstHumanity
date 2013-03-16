@@ -17,7 +17,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ViewFriends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
@@ -27,7 +27,7 @@
         android:textColor="@color/White" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/InviteFriends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button2"
@@ -37,7 +37,7 @@
         android:textColor="@color/White" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
