@@ -62,6 +62,6 @@ public class AndroidMenusActivity extends Activity{
 	        default:
 	            return super.onOptionsItemSelected(item);
 	        }
-	    }    
+	    }
 	 
 	}

@@ -35,8 +35,8 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-                android:textColor="@color/White"
-        
+        android:background="@color/white"
+        android:textColor="@color/black"
         android:ems="10"
         android:hint="@string/username" />
 
@@ -47,8 +47,8 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_below="@+id/editText1"
         android:ems="10"
-                android:textColor="@color/White"
-        
+        android:background="@color/white"
+       	android:textColor="@color/black"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
@@ -59,8 +59,8 @@
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
         android:ems="10"
-                android:textColor="@color/White"
-        
+        android:background="@color/white"
+        android:textColor="@color/black"
         android:hint="@string/repassword"
         android:inputType="textPassword" >
 
