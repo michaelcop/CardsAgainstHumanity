@@ -26,7 +26,7 @@ public class CreateAccount extends HttpServlet implements DataSource{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		if(request.getParameter("UserName") != null){ 
+		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
 		}
 		if(request.getParameter("password") != null){
@@ -44,6 +44,7 @@ public class CreateAccount extends HttpServlet implements DataSource{
 		CreateAccount ds = new CreateAccount();
         try {
 			connection = ds.getConnection();
+			System.out.println("connection made");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,21 +52,22 @@ public class CreateAccount extends HttpServlet implements DataSource{
 		
 		PrintWriter out = response.getWriter();
 		if(connection != null){
-			
+			System.out.println("not null");
 			//out.println(User  + "   " + password);
 			
 			//Check if user exists in database
-			if(User!= null){
-				
+			if(User!= null && User.length()!=0){
+				System.out.println("user not nulll");
 				Statement stmt;
 				ResultSet rs;
 				try {
 					stmt = connection.createStatement();
 					rs = stmt.executeQuery("SELECT * FROM tblUsers WHERE Username = '" + User + "';");
-					
+					System.out.println("query exe");
 					//If Username doesn't exist, then add user to the database
 					if(!rs.next()){
-						rs = stmt.executeQuery("INSERT INTO tblUsers (Username, UserPassword) Values (" + User + ", " + password + ");");
+						System.out.println("user does not exist");
+						rs = stmt.executeQuery("INSERT INTO tblUsers (Username, UserPassword) Values ('" + User + "', '" + password + "');");
 						out.println("User: " + User + "successfully created!");
 						//out.println("Username: " + User + " was not found in Users table.");
 					}
@@ -81,7 +83,7 @@ public class CreateAccount extends HttpServlet implements DataSource{
 					rs.close();
 					stmt.close();
 					connection.close();
-					
+					out.println("Connection closed");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
