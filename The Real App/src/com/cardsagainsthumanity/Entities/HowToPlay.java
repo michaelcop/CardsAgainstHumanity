@@ -16,7 +16,7 @@ public class HowToPlay extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		//Old
+		
 		setContentView(R.layout.howtoplay);
 		
 		/*
