@@ -33,8 +33,6 @@ public class CreateAccount extends HttpServlet implements DataSource{
 			this.setPassword((String) request.getParameter("password").toString());
 		}
 		
-		
-		
 		try {
 		    System.out.println("Loading driver...");
 		    Class.forName("com.mysql.jdbc.Driver");
@@ -43,14 +41,13 @@ public class CreateAccount extends HttpServlet implements DataSource{
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		Login ds = new Login();
+		CreateAccount ds = new CreateAccount();
         try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		PrintWriter out = response.getWriter();
 		if(connection != null){
@@ -66,22 +63,21 @@ public class CreateAccount extends HttpServlet implements DataSource{
 					stmt = connection.createStatement();
 					rs = stmt.executeQuery("SELECT * FROM tblUsers WHERE Username = '" + User + "';");
 					
-					
+					//If Username doesn't exist, then add user to the database
 					if(!rs.next()){
-						out.println("Username: " + User + " was not found in Users table.");
+						rs = stmt.executeQuery("INSERT INTO tblUsers (Username, UserPassword) Values (" + User + ", " + password + ");");
+						out.println("User: " + User + "successfully created!");
+						//out.println("Username: " + User + " was not found in Users table.");
 					}
 					else{
-						//User was found now check if password is correct
-						if(rs.getString(3).equals(password)){
-							out.println("User: " + User + " login successful!");
+						//Username already exists, display warning message
+						if(rs.getString(2).equals(User)){
+							out.println("Unable to create username. User: " + User + " already exists!");
 						}
-						else if(rs.getString(3).equals(password) == false){
-							//password was incorrect
-							out.println("Password incorrect!");
-						}
-						
+
 					}
-						
+					
+					//Close recordset and connection
 					rs.close();
 					stmt.close();
 					connection.close();
