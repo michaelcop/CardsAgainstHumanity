@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -29,7 +30,7 @@ public class Settings extends Activity
 		setContentView(R.layout.settings);
 		
 		//Save Button listener----------------------------------------------
-		ImageButton saveButton = (ImageButton) findViewById(R.id.SaveButton);
+		Button saveButton = (Button) findViewById(R.id.SaveButton);
 		
 		saveButton.setOnClickListener(new OnClickListener()
 		{

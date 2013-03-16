@@ -15,7 +15,7 @@
     <string name="rules">The user can select this option from the main menu of the application. Screenshots of actual gameplay will be presented to the user along with brief text description with supplementary instructions. There will be a button at the bottom of the user’s screen titled “Got It!”, if this is clicked then it will return the user to the main menu of the application.</string>
     <string name="setting_save">Save</string>
     <string name="setting_notific">Notifications</string>
-    <string name="setting_title">User Options</string>
+    <string name="setting_title">Settings</string>
     <string name="setting_switch">Log Out</string>
     <string name="htp_gotit">Got it!</string>
     <string name="fl_title">Friends</string>

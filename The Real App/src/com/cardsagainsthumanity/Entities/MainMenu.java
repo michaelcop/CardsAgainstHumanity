@@ -32,30 +32,9 @@ public class MainMenu extends Activity
  
         switch (item.getItemId())
         {
-        case R.id.menu_bookmark:
-            // Single menu item is selected do something
-            // Ex: launching new activity/screen or show alert message
-            Toast.makeText(MainMenu.this, "Bookmark is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
-        case R.id.menu_save:
-            Toast.makeText(MainMenu.this, "Save is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
-        case R.id.menu_search:
-            Toast.makeText(MainMenu.this, "Search is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
-        case R.id.menu_share:
-            Toast.makeText(MainMenu.this, "Share is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
-        case R.id.menu_delete:
-            Toast.makeText(MainMenu.this, "Delete is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
+
         case R.id.menu_preferences:
-            Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
             Intent set = new Intent(MainMenu.this, Settings.class);
             startActivityForResult(set, 0);
             return true;
