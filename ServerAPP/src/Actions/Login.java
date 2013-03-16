@@ -1,3 +1,4 @@
+package Actions;
 import java.io.*;
 import java.sql.*;
 import java.util.logging.Logger;
@@ -8,13 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 
-@WebServlet(urlPatterns={"/Login"})
+//@WebServlet(urlPatterns={"/Login"})
 public class Login extends HttpServlet implements DataSource {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -504282938198562128L;
 	private String User =  null;
 	Connection connection = null;
 	private String password =  null;
@@ -22,7 +19,7 @@ public class Login extends HttpServlet implements DataSource {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		if(request.getParameter("User") != null){
+		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
 		}
 		if(request.getParameter("password") != null){
