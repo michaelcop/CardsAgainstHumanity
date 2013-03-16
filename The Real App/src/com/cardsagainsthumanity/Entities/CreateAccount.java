@@ -61,7 +61,7 @@ public class CreateAccount extends Activity
 			
 		});
 		Button create = (Button) findViewById(R.id.button1);
-		returns.setOnClickListener(new OnClickListener()
+		create.setOnClickListener(new OnClickListener()
 		{
 	
 			@Override
@@ -71,21 +71,27 @@ public class CreateAccount extends Activity
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
 	        	confirm = confirmPassword.getText().toString();
-	        	if(!password.equals(confirmPassword)){
+	        	if(userName.length()==0 || password.length()==0){
+	        		error.setText("Username and password must not be blank");
+	        		
+	        	}
+	        	error.setText("Clicked");
+	        	if(!password.equals(confirm)){
 	                error.setText("Password and Confirmed password are different");
 	                return;
 	        	}
 	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateAccount?User="+userName+"&password="+password;
-	        	check = "User: "+userName+" login successful!";
+	        	check = "User: "+userName+" successfully created!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                error.setText("creating");
                 if (networkInfo != null && networkInfo.isConnected()) {
                     new DownloadWebpageText().execute(stringUrl);
                 } else {
                     error.setText("No network connection available.");
                 }
-                error.setText("creating");
+                
 			}
 			
 		});
@@ -106,19 +112,23 @@ public class CreateAccount extends Activity
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
-            
-        String results = (String) result.toString();
-            results = results.trim();
-            //check the result for the what's needed to move on
-            if(results.equalsIgnoreCase(check)){
-            	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
-            	startActivityForResult(myIntent, 0);
-            }
-            else{
-            	error.setText(results);
-            }
-            
-            
+        if(result!=null){
+        	String results = (String) result.toString();
+        	if(results!=null){
+	        	results = results.trim();
+	            //check the result for the what's needed to move on
+	            if(results!=null && results.equalsIgnoreCase(check)){
+	            	error.setText("Confirmed creation");
+	            	finish();
+	            }
+	            else{
+	            	error.setText(results);
+	            }
+        	}
+        }
+        else{
+        	error.setText("Result was null");
+        }
        }
 
      }
