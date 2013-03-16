@@ -46,6 +46,18 @@ public class Settings extends Activity
 			
 		});
 		
+		Button returns = (Button) findViewById(R.id.ReturnToMenu);
+		returns.setOnClickListener(new OnClickListener()
+		{
+	
+			@Override
+			public void onClick(View w) 
+			{
+				finish();
+			}
+			
+		});
+		
 	}
 	
 	public User getUser() {

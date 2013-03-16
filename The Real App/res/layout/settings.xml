@@ -28,13 +28,34 @@
         android:textColor="@color/White"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/LogOutButton"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toggleNotificationsButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp"
+        android:text="@string/setting_switch"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/ReturnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogOutButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:text="@string/returntomenu"
+        android:textColor="@color/White" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/setting_notific"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/White" />
@@ -43,28 +64,9 @@
         android:id="@+id/toggleNotificationsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/LogOutButton"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/toggleNotificationsButton"
-        android:layout_marginTop="94dp"
-        android:text="@string/setting_switch"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/LogOutButton"
-        android:layout_below="@+id/LogOutButton"
-        android:layout_marginTop="31dp"
-        android:text="@string/returntomenu"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toLeftOf="@+id/SaveButton"
         android:textColor="@color/White" />
 
 </RelativeLayout>
