@@ -60,8 +60,7 @@ public class Settings extends Activity
 		{
 			//write testString to file
 			String testString = "test";
-			FileOutputStream fOut = openFileOutput("samplefile",
-                    Context.MODE_PRIVATE);
+			FileOutputStream fOut = openFileOutput("samplefile.txt", Context.MODE_PRIVATE);
 			OutputStreamWriter osw = new OutputStreamWriter(fOut);
 			
 			osw.write(testString);
