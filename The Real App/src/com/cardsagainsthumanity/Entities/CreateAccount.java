@@ -49,10 +49,9 @@ public class CreateAccount extends Activity
 
 		
 		
-		Button returns = (Button) findViewById(R.id.button2);
+		Button returns = (Button) findViewById(R.id.Cancel);
 		returns.setOnClickListener(new OnClickListener()
-		{
-	
+		{	
 			@Override
 			public void onClick(View w) 
 			{
@@ -60,7 +59,7 @@ public class CreateAccount extends Activity
 			}
 			
 		});
-		Button create = (Button) findViewById(R.id.button1);
+		Button create = (Button) findViewById(R.id.Create);
 		create.setOnClickListener(new OnClickListener()
 		{
 	

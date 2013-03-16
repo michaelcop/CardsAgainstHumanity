@@ -9,27 +9,6 @@
 	
 	<item android:id="@+id/menu_preferences"
           android:icon="@drawable/icon_bm"
-          android:title="Settings" />	
-
-	<item android:id="@+id/menu_bookmark"
-          android:icon="@drawable/icon_bm"
-          android:title="Bookmark" />
- 
-    <item android:id="@+id/menu_save"
-          android:icon="@drawable/icon_bm"
-          android:title="Save" />
- 
-    <item android:id="@+id/menu_search"
-          android:icon="@drawable/icon_bm"
-          android:title="Search" />
- 
-    <item android:id="@+id/menu_share"
-          android:icon="@drawable/icon_bm"
-          android:title="Share" />
- 
-    <item android:id="@+id/menu_delete"
-          android:icon="@drawable/icon_bm"
-          android:title="Delete" />  
- 
+          android:title="@string/setting_title" />	 
     
 </menu>
