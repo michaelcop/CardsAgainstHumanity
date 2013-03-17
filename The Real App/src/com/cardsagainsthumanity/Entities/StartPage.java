@@ -12,6 +12,7 @@ import java.net.URL;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -36,6 +37,7 @@ public class StartPage extends Activity {
     private String results;
     Button v;
     String check;
+    public static final String SPREF_USER = "othPrefs";
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -66,6 +68,7 @@ public class StartPage extends Activity {
                 if (networkInfo != null && networkInfo.isConnected()) {
                     Toast.makeText(v.getContext(), "Logging in", Toast.LENGTH_SHORT).show();
                     new DownloadWebpageText().execute(stringUrl);
+                    StartPage.this.finish();
                 } else {
                     login.setText("No network connection available.");
                 }
@@ -110,6 +113,12 @@ public class StartPage extends Activity {
 	            results = results.trim();
 	            //check the result for the what's needed to move on
                 if(results.equalsIgnoreCase(check)){
+                	//Store Username in SharedPref
+                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+                	SharedPreferences.Editor spEditor = othSettings.edit();
+                	spEditor.putString("UserName", userName);
+                	spEditor.commit();                        //End storing username
+                	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
                 	myIntent.putExtra("UserName", userName);
                 	login.setText("");

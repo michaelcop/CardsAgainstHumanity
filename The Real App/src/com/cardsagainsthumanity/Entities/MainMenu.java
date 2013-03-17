@@ -145,7 +145,7 @@ public class MainMenu extends Activity
 	    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 	 
 				// set title
-				alertDialogBuilder.setTitle("Leaving \"Oh the Humanity\"");
+				alertDialogBuilder.setTitle("Leaving \"Oh the Humanity!\"");
 	 
 				// set dialog message
 				alertDialogBuilder
