@@ -28,7 +28,7 @@
     <string name="password">Password</string>
     <string name="repassword">Confirm Password</string>
     <string name="friend_view">View Friends</string>
-    <string name="friend_invite">Invite a Friend</string>
+    <string name="friend_invite">Add Friend</string>
     <string name="friend_delete">Delete Friend</string>
     
     <string name="stat_title">Player Stats</string>

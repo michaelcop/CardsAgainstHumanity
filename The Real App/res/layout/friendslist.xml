@@ -4,28 +4,27 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    
+    <TableLayout
+        android:id="@+id/friendsTable"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="@string/fl_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/White"
-        android:textStyle="bold" />
+        android:stretchColumns="0,1" >
 
-    <Button
-        android:id="@+id/ViewFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="@string/friend_view"
-        android:textColor="@color/White" />
+        <TextView
+            android:id="@+id/FriendsList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fl_title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/White" />
 
+    </TableLayout>
+    
+    
+    
     <Button
         android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
@@ -40,9 +39,8 @@
         android:id="@+id/InviteFriends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ViewFriends"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
+        android:layout_above="@+id/ReturnToMenu"
+        android:layout_alignLeft="@+id/ReturnToMenu"
         android:text="@string/friend_invite"
         android:textColor="@color/White" />
 

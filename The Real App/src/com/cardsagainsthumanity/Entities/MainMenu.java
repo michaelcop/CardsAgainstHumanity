@@ -1,5 +1,7 @@
 package com.cardsagainsthumanity.Entities;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -98,6 +100,19 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), FriendsList.class);
+				ArrayList<String> data = new ArrayList<String>();
+				data.add("This");
+				data.add("is");
+				data.add("a");
+				data.add("user");
+				data.add("list");
+				data.add("passed");
+				data.add("by");
+				data.add("the");
+				data.add("last");
+				data.add("intent");
+				data.add("-David");
+				myIntent.putStringArrayListExtra("data", data);
                 startActivity(myIntent);
 				
 			}
