@@ -3,7 +3,9 @@ import java.util.*;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
+import android.widget.TextView;
 
 public class Game extends Activity
 {
@@ -20,6 +22,18 @@ public class Game extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.gamelayout);
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+        	Log.d("FUCK", "Jimmy");
+        	String g = extras.getString("GameID");
+        	Log.d("FUCK", "Jimmy2");
+        	gameID = Integer.parseInt(g);
+		}
+    	Log.d("FUCK", "MIKE TOO");
+		TextView vd = (TextView) findViewById(R.id.textView3);
+		if(vd!=null){
+			vd.setText(""+gameID);
+		}
 	}
 	
 	

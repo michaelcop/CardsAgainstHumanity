@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class MainMenu extends Activity 
 {
 	final Context context = this;
-
+	String UserName;
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
@@ -49,7 +49,10 @@ public class MainMenu extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainmenu);
-		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+		    UserName = extras.getString("UserName");
+		}
 		
 		//Create listener----------------------------------------------
 		ImageButton create = (ImageButton) findViewById(R.id.createButton);
@@ -62,6 +65,7 @@ public class MainMenu extends Activity
 			{
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), CreateGame.class);
+				cGame.putExtra("UserName", UserName);
 				startActivity(cGame);
 			}
 			
