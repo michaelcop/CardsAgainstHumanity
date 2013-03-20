@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 //HERE'S THE CLASS BUT WE THE QUERY AREA IS NOT RIGHT AT ALL
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +20,9 @@ import javax.sql.DataSource;
 @WebServlet(urlPatterns={"/FriendsList"})
 public class FriendsList extends HttpServlet implements DataSource {
 	private String User =  null;
+	//private int UserID;
 	Connection connection = null;
-	private String password =  null;
+	//private String password =  null;
 
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,9 +30,11 @@ public class FriendsList extends HttpServlet implements DataSource {
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
 		}
+		/*
 		if(request.getParameter("password") != null){
 			this.setPassword((String) request.getParameter("password").toString());
 		}
+		*/
 		
 		try {
 		    System.out.println("Loading driver...");
@@ -41,7 +44,7 @@ public class FriendsList extends HttpServlet implements DataSource {
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		CreateAccount ds = new CreateAccount();
+		FriendsList ds = new FriendsList();
         try {
 			connection = ds.getConnection();
 			System.out.println("connection made");
@@ -52,17 +55,43 @@ public class FriendsList extends HttpServlet implements DataSource {
 		
 		PrintWriter out = response.getWriter();
 		if(connection != null){
-			System.out.println("not null");
+			//System.out.println("not null");
 			//out.println(User  + "   " + password);
 			
 			//Check if user exists in database
 			if(User!= null && User.length()!=0){
-				System.out.println("user not nulll");
-				Statement stmt, stmt2;
+				//System.out.println("user not null");
+				Statement stmt;
 				ResultSet rs;
-				int rs2;
+				//int rs2;
 				try {
 					stmt = connection.createStatement();
+					
+					//Get user table ID
+					//rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = " + User + ";");
+					
+					
+					//Get user's friends
+					//System.out.println("before query");
+					//rs = stmt.executeQuery("SELECT tblUsers.Username, tblFriends.FriendUserID, tblFriends.FriendStatus FROM tblUsers INNER JOIN tblFriends ON tblUsers.UserID = tblFriends.UserID WHERE tblUsers.Username = '" + User + "' AND tblFriends.FriendStatus = 1;");
+					rs = stmt.executeQuery("SELECT tblUsers_1.Username, tblFriends.FriendStatus FROM tblUsers AS tblUsers_1 INNER JOIN (tblUsers INNER JOIN tblFriends ON tblUsers.UserID = tblFriends.UserID) ON tblUsers_1.UserID = tblFriends.FriendUserID WHERE tblUsers.Username = '"+ User +"';");
+					//System.out.println("after query");
+					//If user has no friends
+					if(!rs.isBeforeFirst()){
+						out.println(User + " has not added any friends.");
+					}
+					else{
+						//Display users friends
+						out.print("Friends");
+						while(rs.next()){
+							//System.out.println("in while");
+							//System.out.println("Friend Username: " + rs.getString(1) + " Friend Status: " + rs.getInt(2) );
+							out.print(";" + rs.getString(1) + ";" + rs.getInt(2));
+						}
+					}
+					
+					
+					/*
 					stmt2 = connection.createStatement();
 					rs = stmt.executeQuery("SELECT * FROM tblUsers WHERE Username = '" + User + "';");
 					System.out.println("query exe");
@@ -85,6 +114,7 @@ public class FriendsList extends HttpServlet implements DataSource {
 						}
 
 					}
+					*/
 					
 					//Close recordset and connection
 					rs.close();
@@ -163,7 +193,6 @@ public class FriendsList extends HttpServlet implements DataSource {
     return connection;
 	}
 
-
 	@Override
 	public Connection getConnection(String username, String password)
 			throws SQLException {
@@ -187,8 +216,7 @@ public class FriendsList extends HttpServlet implements DataSource {
 		User = user;
 	}
 
-
-
+	/*
 	public String getPassword() {
 		return password;
 	}
@@ -198,6 +226,7 @@ public class FriendsList extends HttpServlet implements DataSource {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	*/
 	
 	
 	
