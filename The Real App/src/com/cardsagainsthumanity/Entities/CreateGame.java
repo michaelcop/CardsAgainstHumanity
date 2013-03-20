@@ -27,7 +27,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-@WebServlet(urlPatterns={"/CreateGame"})
 public class CreateGame extends Activity
 {
 	private int rounds;

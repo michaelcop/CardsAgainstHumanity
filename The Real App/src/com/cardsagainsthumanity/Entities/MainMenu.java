@@ -1,13 +1,27 @@
 package com.cardsagainsthumanity.Entities;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,17 +29,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainMenu extends Activity 
 {
 	final Context context = this;
 	String UserName;
+	String check;
+    private TextView error;
+	
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
+		error = (TextView) findViewById(R.id.error);
         return true;
     }
     
@@ -99,21 +119,17 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				Intent myIntent = new Intent(v.getContext(), FriendsList.class);
-				ArrayList<String> data = new ArrayList<String>();
-				data.add("This");
-				data.add("is");
-				data.add("a");
-				data.add("user");
-				data.add("list");
-				data.add("passed");
-				data.add("by");
-				data.add("the");
-				data.add("last");
-				data.add("intent");
-				data.add("-David");
-				myIntent.putStringArrayListExtra("data", data);
-                startActivity(myIntent);
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/FriendsList?User="+UserName;
+	        	check = "Friends";
+	        	ConnectivityManager connMgr = (ConnectivityManager) 
+        		getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                //error.setText("creating");
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    new DownloadWebpageText().execute(stringUrl);
+                } else {
+                    error.setText("No network connection available.");
+                }
 				
 			}
 			
@@ -202,4 +218,100 @@ public class MainMenu extends Activity
 	    }
 	    return super.onKeyDown(keyCode, event);
 	}
+	
+
+	private class DownloadWebpageText extends AsyncTask {
+        
+    	@Override
+        protected Object doInBackground(Object... urls) {
+            // params comes from the execute() call: params[0] is the url.
+            try {
+                return downloadUrl((String) urls[0]);
+            } catch (IOException e) {
+                return "Unable to retrieve web page. URL may be invalid.";
+            }
+        }
+    	
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(Object result) {
+        if(result!=null){
+        	String results = (String) result.toString();
+        	if(results!=null){
+	        	results = results.trim();
+	        	
+	        	
+	        	
+	            //check the result for the what's needed to move on
+	            if(results!=null){
+	            	Toast.makeText(MainMenu.this, "Created Game", Toast.LENGTH_SHORT).show();
+					error.setText("");
+					Intent myIntent = new Intent(context, FriendsList.class);
+	            	String[] resultArray = results.split(";");
+					if(resultArray!=null && resultArray[0].equals(check)){
+		            	ArrayList<String> data;
+						data = new ArrayList<String>(Arrays.asList(resultArray));
+						data.remove(0);
+						myIntent.putStringArrayListExtra("data", data);
+		            	startActivity(myIntent);
+					}
+					else if(resultArray[0]=="none") {
+						error.setText("Result Array null");
+					}
+	
+	            }
+	            else{
+	            	error.setText(results);
+	            }
+        	}
+        }
+        else{
+        	error.setText("Result was null");
+        }
+       }
+
+     }
+
+ private String downloadUrl(String myurl) throws IOException {
+      InputStream is = null;
+      // Only display the first 500 characters of the retrieved
+      // web page content.
+      int len = 500;
+          
+      try {
+          URL url = new URL(myurl);
+          HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+          conn.setReadTimeout(10000 /* milliseconds */);
+          conn.setConnectTimeout(15000 /* milliseconds */);
+          conn.setRequestMethod("GET");
+          conn.setDoInput(true);
+          // Starts the query
+          conn.connect();
+          int response = conn.getResponseCode();
+          is = conn.getInputStream();
+
+          // Convert the InputStream into a string
+          String contentAsString = readIt(is, len);
+          return contentAsString;
+          
+      // Makes sure that the InputStream is closed after the app is
+      // finished using it.
+      } finally {
+          if (is != null) {
+              is.close();
+          } 
+      }
+  }
+	
+  	//Reads an InputStream and converts it to a String.
+	public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+	   Reader reader = null;
+	   reader = new InputStreamReader(stream, "UTF-8");        
+	   char[] buffer = new char[len];
+	   reader.read(buffer);
+	   return new String(buffer);
+	} 
+	
+	
+	
 }
