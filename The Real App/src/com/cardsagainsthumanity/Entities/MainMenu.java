@@ -240,18 +240,20 @@ public class MainMenu extends Activity
         	if(results!=null){
 	        	results = results.trim();
 	        	
-	        	
-	        	
 	            //check the result for the what's needed to move on
 	            if(results!=null){
-	            	Toast.makeText(MainMenu.this, "Created Game", Toast.LENGTH_SHORT).show();
-					error.setText("");
-					Intent myIntent = new Intent(context, FriendsList.class);
+		        	Log.d("FUCK", "results is not null");
+					//error.setText("");
+					Intent myIntent = new Intent(MainMenu.this, FriendsList.class);
+					Log.d("FUCK", "intent created");
 	            	String[] resultArray = results.split(";");
-					if(resultArray!=null && resultArray[0].equals(check)){
+	            	Log.d("FUCK", "split");
+	            	if(resultArray!=null && resultArray[0].equals(check)){
+	    	        	Log.d("FUCK", resultArray[0]);
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);
+						Log.d("FUCK", "removed it");
 						myIntent.putStringArrayListExtra("data", data);
 		            	startActivity(myIntent);
 					}

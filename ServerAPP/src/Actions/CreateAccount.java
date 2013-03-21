@@ -19,6 +19,10 @@ import javax.sql.DataSource;
 
 @WebServlet(urlPatterns={"/CreateAccount"})
 public class CreateAccount extends HttpServlet implements DataSource{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3530678208206345309L;
 	private String User =  null;
 	Connection connection = null;
 	private String password =  null;

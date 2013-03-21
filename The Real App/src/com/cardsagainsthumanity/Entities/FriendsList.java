@@ -9,11 +9,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,10 @@ public class FriendsList extends Activity
 {
 	Context context = this;
     private TextView error;
-
+	String UserName;
+	String check;
+	int current;
+	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -42,6 +46,30 @@ public class FriendsList extends Activity
 		if (extras != null) {
 			testStrings = extras.getStringArrayList("data");
 		}
+		
+		Button AddFriend = (Button) findViewById(R.id.btnAddFriend);
+		AddFriend.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v) 
+			{
+				TextView add = (TextView) findViewById(R.id.AddFriendBox);
+				String User2 = (String) add.getText();
+				if(User2!="" && User2!=null){
+						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
+			        	check = "Added";
+			        	ConnectivityManager connMgr = (ConnectivityManager) 
+		        		getSystemService(Context.CONNECTIVITY_SERVICE);
+		                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		                //error.setText("creating");
+		                if (networkInfo != null && networkInfo.isConnected()) {
+		                    new DownloadWebpageText().execute(stringUrl);
+		                } else {
+		                    error.setText("No network connection available.");
+		                }
+				}
+			}
+		});
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
@@ -58,7 +86,7 @@ public class FriendsList extends Activity
         TableLayout tl = (TableLayout) findViewById(R.id.friendsTable);
 
         // Go through each item in the array
-        for (int current = 0; current <  testStrings.size(); current++)
+        for ( current = 0; current <  testStrings.size(); current++)
         {
             // Create a TableRow and give it an ID
             TableRow tr = new TableRow(this);
@@ -74,13 +102,55 @@ public class FriendsList extends Activity
             tr.addView(labelTV);
 
             // Create a TextView to house the value of the after-tax income
-            TextView valueTV = new TextView(this);
-            valueTV.setId(current);
-            valueTV.setText(testStrings.get(++current));
-            valueTV.setTextColor(Color.WHITE);
-            //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-            tr.addView(valueTV);
+            String temp = testStrings.get(++current);
+            int id = Integer.parseInt(temp);
+            Button b = new Button(this);
+            
+            b.setId(id);
+            if(testStrings.get(id).equals("1")){
+            	b.setText("Invite to Game");
+            	b.setOnClickListener(new OnClickListener()
+        		{
 
+        			@Override
+        			public void onClick(View v) 
+        			{
+        				//invite 
+        				
+        			}
+        			
+        		});
+            }
+            else if(testStrings.get(id).equals("2")){
+            	b.setText("Cancel Request");
+            	b.setOnClickListener(new OnClickListener()
+        		{
+
+        			@Override
+        			public void onClick(View v) 
+        			{
+        				//Cancel 
+        				
+        			}
+        			
+        		});            	
+            }
+            else if(testStrings.get(id).equals("3")){
+            	b.setText("Accept Request");
+            	b.setOnClickListener(new OnClickListener()
+        		{
+
+        			@Override
+        			public void onClick(View v) 
+        			{
+        				//Accept
+        				
+        			}
+        			
+        		});
+            }
+            //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+            tr.addView(b);
             // Add the TableRow to the TableLayout
             tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }
@@ -104,9 +174,7 @@ public class FriendsList extends Activity
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	
-	        	
-	        	
+	     
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 	            	Toast.makeText(FriendsList.this, "Created Game", Toast.LENGTH_SHORT).show();
@@ -120,8 +188,12 @@ public class FriendsList extends Activity
 						myIntent.putStringArrayListExtra("data", data);
 		            	startActivity(myIntent);
 					}
-					else if(resultArray[0]=="none") {
+					else if(resultArray[0]=="None") {
 						error.setText("Result Array null");
+					}
+					else if(resultArray[0]=="Added"){
+						
+						
 					}
 	
 	            }
@@ -137,7 +209,7 @@ public class FriendsList extends Activity
 
      }
 
- private String downloadUrl(String myurl) throws IOException {
+	private String downloadUrl(String myurl) throws IOException {
       InputStream is = null;
       // Only display the first 500 characters of the retrieved
       // web page content.

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    
     <TableLayout
         android:id="@+id/friendsTable"
         android:layout_width="fill_parent"
@@ -21,10 +20,27 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/White" />
 
+        <Button
+            android:id="@+id/btnAddFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="@string/friend_invite"
+            android:textColor="@color/White" />
+
+        <EditText
+            android:id="@+id/AddFriendBox"
+          	android:inputType="text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
     </TableLayout>
-    
-    
-    
+
     <Button
         android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
@@ -33,15 +49,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
         android:text="@string/returntomenu"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/InviteFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ReturnToMenu"
-        android:layout_alignLeft="@+id/ReturnToMenu"
-        android:text="@string/friend_invite"
         android:textColor="@color/White" />
 
 </RelativeLayout>

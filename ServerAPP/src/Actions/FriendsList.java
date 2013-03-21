@@ -1,4 +1,4 @@
-package src.Actions;
+package Actions;
 //HERE'S THE CLASS BUT WE THE QUERY AREA IS NOT RIGHT AT ALL
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +19,10 @@ import javax.sql.DataSource;
 
 @WebServlet(urlPatterns={"/FriendsList"})
 public class FriendsList extends HttpServlet implements DataSource {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -972529346689447377L;
 	private String User =  null;
 	//private int UserID;
 	Connection connection = null;
@@ -44,9 +48,9 @@ public class FriendsList extends HttpServlet implements DataSource {
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		FriendsList ds = new FriendsList();
+		FriendsList v = new FriendsList();
         try {
-			connection = ds.getConnection();
+			connection = v.getConnection();
 			System.out.println("connection made");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
