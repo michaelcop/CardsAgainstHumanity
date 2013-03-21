@@ -177,23 +177,20 @@ public class FriendsList extends Activity
 	     
 	            //check the result for the what's needed to move on
 	            if(results!=null){
-	            	Toast.makeText(FriendsList.this, "Created Game", Toast.LENGTH_SHORT).show();
 					error.setText("");
-					Intent myIntent = new Intent(context, FriendsList.class);
+					
 	            	String[] resultArray = results.split(";");
 					if(resultArray!=null && resultArray[0].equals("Success")){
-		            	ArrayList<String> data;
-						data = new ArrayList<String>(Arrays.asList(resultArray));
-						data.remove(0);
-						myIntent.putStringArrayListExtra("data", data);
-		            	startActivity(myIntent);
+
+					}
+					else if(resultArray==null){
+						error.setText("Failed");
 					}
 					else if(resultArray[0]=="None") {
 						error.setText("Result Array null");
 					}
 					else if(resultArray[0]=="Added"){
-						
-						
+						error.setText("Successfully Added Friend");
 					}
 	
 	            }
