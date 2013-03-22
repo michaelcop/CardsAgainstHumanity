@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,6 +24,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -44,7 +48,7 @@ public class MainMenu extends Activity
     
     public static final String SPREF_USER = "othPrefs";
 	
-    public boolean onCreateOptionsMenu(Menu menu)
+	public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
@@ -74,6 +78,11 @@ public class MainMenu extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainmenu);
+		//this.requestFeature(Window.FEATURE_ACTION_BAR);
+		
+		//ActionBar actionBar = getActionBar();
+		//actionBar.show();
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 		    UserName = extras.getString("UserName");
