@@ -116,8 +116,8 @@ public class StartPage extends Activity {
                 	//Store Username in SharedPref
                 	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
-                	spEditor.putString("UserName", userName);
-                	spEditor.commit();                        //End storing username
+                	spEditor.putString("UserName", userName).commit();
+                	//End storing username
                 	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
                 	myIntent.putExtra("UserName", userName);
