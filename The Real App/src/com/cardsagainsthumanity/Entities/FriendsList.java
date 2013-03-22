@@ -157,7 +157,7 @@ public class FriendsList extends Activity
         		});
             	tr.addView(b);
             	}
-        	else if(testStrings.get(id).equals("-1")){
+        	else if(testStrings.get(current).equals("-1")){
             	TextView v = new TextView(FriendsList.this);
             	tr.addView(v);
         	}
