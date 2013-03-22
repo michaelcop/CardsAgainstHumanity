@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
@@ -120,19 +121,34 @@ public class StartPage extends Activity {
                 	//End storing username
                 	
                 	//Need to encrypt password and store
-                	//String epw = AESCBC.encrypt(password, "j7ednxhEQopuJmRnMg70ZSWmMGWCe0+hBcwYeJ570Ic=");
-                	//spEditor.putString("digest", epw).commit();
+                	/*Random rng = new Random();
+                	String kcharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
+                	int kl = 16;
+                	String ciphSeed = generateString(rng, kcharacters, kl);
+                	try {
+						byte[] userInput = Base64.decode(password);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                	byte[] sKey = new byte[16];
+                	//Random generate byte array
+                	for(int i=0; i<16; i++)
+                	{
+                		sKey[i] = (byte) rng.nextInt(9);
+                	} */
+                	
                 	//End store password
                 	
                 	//Inform user username stored -------JK 
-                	/*
+                	
                 	String testun = othSettings.getString("UserName", null);
                 	if(testun.equals(null))
                 		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_SHORT).show();
                 	if(testun.equals(userName))
                 		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_SHORT).show();
                 	else
-                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show(); */
+                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show(); 
                 	//End  inform  --------------JK
                 	
 
@@ -194,6 +210,15 @@ public class StartPage extends Activity {
 		   return new String(buffer);
 		}  
 	     
-	
+		//Generates random String for password encryption
+		public static String generateString(Random rng, String characters, int length)
+		{
+		    char[] text = new char[length];
+		    for (int i = 0; i < length; i++)
+		    {
+		        text[i] = characters.charAt(rng.nextInt(characters.length()));
+		    }
+		    return new String(text);
+		}
 	
 }
