@@ -70,10 +70,10 @@
         android:id="@+id/error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignLeft="@+id/Create"
         android:layout_centerVertical="true"
         android:textColor="@color/White"
-        android:text="THIS IS TEXT" />
+        android:text="@string/error2" />
 
     <Button
         android:id="@+id/Cancel"
