@@ -1,4 +1,3 @@
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,24 +24,23 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="17dp"
         android:text="Username"
         android:textColor="@color/white" />
 
-
     <!-- Username Input -->
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
         android:ems="10"
         android:hint="Username"
-        android:background="@color/white"
         android:textColor="@color/black"
         android:textColorHint="@color/black" >
 
@@ -55,8 +53,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/username"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="Password"
         android:textColor="@color/white" />
@@ -64,28 +62,29 @@
     <!-- Password Input -->
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:background="@color/white"
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
-    
-      <!-- Create Account button -->
 
-      <!-- Log In button -->
+    <!-- Create Account button -->
+
+
+    <!-- Log In button -->
 
     <Button
         android:id="@+id/LogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/password"
+        android:layout_below="@+id/password"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="26dp"
         android:minWidth="70dip"
@@ -96,8 +95,8 @@
         android:id="@+id/myText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignLeft="@+id/editText2"
+        android:layout_above="@+id/LogIn"
+        android:layout_alignLeft="@+id/password"
         android:text=""
         android:textColor="@color/red" />
 

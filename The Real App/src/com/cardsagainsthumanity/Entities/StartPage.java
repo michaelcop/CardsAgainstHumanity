@@ -48,8 +48,8 @@ public class StartPage extends Activity {
 		v = (Button) findViewById(R.id.LogIn);
 		
 		
-		inputUsername = (EditText) findViewById(R.id.editText1);
-		inputPassword = (EditText) findViewById(R.id.editText2);
+		inputUsername = (EditText) findViewById(R.id.username);
+		inputPassword = (EditText) findViewById(R.id.password);
 		login = (TextView) findViewById(R.id.myText);
 		
 		v.setOnClickListener(new OnClickListener() {
