@@ -27,7 +27,7 @@ public class Game extends Activity
 	protected void onCreate(Bundle savedInstanceState){ 
 		super.onCreate(savedInstanceState);
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.gamelayout);
+		setContentView(R.layout.ingame);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
         	Log.d("FUCK", "Jimmy");

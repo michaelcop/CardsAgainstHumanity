@@ -59,5 +59,41 @@
     <string name="error"></string>
     <string name="error2">THIS IS TEXT</string>
     
+    <!-- InGame Strings -->
+    
+    <string name="action_settings">Settings</string>
+	<string name="hint">Type message here</string>
+	<string name="points">Points: 70</string>
+	<string name="submit">Submit</string>
+	<string name="settings">Settings</string>
+	
+	<string name="card1">Card 1</string>
+	<string name="card2">Card 2</string>
+	<string name="card3">Card 3</string>
+	<string name="card4">Card 4</string>
+	<string name="card5">Card 5</string>
+	<string name="card6">Card 6</string>
+	<string name="card7">Card 7</string>
+	
+    <string name="test">Line1 
+        \nLine2 
+        \nLine3 
+        \nLine4
+        \nLine5
+        \nLine6
+        \nLine7
+        \nLine8
+        \nLine9
+        \nLine10
+        \nLine11
+        \nLine12
+        \nLine13
+        \nLine14
+        \nLine15</string>
+        
+    <string name="cardtext">Filling Sean Hanity with
+        					Helium and watching him 
+        					float away</string>
+    
     
 </resources>

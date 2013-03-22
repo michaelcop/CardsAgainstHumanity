@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/DarkGray"
+        android:ems="10"
+        android:hint="@string/hint"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/editText1"
+        android:background="@color/SteelBlue"
+        android:lines="6"
+        android:maxLines="6"
+        android:scrollbars="vertical"
+        android:text="@string/test"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/editText1"
+        android:text="@string/settings" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentRight="true"
+        android:text="@string/submit" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/text"
+        android:background="@color/Gray"
+        android:text="@string/points"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black" />
+
+    <!-- CARDS PLEASE -->
+
+    <TextView
+        android:id="@+id/blackcard"
+        android:layout_width="150dp"
+        android:layout_height="225dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle"
+        android:paddingLeft="8dp"
+        android:paddingTop="5dp"
+        android:text="@string/card1"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/playerlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="26dp"
+        android:background="@color/SteelBlue"
+        android:lines="7"
+        android:maxLines="7"
+        android:text="TextView"
+        android:width="140dp" />
+
+        <TextView
+            android:id="@+id/c1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/text"
+            android:layout_toLeftOf="@+id/c3"
+            android:background="@drawable/white"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/card1" />
+
+         <TextView
+            android:id="@+id/c2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/c4"
+            android:layout_toLeftOf="@+id/c3"
+            android:background="@drawable/white"
+            android:maxHeight="45dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/cardtext"
+            android:textSize="10dp" />
+         
+        <TextView
+            android:id="@+id/c3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/text"
+            android:layout_toLeftOf="@+id/textView1"
+            android:background="@drawable/white"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/card3" />
+
+        <TextView
+            android:id="@+id/c4"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/c1"
+            android:layout_toRightOf="@+id/c1"
+            android:background="@drawable/white"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/card4" />
+
+        <TextView
+            android:id="@+id/c5"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_above="@+id/textView1"
+            android:layout_alignLeft="@+id/textView1"
+            android:background="@drawable/white"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/card5" />
+
+        <TextView
+            android:id="@+id/c6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/textView1"
+            android:layout_alignLeft="@+id/textView1"
+            android:background="@drawable/white"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/card6" />
+
+        <TextView
+            android:id="@+id/c7"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/textView1"
+            android:layout_alignLeft="@+id/textView1"
+            android:background="@drawable/white"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:text="@string/card7" />
+
+       
+
+</RelativeLayout>
