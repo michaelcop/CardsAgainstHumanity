@@ -46,8 +46,6 @@ public class CreateAccount extends Activity
 		inputPassword = (EditText) findViewById(R.id.password);
 		confirmPassword = (EditText) findViewById(R.id.confirmpassword);
 		error = (TextView) findViewById(R.id.error);
-
-		
 		
 		Button returns = (Button) findViewById(R.id.Cancel);
 		returns.setOnClickListener(new OnClickListener()
