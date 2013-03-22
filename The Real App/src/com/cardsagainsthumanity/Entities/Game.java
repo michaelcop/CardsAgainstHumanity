@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +16,16 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Game extends Activity
@@ -43,11 +49,63 @@ public class Game extends Activity
 	private TextView error;
 	
 	
-	protected void onCreate(Bundle savedInstanceState){ 
+	protected void onCreate(Bundle savedInstanceState)
+	{ 
 		this.currentUser = new User();
 		super.onCreate(savedInstanceState);
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
+		
+		final TextView chatBox = (TextView) findViewById(R.id.chatBox);
+		final TextView card1 = (TextView) findViewById(R.id.c1);
+		final TextView card2 = (TextView) findViewById(R.id.c2);
+		final TextView card3 = (TextView) findViewById(R.id.c3);
+		final TextView card4 = (TextView) findViewById(R.id.c4);
+		final TextView card5 = (TextView) findViewById(R.id.c5);
+		final TextView card6 = (TextView) findViewById(R.id.c6);
+		final TextView card7 = (TextView) findViewById(R.id.c7);
+		final TextView blackCard = (TextView) findViewById(R.id.blackcard);
+		Button sendMessage = (Button) findViewById(R.id.sendMessage);
+		final EditText message = (EditText)findViewById(R.id.messageInput);
+		chatBox.setMovementMethod(new ScrollingMovementMethod());
+		
+		card1.setMovementMethod(new ScrollingMovementMethod());
+		card2.setMovementMethod(new ScrollingMovementMethod());
+		card3.setMovementMethod(new ScrollingMovementMethod());
+		card4.setMovementMethod(new ScrollingMovementMethod());
+		card5.setMovementMethod(new ScrollingMovementMethod());
+		card6.setMovementMethod(new ScrollingMovementMethod());
+		card7.setMovementMethod(new ScrollingMovementMethod());
+		blackCard.setMovementMethod(new ScrollingMovementMethod());
+		sendMessage.setEnabled(false);
+		
+		card1.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
+		
+		
+		sendMessage.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				String value = message.getText().toString();
+				chatBox.append("\n" + value);
+				
+			}
+			
+		});
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
         	Log.d("FUCK", "Jimmy");

@@ -94,10 +94,17 @@
         \nLine14
         \nLine15</string>
         
-    <string name="cardtext">Filling Sean Hanity with
-        					Helium and watching him 
-        					float away</string>
-    <string name="playerList">None</string>
+	  <string name="cardtext">Getting married
+        					 having a few kids, buying some stuffm
+        					 retiring to Florida, and dying</string>
+        					
+    <string name = "blackText">Life for American Indians was 
+        						forever changed when the white man
+        						introduced then to____________. </string>
+        					
+    
+    
+    <string name="playerList">Player List.</string>
     <string name="delete_friend">Delete Friend</string>
     
     
