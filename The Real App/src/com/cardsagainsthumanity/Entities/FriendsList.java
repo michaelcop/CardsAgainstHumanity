@@ -34,6 +34,9 @@ public class FriendsList extends Activity
 	String UserName;
 	String check;
 	int current;
+	String User2;
+	TableLayout t;
+
 	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
@@ -41,7 +44,8 @@ public class FriendsList extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.friendslist);
-		
+		error = (TextView) findViewById(R.id.error);
+		t = (TableLayout) findViewById(R.id.friendsTable);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			UserName = extras.getString("UserName");
@@ -55,7 +59,7 @@ public class FriendsList extends Activity
 			public void onClick(View v) 
 			{
 				TextView add = (TextView) findViewById(R.id.AddFriendBox);
-				String User2 = (String) add.getText().toString();
+				User2 = (String) add.getText().toString();
 				if(User2!="" && User2!=null && UserName!=null){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
 			        	check = "Added";
@@ -84,7 +88,7 @@ public class FriendsList extends Activity
 		});
 		
 		// Get the TableLayout
-        TableLayout tl = (TableLayout) findViewById(R.id.friendsTable);
+        t = (TableLayout) findViewById(R.id.friendsTable);
 
         // Go through each item in the array
         for ( current = 0; current <  testStrings.size(); current++)
@@ -106,8 +110,7 @@ public class FriendsList extends Activity
             String temp = testStrings.get(++current);
             int id = Integer.parseInt(temp);
             Button b = new Button(this);
-            
-            b.setId(id);
+            b.setId(current);
             if(testStrings.get(id).equals("1")){
             	b.setText("Invite to Game");
             	b.setOnClickListener(new OnClickListener()
@@ -153,14 +156,14 @@ public class FriendsList extends Activity
         		});
             	tr.addView(b);
             	}
-            	else if(testStrings.get(id).equals("-1")){
-                	TextView v = new TextView(FriendsList.this);
-                	tr.addView(v);
-            	}
+        	else if(testStrings.get(id).equals("-1")){
+            	TextView v = new TextView(FriendsList.this);
+            	tr.addView(v);
+        	}
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
             
             // Add the TableRow to the TableLayout
-            tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+            t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }
 	} 
 	private class DownloadWebpageText extends AsyncTask {
@@ -189,6 +192,29 @@ public class FriendsList extends Activity
 	            	String[] resultArray = results.split(";");
 					if(resultArray!=null && resultArray[0].equals(check)){
                 		Toast.makeText(context, "Added", Toast.LENGTH_LONG).show();
+					
+					// ADD ROW TO TABLE
+                        TableRow tr = new TableRow(FriendsList.this);
+                        tr.setId((++current)+200);
+                        TextView tn = new TextView(FriendsList.this);
+                        tn.setText(UserName);
+                       // tn.setTextColor(this.getResources().getColor(R.color.orange));
+                        tr.addView(tn);
+                        Button A = new Button(FriendsList.this);
+                        A.setText("Cancel Request");
+                        A.setId(++current);
+                        A.setOnClickListener(new OnClickListener(){
+
+							@Override
+							public void onClick(View v) {
+								//cancel
+								
+							}
+                        	
+                        	
+                        	
+                        });
+                        t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));					
 					}
 					else if(resultArray==null){
 						error.setText("Failed");
