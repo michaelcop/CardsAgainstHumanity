@@ -170,6 +170,7 @@ public class MainMenu extends Activity
 		
 	}
 	
+	//Back button functionality------------------------------------
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) 
 	{
@@ -217,7 +218,7 @@ public class MainMenu extends Activity
 	        return true;
 	    }
 	    return super.onKeyDown(keyCode, event);
-	}
+	}  //End back button functionality---------------------------------
 	
 
 	private class DownloadWebpageText extends AsyncTask {
