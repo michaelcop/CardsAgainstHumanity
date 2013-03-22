@@ -68,7 +68,7 @@ public class StartPage extends Activity {
                 if (networkInfo != null && networkInfo.isConnected()) {
                     Toast.makeText(v.getContext(), "Logging in", Toast.LENGTH_SHORT).show();
                     new DownloadWebpageText().execute(stringUrl);
-                    StartPage.this.finish();
+                    
                 } else {
                     login.setText("No network connection available.");
                 }
@@ -123,6 +123,7 @@ public class StartPage extends Activity {
                 	myIntent.putExtra("UserName", userName);
                 	login.setText("");
                 	startActivityForResult(myIntent, 0);
+                	StartPage.this.finish();	//Close login page when Main<enu starts
                 	
                 }
                 else{
