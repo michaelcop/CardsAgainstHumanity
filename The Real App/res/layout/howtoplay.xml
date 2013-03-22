@@ -15,10 +15,10 @@
         android:textColor="@color/White" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/rulesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/HowToPlayLabel"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="21dp"
@@ -28,7 +28,7 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/HowToPlayLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
