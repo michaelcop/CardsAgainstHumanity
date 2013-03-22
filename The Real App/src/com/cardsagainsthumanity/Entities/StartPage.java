@@ -120,8 +120,8 @@ public class StartPage extends Activity {
                 	//End storing username
                 	
                 	//Need to encrypt password and store
-                	String epw = AESCBC.encrypt(password, " j7ednxhEQopuJmRnMg70ZSWmMGWCe0+hBcwYeJ570Ic=");
-                	spEditor.putString("digest", epw).commit();
+                	//String epw = AESCBC.encrypt(password, "j7ednxhEQopuJmRnMg70ZSWmMGWCe0+hBcwYeJ570Ic=");
+                	//spEditor.putString("digest", epw).commit();
                 	//End store password
                 	
                 	//Inform user username stored -------JK 

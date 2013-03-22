@@ -210,14 +210,15 @@ public class MainMenu extends Activity
 					  .setNeutralButton("Logout",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
 							//logout user
-							//Erase Username in SharedPref
+							//Erase Username & pw in SharedPref
 		                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		                	SharedPreferences.Editor spEditor = othSettings.edit();
-		                	spEditor.remove(UserName).commit();
-		                	//End erasing username
+		                	spEditor.remove("UserName").commit();
+		                	//spEditor.remove("digest").commit();
+		                	//End erasing username & pw
 		                	
 		                	//Inform user of logout status on game close
-		                	if(!othSettings.contains(UserName))
+		                	if( !othSettings.contains("UserName") /*&& !othSettings.contains("digest") */)
 		                		Toast.makeText(context, "Logging Out", Toast.LENGTH_LONG).show();
 		                	else
 		                		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();
