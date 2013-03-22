@@ -82,7 +82,7 @@ public class FriendsList extends HttpServlet implements DataSource {
 					//System.out.println("after query");
 					//If user has no friends
 					if(!rs.isBeforeFirst()){
-						out.println(User + " has not added any friends.");
+						out.println("Friends;None;-1");
 					}
 					else{
 						//Display users friends

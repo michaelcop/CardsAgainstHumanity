@@ -54,7 +54,7 @@ public class FriendsList extends Activity
 			public void onClick(View v) 
 			{
 				TextView add = (TextView) findViewById(R.id.AddFriendBox);
-				String User2 = (String) add.getText();
+				String User2 = (String) add.getText().toString();
 				if(User2!="" && User2!=null){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
 			        	check = "Added";
@@ -120,6 +120,7 @@ public class FriendsList extends Activity
         			}
         			
         		});
+            	tr.addView(b);
             }
             else if(testStrings.get(id).equals("2")){
             	b.setText("Cancel Request");
@@ -133,7 +134,8 @@ public class FriendsList extends Activity
         				
         			}
         			
-        		});            	
+        		});
+            	tr.addView(b);
             }
             else if(testStrings.get(id).equals("3")){
             	b.setText("Accept Request");
@@ -148,9 +150,14 @@ public class FriendsList extends Activity
         			}
         			
         		});
-            }
+            	tr.addView(b);
+            	}
+            	else if(testStrings.get(id).equals("-1")){
+                	TextView v = new TextView(FriendsList.this);
+                	tr.addView(v);
+            	}
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-            tr.addView(b);
+            
             // Add the TableRow to the TableLayout
             tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }
