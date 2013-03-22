@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -40,6 +41,8 @@ public class MainMenu extends Activity
 	String UserName;
 	String check;
     private TextView error;
+    
+    public static final String SPREF_USER = "othPrefs";
 	
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -185,7 +188,7 @@ public class MainMenu extends Activity
 	 
 				// set dialog message
 				alertDialogBuilder
-					.setMessage("Do you want to close the application or logout?")
+					.setMessage("Do you want to close the application or close and logout?")
 					.setCancelable(true)
 					.setPositiveButton("Close",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
@@ -195,7 +198,21 @@ public class MainMenu extends Activity
 					  })
 					  .setNeutralButton("Logout",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
-							//close activity and logout user
+							//logout user
+							//Erase Username in SharedPref
+		                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+		                	SharedPreferences.Editor spEditor = othSettings.edit();
+		                	spEditor.remove(UserName).commit();
+		                	//End erasing username
+		                	
+		                	//Inform user of logout status on game close
+		                	if(!othSettings.contains(UserName))
+		                		Toast.makeText(context, "Logging Out", Toast.LENGTH_LONG).show();
+		                	else
+		                		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();
+		                	//End logout message  --------------JK
+		                	
+							//close activity
 							MainMenu.this.finish();
 						} 
 					

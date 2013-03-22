@@ -119,15 +119,15 @@ public class StartPage extends Activity {
                 	spEditor.putString("UserName", userName.toString()).commit();
                 	//End storing username
                 	
-                	//Test SharePref commits -------JK
+                	//Inform user username stored -------JK
                 	String testun = othSettings.getString("UserName", null);
                 	if(testun.equals(null))
-                		Toast.makeText(v.getContext(), "dammit", Toast.LENGTH_LONG).show();
+                		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_LONG).show();
                 	if(testun.equals(userName))
-                		Toast.makeText(v.getContext(), testun + userName, Toast.LENGTH_LONG).show();
+                		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_LONG).show();
                 	else
                 		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_LONG).show();
-                	//End test  --------------JK
+                	//End  inform  --------------JK
 
                 	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
