@@ -76,12 +76,12 @@ public class MainMenu extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainmenu);
 		//this.requestFeature(Window.FEATURE_ACTION_BAR);
 		
-		//ActionBar actionBar = getActionBar();
-		//actionBar.show();
+		ActionBar actionBar = MainMenu.this.getActionBar();
+		if(actionBar!=null){actionBar.show();}
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
