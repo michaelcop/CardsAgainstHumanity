@@ -116,8 +116,19 @@ public class StartPage extends Activity {
                 	//Store Username in SharedPref
                 	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
-                	spEditor.putString("UserName", userName).commit();
+                	spEditor.putString("UserName", userName.toString()).commit();
                 	//End storing username
+                	
+                	//Test SharePref commits -------JK
+                	String testun = othSettings.getString("UserName", null);
+                	if(testun.equals(null))
+                		Toast.makeText(v.getContext(), "dammit", Toast.LENGTH_LONG).show();
+                	if(testun.equals(userName))
+                		Toast.makeText(v.getContext(), testun + userName, Toast.LENGTH_LONG).show();
+                	else
+                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_LONG).show();
+                	//End test  --------------JK
+
                 	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
                 	myIntent.putExtra("UserName", userName);
