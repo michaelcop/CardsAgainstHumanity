@@ -122,12 +122,13 @@ public class StartPage extends Activity {
                 	//Inform user username stored -------JK
                 	String testun = othSettings.getString("UserName", null);
                 	if(testun.equals(null))
-                		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_LONG).show();
+                		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_SHORT).show();
                 	if(testun.equals(userName))
-                		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_LONG).show();
+                		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_SHORT).show();
                 	else
-                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_LONG).show();
+                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show();
                 	//End  inform  --------------JK
+                	
 
                 	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
