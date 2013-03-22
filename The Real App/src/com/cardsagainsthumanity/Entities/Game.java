@@ -2,8 +2,12 @@ package com.cardsagainsthumanity.Entities;
 import java.util.*;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -17,10 +21,12 @@ public class Game extends Activity
 	private int cardCzarIndex;
 	private int gameID;
 	
+	private TextView error;
+	
 	
 	protected void onCreate(Bundle savedInstanceState){ 
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.gamelayout);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -36,7 +42,29 @@ public class Game extends Activity
 		}
 	}
 	
-	
+	public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+ 
+        switch (item.getItemId())
+        {
+
+        case R.id.menu_preferences:
+           // Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
+            Intent set = new Intent(Game.this, Settings.class);
+            startActivityForResult(set, 0);
+            return true;
+ 
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }  
 	
 	
 	
