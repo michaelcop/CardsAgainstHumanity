@@ -117,6 +117,7 @@ public class CreateGame extends Activity
 					error.setText("");
 	            	Intent myIntent = new Intent(CreateGame.this, Game.class);
 	            	myIntent.putExtra("GameID", resultArr[1]);
+	            	myIntent.putExtra("UserID", UserName);
 	            	startActivity(myIntent);	
 	            }
 	            else{
