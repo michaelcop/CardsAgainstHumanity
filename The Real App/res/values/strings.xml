@@ -12,7 +12,10 @@
     <string name="howplay_descrip">How to play button</string>
     <string name="howtoplay">How to Play</string>
     <string name="returntomenu">Return to Menu</string>
-    <string name="rules">The user can select this option from the main menu of the application. Screenshots of actual gameplay will be presented to the user along with brief text description with supplementary instructions. There will be a button at the bottom of the user’s screen titled “Got It!”, if this is clicked then it will return the user to the main menu of the application.</string>
+    <string name="rules">There are three termWhen the game begins, one player will be assigned to the role of Card
+         Czar. All other players will draw seven White Cards. The Card Czar will draw a card from 
+         the deck of Black Cards, and reveal it to the other players. The other players will 
+         select one of their White Cards that they </string>
     <string name="setting_save">Save</string>
     <string name="setting_notific">Notifications</string>
     <string name="setting_title">Settings</string>

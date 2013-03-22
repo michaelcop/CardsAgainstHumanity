@@ -83,8 +83,8 @@
         android:id="@+id/LogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/password"
         android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="26dp"
         android:minWidth="70dip"
@@ -104,10 +104,8 @@
         android:id="@+id/CreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/LogIn"
-        android:layout_alignBottom="@+id/LogIn"
-        android:layout_marginLeft="25dp"
-        android:layout_toRightOf="@+id/LogIn"
+        android:layout_below="@+id/LogIn"
+        android:layout_centerHorizontal="true"
         android:text="Create Account"
         android:textColor="@color/white" />
 
