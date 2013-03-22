@@ -4,49 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <TableLayout
-        android:id="@+id/friendsTable"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:stretchColumns="0,1" >
-
-        <TextView
-            android:id="@+id/FriendsList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fl_title"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/White" />
-
-        <Button
-            android:id="@+id/btnAddFriend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:text="@string/friend_invite"
-            android:textColor="@color/White" />
-
-        <EditText
-            android:id="@+id/AddFriendBox"
-          	android:inputType="text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            android:ems="10" >
-
-            <requestFocus />
-        </EditText>
-
-        <TextView
-            android:id="@+id/error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/error" />
-
-    </TableLayout>
-
     <Button
         android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
@@ -55,6 +12,67 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
         android:text="@string/returntomenu"
+        android:textColor="@color/White" />
+
+    <TableLayout
+        android:id="@+id/friendsTable"
+        android:layout_width="250dp"
+        android:layout_height="220dp"
+        android:layout_above="@+id/ReturnToMenu"
+        android:layout_below="@+id/btnAddFriend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:stretchColumns="0,1" >
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error" />
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/FriendsList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/fl_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/White" />
+
+    <EditText
+        android:id="@+id/AddFriendBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FriendsList"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="@color/White"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnAddFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AddFriendBox"
+        android:layout_toLeftOf="@+id/btnDeleteFriend"
+        android:text="@string/friend_invite"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/btnDeleteFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnAddFriend"
+        android:layout_alignBottom="@+id/btnAddFriend"
+        android:layout_alignRight="@+id/friendsTable"
+        android:text="@string/delete_friend"
         android:textColor="@color/White" />
 
 </RelativeLayout>
