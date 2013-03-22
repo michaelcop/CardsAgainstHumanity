@@ -59,7 +59,7 @@ public class FriendsList extends Activity
 			public void onClick(View v) 
 			{
 				TextView add = (TextView) findViewById(R.id.AddFriendBox);
-				User2 = (String) add.getText().toString();
+				User2 = (String) add.getText().toString().replaceAll("\\s", "");
 				if(User2!="" && User2!=null && UserName!=null){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
 			        	check = "Added";
@@ -110,7 +110,7 @@ public class FriendsList extends Activity
             String temp = testStrings.get(++current);
             int id = Integer.parseInt(temp);
             Button b = new Button(this);
-            b.setId(current);
+            b.setId(id);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             if(testStrings.get(current).equals("1")){
             	b.setText("Invite to Game");
@@ -191,7 +191,7 @@ public class FriendsList extends Activity
 	            if(results!=null){
 					error.setText("");
 	            	String[] resultArray = results.split(";");
-					if(resultArray!=null && resultArray[0].equals(check)){
+					if(resultArray!=null && resultArray[0].equals("Added")){
                 		Toast.makeText(context, "Added", Toast.LENGTH_LONG).show();
 					
 					// ADD ROW TO TABLE
@@ -217,6 +217,14 @@ public class FriendsList extends Activity
                         });
                         tr.addView(A);
                         t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));					
+					}
+					else if(resultArray!=null && resultArray[0].equals("Deleted")){
+						
+						
+					}
+					else if(resultArray!=null && resultArray[0].equals("Accepted")){
+						
+						
 					}
 					else if(resultArray==null){
 						error.setText("Failed");
