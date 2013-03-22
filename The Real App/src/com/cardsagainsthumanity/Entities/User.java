@@ -6,7 +6,19 @@ public class User
 {
 	private List<User> friends;
 	
-	private String name;//Assume each person has a unique name
+	public String name;//Assume each person has a unique name
+	public int gameRound;
+	public List<String> otherUsers;
+	public String currentCzar;
+	public List<String> whiteCardsList;
+	public String blackCard;
+	
+	User()
+	{
+		otherUsers = new ArrayList<String>();
+		whiteCardsList = new ArrayList<String>();
+	}
+	
 	private String password;
 	
 	private int wins;

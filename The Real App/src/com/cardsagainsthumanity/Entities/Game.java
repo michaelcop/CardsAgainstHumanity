@@ -1,8 +1,19 @@
 package com.cardsagainsthumanity.Entities;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,12 +30,21 @@ public class Game extends Activity
 	private Deck deck;
 	private List<User> users;
 	private int cardCzarIndex;
-	private int gameID;
+	
+	String check;
+	
+	public User currentUser;//this is the meat of the data the where it is stored see User.java
+	//for more info
+	
+	int gameID;
+	String userID;
+	
 	
 	private TextView error;
 	
 	
 	protected void onCreate(Bundle savedInstanceState){ 
+		this.currentUser = new User();
 		super.onCreate(savedInstanceState);
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
@@ -34,6 +54,7 @@ public class Game extends Activity
         	String g = extras.getString("GameID");
         	Log.d("FUCK", "Jimmy2");
         	gameID = Integer.parseInt(g);
+        	userID = extras.getString("UserID");
 		}
     	Log.d("FUCK", "MIKE TOO");
 		TextView vd = (TextView) findViewById(R.id.textView3);
@@ -156,4 +177,143 @@ public class Game extends Activity
 			return false;
 		}
 	}
+	
+	public void refreshUser()
+	{
+		//URL contains the userID and gameID
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameState?User=" + userID + "&gameID="+gameID;
+    	check = "UserGameState";
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+		getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //error.setText("creating");
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new DownloadWebpageText().execute(stringUrl);
+        } else {
+            error.setText("No network connection available.");
+        }
+	}
+	
+private class DownloadWebpageText extends AsyncTask {
+        
+    	@Override
+        protected Object doInBackground(Object... urls) {
+            // params comes from the execute() call: params[0] is the url.
+            try {
+                return downloadUrl((String) urls[0]);
+            } catch (IOException e) {
+                return "Unable to retrieve web page. URL may be invalid.";
+            }
+        }
+    	
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(Object result) {
+        if(result!=null){
+        	String results = (String) result.toString();
+        	if(results!=null){
+	        	results = results.trim();
+	        	
+	            //check the result for the what's needed to move on
+	            if(results!=null){
+					//error.setText("");
+	            	String[] resultArray = results.split(";");
+	            	if(resultArray!=null && resultArray[0].equals(check)){
+		            	ArrayList<String> data;
+						data = new ArrayList<String>(Arrays.asList(resultArray));
+						data.remove(0);//we are removing the check data field
+						//now lets take that data an update it with the local fields in Game.java
+						currentUser.name = data.get(0);//set user name
+						currentUser.gameRound = Integer.parseInt(data.get(1));
+						int numOtherUsers = Integer.parseInt(data.get(2));
+						int userNameStartIndex = 3;
+						int userNameEndIndex = userNameStartIndex + numOtherUsers;
+						for(int i=userNameStartIndex; i<userNameEndIndex; userNameStartIndex++)
+						{
+							currentUser.otherUsers.add(data.get(userNameStartIndex));
+						}
+						currentUser.currentCzar = data.get(userNameEndIndex);
+						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
+						int whiteCardsStartIndex = Integer.parseInt(data.get(userNameEndIndex + 2));
+						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex;
+						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; whiteCardsStartIndex++)
+						{
+							currentUser.whiteCardsList.add(data.get(whiteCardsStartIndex));
+						}
+						currentUser.blackCard = data.get(whiteCardsEndIndex);
+						
+						//game round, list of users in game, current czar, your list of white cards,
+						//the black card from the czar,
+						//Note we are using ; as the delim you should do a String.split(";")
+						/*
+						 * Example data
+						 * joe;
+						 * 5;//game round
+						 * 3; bob; jeff; jane;
+						 * jeff;//jeff is czar
+						 * 2; card 1 description; card 2 description;
+						 * black card description
+						 */
+						//function for I am card czar and find out what people played
+					}
+					else if(resultArray[0]=="none") {
+						error.setText("Result Array null");
+					}
+	
+	            }
+	            else{
+	            	error.setText(results);
+	            }
+        	}
+        }
+        else{
+        	error.setText("Result was null");
+        }
+       }
+
+     }
+
+ private String downloadUrl(String myurl) throws IOException {
+      InputStream is = null;
+      // Only display the first 500 characters of the retrieved
+      // web page content.
+      int len = 500;
+          
+      try {
+          URL url = new URL(myurl);
+          HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+          conn.setReadTimeout(10000 /* milliseconds */);
+          conn.setConnectTimeout(15000 /* milliseconds */);
+          conn.setRequestMethod("GET");
+          conn.setDoInput(true);
+          // Starts the query
+          conn.connect();
+          int response = conn.getResponseCode();
+          is = conn.getInputStream();
+
+          // Convert the InputStream into a string
+          String contentAsString = readIt(is, len);
+          return contentAsString;
+          
+      // Makes sure that the InputStream is closed after the app is
+      // finished using it.
+      } finally {
+          if (is != null) {
+              is.close();
+          } 
+      }
+  }
+	
+  	//Reads an InputStream and converts it to a String.
+	public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+	   Reader reader = null;
+	   reader = new InputStreamReader(stream, "UTF-8");        
+	   char[] buffer = new char[len];
+	   reader.read(buffer);
+	   return new String(buffer);
+	} 
+	
+	
+	
+
 }
