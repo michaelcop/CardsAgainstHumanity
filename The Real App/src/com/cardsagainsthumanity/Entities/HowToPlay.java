@@ -2,10 +2,12 @@ package com.cardsagainsthumanity.Entities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.cardsagainsthumanity.Entities.R;
 
@@ -18,6 +20,9 @@ public class HowToPlay extends Activity
 		
 		
 		setContentView(R.layout.howtoplay);
+		
+		TextView howPlay = (TextView) findViewById(R.id.rulesLabel);
+		howPlay.setMovementMethod(new ScrollingMovementMethod());
 		
 		/*
 		DrawableTest mCustomView;
@@ -33,7 +38,6 @@ public class HowToPlay extends Activity
 			{
 				finish();
 			}
-			
 		});
 	} 
 	

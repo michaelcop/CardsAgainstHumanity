@@ -3,6 +3,8 @@ package com.cardsagainsthumanity.Entities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.TextView;
 
 public class StartActivity extends Activity
 {
@@ -15,6 +17,8 @@ public class StartActivity extends Activity
 		Intent myIntent = new Intent(this, StartPage.class);
 		startActivity(myIntent);
 		StartActivity.this.finish();
+		
+
 	}
 	
 }

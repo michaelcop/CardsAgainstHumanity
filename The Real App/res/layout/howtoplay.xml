@@ -4,7 +4,19 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <Button
+    
+    <TextView
+        android:id="@+id/rulesLabel"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/HowToPlayLabel"
+        android:layout_centerHorizontal="true"
+        android:maxLines="25"
+        android:scrollbars="vertical"
+        android:text="@string/rules"
+        android:textColor="@color/White"
+        android:textSize="15sp" />
+    <Button
         android:id="@+id/GotIt"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
@@ -13,19 +25,6 @@
         android:layout_marginBottom="54dp"
         android:text="@string/htp_gotit"
         android:textColor="@color/White" />
-
-    <TextView
-        android:id="@+id/rulesLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/HowToPlayLabel"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="21dp"
-        android:gravity="center"
-        android:text="@string/rules"
-        android:textColor="@color/White"
-        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/HowToPlayLabel"
@@ -40,5 +39,6 @@
         android:textColorHint="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
+
 
 </RelativeLayout>
