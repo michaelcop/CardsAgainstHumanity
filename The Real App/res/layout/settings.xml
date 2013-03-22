@@ -4,18 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <Button
-        android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="22dp"
-        android:clickable="false"
-        android:enabled="false"
-        android:text="@string/setting_save" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -38,16 +26,6 @@
         android:text="@string/setting_switch"
         android:textColor="@color/White" />
 
-    <Button
-        android:id="@+id/ReturnToMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/LogOutButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
-        android:text="@string/returntomenu"
-        android:textColor="@color/White" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -66,7 +44,29 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
-        android:layout_toLeftOf="@+id/SaveButton"
+        android:layout_toRightOf="@+id/textView1"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ReturnToMenu"
+        android:layout_alignBottom="@+id/ReturnToMenu"
+        android:layout_toRightOf="@+id/textView1"
+        android:clickable="false"
+        android:enabled="false"
+        android:text="@string/setting_save" />
+
+    <Button
+        android:id="@+id/ReturnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/LogOutButton"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/returntomenu"
         android:textColor="@color/White" />
 
 </RelativeLayout>

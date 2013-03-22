@@ -19,7 +19,7 @@
 	<item
         android:id="@+id/menu_preferences"
         android:showAsAction="always"
-        android:icon="@drawable/icon_bm"
+        android:icon="@drawable/settingsicon"
         android:title="AB"/>
     
 </menu>
