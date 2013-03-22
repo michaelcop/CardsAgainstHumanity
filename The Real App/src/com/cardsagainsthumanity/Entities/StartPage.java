@@ -119,14 +119,20 @@ public class StartPage extends Activity {
                 	spEditor.putString("UserName", userName.toString()).commit();
                 	//End storing username
                 	
-                	//Inform user username stored -------JK
+                	//Need to encrypt password and store
+                	String epw = AESCBC.encrypt(password, " j7ednxhEQopuJmRnMg70ZSWmMGWCe0+hBcwYeJ570Ic=");
+                	spEditor.putString("digest", epw).commit();
+                	//End store password
+                	
+                	//Inform user username stored -------JK 
+                	/*
                 	String testun = othSettings.getString("UserName", null);
                 	if(testun.equals(null))
                 		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_SHORT).show();
                 	if(testun.equals(userName))
                 		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_SHORT).show();
                 	else
-                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show();
+                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show(); */
                 	//End  inform  --------------JK
                 	
 
