@@ -36,7 +36,8 @@ public class FriendsList extends Activity
 	int current;
 	String User2;
 	TableLayout t;
-
+	int  UserId;
+	
 	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
@@ -95,22 +96,22 @@ public class FriendsList extends Activity
         {
             // Create a TableRow and give it an ID
             TableRow tr = new TableRow(this);
-            tr.setId(100+current);
+            tr.setId(UserId);
             tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));   
 
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
-            labelTV.setId(200+current);
-            labelTV.setText(testStrings.get(current));
+            labelTV.setId(current);
+            labelTV.setText(testStrings.get(++current));
             labelTV.setTextColor(Color.WHITE);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
 
             // Create a TextView to house the value of the after-tax income
             String temp = testStrings.get(++current);
-            int id = Integer.parseInt(temp);
+            UserId = Integer.parseInt(temp);
             Button b = new Button(this);
-            b.setId(id);
+            b.setId(500+UserId);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             if(testStrings.get(current).equals("1")){
             	b.setText("Invite to Game");
@@ -120,8 +121,17 @@ public class FriendsList extends Activity
         			@Override
         			public void onClick(View v) 
         			{
-        				//invite 
-        				
+        				//Delete
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+			        	ConnectivityManager connMgr = (ConnectivityManager) 
+		        		getSystemService(Context.CONNECTIVITY_SERVICE);
+		                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		                //error.setText("creating");
+		                if (networkInfo != null && networkInfo.isConnected()) {
+		                    new DownloadWebpageText().execute(stringUrl);
+		                } else {
+		                    error.setText("No network connection available.");
+		                }
         			}
         			
         		});
@@ -198,7 +208,7 @@ public class FriendsList extends Activity
                         TableRow tr = new TableRow(FriendsList.this);
                         tr.setId((++current)+200);
                         TextView tn = new TextView(FriendsList.this);
-                        tn.setText(UserName);
+                        tn.setText(User2);
                         tn.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         tr.addView(tn);
                         Button A = new Button(FriendsList.this);
@@ -219,15 +229,14 @@ public class FriendsList extends Activity
                         t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));					
 					}
 					else if(resultArray!=null && resultArray[0].equals("Deleted")){
-						
-						
+						t.removeView((TableRow)findViewById(UserId));
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted")){
 						
 						
 					}
-					else if(resultArray==null){
-						error.setText("Failed");
+					else{
+                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
 						}
 	            }
 	            else{
