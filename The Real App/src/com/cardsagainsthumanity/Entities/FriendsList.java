@@ -91,7 +91,7 @@ public class FriendsList extends Activity
         t = (TableLayout) findViewById(R.id.friendsTable);
 
         // Go through each item in the array
-        for ( current = 0; current <  testStrings.size(); current++)
+        for ( current = 0; current < testStrings.size(); current++)
         {
             // Create a TableRow and give it an ID
             TableRow tr = new TableRow(this);
@@ -111,7 +111,8 @@ public class FriendsList extends Activity
             int id = Integer.parseInt(temp);
             Button b = new Button(this);
             b.setId(current);
-            if(testStrings.get(id).equals("1")){
+            b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
+            if(testStrings.get(current).equals("1")){
             	b.setText("Invite to Game");
             	b.setOnClickListener(new OnClickListener()
         		{
@@ -126,7 +127,7 @@ public class FriendsList extends Activity
         		});
             	tr.addView(b);
             }
-            else if(testStrings.get(id).equals("2")){
+            else if(testStrings.get(current).equals("2")){
             	b.setText("Cancel Request");
             	b.setOnClickListener(new OnClickListener()
         		{
@@ -141,7 +142,7 @@ public class FriendsList extends Activity
         		});
             	tr.addView(b);
             }
-            else if(testStrings.get(id).equals("3")){
+            else if(testStrings.get(current).equals("3")){
             	b.setText("Accept Request");
             	b.setOnClickListener(new OnClickListener()
         		{
@@ -198,13 +199,13 @@ public class FriendsList extends Activity
                         tr.setId((++current)+200);
                         TextView tn = new TextView(FriendsList.this);
                         tn.setText(UserName);
-                       // tn.setTextColor(this.getResources().getColor(R.color.orange));
+                        tn.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         tr.addView(tn);
                         Button A = new Button(FriendsList.this);
                         A.setText("Cancel Request");
                         A.setId(++current);
+                        A.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         A.setOnClickListener(new OnClickListener(){
-
 							@Override
 							public void onClick(View v) {
 								//cancel
@@ -214,6 +215,7 @@ public class FriendsList extends Activity
                         	
                         	
                         });
+                        tr.addView(A);
                         t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));					
 					}
 					else if(resultArray==null){
