@@ -44,6 +44,7 @@ public class FriendsList extends Activity
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
+			UserName = extras.getString("UserName");
 			testStrings = extras.getStringArrayList("data");
 		}
 		
@@ -55,7 +56,7 @@ public class FriendsList extends Activity
 			{
 				TextView add = (TextView) findViewById(R.id.AddFriendBox);
 				String User2 = (String) add.getText().toString();
-				if(User2!="" && User2!=null){
+				if(User2!="" && User2!=null && UserName!=null){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
 			        	check = "Added";
 			        	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -185,21 +186,13 @@ public class FriendsList extends Activity
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 					error.setText("");
-					
 	            	String[] resultArray = results.split(";");
-					if(resultArray!=null && resultArray[0].equals("Success")){
-
+					if(resultArray!=null && resultArray[0].equals(check)){
+                		Toast.makeText(context, "Added", Toast.LENGTH_LONG).show();
 					}
 					else if(resultArray==null){
 						error.setText("Failed");
-					}
-					else if(resultArray[0]=="None") {
-						error.setText("Result Array null");
-					}
-					else if(resultArray[0]=="Added"){
-						error.setText("Successfully Added Friend");
-					}
-	
+						}
 	            }
 	            else{
 	            	error.setText(results);

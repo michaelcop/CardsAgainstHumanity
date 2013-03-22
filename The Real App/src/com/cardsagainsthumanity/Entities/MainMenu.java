@@ -279,6 +279,7 @@ public class MainMenu extends Activity
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);
 						myIntent.putStringArrayListExtra("data", data);
+						myIntent.putExtra("UserName", UserName);
 		            	startActivity(myIntent);
 					}
 					else if(resultArray[0]=="none") {
