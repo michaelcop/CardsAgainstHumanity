@@ -42,9 +42,9 @@ public class CreateAccount extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.createaccount);
-		inputUsername = (EditText) findViewById(R.id.editText1);
-		inputPassword = (EditText) findViewById(R.id.editText2);
-		confirmPassword = (EditText) findViewById(R.id.editText3);
+		inputUsername = (EditText) findViewById(R.id.username);
+		inputPassword = (EditText) findViewById(R.id.password);
+		confirmPassword = (EditText) findViewById(R.id.confirmpassword);
 		error = (TextView) findViewById(R.id.error);
 
 		
