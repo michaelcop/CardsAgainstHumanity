@@ -29,43 +29,6 @@
         android:ems="10"
         android:hint="@string/username" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:ems="10"
-        android:background="@color/white"
-       	android:textColor="@color/black"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/confirmpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:ems="10"
-        android:background="@color/white"
-        android:textColor="@color/black"
-        android:hint="@string/repassword"
-        android:inputType="textPassword" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/Create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="54dp"
-        android:text="@string/ca_create"
-        android:textColor="@color/White" />
-
     <TextView
         android:id="@+id/error"
         android:layout_width="wrap_content"
@@ -75,13 +38,52 @@
         android:textColor="@color/White"
         android:text="@string/error2" />
 
+    <EditText
+        android:id="@+id/confirmpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignRight="@+id/password"
+        android:layout_below="@+id/password"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="@string/repassword"
+        android:inputType="textPassword"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/username"
+        android:layout_alignRight="@+id/username"
+        android:layout_below="@+id/username"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColor="@color/black" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/Create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/error"
+        android:layout_alignLeft="@+id/confirmpassword"
+        android:layout_marginLeft="15dp"
+        android:text="@string/ca_create"
+        android:textColor="@color/White" />
+
     <Button
         android:id="@+id/Cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Create"
-        android:layout_alignBottom="@+id/Create"
-        android:layout_alignRight="@+id/editText1"
+        android:layout_above="@+id/error"
+        android:layout_alignRight="@+id/confirmpassword"
+        android:layout_marginRight="15dp"
         android:text="@string/cancel"
         android:textColor="@color/White" />
 
