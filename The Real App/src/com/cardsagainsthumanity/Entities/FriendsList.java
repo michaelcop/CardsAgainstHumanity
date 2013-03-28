@@ -62,19 +62,9 @@ public class FriendsList extends Activity
 				TextView add = (TextView) findViewById(R.id.AddFriendBox);
 				User2 = (String) add.getText().toString().replaceAll("\\s", "");
 				if(User2!="" && User2!=null && UserName!=null){
-						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
-			        	check = "Added";
-			        	ConnectivityManager connMgr = (ConnectivityManager) 
-		        		getSystemService(Context.CONNECTIVITY_SERVICE);
-		                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		                //error.setText("creating");
-		                if (networkInfo != null && networkInfo.isConnected()) {
-		                    new DownloadWebpageText().execute(stringUrl);
-		                } else {
-		                    error.setText("No network connection available.");
-		                }
+					String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
+					callUrl(stringUrl);}
 				}
-			}
 		});
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
@@ -123,15 +113,8 @@ public class FriendsList extends Activity
         			{
         				//Delete
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
-			        	ConnectivityManager connMgr = (ConnectivityManager) 
-		        		getSystemService(Context.CONNECTIVITY_SERVICE);
-		                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		                //error.setText("creating");
-		                if (networkInfo != null && networkInfo.isConnected()) {
-		                    new DownloadWebpageText().execute(stringUrl);
-		                } else {
-		                    error.setText("No network connection available.");
-		                }
+			        	error.setText("USER ID FOR DELETION IS: " +UserId);
+        				//callUrl(stringUrl);
         			}
         			
         		});
@@ -291,5 +274,19 @@ public class FriendsList extends Activity
 	   return new String(buffer);
 	} 
 	
+	public void callUrl(String url){
 
+	        	ConnectivityManager connMgr = (ConnectivityManager) 
+        		getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                //error.setText("creating");
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    new DownloadWebpageText().execute(url);
+                } else {
+                    error.setText("No network connection available.");
+                }	
+	}
+	
+	
+	
 }
