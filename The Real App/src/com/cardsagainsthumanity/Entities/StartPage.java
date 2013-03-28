@@ -1,14 +1,20 @@
 package com.cardsagainsthumanity.Entities;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 import android.app.Activity;
 import android.content.Context;
@@ -121,22 +127,48 @@ public class StartPage extends Activity {
                 	//End storing username
                 	
                 	//Need to encrypt password and store
-                	/*Random rng = new Random();
-                	String kcharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
-                	int kl = 16;
-                	String ciphSeed = generateString(rng, kcharacters, kl);
-                	try {
+                	Random rng = new Random();
+                	//String kcharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
+                	//int kl = 16;
+                	//String ciphSeed = generateString(rng, kcharacters, kl);
+                	try { 
 						byte[] userInput = Base64.decode(password);
+						byte[] sKey = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6};
+	                	//Random generate byte array
+	                	/* sKey[0] = (byte) 'p';
+	                	sKey[1] = (byte) 'a';
+	                	sKey[2] = (byte) 's';
+	                	sKey[3] = (byte) 's';
+	                	sKey[4] = (byte) 'w';
+	                	sKey[5] = (byte) 'o';
+	                	sKey[6] = (byte) 'r';
+	                	sKey[7] = (byte) 'd';
+	                	sKey[8] = (byte) 'c';
+	                	sKey[9] = (byte) 'o';
+	                	sKey[10] = (byte) 'm';
+	                	sKey[11] = (byte) 'r';
+	                	sKey[12] = (byte) 'a';
+	                	sKey[13] = (byte) 'd';
+	                	sKey[14] = (byte) 'e';
+	                	sKey[15] = (byte) 's'; */
+	                	
+	                	for(int i=0; i< userInput.length; i++)
+	                	{
+	                		sKey[i] = userInput[i];
+	                	}
+	                	
+	                	String epw = encrypt(password, sKey);
+	                	spEditor.putString("digest", epw);
+	                	
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-                	byte[] sKey = new byte[16];
-                	//Random generate byte array
-                	for(int i=0; i<16; i++)
-                	{
-                		sKey[i] = (byte) rng.nextInt(9);
-                	} */
+                	
+                	
                 	
                 	//End store password
                 	
@@ -220,5 +252,39 @@ public class StartPage extends Activity {
 		    }
 		    return new String(text);
 		}
+		
+		public static String encrypt(String toEncrypt, byte[ ] key) throws Exception {
+	        //Create your Secret Key Spec, which defines the key transformations
+	        SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
+	       
+
+	        //Get the cipher
+	        Cipher cipher = Cipher.getInstance("AES");
+
+	        //Initialize the cipher
+	        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+
+	        //Encrypt the string into bytes
+	        byte[ ] encryptedBytes = cipher.doFinal(toEncrypt.getBytes());
+
+	        //Convert the encrypted bytes back into a string
+	        String encrypted = Base64.encodeBytes(encryptedBytes);
+
+	        return encrypted;
+	}
+		
+	public static String decrypt(String encryptedText, byte[ ] key) throws Exception {
+	        SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
+	      
+	        Cipher cipher = Cipher.getInstance("AES");
+
+	        cipher.init(Cipher.DECRYPT_MODE, skeySpec);
+
+	        byte[] toDecrypt = Base64.decode(encryptedText);
+	        
+	        byte[] encrypted = cipher.doFinal(toDecrypt);
+
+	        return new String(encrypted);
+	}	
 	
 }
