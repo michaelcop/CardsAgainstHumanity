@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,19 +19,21 @@ import javax.sql.DataSource;
 
 @WebServlet(urlPatterns={"/AcceptFriend"})
 public class AcceptFriend extends HttpServlet implements DataSource{
-	private String User =  null;
-	private String User2 =  null;
+	private String User = "";
+	private String User2 = "";
 	Connection connection = null;
-	private String password =  null;
-	int UserID, UserFriendID;
+	int UserID = 0;
+	int UserFriendID = 0;
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
+			UserID = Integer.parseInt(User);
 		}
 		if(request.getParameter("User2") != null){
 			this.setUser2((String) request.getParameter("User2").toString());
+			UserFriendID = Integer.parseInt(User2);
 		}
 		
 		try {
@@ -42,7 +44,7 @@ public class AcceptFriend extends HttpServlet implements DataSource{
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		CreateAccount ds = new CreateAccount();
+		AddFriend ds = new AddFriend();
         try {
 			connection = ds.getConnection();
 			System.out.println("connection made");
@@ -52,71 +54,35 @@ public class AcceptFriend extends HttpServlet implements DataSource{
 		}
 		
 		PrintWriter out = response.getWriter();
+		//Check connection has been made
 		if(connection != null){
-			System.out.println("not null");
-			//out.println(User  + "   " + password);
-			
-			//Check if user exists in database
-			if(User!= null && User.length()!=0){
-				System.out.println("user not null");
-				Statement stmt, stmt2, stmt3;
-				ResultSet rs;
-				int rs2, rs3;
-				try {
-					stmt = connection.createStatement();
-					stmt2 = connection.createStatement();
-					stmt3 = connection.createStatement();
-					//Query to get User1’s ID
-					rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = '" + User + "';");
-					//Get User1’s UserID
-					if(!rs.next()){
-						//User not found
-						System.out.println("user does not exist");
-					}
-					else{
-						//User found, get User ID
-						UserID = rs.getInt(1);
-					}
-					//Query to get User’s friend ID
-					rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = '" + User2 + "';");
-					if(!rs.next()){
-						//User not found
-						System.out.println("user does not exist");
-					}
-					else{
-						//User found, get User ID
-						UserFriendID = rs.getInt(1);
-					}
-					//Add Friends - User1 - UserID
-					rs2 = stmt2.executeUpdate("INSERT INTO tblFriends (UserID, FriendUserID, FriendStatus) VALUES (" + UserID + "," + UserFriendID + ","  + 2 + ");");
-					//Add Friends - User2 - UserFriendID
-					rs3 = stmt3.executeUpdate("INSERT INTO tblFriends (UserID, FriendUserID, FriendStatus) VALUES (" + UserFriendID + "," + UserID + "," + 3 + ");");
-					if(rs2 != 0 && rs3 != 0){
-						//Friend Added Successfully
-					out.println("Added");
-					}
-					else{
-						//Unable to add friend
-						out.println("None");
-					}
+			Statement stmt;
+			int rs;
+			try {				
+				stmt = connection.createStatement();
+				//Query to get User’s friend ID
+				rs = stmt.executeUpdate("UPDATE tblFriends SET FriendStatus = 1 WHERE UserID = "+UserID+" AND FriendUserID = "+UserFriendID+" OR UserID = "+UserFriendID+" AND FriendUserID = "+UserID+";");
 
-					
-					//Close recordset and connection
-					rs.close();
-					stmt.close();
-					connection.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(rs != 0){
+					//Accepted Friend request
+					out.println("Accepted;"+UserFriendID );
 				}
-				
+				else{
+					//Error occurred when adding friend
+					out.println("Error: unable to accept friend request.");
+				}
+			
+				//Close connection
+				stmt.close();
+				connection.close();
+			} 
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		
 		}
 		
 	}
-
-
 
 	@Override
 	public PrintWriter getLogWriter() throws SQLException {
