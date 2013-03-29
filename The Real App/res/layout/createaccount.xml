@@ -9,7 +9,6 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/ca_title"
@@ -36,7 +35,7 @@
         android:layout_alignLeft="@+id/Create"
         android:layout_centerVertical="true"
         android:textColor="@color/White"
-        android:text="@string/error2" />
+        android:text="@string/error" />
 
     <EditText
         android:id="@+id/confirmpassword"
