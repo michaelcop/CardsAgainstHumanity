@@ -28,7 +28,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Game extends Activity
 {
@@ -55,7 +54,7 @@ public class Game extends Activity
 	
 	int currentBlankCard = 0;
 	
-	final TextView chatBox = (TextView) findViewById(R.id.chatBox);
+	//final TextView chatBox = (TextView) findViewById(R.id.chatBox);
 	final TextView card1 = (TextView) findViewById(R.id.c1);
 	final TextView card2 = (TextView) findViewById(R.id.c2);
 	final TextView card3 = (TextView) findViewById(R.id.c3);
@@ -77,7 +76,7 @@ public class Game extends Activity
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
 		
-		chatBox.setMovementMethod(new ScrollingMovementMethod());
+		//chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
 		card3.setMovementMethod(new ScrollingMovementMethod());
@@ -237,7 +236,7 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				String value = message.getText().toString();
-				chatBox.append("\n" + value);
+				//chatBox.append("\n" + value);
 			}
 			
 		});
@@ -266,45 +265,6 @@ public class Game extends Activity
 		TextView vd = (TextView) findViewById(R.id.textView3);
 		if(vd!=null){
 			vd.setText(""+gameID);
-		}
-	}
-	
-	public void setCard()
-	{
-		if(currentBlankCard == 1)
-		{
-			card1.setText(newCardText);
-			card1.setHint(newCardID);
-		}
-		if(currentBlankCard == 2)
-		{
-			card2.setText(newCardText);
-			card2.setHint(newCardID);
-		}
-		if(currentBlankCard == 3)
-		{
-			card3.setText(newCardText);
-			card3.setHint(newCardID);
-		}
-		if(currentBlankCard == 4)
-		{
-			card4.setText(newCardText);
-			card4.setHint(newCardID);
-		}
-		if(currentBlankCard == 5)
-		{
-			card5.setText(newCardText);
-			card5.setHint(newCardID);
-		}
-		if(currentBlankCard == 6)
-		{
-			card6.setText(newCardText);
-			card6.setHint(newCardID);
-		}
-		if(currentBlankCard == 7)
-		{
-			card7.setText(newCardText);
-			card7.setHint(newCardID);
 		}
 	}
 	

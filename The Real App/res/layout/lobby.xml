@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background = "@color/black" xmlns:app=":http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/playerListLobbyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="38dp"
+        android:text="@string/playerList"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/playerListLobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/playerListLobbyLabel"
+        android:layout_below="@+id/playerListLobbyLabel"
+        android:layout_marginTop="25dp"
+        android:text="TextView"
+        android:background="@color/white" 
+        android:maxLines="6"/>
+    
+</RelativeLayout>
