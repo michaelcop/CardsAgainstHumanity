@@ -102,10 +102,14 @@
         					
     
     <string name="defaultCard">default card</string>
-    <string name="playerList">Player List.</string>
+    <string name="playerList">Player List</string>
     <string name="delete_friend">Delete Friend</string>
     <string name="inviteFriendtitle">Friends</string>
     <string name="returnToGame">Return To Game</string>
+    
+    <string name="lobbyWelcome">Welcome to the Lobby!</string>
+    <string name="lobbyDirections">Please wait until enough people join</string>
+    <string name="lobbyInvite">Invite Friends</string>
     
     
 </resources>

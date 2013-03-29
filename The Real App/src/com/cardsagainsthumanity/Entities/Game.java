@@ -66,6 +66,7 @@ public class Game extends Activity
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
 		
+		//Please don't move these :<
 		final TextView chatBox = (TextView) findViewById(R.id.chatBox);
 		final TextView card1 = (TextView) findViewById(R.id.c1);
 		final TextView card2 = (TextView) findViewById(R.id.c2);
