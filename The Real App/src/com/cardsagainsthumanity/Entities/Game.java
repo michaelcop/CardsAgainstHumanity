@@ -28,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Game extends Activity
 {
@@ -47,8 +48,27 @@ public class Game extends Activity
 	String userID;
 	
 	String submissionID;
+	String newCardText;
+	String newCardID;
 	
 	private TextView error;
+	
+	int currentBlankCard = 0;
+	
+	final TextView chatBox = (TextView) findViewById(R.id.chatBox);
+	final TextView card1 = (TextView) findViewById(R.id.c1);
+	final TextView card2 = (TextView) findViewById(R.id.c2);
+	final TextView card3 = (TextView) findViewById(R.id.c3);
+	final TextView card4 = (TextView) findViewById(R.id.c4);
+	final TextView card5 = (TextView) findViewById(R.id.c5);
+	final TextView card6 = (TextView) findViewById(R.id.c6);
+	final TextView card7 = (TextView) findViewById(R.id.c7);
+	final TextView blackCard = (TextView) findViewById(R.id.blackcard);
+	
+	final Button sendMessage = (Button) findViewById(R.id.sendMessage);
+	final Button submit = (Button) findViewById(R.id.submit);
+	
+	final EditText message = (EditText)findViewById(R.id.messageInput);
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{ 
@@ -56,23 +76,6 @@ public class Game extends Activity
 		super.onCreate(savedInstanceState);
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
-		
-		final TextView chatBox = (TextView) findViewById(R.id.chatBox);
-		final TextView card1 = (TextView) findViewById(R.id.c1);
-		final TextView card2 = (TextView) findViewById(R.id.c2);
-		final TextView card3 = (TextView) findViewById(R.id.c3);
-		final TextView card4 = (TextView) findViewById(R.id.c4);
-		final TextView card5 = (TextView) findViewById(R.id.c5);
-		final TextView card6 = (TextView) findViewById(R.id.c6);
-		final TextView card7 = (TextView) findViewById(R.id.c7);
-		final TextView blackCard = (TextView) findViewById(R.id.blackcard);
-		
-		final Button sendMessage = (Button) findViewById(R.id.sendMessage);
-		final Button submit = (Button) findViewById(R.id.submit);
-		
-		final EditText message = (EditText)findViewById(R.id.messageInput);
-		
-		
 		
 		chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
@@ -98,12 +101,15 @@ public class Game extends Activity
 			{
 				submissionID =  (String) card1.getHint();
 				card1.setBackgroundResource(R.drawable.selectedcard);
+				
 				card2.setBackgroundResource(R.drawable.white);
 				card3.setBackgroundResource(R.drawable.white);
 				card4.setBackgroundResource(R.drawable.white);
 				card5.setBackgroundResource(R.drawable.white);
 				card6.setBackgroundResource(R.drawable.white);
 				card7.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 1;
 			}
 		});
 
@@ -122,6 +128,8 @@ public class Game extends Activity
 				card5.setBackgroundResource(R.drawable.white);
 				card6.setBackgroundResource(R.drawable.white);
 				card7.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 2;
 			}
 		});
 		
@@ -140,6 +148,8 @@ public class Game extends Activity
 				card5.setBackgroundResource(R.drawable.white);
 				card6.setBackgroundResource(R.drawable.white);
 				card7.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 3;
 			}
 		});
 		card4.setOnClickListener(new OnClickListener()
@@ -157,6 +167,8 @@ public class Game extends Activity
 				card5.setBackgroundResource(R.drawable.white);
 				card6.setBackgroundResource(R.drawable.white);
 				card7.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 4;
 			}
 		});
 		card5.setOnClickListener(new OnClickListener()
@@ -174,6 +186,8 @@ public class Game extends Activity
 				card1.setBackgroundResource(R.drawable.white);
 				card6.setBackgroundResource(R.drawable.white);
 				card7.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 5;
 			}
 		});
 		card6.setOnClickListener(new OnClickListener()
@@ -191,6 +205,8 @@ public class Game extends Activity
 				card5.setBackgroundResource(R.drawable.white);
 				card1.setBackgroundResource(R.drawable.white);
 				card7.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 6;
 			}
 		});
 		
@@ -209,6 +225,8 @@ public class Game extends Activity
 				card5.setBackgroundResource(R.drawable.white);
 				card6.setBackgroundResource(R.drawable.white);
 				card1.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 7;
 			}
 		});
 		
@@ -220,7 +238,6 @@ public class Game extends Activity
 			{
 				String value = message.getText().toString();
 				chatBox.append("\n" + value);
-				
 			}
 			
 		});
@@ -229,6 +246,8 @@ public class Game extends Activity
 		{
 			public void onClick(View arg0)
 			{
+				//Will send submissionID to something
+				
 				
 			}
 		});
@@ -247,6 +266,45 @@ public class Game extends Activity
 		TextView vd = (TextView) findViewById(R.id.textView3);
 		if(vd!=null){
 			vd.setText(""+gameID);
+		}
+	}
+	
+	public void setCard()
+	{
+		if(currentBlankCard == 1)
+		{
+			card1.setText(newCardText);
+			card1.setHint(newCardID);
+		}
+		if(currentBlankCard == 2)
+		{
+			card2.setText(newCardText);
+			card2.setHint(newCardID);
+		}
+		if(currentBlankCard == 3)
+		{
+			card3.setText(newCardText);
+			card3.setHint(newCardID);
+		}
+		if(currentBlankCard == 4)
+		{
+			card4.setText(newCardText);
+			card4.setHint(newCardID);
+		}
+		if(currentBlankCard == 5)
+		{
+			card5.setText(newCardText);
+			card5.setHint(newCardID);
+		}
+		if(currentBlankCard == 6)
+		{
+			card6.setText(newCardText);
+			card6.setHint(newCardID);
+		}
+		if(currentBlankCard == 7)
+		{
+			card7.setText(newCardText);
+			card7.setHint(newCardID);
 		}
 	}
 	
