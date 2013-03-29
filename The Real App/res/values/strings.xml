@@ -103,6 +103,8 @@
     
     <string name="playerList">Player List.</string>
     <string name="delete_friend">Delete Friend</string>
+    <string name="inviteFriendtitle">Invite Friend</string>
+    <string name="returnToGame">Return To Game</string>
     
     
 </resources>
