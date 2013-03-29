@@ -224,7 +224,7 @@ public class MainMenu extends Activity
 		                	
 		                	//Inform user of logout status on game close
 		                	if(!othSettings.contains("UserName") && !othSettings.contains("digest"))
-		                		Toast.makeText(context, "Logging Out", Toast.LENGTH_LONG).show();
+		                		Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show();
 		                	else
 		                		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();
 		                	//End logout message  --------------JK

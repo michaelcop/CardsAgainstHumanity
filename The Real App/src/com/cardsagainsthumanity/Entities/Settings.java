@@ -22,6 +22,9 @@ public class Settings extends Activity
 	private User user;
 	private Game games;
 	
+	final Context context = this;
+	public static final String SPREF_USER = "othPrefs";
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -57,6 +60,17 @@ public class Settings extends Activity
 			
 		});
 		
+		Button Logout = (Button) findViewById(R.id.LogOutButton);
+		Logout.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View x)
+			{
+				logOut();
+			}
+			
+		});
+		
 	}
 	
 	public User getUser() {
@@ -77,7 +91,25 @@ public class Settings extends Activity
 
 	void logOut()
 	{
-		
+		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+    	SharedPreferences.Editor spEditor = othSettings.edit();
+    	spEditor.remove("UserName").commit();
+    	spEditor.remove("digest").commit();
+    	spEditor.remove("ID").commit();
+    	//End erasing username & pw
+    	
+    	//Inform user of logout status on game close
+    	if(!othSettings.contains("UserName") && !othSettings.contains("digest"))
+    		Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show();
+    	else
+    		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();
+    	//End logout message  --------------JK
+    	
+    	Settings.this.finish();
+    	Intent intent = new Intent(getApplicationContext(), StartPage.class);
+    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    	intent.putExtra("EXIT", true);
+    	startActivity(intent);
 	}
 	
 	void changeNumRounds()
