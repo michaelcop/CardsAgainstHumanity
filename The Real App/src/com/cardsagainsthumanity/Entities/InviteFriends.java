@@ -38,11 +38,11 @@ public class InviteFriends extends Activity
 	String User2;
 	TableLayout t;
 	int  UserId;
-	
-	
+		
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		testStrings = new ArrayList<String>();
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.invitefriend);
@@ -51,8 +51,11 @@ public class InviteFriends extends Activity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			UserName = extras.getString("UserName");
-			testStrings = extras.getStringArrayList("data");
+			//testStrings = extras.getStringArrayList("data");
 		}
+		
+		testStrings.add("1");
+		testStrings.add("2");
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
@@ -80,8 +83,8 @@ public class InviteFriends extends Activity
 
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
-            labelTV.setText(testStrings.get(++current));
-            labelTV.setId(++current);
+            labelTV.setText(testStrings.get(current));
+            labelTV.setId(current);
             labelTV.setTextColor(Color.WHITE);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
