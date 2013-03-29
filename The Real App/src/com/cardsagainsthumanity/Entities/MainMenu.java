@@ -214,7 +214,7 @@ public class MainMenu extends Activity
 		                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		                	SharedPreferences.Editor spEditor = othSettings.edit();
 		                	spEditor.remove("UserName").commit();
-		                	//spEditor.remove("digest").commit();
+		                	spEditor.remove("digest").commit();
 		                	//End erasing username & pw
 		                	
 		                	//Inform user of logout status on game close

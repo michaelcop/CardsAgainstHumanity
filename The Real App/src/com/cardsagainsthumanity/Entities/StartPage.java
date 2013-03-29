@@ -127,13 +127,16 @@ public class StartPage extends Activity {
                 	//End storing username
                 	
                 	//Need to encrypt password and store
-                	Random rng = new Random();
+                	//Random rng = new Random();
                 	//String kcharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
                 	//int kl = 16;
                 	//String ciphSeed = generateString(rng, kcharacters, kl);
                 	try { 
+                		Toast.makeText(v.getContext(),"FUCK", Toast.LENGTH_LONG).show();
 						byte[] userInput = Base64.decode(password);
+						Toast.makeText(v.getContext(),"FUCK2", Toast.LENGTH_LONG).show();
 						byte[] sKey = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6};
+						Toast.makeText(v.getContext(),"FUCK3", Toast.LENGTH_LONG).show();
 	                	//Random generate byte array
 	                	/* sKey[0] = (byte) 'p';
 	                	sKey[1] = (byte) 'a';
@@ -156,9 +159,13 @@ public class StartPage extends Activity {
 	                	{
 	                		sKey[i] = userInput[i];
 	                	}
-	                	
+	                	Toast.makeText(v.getContext(),"FUCK4", Toast.LENGTH_LONG).show();
 	                	String epw = encrypt(password, sKey);
 	                	spEditor.putString("digest", epw);
+	                	Toast.makeText(v.getContext(),"FUCK5", Toast.LENGTH_LONG).show();
+	                	//Test encryption
+	                	//Toast.makeText(v.getContext(), password + " pw", Toast.LENGTH_LONG).show();
+	                	Toast.makeText(v.getContext(), epw + " epw", Toast.LENGTH_LONG).show();
 	                	
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -168,19 +175,17 @@ public class StartPage extends Activity {
 						e.printStackTrace();
 					}
                 	
-                	
-                	
                 	//End store password
                 	
                 	//Inform user username stored -------JK 
                 	
-                	String testun = othSettings.getString("UserName", null);
+                	/*String testun = othSettings.getString("UserName", null);
                 	if(testun.equals(null))
                 		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_SHORT).show();
                 	if(testun.equals(userName))
                 		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_SHORT).show();
                 	else
-                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show(); 
+                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show(); */
                 	//End  inform  --------------JK
                 	
 
