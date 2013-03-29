@@ -55,11 +55,6 @@ public class Game extends Activity
 	int currentBlankCard = 0;
 	private String userName;
 	
-	
-	
-	
-	
-	
 	protected void onCreate(Bundle savedInstanceState)
 	{ 
 		this.currentUser = new User();
