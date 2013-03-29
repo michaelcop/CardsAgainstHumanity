@@ -120,7 +120,7 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+User1Id+"&UserID="+ID;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				callUrl(stringUrl);
         			}
@@ -140,7 +140,7 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+User1Id+"&UserID="+ID;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				callUrl(stringUrl);
         			}
@@ -198,13 +198,12 @@ public class FriendsList extends Activity
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-        		Toast.makeText(context, results, Toast.LENGTH_LONG).show();
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 					error.setText("");
 	            	String[] resultArray = results.split(";");
 					if(resultArray!=null && resultArray[0].equals("Added") && resultArray.length==2){
-                		Toast.makeText(context, "Added", Toast.LENGTH_LONG).show();
+                		Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
 					
 					// ADD ROW TO TABLE
                         TableRow tr = new TableRow(FriendsList.this);
@@ -227,9 +226,9 @@ public class FriendsList extends Activity
 								
 		        				String[] temp = A.getHint().toString().split(":");
 		        				String ID = temp[1];
-		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+User1Id+"&UserID="+ID;
+		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
 					        	error.setText("USER ID FOR DELETION IS: " +ID);
-		        				//callUrl(stringUrl);
+		        				callUrl(stringUrl);
 							}
                         	
                         	
@@ -251,7 +250,7 @@ public class FriendsList extends Activity
 						button.setText("Delete");
 						button.setEnabled(true);
 						button.setHint("UserId:"+UserIdReturned);
-                		Toast.makeText(context, "accepted!", Toast.LENGTH_LONG).show();
+                		Toast.makeText(context, "accepted!", Toast.LENGTH_SHORT).show();
                 		button.setOnClickListener(new OnClickListener(){
 
                 			@Override
@@ -260,15 +259,15 @@ public class FriendsList extends Activity
                 				//Delete
                 				String[] temp = button.getHint().toString().split(":");
                 				String ID = temp[1];
-                				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+ID;
+                				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
         			        	error.setText("USER ID FOR DELETION IS: " +ID);
-                				//callUrl(stringUrl);
+                				callUrl(stringUrl);
                 			}
                 			
                 		});
 					}
 					else{
-                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
+                		Toast.makeText(context, "You broke it.", Toast.LENGTH_SHORT).show();
 						}
 	            }
 	            else{
