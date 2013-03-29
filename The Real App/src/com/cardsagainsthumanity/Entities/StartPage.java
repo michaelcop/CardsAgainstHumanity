@@ -1,6 +1,8 @@
 package com.cardsagainsthumanity.Entities;
 
 
+import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,12 +11,12 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 
 import android.app.Activity;
 import android.content.Context;
@@ -121,73 +123,32 @@ public class StartPage extends Activity {
 	            String[] resultArr = results.split(":"); 
                 if(resultArr[0].equals("User")){
                 	
-                	//Store Username in SharedPref
+                	//Store Username and ID in SharedPref
                 	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("UserName", userName.toString()).commit();
                 	UserId = resultArr[1].toString();
+                	spEditor.putString("ID", UserId).commit();   //Need to add the removal in MAinMenu
                 	//End storing username
                 	
                 	//Need to encrypt password and store
-                	//Random rng = new Random();
-                	//String kcharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
-                	//int kl = 16;
-                	//String ciphSeed = generateString(rng, kcharacters, kl);
-                	try { 
-                		Toast.makeText(v.getContext(),"FUCK", Toast.LENGTH_LONG).show();
-						byte[] userInput = Base64.decode(password);
-						Toast.makeText(v.getContext(),"FUCK2", Toast.LENGTH_LONG).show();
-						byte[] sKey = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6};
-						Toast.makeText(v.getContext(),"FUCK3", Toast.LENGTH_LONG).show();
-	                	//Random generate byte array
-	                	/* sKey[0] = (byte) 'p';
-	                	sKey[1] = (byte) 'a';
-	                	sKey[2] = (byte) 's';
-	                	sKey[3] = (byte) 's';
-	                	sKey[4] = (byte) 'w';
-	                	sKey[5] = (byte) 'o';
-	                	sKey[6] = (byte) 'r';
-	                	sKey[7] = (byte) 'd';
-	                	sKey[8] = (byte) 'c';
-	                	sKey[9] = (byte) 'o';
-	                	sKey[10] = (byte) 'm';
-	                	sKey[11] = (byte) 'r';
-	                	sKey[12] = (byte) 'a';
-	                	sKey[13] = (byte) 'd';
-	                	sKey[14] = (byte) 'e';
-	                	sKey[15] = (byte) 's'; */
-	                	
-	                	for(int i=0; i< userInput.length; i++)
-	                	{
-	                		sKey[i] = userInput[i];
-	                	}
-	                	String epw = encrypt(password, sKey);
-	                	spEditor.putString("digest", epw);
-	                	//Test encryption
-	                	Log.d("nig", epw);
-	                	
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
                 	
+                	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
+                    MessageDigest Enc = null;
+                    try {
+                        Enc = MessageDigest.getInstance("SHA-1");
+                    } catch (NoSuchAlgorithmException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } // Encryption algorithm
+                    Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
+                    String sha = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
+                    Toast.makeText(v.getContext(),sha, Toast.LENGTH_LONG).show(); //print the string in the console
+                                  	
+                	//Store hash to file
+                    spEditor.putString("digest", sha).commit();			    
+                                	
                 	//End store password
-                	
-                	//Inform user username stored -------JK 
-                	
-                	/*String testun = othSettings.getString("UserName", null);
-                	if(testun.equals(null))
-                		Toast.makeText(v.getContext(), "UserName not stored", Toast.LENGTH_SHORT).show();
-                	if(testun.equals(userName))
-                		Toast.makeText(v.getContext(), userName + "Logged in", Toast.LENGTH_SHORT).show();
-                	else
-                		Toast.makeText(v.getContext(), "undet", Toast.LENGTH_SHORT).show(); */
-                	//End  inform  --------------JK
-                	
-
                 	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
                 	myIntent.putExtra("UserName", userName);
@@ -256,40 +217,6 @@ public class StartPage extends Activity {
 		        text[i] = characters.charAt(rng.nextInt(characters.length()));
 		    }
 		    return new String(text);
-		}
-		
-		public static String encrypt(String toEncrypt, byte[ ] key) throws Exception {
-	        //Create your Secret Key Spec, which defines the key transformations
-	        SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
-	       
-
-	        //Get the cipher
-	        Cipher cipher = Cipher.getInstance("AES");
-
-	        //Initialize the cipher
-	        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
-
-	        //Encrypt the string into bytes
-	        byte[ ] encryptedBytes = cipher.doFinal(toEncrypt.getBytes());
-
-	        //Convert the encrypted bytes back into a string
-	        String encrypted = Base64.encodeBytes(encryptedBytes);
-
-	        return encrypted;
-	}
-		
-	public static String decrypt(String encryptedText, byte[ ] key) throws Exception {
-	        SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
-	      
-	        Cipher cipher = Cipher.getInstance("AES");
-
-	        cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-
-	        byte[] toDecrypt = Base64.decode(encryptedText);
-	        
-	        byte[] encrypted = cipher.doFinal(toDecrypt);
-
-	        return new String(encrypted);
-	}	
+		}	
 	
 }
