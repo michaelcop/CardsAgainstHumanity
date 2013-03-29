@@ -97,7 +97,13 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID =  (String) card1.getHint();
-				card1.setBackground(getResources().getDrawable(R.drawable.selectedCard));
+				card1.setBackgroundResource(R.drawable.selectedcard);
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				card6.setBackgroundResource(R.drawable.white);
+				card7.setBackgroundResource(R.drawable.white);
 			}
 		});
 
@@ -108,6 +114,14 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID = (String) card2.getHint();
+				card2.setBackgroundResource(R.drawable.selectedcard);
+				
+				card1.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				card6.setBackgroundResource(R.drawable.white);
+				card7.setBackgroundResource(R.drawable.white);
 			}
 		});
 		
@@ -118,6 +132,14 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID = (String) card3.getHint();
+				card3.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				card6.setBackgroundResource(R.drawable.white);
+				card7.setBackgroundResource(R.drawable.white);
 			}
 		});
 		card4.setOnClickListener(new OnClickListener()
@@ -127,6 +149,14 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID = (String) card4.getHint();
+				card4.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				card6.setBackgroundResource(R.drawable.white);
+				card7.setBackgroundResource(R.drawable.white);
 			}
 		});
 		card5.setOnClickListener(new OnClickListener()
@@ -136,6 +166,14 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID = (String) card5.getHint();
+				card5.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				card6.setBackgroundResource(R.drawable.white);
+				card7.setBackgroundResource(R.drawable.white);
 			}
 		});
 		card6.setOnClickListener(new OnClickListener()
@@ -145,6 +183,14 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID = (String) card6.getHint();
+				card6.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				card7.setBackgroundResource(R.drawable.white);
 			}
 		});
 		
@@ -155,6 +201,14 @@ public class Game extends Activity
 			public void onClick(View arg0) 
 			{
 				submissionID = (String) card7.getHint();
+				card7.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				card6.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
 			}
 		});
 		
