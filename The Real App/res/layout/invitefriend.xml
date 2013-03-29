@@ -4,42 +4,42 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <TextView
-        android:id="@+id/inviteFriendtitle"
+    <Button
+        android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="@string/inviteFriendtitle"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginBottom="19dp"
+        android:text="@string/returntomenu"
         android:textColor="@color/White" />
 
     <TableLayout
         android:id="@+id/friendsTable"
         android:layout_width="250dp"
         android:layout_height="220dp"
-        android:layout_below="@+id/inviteFriendtitle"
+        android:layout_above="@+id/ReturnToMenu"
+        android:layout_below="@+id/FriendsList"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
+        android:layout_marginBottom="17dp"
         android:stretchColumns="0,1" >
-        
+
         <TextView
             android:id="@+id/error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/error" />
-        
     </TableLayout>
 
-    <Button
-        android:id="@+id/returnToGame"
+    <TextView
+        android:id="@+id/FriendsList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/friendsTable"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:text="@string/returnToGame"
+        android:layout_marginTop="20dp"
+        android:text="@string/fl_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White" />
 
 </RelativeLayout>

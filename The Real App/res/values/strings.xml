@@ -11,7 +11,7 @@
     <string name="stats_descrip">Stats button</string>
     <string name="howplay_descrip">How to play button</string>
     <string name="howtoplay">How to Play</string>
-    <string name="returntomenu">Return to Menu</string>
+    <string name="returntomenu">Go Back</string>
     <string name="rules">There are three terms that players should be familiar with. They are Black Cards, White Cards, and Card Czar. The objective of the game is to use the terms on the White Cards to fill in the blanks on the Black Cards, in order to win points from the Card Czar, who will decide the best/funniest card combination. When the game begins, the game host will be assigned to the role of Card Czar. All other players will draw seven White Cards. The Card Czar will draw a card from the deck of Black Cards, and reveal it to the other players. The other players will select one of their White Cards that they feel will best complete the Black Card and submit it for judging. At the end of every round, a new Card Czar will be assigned. In the end, who ever ends up with the most points will win.</string>
     <string name="setting_save">Save</string>
     <string name="setting_notific">Notifications</string>
@@ -104,7 +104,7 @@
     <string name="defaultCard">default card</string>
     <string name="playerList">Player List.</string>
     <string name="delete_friend">Delete Friend</string>
-    <string name="inviteFriendtitle">Invite Friend</string>
+    <string name="inviteFriendtitle">Friends</string>
     <string name="returnToGame">Return To Game</string>
     
     
