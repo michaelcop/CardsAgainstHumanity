@@ -120,9 +120,9 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+ID;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+User1Id+"&UserID="+ID;
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
-        				//callUrl(stringUrl);
+        				callUrl(stringUrl);
         			}
         			
         		});
@@ -140,9 +140,9 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+ID;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+User1Id+"&UserID="+ID;
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
-        				//callUrl(stringUrl);
+        				callUrl(stringUrl);
         			}
         			
         		});
@@ -227,7 +227,7 @@ public class FriendsList extends Activity
 								
 		        				String[] temp = A.getHint().toString().split(":");
 		        				String ID = temp[1];
-		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+User1Id+"&UserID="+ID;
 					        	error.setText("USER ID FOR DELETION IS: " +ID);
 		        				//callUrl(stringUrl);
 							}
