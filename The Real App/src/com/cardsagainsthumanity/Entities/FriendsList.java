@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -84,27 +86,29 @@ public class FriendsList extends Activity
         // Go through each item in the array
         for ( current = 0; current < testStrings.size(); current++)
         {
-            // Create a TableRow and give it an ID
+        	String temp = testStrings.get(current);
+        	UserId = Integer.parseInt(temp);
+        	// Create a TableRow and give it an ID
             TableRow tr = new TableRow(this);
             tr.setId(UserId);
             tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));   
 
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
-            labelTV.setId(current);
             labelTV.setText(testStrings.get(++current));
+            labelTV.setId(++current);
             labelTV.setTextColor(Color.WHITE);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
 
             // Create a TextView to house the value of the after-tax income
-            String temp = testStrings.get(++current);
-            UserId = Integer.parseInt(temp);
-            Button b = new Button(this);
+            
+            final Button b = new Button(this);
             b.setId(500+UserId);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             if(testStrings.get(current).equals("1")){
-            	b.setText("Invite to Game");
+            	b.setText("Delete");
+            	b.setHint("UserId:"+UserId);
             	b.setOnClickListener(new OnClickListener()
         		{
 
@@ -112,8 +116,10 @@ public class FriendsList extends Activity
         			public void onClick(View v) 
         			{
         				//Delete
+        				String[] temp = b.getHint().toString().split(":");
+        				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
-			        	error.setText("USER ID FOR DELETION IS: " +UserId);
+			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				//callUrl(stringUrl);
         			}
         			
@@ -129,7 +135,12 @@ public class FriendsList extends Activity
         			public void onClick(View v) 
         			{
         				//Cancel 
-        				
+        				//Delete
+        				String[] temp = b.getHint().toString().split(":");
+        				String ID = temp[1];
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+			        	error.setText("USER ID FOR DELETION IS: " +ID);
+        				//callUrl(stringUrl);
         			}
         			
         		});
@@ -144,6 +155,12 @@ public class FriendsList extends Activity
         			public void onClick(View v) 
         			{
         				//Accept
+        				//Delete
+        				String[] temp = b.getHint().toString().split(":");
+        				String ID = temp[1];
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+UserName+"&UserID="+UserId;
+			        	error.setText("USER ID FOR ACCEPTING IS: " +ID);
+        				//callUrl(stringUrl);
         				
         			}
         			
@@ -184,25 +201,31 @@ public class FriendsList extends Activity
 	            if(results!=null){
 					error.setText("");
 	            	String[] resultArray = results.split(";");
-					if(resultArray!=null && resultArray[0].equals("Added")){
+					if(resultArray!=null && resultArray[0].equals("Added") && resultArray.length==2){
                 		Toast.makeText(context, "Added", Toast.LENGTH_LONG).show();
 					
 					// ADD ROW TO TABLE
                         TableRow tr = new TableRow(FriendsList.this);
-                        tr.setId((++current)+200);
+                        tr.setId(Integer.parseInt(resultArray[1]));
                         TextView tn = new TextView(FriendsList.this);
                         tn.setText(User2);
                         tn.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         tr.addView(tn);
-                        Button A = new Button(FriendsList.this);
+                        final Button A = new Button(FriendsList.this);
                         A.setText("Cancel Request");
-                        A.setId(++current);
+                        A.setId(Integer.parseInt(resultArray[1])+500);
                         A.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         A.setOnClickListener(new OnClickListener(){
 							@Override
 							public void onClick(View v) {
 								//cancel
+								//Delete
 								
+		        				String[] temp = A.getHint().toString().split(":");
+		        				String ID = temp[1];
+		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+					        	error.setText("USER ID FOR DELETION IS: " +ID);
+		        				//callUrl(stringUrl);
 							}
                         	
                         	
@@ -215,8 +238,9 @@ public class FriendsList extends Activity
 						t.removeView((TableRow)findViewById(UserId));
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted")){
-						
-						
+						Button button =  (Button) findViewById(Integer.parseInt(resultArray[1])+500);
+						button.setText("Added");
+						button.setEnabled(false);
 					}
 					else{
                 		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();

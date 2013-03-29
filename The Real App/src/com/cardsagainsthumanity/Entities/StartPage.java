@@ -42,8 +42,8 @@ public class StartPage extends Activity {
     private EditText urlText;
     private TextView login;
     private String results;
+    private String UserId;
     Button v;
-    String check;
     public static final String SPREF_USER = "othPrefs";
     
 	@Override
@@ -67,7 +67,6 @@ public class StartPage extends Activity {
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
 	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+userName+"&password="+password;
-	        	check = "User: "+userName+" login successful!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
                 
@@ -119,11 +118,14 @@ public class StartPage extends Activity {
 	            results = (String) result.toString();
 	            results = results.trim();
 	            //check the result for the what's needed to move on
-                if(results.equalsIgnoreCase(check)){
+	            String[] resultArr = results.split(":"); 
+                if(resultArr[0].equals("User")){
+                	
                 	//Store Username in SharedPref
                 	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("UserName", userName.toString()).commit();
+                	UserId = resultArr[1].toString();
                 	//End storing username
                 	
                 	//Need to encrypt password and store
@@ -192,6 +194,7 @@ public class StartPage extends Activity {
                 	
                 	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
                 	myIntent.putExtra("UserName", userName);
+                	myIntent.putExtra("UserId", UserId);
                 	login.setText("");
                 	startActivityForResult(myIntent, 0);
                 	StartPage.this.finish();	//Close login page when Main<enu starts
