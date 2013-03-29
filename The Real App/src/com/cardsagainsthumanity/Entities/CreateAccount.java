@@ -6,8 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,6 +35,7 @@ public class CreateAccount extends Activity
 	private String userName;
 	private String password;
 	private String confirm;
+	private String hash;
 	Button v;
 	String check;
     private TextView error;
@@ -77,7 +81,19 @@ public class CreateAccount extends Activity
 	                error.setText("Password and Confirmed password are different");
 	                return;
 	        	}
-	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateAccount?User="+userName+"&password="+password;
+	        	
+	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
+                MessageDigest Enc = null;
+                try {
+                    Enc = MessageDigest.getInstance("SHA-1");
+                } catch (NoSuchAlgorithmException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } // Encryption algorithm
+                Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
+                hash = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
+	        	
+	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateAccount?User="+userName+"&password="+hash;
 	        	check = "User: "+userName+" successfully created!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
