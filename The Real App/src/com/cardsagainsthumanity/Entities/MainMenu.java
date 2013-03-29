@@ -217,10 +217,11 @@ public class MainMenu extends Activity
 		                	SharedPreferences.Editor spEditor = othSettings.edit();
 		                	spEditor.remove("UserName").commit();
 		                	spEditor.remove("digest").commit();
+		                	spEditor.remove("ID").commit();
 		                	//End erasing username & pw
 		                	
 		                	//Inform user of logout status on game close
-		                	if( !othSettings.contains("UserName") /*&& !othSettings.contains("digest")*/ )
+		                	if(!othSettings.contains("UserName") && !othSettings.contains("digest"))
 		                		Toast.makeText(context, "Logging Out", Toast.LENGTH_LONG).show();
 		                	else
 		                		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();

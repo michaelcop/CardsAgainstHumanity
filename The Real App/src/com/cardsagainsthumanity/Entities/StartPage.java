@@ -128,7 +128,7 @@ public class StartPage extends Activity {
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("UserName", userName.toString()).commit();
                 	UserId = resultArr[1].toString();
-                	spEditor.putString("ID", UserId).commit();   //Need to add the removal in MAinMenu
+                	spEditor.putString("ID", UserId).commit();
                 	//End storing username
                 	
                 	//Need to encrypt password and store
@@ -143,7 +143,6 @@ public class StartPage extends Activity {
                     } // Encryption algorithm
                     Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
                     String sha = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
-                    Toast.makeText(v.getContext(),sha, Toast.LENGTH_LONG).show(); //print the string in the console
                                   	
                 	//Store hash to file
                     spEditor.putString("digest", sha).commit();			    
