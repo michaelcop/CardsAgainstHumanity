@@ -79,6 +79,7 @@ public class Game extends Activity
 		blackCard.setMovementMethod(new ScrollingMovementMethod());
 		sendMessage.setEnabled(false);
 		
+		
 		card1.setOnClickListener(new OnClickListener()
 		{
 
@@ -91,7 +92,80 @@ public class Game extends Activity
 				//cards.setForeground(R.id.c1);
 			}
 		});
+
+		card2.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
+		card3.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
+		card4.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
+		card5.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
+		card6.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
 		
+		card7.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				
+				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
+				
+				//cards.setForeground(R.id.c1);
+			}
+		});
 		
 		sendMessage.setOnClickListener(new OnClickListener()
 		{
