@@ -12,6 +12,7 @@ import java.util.*;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -45,6 +46,7 @@ public class Game extends Activity
 	int gameID;
 	String userID;
 	
+	String submissionID;
 	
 	private TextView error;
 	
@@ -64,10 +66,15 @@ public class Game extends Activity
 		final TextView card6 = (TextView) findViewById(R.id.c6);
 		final TextView card7 = (TextView) findViewById(R.id.c7);
 		final TextView blackCard = (TextView) findViewById(R.id.blackcard);
-		Button sendMessage = (Button) findViewById(R.id.sendMessage);
-		final EditText message = (EditText)findViewById(R.id.messageInput);
-		chatBox.setMovementMethod(new ScrollingMovementMethod());
 		
+		final Button sendMessage = (Button) findViewById(R.id.sendMessage);
+		final Button submit = (Button) findViewById(R.id.submit);
+		
+		final EditText message = (EditText)findViewById(R.id.messageInput);
+		
+		
+		
+		chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
 		card3.setMovementMethod(new ScrollingMovementMethod());
@@ -78,6 +85,10 @@ public class Game extends Activity
 		blackCard.setMovementMethod(new ScrollingMovementMethod());
 		sendMessage.setEnabled(false);
 		
+		//card1.setHint(hint);
+		
+		//Drawable selected = res.getDrawable(R.drawable.selectedCard);
+		
 		
 		card1.setOnClickListener(new OnClickListener()
 		{
@@ -85,10 +96,8 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID =  (String) card1.getHint();
+				card1.setBackground(getResources().getDrawable(R.drawable.selectedCard));
 			}
 		});
 
@@ -98,22 +107,17 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID = (String) card2.getHint();
 			}
 		});
+		
 		card3.setOnClickListener(new OnClickListener()
 		{
 
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID = (String) card3.getHint();
 			}
 		});
 		card4.setOnClickListener(new OnClickListener()
@@ -122,10 +126,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID = (String) card4.getHint();
 			}
 		});
 		card5.setOnClickListener(new OnClickListener()
@@ -134,10 +135,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID = (String) card5.getHint();
 			}
 		});
 		card6.setOnClickListener(new OnClickListener()
@@ -146,10 +144,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID = (String) card6.getHint();
 			}
 		});
 		
@@ -159,10 +154,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				
-				//FrameLayout cards = (FrameLayout) findViewById(bitmap);
-				
-				//cards.setForeground(R.id.c1);
+				submissionID = (String) card7.getHint();
 			}
 		});
 		
@@ -178,6 +170,16 @@ public class Game extends Activity
 			}
 			
 		});
+		
+		submit.setOnClickListener(new OnClickListener()
+		{
+			public void onClick(View arg0)
+			{
+				
+			}
+		});
+		
+		//UI buttons end here-------------------------------------------------------------------------
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -226,7 +228,6 @@ public class Game extends Activity
             return super.onOptionsItemSelected(item);
         }
     }  
-	
 	
 	
 	public String getGameName() {

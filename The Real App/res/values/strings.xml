@@ -98,9 +98,10 @@
     <string name = "blackText">Life for American Indians was 
         						forever changed when the white man
         						introduced then to____________. </string>
+     						
         					
     
-    
+    <string name="defaultCard">default card</string>
     <string name="playerList">Player List.</string>
     <string name="delete_friend">Delete Friend</string>
     <string name="inviteFriendtitle">Invite Friend</string>

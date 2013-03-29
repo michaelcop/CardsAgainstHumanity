@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid android:color="@color/Gold"/>
+   			<corners 
+   		    android:bottomRightRadius="0dp"
+			android:bottomLeftRadius="0dp"
+   		    android:topLeftRadius="12dp"
+			android:topRightRadius="12dp"/>  
+   			<size 
+       			android:width="100dp"
+       			android:height="90dp"/>
+   			<stroke  android:width="2dip" android:color="@color/teal"/>  
+
+</shape>
