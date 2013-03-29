@@ -203,7 +203,7 @@ public class MainMenu extends Activity
 	 
 				// set dialog message
 				alertDialogBuilder
-					.setMessage("Do you want to close the application or close and logout?")
+					.setMessage("Do you want to close the application or logout?")
 					.setCancelable(true)
 					.setPositiveButton("Close",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
@@ -231,6 +231,10 @@ public class MainMenu extends Activity
 		                	
 							//close activity
 							MainMenu.this.finish();
+							Intent intent = new Intent(getApplicationContext(), StartPage.class);
+					    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					    	intent.putExtra("EXIT", true);
+					    	startActivity(intent);
 						} 
 					
 					}) 
