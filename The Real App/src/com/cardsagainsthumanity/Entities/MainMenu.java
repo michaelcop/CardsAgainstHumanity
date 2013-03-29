@@ -104,6 +104,8 @@ public class MainMenu extends Activity
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), CreateGame.class);
 				cGame.putExtra("UserName", UserName);
+				cGame.putExtra("UserID", UserId);
+
 				startActivity(cGame);
 			}
 			

@@ -32,7 +32,8 @@ public class CreateGame extends Activity
 	Button v;
 	String check;
     private TextView error;
-
+    private String userId;
+    
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class CreateGame extends Activity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 		    UserName = extras.getString("UserName");
+		    userId = extras.getString("UserID");
 		}
 		Button returns = (Button) findViewById(R.id.btnReturn);
 		
@@ -91,7 +93,9 @@ public class CreateGame extends Activity
 
 	private class DownloadWebpageText extends AsyncTask {
         
-    	@Override
+    	
+
+		@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
             try {
@@ -117,7 +121,8 @@ public class CreateGame extends Activity
 					error.setText("");
 	            	Intent myIntent = new Intent(CreateGame.this, Game.class);
 	            	myIntent.putExtra("GameID", resultArr[1]);
-	            	myIntent.putExtra("UserID", UserName);
+	            	myIntent.putExtra("UserName", UserName);
+	            	myIntent.putExtra("UserID", userId);
 	            	startActivity(myIntent);	
 	            }
 	            else{

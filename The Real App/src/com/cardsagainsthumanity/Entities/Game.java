@@ -53,6 +53,7 @@ public class Game extends Activity
 	private TextView error;
 	
 	int currentBlankCard = 0;
+	private String userName;
 	
 	
 	
@@ -266,6 +267,7 @@ public class Game extends Activity
         	Log.d("FUCK", "Jimmy2");
         	gameID = Integer.parseInt(g);
         	userID = extras.getString("UserID");
+        	userName = extras.getString("UserName");
 		}
     	Log.d("FUCK", "MIKE TOO");
 		TextView vd = (TextView) findViewById(R.id.textView3);
@@ -299,6 +301,7 @@ public class Game extends Activity
         case R.id.invite_friend:
             // Toast.makeText(MainMenu.this, "Invite Friend is Selected", Toast.LENGTH_SHORT).show();
             Intent set2 = new Intent(Game.this, InviteFriends.class);
+            
             startActivityForResult(set2, 0);
             return true;
  
@@ -402,6 +405,22 @@ public class Game extends Activity
 		//URL contains the userID and gameID
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameState?User=" + userID + "&gameID="+gameID;
     	check = "UserGameState";
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+		getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //error.setText("creating");
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new DownloadWebpageText().execute(stringUrl);
+        } else {
+            error.setText("No network connection available.");
+        }
+	}
+	
+	public void inviteList()
+	{
+		//URL contains the userID and gameID
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CurrentFriends?User=" + userName;
+    	check = "Friends";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
