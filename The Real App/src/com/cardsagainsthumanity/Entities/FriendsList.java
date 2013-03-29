@@ -160,9 +160,9 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+UserName+"&UserID="+ID;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+User1Id+"&UserID="+ID;
 			        	error.setText("USER ID FOR ACCEPTING IS: " +ID);
-        				//callUrl(stringUrl);
+        				callUrl(stringUrl);
         				
         			}
         			
@@ -247,8 +247,10 @@ public class FriendsList extends Activity
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted")){
 						Button button =  (Button) findViewById(Integer.parseInt(resultArray[1])+500);
-						button.setText("Added");
+						button.setText("Delete");
 						button.setEnabled(false);
+                		Toast.makeText(context, "accepted!", Toast.LENGTH_LONG).show();
+
 					}
 					else{
                 		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
