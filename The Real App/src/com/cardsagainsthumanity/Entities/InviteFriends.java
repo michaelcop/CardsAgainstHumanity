@@ -39,95 +39,108 @@ public class InviteFriends extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.invitefriend);
-		error = (TextView) findViewById(R.id.error);
-		TableLayout t = (TableLayout) findViewById(R.id.friendsTable);
-		Bundle extras = getIntent().getExtras();
 		
-		if (extras != null) {
-			UserName = extras.getString("UserName");
-			testStrings = extras.getStringArrayList("data");
-		}
-		// Get the TableLayout
-	    t = (TableLayout) findViewById(R.id.friendsTable);
+		Button returns = (Button) findViewById(R.id.returnToGame);
+		returns.setOnClickListener(new OnClickListener()
+		{
 	
-	    // Go through each item in the array
-	    for ( int current = 0; current < testStrings.size(); current++)
-	    {
-	        // Create a TableRow and give it an ID
-	        TableRow tr = new TableRow(this);
-	        
-			tr.setId(UserId);
-	        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));   
-	
-	        // Create a TextView to house the name of the province
-	        TextView labelTV = new TextView(this);
-	        labelTV.setId(current);
-	        labelTV.setText(testStrings.get(++current));
-	        labelTV.setTextColor(Color.WHITE);
-	        //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-	        tr.addView(labelTV);
-	
-	        // Create a TextView to house the value of the after-tax income
-	        String temp = testStrings.get(++current);
-	        UserId = Integer.parseInt(temp);
-	        Button b = new Button(this);
-	        b.setId(500+UserId);
-	        b.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
-	        if(testStrings.get(current).equals("1")){
-	        	b.setText("Invite to Game");
-	        	b.setOnClickListener(new OnClickListener()
-	    		{
-	
-	    			@Override
-	    			public void onClick(View v) 
-	    			{
-	    				//Delete
-	    				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
-			        	error.setText("USER ID FOR DELETION IS: " +UserId);
-	    				//callUrl(stringUrl);
-	    			}
-	    			
-	    		});
-	        	tr.addView(b);
-	        }
-	        else if(testStrings.get(current).equals("2")){
-	        	b.setText("Cancel Request");
-	        	b.setOnClickListener(new OnClickListener()
-	    		{
-	
-	    			@Override
-	    			public void onClick(View v) 
-	    			{
-	    				//Cancel 
-	    				
-	    			}
-	    			
-	    		});
-	        	tr.addView(b);
-	        }
-	        else if(testStrings.get(current).equals("3")){
-	        	b.setText("Accept Request");
-	        	b.setOnClickListener(new OnClickListener()
-	    		{
-	
-	    			@Override
-	    			public void onClick(View v) 
-	    			{
-	    				//Accept
-	    				
-	    			}
-	    			
-	    		});
-	        	tr.addView(b);
-	        	}
-	    	else if(testStrings.get(current).equals("-1")){
-	        	TextView v = new TextView(InviteFriends.this);
-	        	tr.addView(v);
-	    	}
-	        //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-	        
-	        // Add the TableRow to the TableLayout
-	        t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
-	    }
+			@Override
+			public void onClick(View w) 
+			{
+				finish();
+			}
+			
+		});
+		
+//		error = (TextView) findViewById(R.id.error);
+//		TableLayout t = (TableLayout) findViewById(R.id.friendsTable);
+//		Bundle extras = getIntent().getExtras();
+//		
+//		if (extras != null) {
+//			UserName = extras.getString("UserName");
+//			testStrings = extras.getStringArrayList("data");
+//		}
+//		// Get the TableLayout
+//	    t = (TableLayout) findViewById(R.id.friendsTable);
+//	
+//	    // Go through each item in the array
+//	    for ( int current = 0; current < testStrings.size(); current++)
+//	    {
+//	        // Create a TableRow and give it an ID
+//	        TableRow tr = new TableRow(this);
+//	        
+//			tr.setId(UserId);
+//	        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));   
+//	
+//	        // Create a TextView to house the name of the province
+//	        TextView labelTV = new TextView(this);
+//	        labelTV.setId(current);
+//	        labelTV.setText(testStrings.get(++current));
+//	        labelTV.setTextColor(Color.WHITE);
+//	        //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+//	        tr.addView(labelTV);
+//	
+//	        // Create a TextView to house the value of the after-tax income
+//	        String temp = testStrings.get(++current);
+//	        UserId = Integer.parseInt(temp);
+//	        Button b = new Button(this);
+//	        b.setId(500+UserId);
+//	        b.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
+//	        if(testStrings.get(current).equals("1")){
+//	        	b.setText("Invite to Game");
+//	        	b.setOnClickListener(new OnClickListener()
+//	    		{
+//	
+//	    			@Override
+//	    			public void onClick(View v) 
+//	    			{
+//	    				//Delete
+//	    				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+//			        	error.setText("USER ID FOR DELETION IS: " +UserId);
+//	    				//callUrl(stringUrl);
+//	    			}
+//	    			
+//	    		});
+//	        	tr.addView(b);
+//	        }
+//	        else if(testStrings.get(current).equals("2")){
+//	        	b.setText("Cancel Request");
+//	        	b.setOnClickListener(new OnClickListener()
+//	    		{
+//	
+//	    			@Override
+//	    			public void onClick(View v) 
+//	    			{
+//	    				//Cancel 
+//	    				
+//	    			}
+//	    			
+//	    		});
+//	        	tr.addView(b);
+//	        }
+//	        else if(testStrings.get(current).equals("3")){
+//	        	b.setText("Accept Request");
+//	        	b.setOnClickListener(new OnClickListener()
+//	    		{
+//	
+//	    			@Override
+//	    			public void onClick(View v) 
+//	    			{
+//	    				//Accept
+//	    				
+//	    			}
+//	    			
+//	    		});
+//	        	tr.addView(b);
+//	        	}
+//	    	else if(testStrings.get(current).equals("-1")){
+//	        	TextView v = new TextView(InviteFriends.this);
+//	        	tr.addView(v);
+//	    	}
+//	        //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+//	        
+//	        // Add the TableRow to the TableLayout
+//	        t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+//	    }
 	} 
 }

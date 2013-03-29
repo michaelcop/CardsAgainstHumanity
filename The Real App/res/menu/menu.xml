@@ -20,6 +20,7 @@
         android:id="@+id/menu_preferences"
         android:showAsAction="always"
         android:icon="@drawable/settingsicon"
-        android:title="AB"/>
+        android:title="AB">
+	</item>
     
 </menu>

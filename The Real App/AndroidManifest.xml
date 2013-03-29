@@ -97,6 +97,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.cardsagainsthumanity.Entities.Game"
             android:label="@string/app_name" >
@@ -104,7 +105,16 @@
                 <action android:name="com.cardsagainsthumanity.Entities.Game" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>        
+        </activity>       
+        
+                <activity
+            android:name="com.cardsagainsthumanity.Entities.InviteFriends"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.cardsagainsthumanity.Entities.InviteFriends" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         
         <activity android:name="com.cardsagainsthumanity.Entities.MainMenu"></activity>
         

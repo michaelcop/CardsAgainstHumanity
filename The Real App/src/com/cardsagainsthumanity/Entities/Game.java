@@ -48,7 +48,6 @@ public class Game extends Activity
 	
 	private TextView error;
 	
-	
 	protected void onCreate(Bundle savedInstanceState)
 	{ 
 		this.currentUser = new User();
@@ -199,6 +198,9 @@ public class Game extends Activity
     {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
+        
+        MenuInflater menuInflater2 = getMenuInflater();
+        menuInflater2.inflate(R.menu.invite, menu);
         return true;
     }
     
@@ -212,6 +214,12 @@ public class Game extends Activity
            // Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
             Intent set = new Intent(Game.this, Settings.class);
             startActivityForResult(set, 0);
+            return true;
+            
+        case R.id.invite_friend:
+            // Toast.makeText(MainMenu.this, "Invite Friend is Selected", Toast.LENGTH_SHORT).show();
+            Intent set2 = new Intent(Game.this, InviteFriends.class);
+            startActivityForResult(set2, 0);
             return true;
  
         default:
