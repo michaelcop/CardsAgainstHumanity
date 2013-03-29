@@ -45,7 +45,8 @@ public class MainMenu extends Activity
 	String UserName;
 	String check;
     private TextView error;
-    
+	private String UserId;
+	
     public static final String SPREF_USER = "othPrefs";
 	
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -88,6 +89,7 @@ public class MainMenu extends Activity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 		    UserName = extras.getString("UserName");
+		    UserId = extras.getString("UserId");
 		}
 		
 		//Create listener----------------------------------------------
@@ -252,7 +254,9 @@ public class MainMenu extends Activity
 
 	private class DownloadWebpageText extends AsyncTask {
         
-    	@Override
+
+
+		@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
             try {
@@ -281,6 +285,7 @@ public class MainMenu extends Activity
 						data.remove(0);
 						myIntent.putStringArrayListExtra("data", data);
 						myIntent.putExtra("UserName", UserName);
+						myIntent.putExtra("UserId", UserId);
 		            	startActivity(myIntent);
 					}
 					else if(resultArray[0]=="none") {

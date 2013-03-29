@@ -39,7 +39,7 @@ public class FriendsList extends Activity
 	String User2;
 	TableLayout t;
 	int  UserId;
-	
+	String User1Id;
 	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +52,7 @@ public class FriendsList extends Activity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			UserName = extras.getString("UserName");
+			User1Id = extras.getString("UserId");
 			testStrings = extras.getStringArrayList("data");
 		}
 		
@@ -64,7 +65,7 @@ public class FriendsList extends Activity
 				TextView add = (TextView) findViewById(R.id.AddFriendBox);
 				User2 = (String) add.getText().toString().replaceAll("\\s", "");
 				if(User2!="" && User2!=null && UserName!=null){
-					String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+UserName+"&User2="+User2;
+					String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
 					callUrl(stringUrl);}
 				}
 		});
@@ -106,9 +107,10 @@ public class FriendsList extends Activity
             final Button b = new Button(this);
             b.setId(500+UserId);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
+            b.setHint("UserId:"+UserId);
             if(testStrings.get(current).equals("1")){
             	b.setText("Delete");
-            	b.setHint("UserId:"+UserId);
+            	
             	b.setOnClickListener(new OnClickListener()
         		{
 
@@ -118,7 +120,7 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+ID;
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				//callUrl(stringUrl);
         			}
@@ -138,7 +140,7 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+ID;
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				//callUrl(stringUrl);
         			}
@@ -158,7 +160,7 @@ public class FriendsList extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+UserName+"&UserID="+UserId;
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+UserName+"&UserID="+ID;
 			        	error.setText("USER ID FOR ACCEPTING IS: " +ID);
         				//callUrl(stringUrl);
         				
@@ -206,14 +208,16 @@ public class FriendsList extends Activity
 					
 					// ADD ROW TO TABLE
                         TableRow tr = new TableRow(FriendsList.this);
-                        tr.setId(Integer.parseInt(resultArray[1]));
+                        String UserIdReturned =  resultArray[1];
+                        tr.setId(Integer.parseInt(UserIdReturned));
                         TextView tn = new TextView(FriendsList.this);
                         tn.setText(User2);
                         tn.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         tr.addView(tn);
                         final Button A = new Button(FriendsList.this);
                         A.setText("Cancel Request");
-                        A.setId(Integer.parseInt(resultArray[1])+500);
+                        A.setHint("UserID:"+UserIdReturned);
+                        A.setId(Integer.parseInt(UserIdReturned)+500);
                         A.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         A.setOnClickListener(new OnClickListener(){
 							@Override
@@ -233,6 +237,10 @@ public class FriendsList extends Activity
                         });
                         tr.addView(A);
                         t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));					
+						TableRow r = (TableRow)findViewById(1000);
+						if(r!=null){
+							t.removeView(r);
+						}
 					}
 					else if(resultArray!=null && resultArray[0].equals("Deleted")){
 						t.removeView((TableRow)findViewById(UserId));
