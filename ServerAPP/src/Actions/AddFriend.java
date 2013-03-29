@@ -19,16 +19,18 @@ import javax.sql.DataSource;
 
 @WebServlet(urlPatterns={"/AddFriend"})
 public class AddFriend extends HttpServlet implements DataSource{
-	private String User =  null;
-	private String User2 =  null;
+	private String User = "";
+	private String User2 = "";
 	Connection connection = null;
-	private String password =  null;
-	int UserID, UserFriendID;
+	//private String password =  null;
+	int UserID = 0;
+	int UserFriendID = 0;
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
+			UserID =  Integer.parseInt(User);
 		}
 		if(request.getParameter("User2") != null){
 			this.setUser2((String) request.getParameter("User2").toString());
@@ -42,7 +44,7 @@ public class AddFriend extends HttpServlet implements DataSource{
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		CreateAccount ds = new CreateAccount();
+		AddFriend ds = new AddFriend();
         try {
 			connection = ds.getConnection();
 			System.out.println("connection made");
@@ -52,72 +54,68 @@ public class AddFriend extends HttpServlet implements DataSource{
 		}
 		
 		PrintWriter out = response.getWriter();
+		//Check connection has been made
 		if(connection != null){
-			System.out.println("not null");
-			//out.println(User  + "   " + password);
 			
-			//Check if user exists in database
-			if(User!= null && User.length()!=0){
-				System.out.println("user not null");
-				Statement stmt, stmt2, stmt3;
-				ResultSet rs;
-				int rs2, rs3;
-				try {
-					stmt = connection.createStatement();
-					stmt2 = connection.createStatement();
-					stmt3 = connection.createStatement();
-					//Query to get User1’s ID
-					rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = '" + User + "';");
-					//Get User1’s UserID
-					if(!rs.next()){
-						//User not found
-						System.out.println("user does not exist");
-					}
-					else{
-						//User found, get User ID
-						UserID = rs.getInt(1);
-					}
-					//Query to get User’s friend ID
-					rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = '" + User2 + "';");
-					if(!rs.next()){
-						//User not found
-						System.out.println("user does not exist");
-					}
-					else{
-						//User found, get User ID
-						UserFriendID = rs.getInt(1);
-					}
-					//Add Friends - User1 - UserID
-					rs2 = stmt2.executeUpdate("INSERT INTO tblFriends (UserID, FriendUserID, FriendStatus) VALUES (" + UserID + "," + UserFriendID + ","  + 2 + ");");
-					//Add Friends - User2 - UserFriendID
-					rs3 = stmt3.executeUpdate("INSERT INTO tblFriends (UserID, FriendUserID, FriendStatus) VALUES (" + UserFriendID + "," + UserID + "," + 3 + ");");
-					if(rs2 != 0 && rs3 != 0){
-						//Friend Added Successfully
-					out.println("Added");
-					}
-					else{
-						//Unable to add friend
-						out.println("None");
-					}
-
-					
-					//Close recordset and connection
-					rs.close();
-					stmt.close();
-					connection.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			Statement stmt, stmt2, stmt3, stmt4;
+			ResultSet rs, rs2 = null;
+			int rs3, rs4;
+			try {
+				stmt = connection.createStatement();
+				stmt2 = connection.createStatement();
+				stmt3 = connection.createStatement();
+				stmt4 = connection.createStatement();
+				//Query to get User’s friend ID
+				rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = '" + User2 + "';");
+				if(!rs.isBeforeFirst()){
+					//User not found
+					out.println(User2 + " does not exist.");
 				}
+				else if(rs.next()){
+					//User found, get User ID
+					UserFriendID = rs.getInt(1);
+					
+					//Check if User is friends with User2 already
+					rs2 = stmt2.executeQuery("SELECT tblFriends.UserID, tblFriends.FriendUserID FROM tblFriends WHERE UserID = " + UserID + " AND FriendUserID = " + UserFriendID + ";");
+					if(!rs2.isBeforeFirst()){
+						//User and User2 are not friends - Proceed to add User2 as a friend
+						//Add Friends - User1 - UserID
+						rs3 = stmt3.executeUpdate("INSERT INTO tblFriends (UserID, FriendUserID, FriendStatus) VALUES (" + UserID + "," + UserFriendID + ","  + 2 + ");");
+						//Add Friends - User2 - UserFriendID
+						rs4 = stmt4.executeUpdate("INSERT INTO tblFriends (UserID, FriendUserID, FriendStatus) VALUES (" + UserFriendID + "," + UserID + "," + 3 + ");");
+						if(rs3 != 0 && rs4 != 0){
+							//Friend Added Successfully
+							out.println("Added"+";"+UserFriendID);
+						}
+						else{
+							//Unable to add friend
+							out.println("None");
+						}					
+					}
+					else if(rs2.next()){
+						//User is already friends with User2
+						out.println("Already friends with '" + User2 + "'");
+					}
+					rs2.close();
+				}
+			
+				//Close record set and connection
+				rs.close();
 				
+				stmt.close();
+				stmt2.close();
+				stmt3.close();
+				stmt4.close();
+				connection.close();
+			} 
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		
 		}
 		
 	}
-
-
-
+	
 	@Override
 	public PrintWriter getLogWriter() throws SQLException {
 		// TODO Auto-generated method stub
@@ -178,7 +176,6 @@ public class AddFriend extends HttpServlet implements DataSource{
     return connection;
 	}
 
-
 	@Override
 	public Connection getConnection(String username, String password)
 			throws SQLException {
@@ -196,7 +193,6 @@ public class AddFriend extends HttpServlet implements DataSource{
 		return User;
 	}
 
-
 	public void setUser(String user) {
 		User = user;
 	}
@@ -204,7 +200,6 @@ public class AddFriend extends HttpServlet implements DataSource{
 	public String getUser2() {
 		return User2;
 	}
-
 
 	public void setUser2(String user) {
 		User2 = user;
