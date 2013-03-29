@@ -54,20 +54,10 @@ public class Game extends Activity
 	
 	int currentBlankCard = 0;
 	
-	//final TextView chatBox = (TextView) findViewById(R.id.chatBox);
-	final TextView card1 = (TextView) findViewById(R.id.c1);
-	final TextView card2 = (TextView) findViewById(R.id.c2);
-	final TextView card3 = (TextView) findViewById(R.id.c3);
-	final TextView card4 = (TextView) findViewById(R.id.c4);
-	final TextView card5 = (TextView) findViewById(R.id.c5);
-	final TextView card6 = (TextView) findViewById(R.id.c6);
-	final TextView card7 = (TextView) findViewById(R.id.c7);
-	final TextView blackCard = (TextView) findViewById(R.id.blackcard);
 	
-	final Button sendMessage = (Button) findViewById(R.id.sendMessage);
-	final Button submit = (Button) findViewById(R.id.submit);
 	
-	final EditText message = (EditText)findViewById(R.id.messageInput);
+	
+	
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{ 
@@ -76,6 +66,21 @@ public class Game extends Activity
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
 		
+		final TextView chatBox = (TextView) findViewById(R.id.chatBox);
+		final TextView card1 = (TextView) findViewById(R.id.c1);
+		final TextView card2 = (TextView) findViewById(R.id.c2);
+		final TextView card3 = (TextView) findViewById(R.id.c3);
+		final TextView card4 = (TextView) findViewById(R.id.c4);
+		final TextView card5 = (TextView) findViewById(R.id.c5);
+		final TextView card6 = (TextView) findViewById(R.id.c6);
+		final TextView card7 = (TextView) findViewById(R.id.c7);
+		final TextView blackCard = (TextView) findViewById(R.id.blackcard);
+		
+		final Button sendMessage = (Button) findViewById(R.id.sendMessage);
+		final Button submit = (Button) findViewById(R.id.submit);
+		
+
+		final EditText message = (EditText)findViewById(R.id.messageInput);
 		//chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
