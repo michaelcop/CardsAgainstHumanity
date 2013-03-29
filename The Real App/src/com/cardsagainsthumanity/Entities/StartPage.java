@@ -161,13 +161,10 @@ public class StartPage extends Activity {
 	                	{
 	                		sKey[i] = userInput[i];
 	                	}
-	                	Toast.makeText(v.getContext(),"FUCK4", Toast.LENGTH_LONG).show();
 	                	String epw = encrypt(password, sKey);
 	                	spEditor.putString("digest", epw);
-	                	Toast.makeText(v.getContext(),"FUCK5", Toast.LENGTH_LONG).show();
 	                	//Test encryption
-	                	//Toast.makeText(v.getContext(), password + " pw", Toast.LENGTH_LONG).show();
-	                	Toast.makeText(v.getContext(), epw + " epw", Toast.LENGTH_LONG).show();
+	                	Log.d("nig", epw);
 	                	
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
