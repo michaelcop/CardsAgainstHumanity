@@ -242,6 +242,8 @@ public class FriendsList extends Activity
 						}
 					}
 					else if(resultArray!=null && resultArray[0].equals("Deleted")){
+                		Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+
 						t.removeView((TableRow)findViewById(UserId));
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted")){
