@@ -45,6 +45,7 @@ public class StartPage extends Activity {
     private TextView login;
     private String results;
     private String UserId;
+    private String sha;
     Button v;
     public static final String SPREF_USER = "othPrefs";
     
@@ -68,7 +69,17 @@ public class StartPage extends Activity {
 	        	//login
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
-	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+userName+"&password="+password;
+	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
+                MessageDigest Enc = null;
+                try {
+                    Enc = MessageDigest.getInstance("SHA-1");
+                } catch (NoSuchAlgorithmException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } // Encryption algorithm
+                Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
+                sha = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
+	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+userName+"&password="+sha;
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
                 
@@ -142,10 +153,10 @@ public class StartPage extends Activity {
                         e.printStackTrace();
                     } // Encryption algorithm
                     Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
-                    String sha = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
+                    String sha1 = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
                                   	
                 	//Store hash to file
-                    spEditor.putString("digest", sha).commit();			    
+                    spEditor.putString("digest", sha1).commit();			    
                                 	
                 	//End store password
                 	
@@ -206,16 +217,5 @@ public class StartPage extends Activity {
 		   reader.read(buffer);
 		   return new String(buffer);
 		}  
-	     
-		//Generates random String for password encryption
-		public static String generateString(Random rng, String characters, int length)
-		{
-		    char[] text = new char[length];
-		    for (int i = 0; i < length; i++)
-		    {
-		        text[i] = characters.charAt(rng.nextInt(characters.length()));
-		    }
-		    return new String(text);
-		}	
 	
 }
