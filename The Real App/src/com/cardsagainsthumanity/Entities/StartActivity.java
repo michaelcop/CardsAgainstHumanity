@@ -98,7 +98,8 @@ public class StartActivity extends Activity
              if(resultArr[0].equals("User")){
              	
             	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);            	
-             	UserId = othSettings.getString("ID", "err");
+             	UserId = resultArr[1];
+             	
              	
              	Intent myIntent = new Intent(context, MainMenu.class);
              	myIntent.putExtra("UserName", userName);
