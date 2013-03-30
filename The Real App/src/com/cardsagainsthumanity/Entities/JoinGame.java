@@ -13,6 +13,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -32,7 +34,7 @@ public class JoinGame extends Activity
 {
 	Context context = this;
 	TableLayout gameList;
-	
+	public static final String SPREF_USER = "othPrefs";
 	int current;
 	int gameID;
 	String currentUser;
@@ -204,8 +206,17 @@ public class JoinGame extends Activity
 	                		Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 						}
 						
-						else if(resultArray!=null && resultArray[0].equals("Joined")){
-							
+						else if(resultArray!=null && resultArray[0].equals("Joining")){
+							Intent myIntent = new Intent(JoinGame.this, GameLobby.class);
+			            	myIntent.putExtra("GameID", gameID);
+			            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+		                	SharedPreferences.Editor spEditor = othSettings.edit();
+		                	spEditor.putString("CurGameID", gameID+"").commit(); //Stores current game ID
+		                	spEditor.putBoolean("inGame", true);   //Sets flag for user being in game
+			            	myIntent.putExtra("UserName", currentUser);
+			            	myIntent.putExtra("UserID", User1Id);
+			            	startActivity(myIntent);
+			            	JoinGame.this.finish();
 						}
 						else{
 	                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
