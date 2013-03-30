@@ -13,6 +13,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -24,6 +25,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class JoinGame extends Activity
@@ -57,7 +59,8 @@ public class JoinGame extends Activity
 		else
 		{
     		//Toast.makeText(context, "No User", Toast.LENGTH_LONG).show();
-			makeTable(null);
+			ArrayList<String> pass = new ArrayList<String>();
+			makeTable(pass);
 		}
 		
 		Button join = (Button) findViewById(R.id.joinButton);
@@ -82,21 +85,22 @@ public class JoinGame extends Activity
 		});
 	} 
 	
-	public void makeTable(List<String> testStrings)
+	public void makeTable(ArrayList<String> testStrings)
 	{
 		
 		ArrayList<String> tempStuff = new ArrayList<String>();
 		
-		tempStuff.add("Person1");
-		tempStuff.add("Person2");
-		tempStuff.add("Person3");
-		tempStuff.add("Person4");
+		tempStuff.add("4526");
+		tempStuff.add("8854");
+		tempStuff.add("8544");
+		tempStuff.add("8544");
 		
 		
 		gameList = (TableLayout) findViewById(R.id.gameTable);
 		
 		 for (current = 0; current < tempStuff.size(); current++)
 		 {
+			 	//Creates a table row and sets the ID of the table row to the current game ID
 			 	String temp = tempStuff.get(current);
 		    	gameID = Integer.parseInt(temp);
 		    	// Create a TableRow and give it an ID
@@ -104,7 +108,15 @@ public class JoinGame extends Activity
 		        tr.setId(gameID);
 		        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));
 		        
-		        
+		        //Set the actual TextView to the text in the list
+		        TextView labelTV = new TextView(this);
+	            labelTV.setText(tempStuff.get(current));
+	            labelTV.setTextColor(Color.WHITE);
+	            //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+	            tr.addView(labelTV);
+	            
+	            //Add the new table row to the list
+	            gameList.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		 }
 		 
         
