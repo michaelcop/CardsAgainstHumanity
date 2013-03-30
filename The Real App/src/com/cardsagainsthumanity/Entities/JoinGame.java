@@ -50,7 +50,7 @@ public class JoinGame extends Activity
 			//testStrings = extras.getStringArrayList("data");
 		}
 		
-		Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
+		//Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
 		
 		if(currentUser != null)
 		{
@@ -90,10 +90,14 @@ public class JoinGame extends Activity
 		
 		ArrayList<String> tempStuff = new ArrayList<String>();
 		
-		tempStuff.add("4526");
+		tempStuff.add("User1");
+		tempStuff.add("1");
 		tempStuff.add("8854");
+		tempStuff.add("2");
 		tempStuff.add("8544");
+		tempStuff.add("3");
 		tempStuff.add("8544");
+		tempStuff.add("4");
 		
 		
 		gameList = (TableLayout) findViewById(R.id.gameTable);
@@ -114,6 +118,30 @@ public class JoinGame extends Activity
 	            labelTV.setTextColor(Color.WHITE);
 	            //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 	            tr.addView(labelTV);
+	            
+	            //Creating join buttons
+	            if(gameID!=1000)
+	            {
+		            final Button b = new Button(this);
+		            b.setId(5000+gameID);
+		            b.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
+		            b.setText("Invited By" + "  name");
+		            b.setTextSize(12);
+		            b.setHint("UserId:"+gameID);
+		            tr.addView(b);
+		            b.setOnClickListener(new OnClickListener()
+	        		{
+	        			@Override
+	        			public void onClick(View v) 
+	        			{
+	        				
+	        			}
+	        			
+	        		});
+	            }
+	            
+	            
+	            
 	            
 	            //Add the new table row to the list
 	            gameList.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
