@@ -296,6 +296,7 @@ public class MainMenu extends Activity
 						myIntent.putStringArrayListExtra("data", data);
 						myIntent.putExtra("UserName", UserName);
 						myIntent.putExtra("UserId", UserId);
+						Toast.makeText(context, UserId, Toast.LENGTH_SHORT).show();
 		            	startActivity(myIntent);
 					}
 					else if(resultArray[0]=="none") {

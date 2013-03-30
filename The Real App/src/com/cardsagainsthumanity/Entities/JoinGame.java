@@ -54,9 +54,9 @@ public class JoinGame extends Activity
 		
 		//Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
 		
-		if(currentUser != null)
+		if(User1Id != null)
 		{
-			callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+currentUser);
+			callUrl("http://54.225.225.185:8080/ServerAPP/InviteList?User="+User1Id);
 		}
 		else
 		{

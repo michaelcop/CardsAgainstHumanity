@@ -69,6 +69,8 @@ public class FriendsList extends Activity
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
 					if(User2!="" && User2!=null && UserName!=null){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
+						Toast.makeText(context, stringUrl, Toast.LENGTH_SHORT).show();
+                		
 						callUrl(stringUrl);}
 					}
 				else{
