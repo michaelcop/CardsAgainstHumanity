@@ -86,8 +86,8 @@ public class StartPage extends Activity {
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
                     //Toast.makeText(v.getContext(), "Logging in", Toast.LENGTH_SHORT).show();
-                	Intent myIntent = new Intent(v.getContext(), LoadingLogIn.class);
-    				startActivity(myIntent);
+                	//Intent myIntent = new Intent(v.getContext(), LoadingLogIn.class);
+    				//startActivity(myIntent);
                     new DownloadWebpageText().execute(stringUrl);
                     
                 } else {
