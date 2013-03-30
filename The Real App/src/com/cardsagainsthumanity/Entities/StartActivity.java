@@ -23,6 +23,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +54,10 @@ public class StartActivity extends Activity
             
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             if (networkInfo != null && networkInfo.isConnected()) {
-                Toast.makeText(context, "Logging in", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Logging in", Toast.LENGTH_SHORT).show();
+            	super.onCreate(savedInstanceState);
+        		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        		setContentView(R.layout.loggingin);
                 new DownloadWebpageText().execute(stringUrl);
                 
             } else 
