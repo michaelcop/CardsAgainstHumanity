@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,19 +48,12 @@ public class InviteFriends extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.invitefriend);
 		error = (TextView) findViewById(R.id.error);
-		t = (TableLayout) findViewById(R.id.friendsTable);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			UserName = extras.getString("UserName");
 			//testStrings = extras.getStringArrayList("data");
 		}
-		testStrings = new ArrayList<String>();
-		testStrings.add("1");
-		testStrings.add("User1");
-		testStrings.add("2");
-		testStrings.add("User2");
-		
-		
+		callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+UserName);
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
 		{
@@ -71,6 +65,11 @@ public class InviteFriends extends Activity
 			
 		});
 		
+		
+	} 
+	
+	
+	public void makeTable(List<String> testStrings){
 		// Get the TableLayout
         t = (TableLayout) findViewById(R.id.friendsTable);
 
@@ -104,10 +103,9 @@ public class InviteFriends extends Activity
             // Add the TableRow to the TableLayout
             t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }
-	} 
-	
-	
-	
+		
+		
+	}
 	
 	
 	private class DownloadWebpageText extends AsyncTask {
@@ -134,46 +132,9 @@ public class InviteFriends extends Activity
 	            if(results!=null){
 					error.setText("");
 	            	String[] resultArray = results.split(";");
-					if(resultArray!=null && resultArray[0].equals("Added") && resultArray.length==2){
-                		Toast.makeText(context, "Added", Toast.LENGTH_LONG).show();
-					
-					// ADD ROW TO TABLE
-                        TableRow tr = new TableRow(InviteFriends.this);
-                        tr.setId(Integer.parseInt(resultArray[1]));
-                        TextView tn = new TextView(InviteFriends.this);
-                        tn.setText(User2);
-                        tn.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
-                        tr.addView(tn);
-                        final Button A = new Button(InviteFriends.this);
-                        A.setText("Cancel Request");
-                        A.setId(Integer.parseInt(resultArray[1])+500);
-                        A.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
-                        A.setOnClickListener(new OnClickListener(){
-							@Override
-							public void onClick(View v) {
-								//cancel
-								//Delete
-								
-		        				String[] temp = A.getHint().toString().split(":");
-		        				String ID = temp[1];
-		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
-					        	error.setText("USER ID FOR DELETION IS: " +ID);
-		        				//callUrl(stringUrl);
-							}
-                        	
-                        	
-                        	
-                        });
-                        tr.addView(A);
-                        t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));					
-					}
-					else if(resultArray!=null && resultArray[0].equals("Deleted")){
-						t.removeView((TableRow)findViewById(UserId));
-					}
-					else if(resultArray!=null && resultArray[0].equals("Accepted")){
-						Button button =  (Button) findViewById(Integer.parseInt(resultArray[1])+500);
-						button.setText("Added");
-						button.setEnabled(false);
+					if(resultArray!=null && resultArray[0].equals("Friends") && resultArray.length==2){
+		            	ArrayList<String> data = new ArrayList<String>(Arrays.asList(resultArray));
+						makeTable(data);
 					}
 					else{
                 		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
