@@ -78,12 +78,13 @@ public class CreateGame extends Activity
 				String numRounds = ((EditText) findViewById(R.id.numRounds)).getText().toString();
 				if(numRounds == null || numRounds.trim().equals(""))
 				{
-					error.setText("Number of rounds must not be blank");
+					Toast.makeText(CreateGame.this, "Number of rounds invalid defaulting to 10", Toast.LENGTH_LONG).show();
+					numRounds = "10";
 				}
 				rounds = Integer.parseInt(numRounds);
 				if(!(rounds>0) || !(rounds < 50) ){
-	        		error.setText("Username and password must not be blank");
-	        		
+					Toast.makeText(CreateGame.this, "Number of rounds invalid defaulting to 10", Toast.LENGTH_LONG).show();
+					rounds = 10;
 	        	}
 				
 				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+UserName+"&rounds="+rounds;
