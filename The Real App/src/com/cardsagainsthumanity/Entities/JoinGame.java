@@ -92,12 +92,14 @@ public class JoinGame extends Activity
 		
 		tempStuff.add("User1");
 		tempStuff.add("1");
-		tempStuff.add("8854");
+		tempStuff.add("User2");
 		tempStuff.add("2");
-		tempStuff.add("8544");
+		tempStuff.add("User3");
 		tempStuff.add("3");
-		tempStuff.add("8544");
+		tempStuff.add("User4");
 		tempStuff.add("4");
+		
+		
 		
 		
 		gameList = (TableLayout) findViewById(R.id.gameTable);
