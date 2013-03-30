@@ -385,11 +385,38 @@ public class Game extends Activity
 		
 		//Need to instantiate users
 		
-		User player1 = new User();
-		User player2 = new User();
-		User player3 = new User();
-		User player4 = new User();
-		User player5 = new User();
+		int currentPlayers = getMaxUser();
+		
+		if(currentPlayers == 3)
+		{
+			User player1 = new User();
+			User player2 = new User();
+			User player3 = new User();
+		}
+		else if(currentPlayers == 4)
+		{
+			User player1 = new User();
+			User player2 = new User();
+			User player3 = new User();
+			User player4 = new User();
+		}
+		else if(currentPlayers == 5)
+		{
+			User player1 = new User();
+			User player2 = new User();
+			User player3 = new User();
+			User player4 = new User();
+			User player5 = new User();
+		}
+		else if(currentPlayers == 6)
+		{
+			User player1 = new User();
+			User player2 = new User();
+			User player3 = new User();
+			User player4 = new User();
+			User player5 = new User();
+			User player6 = new User();
+		}
 		
 	}
 	
