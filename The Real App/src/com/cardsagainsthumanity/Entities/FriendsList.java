@@ -64,7 +64,7 @@ public class FriendsList extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				if(Friends.size()<=50){
+				if(Friends.size()<=3){
 					TextView add = (TextView) findViewById(R.id.AddFriendBox);
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
 					if(User2!="" && User2!=null && UserName!=null){
