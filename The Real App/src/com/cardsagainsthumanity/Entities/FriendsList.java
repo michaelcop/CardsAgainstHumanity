@@ -252,8 +252,8 @@ public class FriendsList extends Activity
 					}
 					else if(resultArray!=null && resultArray[0].equals("Deleted")){
                 		Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
-
-						t.removeView((TableRow)findViewById(UserId));
+                		
+						t.removeView((TableRow)findViewById(Integer.parseInt(resultArray[1].toString())));
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted")){
 						final Button button =  (Button) findViewById(Integer.parseInt(resultArray[1])+500);
