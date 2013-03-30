@@ -179,6 +179,11 @@ private class DownloadWebpageText extends AsyncTask {
 						if(numPlayersInGame >= 3)
 						{
 							stopRepeatingTask();
+							//go to start game activity and kill the game lobby activity
+							Intent myIntent = new Intent(GameLobby.this, Game.class);;
+			            	myIntent.putExtra("UserName", userName);
+			            	myIntent.putExtra("UserID", userID);
+			            	startActivity(myIntent);
 						}
 					}
 					else if(resultArray[0]=="none") {
