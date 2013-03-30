@@ -105,7 +105,7 @@ public class StartActivity extends Activity
              }
              else
              {
-            	Toast.makeText(context, "err", Toast.LENGTH_SHORT);
+            	Toast.makeText(context, "err", Toast.LENGTH_SHORT).show();
              }
 
 	     }
