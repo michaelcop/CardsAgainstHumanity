@@ -279,6 +279,8 @@ public class FriendsList extends Activity
 					}
 					else{
                 		Toast.makeText(context, "You broke it.", Toast.LENGTH_SHORT).show();
+                		Toast.makeText(context, results, Toast.LENGTH_SHORT).show();
+                		
 						}
 	            }
 	            else{
