@@ -62,7 +62,7 @@ public class GameLobby extends Activity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.invite, menu);
+        menuInflater.inflate(R.menu.gamelobbymenu, menu);
         Toast.makeText(GameLobby.this, "In menue at create game", Toast.LENGTH_SHORT).show();
         return true;
     }
