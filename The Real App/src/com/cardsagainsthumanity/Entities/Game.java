@@ -276,7 +276,8 @@ public class Game extends Activity
         	Log.d("FUCK", "Jimmy");
         	String g = extras.getString("GameID");
         	Log.d("FUCK", "Jimmy2");
-        	gameID = Integer.parseInt(g);
+        	if(g!=null){
+        	gameID = Integer.parseInt(g);}
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
 		}
