@@ -78,6 +78,11 @@ public class GameLobby extends Activity
             Intent set = new Intent(GameLobby.this, Settings.class);
             startActivityForResult(set, 0);
             return true;
+         
+        case R.id.invite_friend:
+        	 Intent setFriend = new Intent(GameLobby.this, InviteFriends.class);
+             startActivityForResult(setFriend, 0);
+             return true;
  
         default:
             return super.onOptionsItemSelected(item);
