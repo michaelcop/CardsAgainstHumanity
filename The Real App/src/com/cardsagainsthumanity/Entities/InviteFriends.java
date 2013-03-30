@@ -42,7 +42,7 @@ public class InviteFriends extends Activity
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		testStrings = new ArrayList<String>();
+		
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.invitefriend);
@@ -53,9 +53,12 @@ public class InviteFriends extends Activity
 			UserName = extras.getString("UserName");
 			//testStrings = extras.getStringArrayList("data");
 		}
-		
+		testStrings = new ArrayList<String>();
 		testStrings.add("1");
+		testStrings.add("User1");
 		testStrings.add("2");
+		testStrings.add("User2");
+		
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
@@ -83,8 +86,8 @@ public class InviteFriends extends Activity
 
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
-            labelTV.setText(testStrings.get(current));
-            labelTV.setId(current);
+            labelTV.setText(testStrings.get(++current));
+            labelTV.setId(500+UserId);
             labelTV.setTextColor(Color.WHITE);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
@@ -92,79 +95,21 @@ public class InviteFriends extends Activity
             // Create a TextView to house the value of the after-tax income
             
             final Button b = new Button(this);
-            b.setId(500+UserId);
+            b.setId(5000+UserId);
             b.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
-            if(testStrings.get(current).equals("1")){
-            	b.setText("Delete");
-            	b.setHint("UserId:"+UserId);
-            	b.setOnClickListener(new OnClickListener()
-        		{
-
-        			@Override
-        			public void onClick(View v) 
-        			{
-        				//Delete
-        				String[] temp = b.getHint().toString().split(":");
-        				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
-			        	error.setText("USER ID FOR DELETION IS: " +ID);
-        				//callUrl(stringUrl);
-        			}
-        			
-        		});
-            	tr.addView(b);
-            }
-            else if(testStrings.get(current).equals("2")){
-            	b.setText("Cancel Request");
-            	b.setOnClickListener(new OnClickListener()
-        		{
-
-        			@Override
-        			public void onClick(View v) 
-        			{
-        				//Cancel 
-        				//Delete
-        				String[] temp = b.getHint().toString().split(":");
-        				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeleteFriend?User="+UserName+"&UserID="+UserId;
-			        	error.setText("USER ID FOR DELETION IS: " +ID);
-        				//callUrl(stringUrl);
-        			}
-        			
-        		});
-            	tr.addView(b);
-            }
-            else if(testStrings.get(current).equals("3")){
-            	b.setText("Accept Request");
-            	b.setOnClickListener(new OnClickListener()
-        		{
-
-        			@Override
-        			public void onClick(View v) 
-        			{
-        				//Accept
-        				//Delete
-        				String[] temp = b.getHint().toString().split(":");
-        				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+UserName+"&UserID="+UserId;
-			        	error.setText("USER ID FOR ACCEPTING IS: " +ID);
-        				//callUrl(stringUrl);
-        				
-        			}
-        			
-        		});
-            	tr.addView(b);
-            	}
-        	else if(testStrings.get(current).equals("-1")){
-            	TextView v = new TextView(InviteFriends.this);
-            	tr.addView(v);
-        	}
+            b.setText("Invite Friend to Game");
+            tr.addView(b);
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
             
             // Add the TableRow to the TableLayout
             t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }
 	} 
+	
+	
+	
+	
+	
 	private class DownloadWebpageText extends AsyncTask {
         
     	@Override
