@@ -126,7 +126,7 @@ public class JoinGame extends Activity
 	        			{
 	        				String[] temp = b.getHint().toString().split(":");
 	        				String ID = temp[1];
-	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineGame?User="+User1Id+"&GameID="+ID;
+	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/JoinGame?User="+User1Id+"&GameID="+ID;
 	        				callUrl(stringUrl);
 
 	        			}
@@ -204,8 +204,10 @@ public class JoinGame extends Activity
 	                		Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 						}
 						
-						else
-						{
+						else if(resultArray!=null && resultArray[0].equals("Joined")){
+							
+						}
+						else{
 	                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
 						}
 		            }
