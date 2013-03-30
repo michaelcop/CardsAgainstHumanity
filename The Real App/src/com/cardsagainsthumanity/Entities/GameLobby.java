@@ -184,6 +184,7 @@ private class DownloadWebpageText extends AsyncTask {
 			            	myIntent.putExtra("UserName", userName);
 			            	myIntent.putExtra("UserID", userID);
 			            	startActivity(myIntent);
+			            	GameLobby.this.finish();
 						}
 					}
 					else if(resultArray[0]=="none") {
