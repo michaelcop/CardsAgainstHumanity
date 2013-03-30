@@ -101,7 +101,14 @@ public class User
 	
 	public boolean isCardCzar()
 	{
-		return true;
+		if(isCzar == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public void setPassWord(String passWord)
