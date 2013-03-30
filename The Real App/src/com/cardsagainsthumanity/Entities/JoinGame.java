@@ -42,15 +42,22 @@ public class JoinGame extends Activity
 		setContentView(R.layout.joingame);
 		Bundle extras = getIntent().getExtras();
 		
+		if (extras != null) 
+		{
+			currentUser = extras.getString("UserName");
+			//testStrings = extras.getStringArrayList("data");
+		}
+		
 		Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
 		
 		if(currentUser != null)
 		{
-			//callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+UserName);
+			callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+currentUser);
 		}
 		else
 		{
-    		Toast.makeText(context, "No User", Toast.LENGTH_LONG).show();
+    		//Toast.makeText(context, "No User", Toast.LENGTH_LONG).show();
+			makeTable(null);
 		}
 		
 		Button join = (Button) findViewById(R.id.joinButton);
@@ -77,16 +84,27 @@ public class JoinGame extends Activity
 	
 	public void makeTable(List<String> testStrings)
 	{
+		
+		ArrayList<String> tempStuff = new ArrayList<String>();
+		
+		tempStuff.add("Person1");
+		tempStuff.add("Person2");
+		tempStuff.add("Person3");
+		tempStuff.add("Person4");
+		
+		
 		gameList = (TableLayout) findViewById(R.id.gameTable);
 		
-		 for (current = 0; current < testStrings.size(); current++)
+		 for (current = 0; current < tempStuff.size(); current++)
 		 {
-			 	String temp = testStrings.get(current);
+			 	String temp = tempStuff.get(current);
 		    	gameID = Integer.parseInt(temp);
 		    	// Create a TableRow and give it an ID
 		        TableRow tr = new TableRow(this);
 		        tr.setId(gameID);
-		        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));  
+		        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));
+		        
+		        
 		 }
 		 
         
