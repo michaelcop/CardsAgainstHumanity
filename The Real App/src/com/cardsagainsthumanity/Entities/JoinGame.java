@@ -36,6 +36,7 @@ public class JoinGame extends Activity
 	int current;
 	int gameID;
 	String currentUser;
+	String User1Id;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -48,6 +49,7 @@ public class JoinGame extends Activity
 		{
 			currentUser = extras.getString("UserName");
 			//testStrings = extras.getStringArrayList("data");
+			User1Id = extras.getString("UserID");
 		}
 		
 		//Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
@@ -90,14 +92,15 @@ public class JoinGame extends Activity
 		
 		ArrayList<String> tempStuff = new ArrayList<String>();
 		
-		tempStuff.add("User1");
 		tempStuff.add("1");
-		tempStuff.add("User2");
+		tempStuff.add("User1");
 		tempStuff.add("2");
-		tempStuff.add("User3");
+		tempStuff.add("User2");
 		tempStuff.add("3");
-		tempStuff.add("User4");
+		tempStuff.add("User3");
 		tempStuff.add("4");
+		tempStuff.add("User4");
+		
 		
 		
 		
@@ -116,7 +119,7 @@ public class JoinGame extends Activity
 		        
 		        //Set the actual TextView to the text in the list
 		        TextView labelTV = new TextView(this);
-	            labelTV.setText(tempStuff.get(current));
+	            labelTV.setText("Invited by "+ tempStuff.get(++current));
 	            labelTV.setTextColor(Color.WHITE);
 	            //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 	            tr.addView(labelTV);
@@ -127,16 +130,20 @@ public class JoinGame extends Activity
 		            final Button b = new Button(this);
 		            b.setId(5000+gameID);
 		            b.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
-		            b.setText("Invited By" + "  name");
+		            b.setText("Accept");
 		            b.setTextSize(12);
-		            b.setHint("UserId:"+gameID);
+		            b.setHint("GameId:"+gameID);
 		            tr.addView(b);
 		            b.setOnClickListener(new OnClickListener()
 	        		{
 	        			@Override
 	        			public void onClick(View v) 
 	        			{
-	        				
+	        				String[] temp = b.getHint().toString().split(":");
+	        				String ID = temp[1];
+	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineGame?User="+User1Id+"&GameID="+ID;
+	        				callUrl(stringUrl);
+
 	        			}
 	        			
 	        		});

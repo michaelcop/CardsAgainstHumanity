@@ -123,7 +123,9 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
-                startActivity(myIntent);
+				myIntent.putExtra("UserName", UserName);
+				myIntent.putExtra("UserID", UserId);
+				startActivity(myIntent);
 				
 			}
 			
