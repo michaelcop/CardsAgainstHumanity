@@ -71,7 +71,8 @@ public class StartActivity extends Activity
         		frameAnimation.start();
                 new DownloadWebpageText().execute(stringUrl);
                 
-            } else 
+            }
+            else 
             {
                 Toast.makeText(context, "No network connection available.", Toast.LENGTH_SHORT);
             }

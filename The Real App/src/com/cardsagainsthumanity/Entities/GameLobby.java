@@ -36,7 +36,7 @@ public class GameLobby extends Activity
 	int minNumberPlayers;
 	TextView gameSizeTextView;
 	
-	int gameID;
+	String gameID;
 	String userID;
 	String check;
 	
@@ -56,21 +56,19 @@ public class GameLobby extends Activity
 		super.onCreate(savedInstanceState);
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.lobby);
-		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+        	String g = extras.getString("GameID");
+        	gameID = g;
+        	userID = extras.getString("UserID");
+        	userName = extras.getString("UserName");
+		}
 		ActionBar actionBar = GameLobby.this.getActionBar();
 		if(actionBar!=null){actionBar.show();}
 		
 		gameSizeTextView = (TextView) findViewById(R.id.playerListLobby);
 		
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-        	Log.d("FUCK", "Jimmy");
-        	String g = extras.getString("GameID");
-        	Log.d("FUCK", "Jimmy2");
-        	gameID = Integer.parseInt(g);
-        	userID = extras.getString("UserID");
-        	userName = extras.getString("UserName");
-		}
+
 		//Toast.makeText(GameLobby.this, userName, Toast.LENGTH_LONG).show();
 		
 		m_handler = new Handler();
@@ -128,6 +126,7 @@ public class GameLobby extends Activity
          
         case R.id.invite_friend:
         	 Intent setFriend = new Intent(GameLobby.this, InviteFriends.class);
+        	 setFriend.putExtra("UserName", userName);        	 
         	 setFriend.putExtra("UserId", userID);
         	 setFriend.putExtra("GameId", gameID);
         	 startActivityForResult(setFriend, 0);
@@ -280,18 +279,12 @@ private class DownloadWebpageText extends AsyncTask {
 		 
 					// set dialog message
 					alertDialogBuilder
-						.setMessage("Do you want to go to Main Menu or quit game?")
+						.setMessage("Do you want to close application or quit game?")
 						.setCancelable(true)
-						.setPositiveButton("Main Menu",new DialogInterface.OnClickListener() {
+						.setPositiveButton("Close",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
 								// close current activity
 								GameLobby.this.finish();
-								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						    	intent.putExtra("UserName", userName);
-						    	intent.putExtra("UserId", userID);
-						    	intent.putExtra("EXIT", true);
-						    	startActivity(intent);
 						    	//stopRepeatingTask();
 							}
 						  })

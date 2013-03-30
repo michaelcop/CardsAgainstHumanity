@@ -53,6 +53,7 @@ public class InviteFriends extends Activity
 		if (extras != null) {
 			User1Id = extras.getString("UserId");
 			GameId = extras.getString("GameId");
+			UserName = extras.getString("UserName");
 			//testStrings = extras.getStringArrayList("data");
 		}
 		Toast.makeText(context,  GameId, Toast.LENGTH_LONG).show();

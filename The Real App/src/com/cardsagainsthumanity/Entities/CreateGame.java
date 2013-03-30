@@ -137,6 +137,7 @@ public class CreateGame extends Activity
 	            	myIntent.putExtra("UserName", UserName);
 	            	myIntent.putExtra("UserID", userId);
 	            	startActivity(myIntent);
+	            	CreateGame.this.finish();
 					
 					//mike changing it to go to GameLobby.java first instead of Game.java
 					/*

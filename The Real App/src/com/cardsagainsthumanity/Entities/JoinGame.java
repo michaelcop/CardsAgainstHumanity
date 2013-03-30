@@ -211,7 +211,7 @@ public class JoinGame extends Activity
 		            {
 						//error.setText("");
 		            	String[] resultArray = results.split(";");
-						if(resultArray!=null && resultArray[0].equals("Friends"))
+						if(resultArray!=null && resultArray[0].equals("Invites"))
 						{
 			            	ArrayList<String> data = new ArrayList<String>(Arrays.asList(resultArray));
 							data.remove(0);
