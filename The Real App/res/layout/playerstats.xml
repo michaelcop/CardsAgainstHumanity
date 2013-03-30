@@ -15,35 +15,46 @@
         android:textColor="@color/White" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/PlayerNameStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="29dp"
+        android:layout_alignRight="@+id/ReturnToMenu"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="33dp"
+        android:text="@string/player_name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/GamesLostStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/GamesWonStat"
+        android:layout_below="@+id/GamesWonStat"
+        android:layout_marginTop="34dp"
         android:text="@string/games_lost"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/AveragePointsStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="36dp"
-        android:text="@string/most_points"
+        android:layout_alignRight="@+id/MostPointsInRoundStat"
+        android:layout_below="@+id/GamesLostStat"
+        android:layout_marginTop="41dp"
+        android:text="@string/average_points"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/MostPointsInRoundStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="32dp"
-        android:text="@string/average_points"
+        android:layout_below="@+id/AveragePointsStat"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="@string/most_points"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
@@ -51,35 +62,23 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="17dp"
+        android:layout_alignRight="@+id/PlayerNameStat"
         android:text="@string/stat_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/GamesWonStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
+        android:layout_alignLeft="@+id/PlayerNameStat"
+        android:layout_below="@+id/PlayerNameStat"
+        android:layout_marginTop="32dp"
         android:text="@string/games_won"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:textColorHint="@color/White" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="@string/player_name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/white" />
 
 </RelativeLayout>
