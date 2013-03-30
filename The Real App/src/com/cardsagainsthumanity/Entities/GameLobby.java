@@ -159,6 +159,26 @@ public class GameLobby extends Activity
         }
 	}
 	
+	//http://54.225.225.185:8080/ServerAPP/LeaveGame?Game=3&User=1
+	
+	public void exitURLHandler()
+	{
+		//URL contains the userID and gameID
+		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameID+"&User="+userID;
+    	check = "LeaveGame";
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+		getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //Toast.makeText(GameLobby.this, "At refresh game lobby", Toast.LENGTH_SHORT).show();
+        //error.setText("creating");
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new DownloadWebpageText().execute(stringUrl);
+        } else {
+            //error.setText("No network connection available.");
+        }
+	}
+	
 private class DownloadWebpageText extends AsyncTask {
         
     	@Override
@@ -184,7 +204,7 @@ private class DownloadWebpageText extends AsyncTask {
 	            if(results!=null){
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
-	            	if(resultArray!=null && resultArray[0].equals(check)){
+	            	if(resultArray!=null && resultArray[0].equals("GameLobby")){
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
@@ -207,6 +227,32 @@ private class DownloadWebpageText extends AsyncTask {
 			            	GameLobby.this.finish();
 						}
 					}
+	            	
+	            	else if(resultArray!=null && resultArray[0].equals("GameLobby"))
+	            	{
+	                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+	                	SharedPreferences.Editor spEditor = othSettings.edit();
+	                	spEditor.remove("CurGameID").commit();
+	                	spEditor.putBoolean("inGame", false).commit();
+	                	//End erasing
+	                	
+	                	//Inform user of logout status on game close
+	                	if(!othSettings.contains("CurGameID") && !othSettings.getBoolean("inGame",true))
+	                		Toast.makeText(context, "Quitting Game", Toast.LENGTH_SHORT).show();
+	                	else
+	                		Toast.makeText(context, "Failed to quit game", Toast.LENGTH_SHORT).show();
+	                	//End logout message  --------------JK
+	                	
+						//close activity
+						GameLobby.this.finish();
+						Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+				    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				    	intent.putExtra("UserName", userName);
+				    	intent.putExtra("UserId", userID);
+				    	intent.putExtra("EXIT", true);
+				    	startActivity(intent);
+	            	}
+	            	
 					else if(resultArray[0]=="none") {
 						//Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
 					}
@@ -290,30 +336,7 @@ private class DownloadWebpageText extends AsyncTask {
 						  })
 						  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
-								
-								//Erase GameID & inGame flag in SharedPref
-			                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-			                	SharedPreferences.Editor spEditor = othSettings.edit();
-			                	spEditor.remove("CurGameID").commit();
-			                	spEditor.putBoolean("inGame", false).commit();
-			                	//End erasing
-			                	
-			                	//Inform user of logout status on game close
-			                	if(!othSettings.contains("CurGameID") && !othSettings.getBoolean("inGame",true))
-			                		Toast.makeText(context, "Quitting Game", Toast.LENGTH_SHORT).show();
-			                	else
-			                		Toast.makeText(context, "Failed to quit game", Toast.LENGTH_SHORT).show();
-			                	//End logout message  --------------JK
-			                	
-								//close activity
-								GameLobby.this.finish();
-								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						    	intent.putExtra("UserName", userName);
-						    	intent.putExtra("UserId", userID);
-						    	intent.putExtra("EXIT", true);
-						    	startActivity(intent);
-						    	//stopRepeatingTask();
+								exitURLHandler();//deal with exiting on post execute
 							} 
 						
 						}) 
