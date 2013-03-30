@@ -277,6 +277,7 @@ private class DownloadWebpageText extends AsyncTask {
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
+						    	stopRepeatingTask();
 							}
 						  })
 						  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
@@ -302,6 +303,7 @@ private class DownloadWebpageText extends AsyncTask {
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
+						    	stopRepeatingTask();
 							} 
 						
 						}) 
