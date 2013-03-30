@@ -49,6 +49,8 @@ public class GameLobby extends Activity
 	final Context context = this;
 	public static final String SPREF_USER = "othPrefs";
 	
+	boolean isInFront = true;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -81,10 +83,18 @@ public class GameLobby extends Activity
 	     @Override 
 	     public void run() {
 	          //updateStatus(); //this function can change value of m_interval.
-	    	 refreshGameLobby();
+	    	 //if activity in foreground refresh else do nothing
+	    	 if(isInFront)
+	    		 refreshGameLobby();
 	         m_handler.postDelayed(m_statusChecker, m_interval);
 	     }
 	};
+
+	public void onPause() {
+		super.onPause();
+	    isInFront = false;
+	}
+	
 	
 	void startRepeatingTask()
 	{
