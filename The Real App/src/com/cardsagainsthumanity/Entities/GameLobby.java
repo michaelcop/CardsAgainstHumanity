@@ -23,17 +23,21 @@ import android.widget.TextView;
 public class GameLobby extends Activity
 {
 	int minNumberPlayers;
-	final TextView gameSizeTextView = (TextView) findViewById(R.id.playerListLobby);
+	TextView gameSizeTextView;
 	
 	int gameID;
 	String userID;
 	String check;
+	
+	int numPlayersInGame;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.lobby);
+		
+		gameSizeTextView = (TextView) findViewById(R.id.playerListLobby);
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -43,6 +47,7 @@ public class GameLobby extends Activity
         	gameID = Integer.parseInt(g);
         	userID = extras.getString("UserID");
 		}
+		
 	}
 	
 	
@@ -69,7 +74,13 @@ private class DownloadWebpageText extends AsyncTask {
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
             try {
-                return downloadUrl((String) urls[0]);
+            	while(GameLobby.this.numPlayersInGame < 3)
+            	{
+            		//update ui every 20 seconds until there is atleast 3 people in the game
+            		downloadUrl((String) urls[0]);
+            		try{Thread.sleep(20000);}catch(Exception e){};
+            	}
+            	return downloadUrl((String) urls[0]);
             } catch (IOException e) {
                 return "Unable to retrieve web page. URL may be invalid.";
             }
@@ -91,9 +102,9 @@ private class DownloadWebpageText extends AsyncTask {
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
-						int numPeopleInGame = Integer.parseInt(data.get(0));
+						GameLobby.this.numPlayersInGame = Integer.parseInt(data.get(0));
 						String playersInGame = "";
-						for(int i=1; i<numPeopleInGame+1; i++)
+						for(int i=1; i<numPlayersInGame+1; i++)
 						{
 							playersInGame += data.get(i) + "\n";
 						}
