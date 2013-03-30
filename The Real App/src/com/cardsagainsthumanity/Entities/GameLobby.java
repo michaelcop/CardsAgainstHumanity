@@ -18,6 +18,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +38,9 @@ public class GameLobby extends Activity
 	
 	int numPlayersInGame = 0;
 	private String userName;
+	
+	private int m_interval = 5000; // 5 seconds by default, can be changed later
+	private Handler m_handler;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -59,7 +63,30 @@ public class GameLobby extends Activity
         	userName = extras.getString("UserName");
 		}
 		Toast.makeText(GameLobby.this, userName, Toast.LENGTH_LONG).show();
-		refreshGameLobby();
+		
+		m_handler = new Handler();
+		//refreshGameLobby();
+		startRepeatingTask();
+	}
+	
+	Runnable m_statusChecker = new Runnable()
+	{
+	     @Override 
+	     public void run() {
+	          //updateStatus(); //this function can change value of m_interval.
+	    	 refreshGameLobby();
+	         m_handler.postDelayed(m_statusChecker, m_interval);
+	     }
+	};
+	
+	void startRepeatingTask()
+	{
+	    m_statusChecker.run(); 
+	}
+	
+	void stopRepeatingTask()
+	{
+	    m_handler.removeCallbacks(m_statusChecker);
 	}
 	
     public boolean onCreateOptionsMenu(Menu menu)
@@ -148,6 +175,10 @@ private class DownloadWebpageText extends AsyncTask {
 						}
 						
 						GameLobby.this.gameSizeTextView.setText(playersInGame);
+						if(numPlayersInGame >= 3)
+						{
+							stopRepeatingTask();
+						}
 					}
 					else if(resultArray[0]=="none") {
 						Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
