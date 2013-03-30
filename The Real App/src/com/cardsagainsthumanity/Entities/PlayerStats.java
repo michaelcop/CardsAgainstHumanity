@@ -69,6 +69,7 @@ public class PlayerStats extends Activity
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
 		}
+		refreshPlayerStats();
 	} 
 	
 	
