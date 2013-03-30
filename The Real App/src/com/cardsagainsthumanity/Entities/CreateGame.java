@@ -119,11 +119,21 @@ public class CreateGame extends Activity
 	            if(resultArr!=null && (resultArr[0]).equalsIgnoreCase(check)){
 	            	Toast.makeText(CreateGame.this, "Created Game", Toast.LENGTH_SHORT).show();
 					error.setText("");
+					
+					Intent myIntent = new Intent(CreateGame.this, GameLobby.class);
+	            	myIntent.putExtra("GameID", resultArr[1]);
+	            	myIntent.putExtra("UserName", UserName);
+	            	myIntent.putExtra("UserID", userId);
+	            	startActivity(myIntent);
+					
+					//mike changing it to go to GameLobby.java first instead of Game.java
+					/*
 	            	Intent myIntent = new Intent(CreateGame.this, Game.class);
 	            	myIntent.putExtra("GameID", resultArr[1]);
 	            	myIntent.putExtra("UserName", UserName);
 	            	myIntent.putExtra("UserID", userId);
-	            	startActivity(myIntent);	
+	            	startActivity(myIntent);
+	            	*/	
 	            }
 	            else{
 	            	error.setText(results);
