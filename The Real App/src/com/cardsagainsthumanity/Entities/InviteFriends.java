@@ -32,7 +32,7 @@ import android.widget.Toast;
 public class InviteFriends extends Activity
 {
 	Context context = this;
-    private TextView error;
+    //private TextView error;
 	String UserName;
 	String check;
 	int current;
@@ -47,13 +47,20 @@ public class InviteFriends extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.invitefriend);
-		error = (TextView) findViewById(R.id.error);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			UserName = extras.getString("UserName");
 			//testStrings = extras.getStringArrayList("data");
 		}
-		callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+UserName);
+		Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
+		if(UserName!=null){
+			callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+UserName);
+		}
+		else{
+    		Toast.makeText(context, "No User", Toast.LENGTH_LONG).show();
+		}
+		//error = (TextView) findViewById(R.id.error);
+
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
 		{
@@ -113,7 +120,9 @@ public class InviteFriends extends Activity
     	@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
-            try {
+    		Toast.makeText(context, "BG", Toast.LENGTH_LONG).show();
+
+    		try {
                 return downloadUrl((String) urls[0]);
             } catch (IOException e) {
                 return "Unable to retrieve web page. URL may be invalid.";
@@ -123,30 +132,37 @@ public class InviteFriends extends Activity
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
-        if(result!=null){
+    		Toast.makeText(context, "postExe", Toast.LENGTH_LONG).show();
+
+        	if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
 	     
 	            //check the result for the what's needed to move on
 	            if(results!=null){
-					error.setText("");
+					//error.setText("");
 	            	String[] resultArray = results.split(";");
 					if(resultArray!=null && resultArray[0].equals("Friends") && resultArray.length==2){
 		            	ArrayList<String> data = new ArrayList<String>(Arrays.asList(resultArray));
 						makeTable(data);
+                		Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 					}
 					else{
                 		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
 						}
 	            }
 	            else{
-	            	error.setText(results);
+	            	//error.setText(results);
+            		Toast.makeText(context, results, Toast.LENGTH_LONG).show();
+
 	            }
         	}
         }
         else{
-        	error.setText("Result was null");
+        	//error.setText("Result was null");
+    		Toast.makeText(context, "Result = null", Toast.LENGTH_LONG).show();
+
         }
        }
 
@@ -157,7 +173,8 @@ public class InviteFriends extends Activity
       // Only display the first 500 characters of the retrieved
       // web page content.
       int len = 500;
-          
+		Toast.makeText(context, "downloadURL", Toast.LENGTH_LONG).show();
+
       try {
           URL url = new URL(myurl);
           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -201,7 +218,8 @@ public class InviteFriends extends Activity
                 if (networkInfo != null && networkInfo.isConnected()) {
                     new DownloadWebpageText().execute(url);
                 } else {
-                    error.setText("No network connection available.");
+            		Toast.makeText(context, "No network COnnection", Toast.LENGTH_LONG).show();
+
                 }	
 	}
 	

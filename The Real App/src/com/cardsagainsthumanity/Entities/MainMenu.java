@@ -103,6 +103,7 @@ public class MainMenu extends Activity
 			{
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), CreateGame.class);
+        		Toast.makeText(context, UserName, Toast.LENGTH_LONG).show();
 				cGame.putExtra("UserName", UserName);
 				cGame.putExtra("UserID", UserId);
 

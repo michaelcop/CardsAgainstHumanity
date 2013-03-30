@@ -58,6 +58,7 @@ public class GameLobby extends Activity
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
 		}
+		Toast.makeText(GameLobby.this, userName, Toast.LENGTH_LONG).show();
 		refreshGameLobby();
 	}
 	
@@ -116,12 +117,14 @@ private class DownloadWebpageText extends AsyncTask {
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
             try {
-            	while(GameLobby.this.numPlayersInGame < 3)
-            	{
+//            	while(GameLobby.this.numPlayersInGame < 3)
+//            	{
             		//update ui every 20 seconds until there is atleast 3 people in the game
             		downloadUrl((String) urls[0]);
+            		//Toast.makeText(GameLobby.this, "You broke it.", Toast.LENGTH_LONG).show();
+
             		try{Thread.sleep(20000);}catch(Exception e){};
-            	}
+            	//}
             	return downloadUrl((String) urls[0]);
             } catch (IOException e) {
                 return "Unable to retrieve web page. URL may be invalid.";
