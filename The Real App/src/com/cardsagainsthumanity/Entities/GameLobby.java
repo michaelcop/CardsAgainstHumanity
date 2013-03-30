@@ -266,9 +266,9 @@ private class DownloadWebpageText extends AsyncTask {
 		 
 					// set dialog message
 					alertDialogBuilder
-						.setMessage("Do you want to close the application or quit game?")
+						.setMessage("Do you want to go to Main Menu or quit game?")
 						.setCancelable(true)
-						.setPositiveButton("Close",new DialogInterface.OnClickListener() {
+						.setPositiveButton("Main Menu",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
 								// close current activity
 								GameLobby.this.finish();
