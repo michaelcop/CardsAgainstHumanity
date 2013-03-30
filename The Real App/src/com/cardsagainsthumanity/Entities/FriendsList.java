@@ -40,6 +40,7 @@ public class FriendsList extends Activity
 	TableLayout t;
 	int  UserId;
 	String User1Id;
+	List<String> Friends;
 	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
@@ -49,6 +50,7 @@ public class FriendsList extends Activity
 		setContentView(R.layout.friendslist);
 		error = (TextView) findViewById(R.id.error);
 		t = (TableLayout) findViewById(R.id.friendsTable);
+		Friends = new ArrayList<String>();
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			UserName = extras.getString("UserName");
@@ -62,12 +64,18 @@ public class FriendsList extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				TextView add = (TextView) findViewById(R.id.AddFriendBox);
-				User2 = (String) add.getText().toString().replaceAll("\\s", "");
-				if(User2!="" && User2!=null && UserName!=null){
-					String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
-					callUrl(stringUrl);}
+				if(Friends.size()<=3){
+					TextView add = (TextView) findViewById(R.id.AddFriendBox);
+					User2 = (String) add.getText().toString().replaceAll("\\s", "");
+					if(User2!="" && User2!=null && UserName!=null){
+						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
+						callUrl(stringUrl);}
+					}
+				else{
+					error.setText("You may only have 50 friends");
+					
 				}
+			}
 		});
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
@@ -97,6 +105,7 @@ public class FriendsList extends Activity
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
             labelTV.setText(testStrings.get(++current));
+            Friends.add(testStrings.get(current));
             labelTV.setId(++current);
             labelTV.setTextColor(Color.WHITE);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));

@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-//? User=UserId&GameID=
 //Returns GameLobby;#ofPeople;NameOfEachPlayer..;...;
 
 
@@ -26,16 +25,18 @@ public class UserGameLobby extends HttpServlet implements DataSource {
 	 * 
 	 */
 	private static final long serialVersionUID = -972529346689447377L;
-	private String User =  null;
-	private int UserID;
+
 	Connection connection = null;
+	private String Game =  null;
+	private int GameID = 0;
+	private int NumPlayers = 0;
 
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		if(request.getParameter("User") != null){ 
-			this.setUser((String) request.getParameter("User").toString());
-			UserID =  Integer.parseInt(User);
+		if(request.getParameter("Game") != null){ 
+			this.setGame((String) request.getParameter("Game").toString());
+			GameID =  Integer.parseInt(Game);
 		}
 		
 		try {
@@ -46,7 +47,7 @@ public class UserGameLobby extends HttpServlet implements DataSource {
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		FriendsList v = new FriendsList();
+		UserGameLobby v = new UserGameLobby();
         try {
 			connection = v.getConnection();
 			System.out.println("connection made");
@@ -57,39 +58,46 @@ public class UserGameLobby extends HttpServlet implements DataSource {
 		
 		PrintWriter out = response.getWriter();
 		if(connection != null){
-			//Check if user exists in database
-			if(User!= null && User.length()!=0){
-				Statement stmt;
-				ResultSet rs;
-				//int rs2;
-				try {
-					stmt = connection.createStatement();
-					
-					//QUERY HERE NEEDS TO CHANGE TO RETURN PLAYERS IN GAME
-					rs = stmt.executeQuery("SELECT tblFriends.FriendUserID, tblUsers_1.Username, tblFriends.FriendStatus FROM tblUsers AS tblUsers_1 INNER JOIN (tblUsers INNER JOIN tblFriends ON tblUsers.UserID = tblFriends.UserID) ON tblUsers_1.UserID = tblFriends.FriendUserID WHERE tblUsers.Username = '"+ User +"';");
-					if(!rs.isBeforeFirst()){
-						//this situation shouldn't be possible
-						out.println("GameLobby;1000;None;-1");
-					}
-					else{
-						out.print("GameLobby");
-						//for size check this - http://stackoverflow.com/questions/192078/how-do-i-get-the-size-of-a-java-sql-resultset
-						while(rs.next()){
-							out.print(";" + /* Number of Players + */ rs.getInt(1));
-						}
-					}
-					rs.close();
-					stmt.close();
-					connection.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			Statement stmt;
+			ResultSet rs;
+			try {
+				stmt = connection.createStatement();
+				//Query to get the numPlayers in a game
+				rs = stmt.executeQuery("SELECT Count(PlayerUserID) AS CountOfPlayers FROM tblPlayers GROUP BY PlayerGameID HAVING PlayerGameID="+GameID+";");
+				if(rs.next()){
+					//get number of players
+					NumPlayers = rs.getInt(1);
 				}
 				
+				//Query to get the usernames of players in a game
+				rs = stmt.executeQuery("SELECT tblUsers.Username FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE tblPlayers.PlayerGameID="+ GameID +";");
+				if(!rs.isBeforeFirst()){
+					//this situation shouldn't be possible
+					out.println("GameLobby;0;None;-1");
+				}
+				else{
+					out.print("GameLobby;"+ NumPlayers);
+					while(rs.next()){
+						out.print(";" + rs.getString(1));
+					}
+				}
+				rs.close();
+				stmt.close();
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		
 		}
 		
+	}
+
+
+
+	private void setGame(String strGame) {
+		// TODO Auto-generated method stub
+		Game = strGame;
 	}
 
 
@@ -166,28 +174,6 @@ public class UserGameLobby extends HttpServlet implements DataSource {
         }
         return connection;
 	}
-
-
-	public String getUser() {
-		return User;
-	}
-
-
-	public void setUser(String user) {
-		User = user;
-	}
-
-	/*
-	public String getPassword() {
-		return password;
-	}
-
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	*/
 	
 	
 	

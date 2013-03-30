@@ -13,6 +13,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -36,7 +37,9 @@ public class CreateGame extends Activity
 	Button v;
 	String check;
     private TextView error;
-    private String userId;  
+    private String userId;
+    
+    public static final String SPREF_USER = "othPrefs";
     
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -127,6 +130,10 @@ public class CreateGame extends Activity
 					
 					Intent myIntent = new Intent(CreateGame.this, GameLobby.class);
 	            	myIntent.putExtra("GameID", resultArr[1]);
+	            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+                	SharedPreferences.Editor spEditor = othSettings.edit();
+                	spEditor.putString("CurGameID", resultArr[1]).commit(); //Stores current game ID
+                	spEditor.putBoolean("inGame", true);   //Sets flag for user being in game
 	            	myIntent.putExtra("UserName", UserName);
 	            	myIntent.putExtra("UserID", userId);
 	            	startActivity(myIntent);
