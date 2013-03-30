@@ -118,7 +118,7 @@ public class InviteFriends extends Activity
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/InviteToGame?User="+ID+"&Game="+GameId+"&UserInviting="+User1Id;        
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/InviteToGame?UserInvited="+ID+"&Game="+GameId+"&UserInviting="+User1Id;        
         				callUrl(stringUrl);
         			}
         			
