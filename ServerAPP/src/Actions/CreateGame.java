@@ -77,7 +77,7 @@ public class CreateGame extends HttpServlet implements DataSource {
 						}
 
 						//Create game record
-						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameNumPlayers, GameJudge, GameCurRound) VALUES (" + rounds + "," + 1 +"," + UserID +"," + 0 + ");");                           
+						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound) VALUES (" + rounds + "," + UserID +"," + 0 + ");");                           
 						System.out.println(rs2);
 						if(rs2!=0){
 							//out.println("Game Created!\n");

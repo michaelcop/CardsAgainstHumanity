@@ -59,7 +59,7 @@ public class CurrentFriends extends HttpServlet implements DataSource{
 				
 				//If user has no friends
 				if(!rs.isBeforeFirst()){
-					out.println("Friends;None;-1");
+					out.println("Friends;1000;None");
 				}
 				else{
 					//Display users friends
@@ -67,7 +67,7 @@ public class CurrentFriends extends HttpServlet implements DataSource{
 					while(rs.next()){
 						//System.out.println("in while");
 						//System.out.println("Friend Username: " + rs.getString(1) + " Friend Status: " + rs.getInt(2) );
-						out.print(";" + rs.getString(1) + ";" + rs.getInt(2));
+						out.print(";" + rs.getInt(2)+ ";" + rs.getString(1));
 					}
 				}
 			

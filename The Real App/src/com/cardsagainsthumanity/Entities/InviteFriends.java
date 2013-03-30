@@ -99,12 +99,13 @@ public class InviteFriends extends Activity
             tr.addView(labelTV);
 
             // Create a TextView to house the value of the after-tax income
-            
-            final Button b = new Button(this);
-            b.setId(5000+UserId);
-            b.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
-            b.setText("Invite Friend to Game");
-            tr.addView(b);
+            if(UserId!=1000){
+	            final Button b = new Button(this);
+	            b.setId(5000+UserId);
+	            b.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
+	            b.setText("Invite Friend to Game");
+	            tr.addView(b);
+            }
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
             
             // Add the TableRow to the TableLayout
@@ -120,7 +121,7 @@ public class InviteFriends extends Activity
     	@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
-    		Toast.makeText(context, "BG", Toast.LENGTH_LONG).show();
+    		//Toast.makeText(context, "BG", Toast.LENGTH_LONG).show();
 
     		try {
                 return downloadUrl((String) urls[0]);
@@ -143,11 +144,13 @@ public class InviteFriends extends Activity
 	            if(results!=null){
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
-					if(resultArray!=null && resultArray[0].equals("Friends") && resultArray.length==2){
+					if(resultArray!=null && resultArray[0].equals("Friends")){
 		            	ArrayList<String> data = new ArrayList<String>(Arrays.asList(resultArray));
-						makeTable(data);
+						data.remove(0);
+		            	makeTable(data);
                 		Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 					}
+					
 					else{
                 		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
 						}
@@ -173,7 +176,7 @@ public class InviteFriends extends Activity
       // Only display the first 500 characters of the retrieved
       // web page content.
       int len = 500;
-		Toast.makeText(context, "downloadURL", Toast.LENGTH_LONG).show();
+		//Toast.makeText(context, "downloadURL", Toast.LENGTH_LONG).show();
 
       try {
           URL url = new URL(myurl);
@@ -218,7 +221,7 @@ public class InviteFriends extends Activity
                 if (networkInfo != null && networkInfo.isConnected()) {
                     new DownloadWebpageText().execute(url);
                 } else {
-            		Toast.makeText(context, "No network COnnection", Toast.LENGTH_LONG).show();
+            		//Toast.makeText(context, "No network COnnection", Toast.LENGTH_LONG).show();
 
                 }	
 	}
