@@ -5,7 +5,6 @@ import java.util.*;
 public class User 
 {
 	private List<User> friends;
-	
 	public String name;//Assume each person has a unique name
 	public int gameRound;
 	public List<String> otherUsers;

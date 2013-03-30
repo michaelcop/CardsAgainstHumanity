@@ -55,6 +55,22 @@ public class Game extends Activity
 	int currentBlankCard = 0;
 	private String userName;
 	
+	TextView chatBox;
+	TextView card1;
+	TextView card2;
+	TextView card3;
+	TextView card4;
+	TextView card5;
+	TextView card6;
+	TextView card7;
+	TextView blackCard;
+	
+	Button sendMessage;
+	Button submit;
+	
+
+	EditText message;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{ 
 		this.currentUser = new User();
@@ -63,21 +79,21 @@ public class Game extends Activity
 		setContentView(R.layout.ingame);
 		
 		//Please don't move these :<
-		final TextView chatBox = (TextView) findViewById(R.id.chatBox);
-		final TextView card1 = (TextView) findViewById(R.id.c1);
-		final TextView card2 = (TextView) findViewById(R.id.c2);
-		final TextView card3 = (TextView) findViewById(R.id.c3);
-		final TextView card4 = (TextView) findViewById(R.id.c4);
-		final TextView card5 = (TextView) findViewById(R.id.c5);
-		final TextView card6 = (TextView) findViewById(R.id.c6);
-		final TextView card7 = (TextView) findViewById(R.id.c7);
-		final TextView blackCard = (TextView) findViewById(R.id.blackcard);
+		chatBox = (TextView) findViewById(R.id.chatBox);
+		card1 = (TextView) findViewById(R.id.c1);
+		card2 = (TextView) findViewById(R.id.c2);
+		card3 = (TextView) findViewById(R.id.c3);
+		card4 = (TextView) findViewById(R.id.c4);
+		card5 = (TextView) findViewById(R.id.c5);
+		card6 = (TextView) findViewById(R.id.c6);
+		card7 = (TextView) findViewById(R.id.c7);
+		blackCard = (TextView) findViewById(R.id.blackcard);
 		
-		final Button sendMessage = (Button) findViewById(R.id.sendMessage);
-		final Button submit = (Button) findViewById(R.id.submit);
+		sendMessage = (Button) findViewById(R.id.sendMessage);
+		submit = (Button) findViewById(R.id.submit);
 		
 
-		final EditText message = (EditText)findViewById(R.id.messageInput);
+		 message = (EditText)findViewById(R.id.messageInput);
 		//chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
@@ -366,6 +382,15 @@ public class Game extends Activity
 		//GUI would call addusers to game after we created the game
 		//how are we going to identify the games?
 		//assign ID
+		
+		//Need to instantiate users
+		
+		User player1 = new User();
+		User player2 = new User();
+		User player3 = new User();
+		User player4 = new User();
+		User player5 = new User();
+		
 	}
 	
 	public void playGame()
@@ -378,6 +403,9 @@ public class Game extends Activity
 			//Present white cards to Czar
 			//Czar selects card
 			//Add point to winner
+			
+			
+			
 		}
 	}
 	
