@@ -36,6 +36,7 @@ public class GameLobby extends Activity
 	String check;
 	
 	int numPlayersInGame = 0;
+	private String userName;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -55,6 +56,7 @@ public class GameLobby extends Activity
         	Log.d("FUCK", "Jimmy2");
         	gameID = Integer.parseInt(g);
         	userID = extras.getString("UserID");
+        	userName = extras.getString("UserName");
 		}
 		refreshGameLobby();
 	}
@@ -82,6 +84,7 @@ public class GameLobby extends Activity
         case R.id.invite_friend:
         	 Intent setFriend = new Intent(GameLobby.this, InviteFriends.class);
              startActivityForResult(setFriend, 0);
+             setFriend.putExtra("UserName", userName);
              return true;
  
         default:
