@@ -27,21 +27,16 @@ public class UserGameLobby extends HttpServlet implements DataSource {
 	 */
 	private static final long serialVersionUID = -972529346689447377L;
 	private String User =  null;
-	//private int UserID;
+	private int UserID;
 	Connection connection = null;
-	//private String password =  null;
 
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
+			UserID =  Integer.parseInt(User);
 		}
-		/*
-		if(request.getParameter("password") != null){
-			this.setPassword((String) request.getParameter("password").toString());
-		}
-		*/
 		
 		try {
 		    System.out.println("Loading driver...");
@@ -62,68 +57,27 @@ public class UserGameLobby extends HttpServlet implements DataSource {
 		
 		PrintWriter out = response.getWriter();
 		if(connection != null){
-			//System.out.println("not null");
-			//out.println(User  + "   " + password);
-			
 			//Check if user exists in database
 			if(User!= null && User.length()!=0){
-				//System.out.println("user not null");
 				Statement stmt;
 				ResultSet rs;
 				//int rs2;
 				try {
 					stmt = connection.createStatement();
 					
-					//Get user table ID
-					//rs = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = " + User + ";");
-					
-					
-					//Get user's friends
-					//System.out.println("before query");
-					//rs = stmt.executeQuery("SELECT tblUsers.Username, tblFriends.FriendUserID, tblFriends.FriendStatus FROM tblUsers INNER JOIN tblFriends ON tblUsers.UserID = tblFriends.UserID WHERE tblUsers.Username = '" + User + "' AND tblFriends.FriendStatus = 1;");
+					//QUERY HERE NEEDS TO CHANGE TO RETURN PLAYERS IN GAME
 					rs = stmt.executeQuery("SELECT tblFriends.FriendUserID, tblUsers_1.Username, tblFriends.FriendStatus FROM tblUsers AS tblUsers_1 INNER JOIN (tblUsers INNER JOIN tblFriends ON tblUsers.UserID = tblFriends.UserID) ON tblUsers_1.UserID = tblFriends.FriendUserID WHERE tblUsers.Username = '"+ User +"';");
-					//System.out.println("after query");
-					//If user has no friends
 					if(!rs.isBeforeFirst()){
-						out.println("Friends;1000;None;-1");
+						//this situation shouldn't be possible
+						out.println("GameLobby;1000;None;-1");
 					}
 					else{
-						//Display users friends
-						out.print("Friends");
+						out.print("GameLobby");
+						//for size check this - http://stackoverflow.com/questions/192078/how-do-i-get-the-size-of-a-java-sql-resultset
 						while(rs.next()){
-							//System.out.println("in while");
-							//System.out.println("Friend Username: " + rs.getString(1) + " Friend Status: " + rs.getInt(2) );
-							out.print(";" + rs.getInt(1) + ";" + rs.getString(2) + ";" + rs.getInt(3));
+							out.print(";" + /* Number of Players + */ rs.getInt(1));
 						}
 					}
-					
-					
-					/*
-					stmt2 = connection.createStatement();
-					rs = stmt.executeQuery("SELECT * FROM tblUsers WHERE Username = '" + User + "';");
-					System.out.println("query exe");
-					//If Username doesn't exist, then add user to the database
-					if(!rs.next()){
-						System.out.println("user does not exist");
-						rs2 = stmt2.executeUpdate("INSERT INTO tblUsers (Username, UserPassword) VALUES ('" + User + "', '" + password + "');");
-						if(rs2==0){
-							out.println("Account failed to be created. Server error code: I hate jews");
-						}
-						else{
-							out.println("User: " + User + " successfully created!");
-						}
-						//out.println("Username: " + User + " was not found in Users table.");
-					}
-					else{
-						//Username already exists, display warning message
-						if(rs.getString(2).equals(User)){
-							out.println("Unable to create username. User: " + User + " already exists!");
-						}
-
-					}
-					*/
-					
-					//Close recordset and connection
 					rs.close();
 					stmt.close();
 					connection.close();
