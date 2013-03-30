@@ -35,7 +35,7 @@ public class GameLobby extends Activity
 	String userID;
 	String check;
 	
-	int numPlayersInGame;
+	int numPlayersInGame = 0;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -56,7 +56,7 @@ public class GameLobby extends Activity
         	gameID = Integer.parseInt(g);
         	userID = extras.getString("UserID");
 		}
-		
+		refreshGameLobby();
 	}
 	
     public boolean onCreateOptionsMenu(Menu menu)
@@ -92,11 +92,13 @@ public class GameLobby extends Activity
 	public void refreshGameLobby()
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?gameID="+gameID;
+		Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?Game="+gameID;
     	check = "GameLobby";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        Toast.makeText(GameLobby.this, "At refresh game lobby", Toast.LENGTH_SHORT).show();
         //error.setText("creating");
         if (networkInfo != null && networkInfo.isConnected()) {
             new DownloadWebpageText().execute(stringUrl);
@@ -132,6 +134,7 @@ private class DownloadWebpageText extends AsyncTask {
 	        	results = results.trim();
 	        	
 	            //check the result for the what's needed to move on
+	        	Toast.makeText(GameLobby.this, "In post execute", Toast.LENGTH_SHORT).show();
 	            if(results!=null){
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
@@ -149,17 +152,17 @@ private class DownloadWebpageText extends AsyncTask {
 						GameLobby.this.gameSizeTextView.setText(playersInGame);
 					}
 					else if(resultArray[0]=="none") {
-						
+						Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
 					}
 	
 	            }
 	            else{
-	            	
+	            	Toast.makeText(GameLobby.this, "Error2", Toast.LENGTH_SHORT).show();
 	            }
         	}
         }
         else{
-        	
+        	Toast.makeText(GameLobby.this, "Error3", Toast.LENGTH_SHORT).show();
         }
        }
 
