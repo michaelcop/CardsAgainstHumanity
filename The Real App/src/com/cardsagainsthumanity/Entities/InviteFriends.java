@@ -120,6 +120,8 @@ public class InviteFriends extends Activity
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/InviteToGame?UserInvited="+ID+"&Game="+GameId+"&UserInviting="+User1Id;        
+        	    		Toast.makeText(context, stringUrl, Toast.LENGTH_LONG).show();
+
         				callUrl(stringUrl);
         			}
         			
@@ -173,7 +175,7 @@ public class InviteFriends extends Activity
 						Toast.makeText(context,  "Invited!", Toast.LENGTH_LONG).show();
 					}
 					else{
-                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
+                		Toast.makeText(context, results, Toast.LENGTH_LONG).show();
 						}
 	            }
 	            else{

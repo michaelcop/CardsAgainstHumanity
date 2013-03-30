@@ -90,27 +90,12 @@ public class JoinGame extends Activity
 	public void makeTable(ArrayList<String> testStrings)
 	{
 		
-		ArrayList<String> tempStuff = new ArrayList<String>();
-		
-		tempStuff.add("1");
-		tempStuff.add("User1");
-		tempStuff.add("2");
-		tempStuff.add("User2");
-		tempStuff.add("3");
-		tempStuff.add("User3");
-		tempStuff.add("4");
-		tempStuff.add("User4");
-		
-		
-		
-		
-		
 		gameList = (TableLayout) findViewById(R.id.gameTable);
 		
-		 for (current = 0; current < tempStuff.size(); current++)
+		 for (current = 0; current < testStrings.size(); current++)
 		 {
 			 	//Creates a table row and sets the ID of the table row to the current game ID
-			 	String temp = tempStuff.get(current);
+			 	String temp = testStrings.get(current);
 		    	gameID = Integer.parseInt(temp);
 		    	// Create a TableRow and give it an ID
 		        TableRow tr = new TableRow(this);
@@ -119,7 +104,7 @@ public class JoinGame extends Activity
 		        
 		        //Set the actual TextView to the text in the list
 		        TextView labelTV = new TextView(this);
-	            labelTV.setText("Invited by "+ tempStuff.get(++current));
+	            labelTV.setText("Invited by "+ testStrings.get(++current));
 	            labelTV.setTextColor(Color.WHITE);
 	            //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 	            tr.addView(labelTV);

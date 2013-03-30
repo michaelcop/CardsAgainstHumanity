@@ -1,4 +1,4 @@
-package src.Actions;
+package Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,7 +61,7 @@ public class InviteList extends HttpServlet implements DataSource{
 				System.out.println("After Query");
 				//If user has no invites
 				if(!rs.isBeforeFirst()){
-					out.println("Invites;None;-1");
+					out.println("Invites;1000;None");
 				}
 				else{
 					//Display users friends
