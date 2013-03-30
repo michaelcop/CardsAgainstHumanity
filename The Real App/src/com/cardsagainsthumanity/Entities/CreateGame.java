@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,9 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -32,13 +36,14 @@ public class CreateGame extends Activity
 	Button v;
 	String check;
     private TextView error;
-    private String userId;
+    private String userId;  
     
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.creategame);
+		
 		error = (TextView) findViewById(R.id.error);
 		
 		Bundle extras = getIntent().getExtras();
@@ -89,8 +94,8 @@ public class CreateGame extends Activity
 			
 		});
 	
-	}
-
+	}  
+	
 	private class DownloadWebpageText extends AsyncTask {
         
     	
