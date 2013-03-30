@@ -39,8 +39,10 @@ public class InviteFriends extends Activity
 	String User2;
 	TableLayout t;
 	int  UserId;
-		
+	private String User1Id;
+	private String GameId;	
 	ArrayList<String> testStrings;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		
@@ -49,10 +51,11 @@ public class InviteFriends extends Activity
 		setContentView(R.layout.invitefriend);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			UserName = extras.getString("UserName");
+			User1Id = extras.getString("UserId");
+			GameId = extras.getString("GameId");
 			//testStrings = extras.getStringArrayList("data");
 		}
-		Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
+		Toast.makeText(context,  GameId, Toast.LENGTH_LONG).show();
 		if(UserName!=null){
 			callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+UserName);
 		}
@@ -104,7 +107,22 @@ public class InviteFriends extends Activity
 	            b.setId(5000+UserId);
 	            b.setTextColor(InviteFriends.this.getResources().getColor(R.color.White));
 	            b.setText("Invite Friend to Game");
+	            b.setHint("UserId:"+UserId);
 	            tr.addView(b);
+	            b.setOnClickListener(new OnClickListener()
+        		{
+
+        			@Override
+        			public void onClick(View v) 
+        			{
+        				//Delete
+        				String[] temp = b.getHint().toString().split(":");
+        				String ID = temp[1];
+        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/InviteToGame?User="+ID+"&Game="+GameId+"&UserInviting="+User1Id;        
+        				callUrl(stringUrl);
+        			}
+        			
+        		});
             }
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
             

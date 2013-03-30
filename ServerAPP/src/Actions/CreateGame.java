@@ -98,7 +98,7 @@ public class CreateGame extends HttpServlet implements DataSource {
 						
 						
 						//Add user that created game into players table -- 'tblPlayers'
-						rs3 = stmt3.executeUpdate("INSERT INTO tblPlayers (PlayerGameID, PlayerUserID) VALUES (" + GameID + "," + UserID +");");                           
+						rs3 = stmt3.executeUpdate("INSERT INTO tblPlayers (PlayerGameID, PlayerUserID, PlayerStatus) VALUES (" + GameID + "," + UserID + ",1);");                           
 						System.out.println(rs3);
 						if(rs3!=0){
 							out.println("Game:"+ GameID);

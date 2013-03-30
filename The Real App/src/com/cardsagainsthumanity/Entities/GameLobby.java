@@ -119,6 +119,7 @@ public class GameLobby extends Activity
         case R.id.invite_friend:
         	 Intent setFriend = new Intent(GameLobby.this, InviteFriends.class);
         	 setFriend.putExtra("UserName", userName);
+        	 setFriend.putExtra("GameId", gameID);
         	 startActivityForResult(setFriend, 0);
              
              return true;
