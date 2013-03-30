@@ -228,7 +228,7 @@ private class DownloadWebpageText extends AsyncTask {
 						}
 					}
 	            	
-	            	else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
+	            	else if(resultArray!=null && resultArray[0].equals("PlayerDeleted"))
 	            	{
 	                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 	                	SharedPreferences.Editor spEditor = othSettings.edit();
