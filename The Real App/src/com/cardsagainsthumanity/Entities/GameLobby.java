@@ -92,14 +92,13 @@ private class DownloadWebpageText extends AsyncTask {
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
 						int numPeopleInGame = Integer.parseInt(data.get(0));
-						if(numPeopleInGame < 3)
+						String playersInGame = "";
+						for(int i=1; i<numPeopleInGame+1; i++)
 						{
-							GameLobby.this.gameSizeTextView.setText("Error there must be atleast 3 people in the game to start");
+							playersInGame += data.get(i) + "\n";
 						}
-						else
-						{
-							GameLobby.this.gameSizeTextView.setText("There are " + numPeopleInGame + " lets start!");
-						}
+						
+						GameLobby.this.gameSizeTextView.setText(playersInGame);
 					}
 					else if(resultArray[0]=="none") {
 						
