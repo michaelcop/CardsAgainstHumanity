@@ -12,14 +12,18 @@ import java.util.Arrays;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +45,9 @@ public class GameLobby extends Activity
 	
 	private int m_interval = 5000; // 5 seconds by default, can be changed later
 	private Handler m_handler;
+	
+	final Context context = this;
+	public static final String SPREF_USER = "othPrefs";
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -242,6 +249,79 @@ private class DownloadWebpageText extends AsyncTask {
 	   char[] buffer = new char[len];
 	   reader.read(buffer);
 	   return new String(buffer);
-	} 
+	}
+	
+	//Back button functionality------------------------------------
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event) 
+		{
+			
+		    if (keyCode == KeyEvent.KEYCODE_BACK) 
+		    {
+		    	
+		    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+		 
+					// set title
+					alertDialogBuilder.setTitle("Leaving \"Oh the Humanity!\"");
+		 
+					// set dialog message
+					alertDialogBuilder
+						.setMessage("Do you want to close the application or quit game?")
+						.setCancelable(true)
+						.setPositiveButton("Close",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// close current activity
+								GameLobby.this.finish();
+								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						    	intent.putExtra("EXIT", true);
+						    	startActivity(intent);
+							}
+						  })
+						  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								
+								//Erase GameID & inGame flag in SharedPref
+			                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+			                	SharedPreferences.Editor spEditor = othSettings.edit();
+			                	spEditor.remove("CurGameID").commit();
+			                	spEditor.putBoolean("inGame", false).commit();
+			                	//End erasing
+			                	
+			                	//Inform user of logout status on game close
+			                	if(!othSettings.contains("CurGameID") && !othSettings.getBoolean("inGame",true))
+			                		Toast.makeText(context, "Quitting Game", Toast.LENGTH_SHORT).show();
+			                	else
+			                		Toast.makeText(context, "Failed to quit game", Toast.LENGTH_SHORT).show();
+			                	//End logout message  --------------JK
+			                	
+								//close activity
+								GameLobby.this.finish();
+								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						    	intent.putExtra("EXIT", true);
+						    	startActivity(intent);
+							} 
+						
+						}) 
+						.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// cancel back button op
+								dialog.cancel();
+							}
+						
+						});
+		 
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();
+		    	
+		        //moveTaskToBack(true);
+		        return true;
+		    }
+		    return super.onKeyDown(keyCode, event);
+		}  //End back button functionality---------------------------------
 	
 }
