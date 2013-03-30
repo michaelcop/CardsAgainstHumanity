@@ -43,7 +43,7 @@ public class GameLobby extends Activity
 	int numPlayersInGame = 0;
 	private String userName;
 	
-	private int m_interval = 5000; // 5 seconds by default, can be changed later
+	private int m_interval = 45000; // 45 seconds by default, can be changed later
 	private Handler m_handler;
 	
 	final Context context = this;
