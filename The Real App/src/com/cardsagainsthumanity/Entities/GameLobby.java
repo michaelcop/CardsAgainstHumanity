@@ -50,7 +50,7 @@ public class GameLobby extends Activity
 	public void refreshGameLobby()
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobbyState?User=" + userID + "&gameID="+gameID;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?User=" + userID + "&gameID="+gameID;
     	check = "GameLobby";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
