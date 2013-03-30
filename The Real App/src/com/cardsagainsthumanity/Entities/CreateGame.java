@@ -75,7 +75,12 @@ public class CreateGame extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				rounds = Integer.parseInt(((EditText) findViewById(R.id.numRounds)).getText().toString());
+				String numRounds = ((EditText) findViewById(R.id.numRounds)).getText().toString();
+				if(numRounds == null || numRounds.trim().equals(""))
+				{
+					error.setText("Number of rounds must not be blank");
+				}
+				rounds = Integer.parseInt(numRounds);
 				if(!(rounds>0) || !(rounds < 50) ){
 	        		error.setText("Username and password must not be blank");
 	        		
