@@ -9,6 +9,7 @@ public class User
 	public int gameRound;
 	public List<String> otherUsers;
 	public String currentCzar;
+	public boolean isCzar;
 	public List<String> whiteCardsList;
 	public String blackCard;
 	
