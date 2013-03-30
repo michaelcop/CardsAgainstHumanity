@@ -288,6 +288,9 @@ private class DownloadWebpageText extends AsyncTask {
 								GameLobby.this.finish();
 								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						    	intent.putExtra("UserName", userName);
+						    	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+						    	intent.putExtra("UserID", othSettings.getString("UserID", "shit"));
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
 						    	//stopRepeatingTask();
@@ -314,6 +317,8 @@ private class DownloadWebpageText extends AsyncTask {
 								GameLobby.this.finish();
 								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						    	intent.putExtra("UserName", userName);
+						    	intent.putExtra("UserID", othSettings.getString("UserID", "shit"));
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
 						    	//stopRepeatingTask();
