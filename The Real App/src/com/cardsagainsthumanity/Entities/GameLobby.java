@@ -280,18 +280,12 @@ private class DownloadWebpageText extends AsyncTask {
 		 
 					// set dialog message
 					alertDialogBuilder
-						.setMessage("Do you want to go to Main Menu or quit game?")
+						.setMessage("Do you want to close application or quit game?")
 						.setCancelable(true)
-						.setPositiveButton("Main Menu",new DialogInterface.OnClickListener() {
+						.setPositiveButton("Close",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
 								// close current activity
 								GameLobby.this.finish();
-								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						    	intent.putExtra("UserName", userName);
-						    	intent.putExtra("UserId", userID);
-						    	intent.putExtra("EXIT", true);
-						    	startActivity(intent);
 						    	//stopRepeatingTask();
 							}
 						  })

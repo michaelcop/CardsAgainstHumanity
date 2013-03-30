@@ -108,6 +108,7 @@ public class MainMenu extends Activity
 				cGame.putExtra("UserID", UserId);
 
 				startActivity(cGame);
+				MainMenu.this.finish();
 			}
 			
 		});
