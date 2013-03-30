@@ -139,7 +139,7 @@ public class CreateGame extends Activity
 	            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("CurGameID", resultArr[1]).commit(); //Stores current game ID
-                	spEditor.putBoolean("inGame", true);   //Sets flag for user being in game
+                	spEditor.putBoolean("inGame", true).commit();   //Sets flag for user being in game
 	            	myIntent.putExtra("UserName", UserName);
 	            	myIntent.putExtra("UserID", userId);
 	            	startActivity(myIntent);

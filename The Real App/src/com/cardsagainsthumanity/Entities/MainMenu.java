@@ -51,6 +51,18 @@ public class MainMenu extends Activity
 	
 	public boolean onCreateOptionsMenu(Menu menu)
     {
+		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+		Toast.makeText(context, othSettings.getString("CurGameID", "shit") + "" 
+				+ String.valueOf(othSettings.getBoolean("inGame", false)), Toast.LENGTH_SHORT).show();
+		if(othSettings.contains("CurGameID") && othSettings.getBoolean("inGame", true))
+		{
+			Intent rejoin = new Intent(MainMenu.this, GameLobby.class);
+        	rejoin.putExtra("GameID", othSettings.getString("CurGameID", "wtf"));
+        	rejoin.putExtra("UserName", UserName);
+        	rejoin.putExtra("UserID", UserId);
+        	startActivity(rejoin);
+        	MainMenu.this.finish();
+		}
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
 		error = (TextView) findViewById(R.id.error);
