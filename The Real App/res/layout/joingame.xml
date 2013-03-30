@@ -5,18 +5,7 @@
     android:background="@color/Black" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="179dp"
-        android:text="@string/temp_construct"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/White" />
-
-    <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/joinGameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -45,5 +34,22 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp"
         android:text="@string/jg_title" />
+
+    <TableLayout
+        android:id="@+id/gameTable"
+        android:layout_width="200dp"
+        android:layout_height="220dp"
+        android:layout_above="@+id/joinButton"
+        android:layout_below="@+id/joinGameTitle"
+        android:layout_centerHorizontal="true"
+        android:stretchColumns="0,1" >
+        
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error" />
+       
+    </TableLayout>
 
 </RelativeLayout>
