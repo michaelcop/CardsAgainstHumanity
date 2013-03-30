@@ -67,7 +67,7 @@ public class FriendsList extends Activity
 				if(Friends.size()<=3){
 					TextView add = (TextView) findViewById(R.id.AddFriendBox);
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
-					if(User2!="" && User2!=null && UserName!=null){
+					if(User2!="" && User2!=null && UserName!=null && (!User2.equals(UserName))){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
 						Toast.makeText(context, stringUrl, Toast.LENGTH_SHORT).show();
                 		
