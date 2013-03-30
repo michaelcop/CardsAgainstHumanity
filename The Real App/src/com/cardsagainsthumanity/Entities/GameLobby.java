@@ -71,13 +71,13 @@ public class GameLobby extends Activity
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
 		}
-		Toast.makeText(GameLobby.this, userName, Toast.LENGTH_LONG).show();
+		//Toast.makeText(GameLobby.this, userName, Toast.LENGTH_LONG).show();
 		
 		m_handler = new Handler();
 		//refreshGameLobby();
-		startRepeatingTask();
+		//startRepeatingTask();
 	}
-	
+	/*
 	Runnable m_statusChecker = new Runnable()
 	{
 	     @Override 
@@ -105,12 +105,12 @@ public class GameLobby extends Activity
 	{
 	    m_handler.removeCallbacks(m_statusChecker);
 	}
-	
+	*/
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.gamelobbymenu, menu);
-        Toast.makeText(GameLobby.this, "In menue at create game", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(GameLobby.this, "In menue at create game", Toast.LENGTH_SHORT).show();
         return true;
     }
     
@@ -131,8 +131,11 @@ public class GameLobby extends Activity
         	 setFriend.putExtra("UserId", userID);
         	 setFriend.putExtra("GameId", gameID);
         	 startActivityForResult(setFriend, 0);
-             
              return true;
+             
+        case R.id.refresh_button:
+        	refreshGameLobby();
+        	return true;
  
         default:
             return super.onOptionsItemSelected(item);
@@ -142,13 +145,13 @@ public class GameLobby extends Activity
 	public void refreshGameLobby()
 	{
 		//URL contains the userID and gameID
-		Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?Game="+gameID;
     	check = "GameLobby";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        Toast.makeText(GameLobby.this, "At refresh game lobby", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(GameLobby.this, "At refresh game lobby", Toast.LENGTH_SHORT).show();
         //error.setText("creating");
         if (networkInfo != null && networkInfo.isConnected()) {
             new DownloadWebpageText().execute(stringUrl);
@@ -178,7 +181,7 @@ private class DownloadWebpageText extends AsyncTask {
 	        	results = results.trim();
 	        	
 	            //check the result for the what's needed to move on
-	        	Toast.makeText(GameLobby.this, "In post execute", Toast.LENGTH_SHORT).show();
+	        	//Toast.makeText(GameLobby.this, "In post execute", Toast.LENGTH_SHORT).show();
 	            if(results!=null){
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
@@ -196,7 +199,7 @@ private class DownloadWebpageText extends AsyncTask {
 						GameLobby.this.gameSizeTextView.setText(playersInGame);
 						if(numPlayersInGame >= 3)
 						{
-							stopRepeatingTask();
+							//stopRepeatingTask();
 							//go to start game activity and kill the game lobby activity
 							Intent myIntent = new Intent(GameLobby.this, Game.class);;
 			            	myIntent.putExtra("UserName", userName);
@@ -206,17 +209,17 @@ private class DownloadWebpageText extends AsyncTask {
 						}
 					}
 					else if(resultArray[0]=="none") {
-						Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
+						//Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
 					}
 	
 	            }
 	            else{
-	            	Toast.makeText(GameLobby.this, "Error2", Toast.LENGTH_SHORT).show();
+	            	//Toast.makeText(GameLobby.this, "Error2", Toast.LENGTH_SHORT).show();
 	            }
         	}
         }
         else{
-        	Toast.makeText(GameLobby.this, "Error3", Toast.LENGTH_SHORT).show();
+        	//Toast.makeText(GameLobby.this, "Error3", Toast.LENGTH_SHORT).show();
         }
        }
 
@@ -287,7 +290,7 @@ private class DownloadWebpageText extends AsyncTask {
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
-						    	stopRepeatingTask();
+						    	//stopRepeatingTask();
 							}
 						  })
 						  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
@@ -313,7 +316,7 @@ private class DownloadWebpageText extends AsyncTask {
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
-						    	stopRepeatingTask();
+						    	//stopRepeatingTask();
 							} 
 						
 						}) 
