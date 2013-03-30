@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -25,6 +26,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,9 @@ public class StartActivity extends Activity
     private EditText urlText;
     private String results;
     private String UserId;
+    
+    private ImageView img;
+	private AnimationDrawable frameAnimation;
 	
 	public static final String SPREF_USER = "othPrefs";
 	final Context context = this;
@@ -58,6 +63,12 @@ public class StartActivity extends Activity
             	super.onCreate(savedInstanceState);
         		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         		setContentView(R.layout.loggingin);
+        		
+        		img = (ImageView) findViewById(R.id.imageView1);
+
+        		img.setBackgroundResource(R.drawable.loadingcards);
+        		frameAnimation = (AnimationDrawable) img.getBackground();
+        		frameAnimation.start();
                 new DownloadWebpageText().execute(stringUrl);
                 
             } else 

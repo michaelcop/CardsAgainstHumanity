@@ -289,7 +289,7 @@ private class DownloadWebpageText extends AsyncTask {
 								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						    	intent.putExtra("UserName", userName);
-						    	intent.putExtra("UserID", userID);
+						    	intent.putExtra("UserId", userID);
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
 						    	//stopRepeatingTask();
@@ -317,7 +317,7 @@ private class DownloadWebpageText extends AsyncTask {
 								Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 						    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						    	intent.putExtra("UserName", userName);
-						    	intent.putExtra("UserID", userID);
+						    	intent.putExtra("UserId", userID);
 						    	intent.putExtra("EXIT", true);
 						    	startActivity(intent);
 						    	//stopRepeatingTask();
