@@ -128,7 +128,7 @@ public class JoinGame extends Activity
 	        			{
 	        				String[] temp = b.getHint().toString().split(":");
 	        				String ID = temp[1];
-	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/JoinGame?User="+User1Id+"&GameID="+ID;
+	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/JoinGame?User="+User1Id+"&Game="+ID;
 	        				callUrl(stringUrl);
 
 	        			}
@@ -208,7 +208,7 @@ public class JoinGame extends Activity
 						
 						else if(resultArray!=null && resultArray[0].equals("Joining")){
 							Intent myIntent = new Intent(JoinGame.this, GameLobby.class);
-			            	myIntent.putExtra("GameID", gameID);
+			            	myIntent.putExtra("GameID", gameID+"");
 			            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		                	SharedPreferences.Editor spEditor = othSettings.edit();
 		                	spEditor.putString("CurGameID", gameID+"").commit(); //Stores current game ID
