@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -19,6 +21,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +42,7 @@ public class CreateGame extends Activity
     private TextView error;
     private String userId;
     
+    final Context context = this;
     public static final String SPREF_USER = "othPrefs";
     
 	protected void onCreate(Bundle savedInstanceState)
@@ -206,6 +210,60 @@ public class CreateGame extends Activity
 	   reader.read(buffer);
 	   return new String(buffer);
 	}  
+	
+	//Back button functionality------------------------------------
+			@Override
+			public boolean onKeyDown(int keyCode, KeyEvent event) 
+			{
+				
+			    if (keyCode == KeyEvent.KEYCODE_BACK) 
+			    {
+			    	
+			    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			 
+						// set title
+						alertDialogBuilder.setTitle("Leaving \"Create Game\"");
+			 
+						// set dialog message
+						alertDialogBuilder
+							.setMessage("Do you want to close application or go to Main Menu?")
+							.setCancelable(true)
+							.setPositiveButton("Close",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// close current activity
+									CreateGame.this.finish();
+							    	//stopRepeatingTask();
+								}
+							  })
+							  .setNeutralButton("Main Menu",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									Intent myIntent = new Intent(context, MainMenu.class);
+					             	myIntent.putExtra("UserName", UserName);
+					             	myIntent.putExtra("UserId", userId);
+					             	startActivityForResult(myIntent, 0);
+					             	CreateGame.this.finish();	//Close StartActivity page when MainMenu starts
+								} 
+							
+							}) 
+							.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// cancel back button op
+									dialog.cancel();
+								}
+							
+							});
+			 
+							// create alert dialog
+							AlertDialog alertDialog = alertDialogBuilder.create();
+			 
+							// show it
+							alertDialog.show();
+			    	
+			        //moveTaskToBack(true);
+			        return true;
+			    }
+			    return super.onKeyDown(keyCode, event);
+			}  //End back button functionality---------------------------------
 
 
 
