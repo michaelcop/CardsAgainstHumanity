@@ -82,17 +82,10 @@ public class CreateGame extends Activity
 				String numRounds = ((EditText) findViewById(R.id.numRounds)).getText().toString();
 				if(numRounds == null || numRounds.trim().equals(""))
 				{
-					SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-					if(othSettings.contains("defGameRounds"))
-					{
-						Toast.makeText(CreateGame.this, "Using default round setting", Toast.LENGTH_LONG).show();
-						numRounds = othSettings.getString("defGameRounds", "1");
-					}
-					else
-					{
+
 						Toast.makeText(CreateGame.this, "Number of rounds invalid defaulting to 10", Toast.LENGTH_LONG).show();
 						numRounds = "10";
-					}
+
 					
 				}
 				rounds = Integer.parseInt(numRounds);
