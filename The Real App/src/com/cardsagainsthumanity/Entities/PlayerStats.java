@@ -62,9 +62,7 @@ public class PlayerStats extends Activity
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-        	Log.d("FUCK", "Jimmy");
         	String g = extras.getString("GameID");
-        	Log.d("FUCK", "Jimmy2");
         	gameID = Integer.parseInt(g);
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
@@ -75,7 +73,7 @@ public class PlayerStats extends Activity
 	
 	public void refreshPlayerStats()
 	{
-		//URL contains the userID and gameID
+		//URL contains the userID
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameState?User=" + userID;
     	check = "UserStats";
     	ConnectivityManager connMgr = (ConnectivityManager) 

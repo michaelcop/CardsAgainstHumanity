@@ -37,6 +37,7 @@ public class JoinGame extends Activity
 	public static final String SPREF_USER = "othPrefs";
 	int current;
 	int gameID;
+	int deletingID;
 	String currentUser;
 	String User1Id;
 	
@@ -112,10 +113,10 @@ public class JoinGame extends Activity
 	            tr.addView(labelTV);
 	            
 	            //Creating join buttons
-	            if(gameID!=1000)
+	            if(gameID!=-1)
 	            {
 		            final Button b = new Button(this);
-		            b.setId(5000+gameID);
+		            b.setId(-1*gameID);
 		            b.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
 		            b.setText("Accept");
 		            b.setTextSize(12);
@@ -128,7 +129,28 @@ public class JoinGame extends Activity
 	        			{
 	        				String[] temp = b.getHint().toString().split(":");
 	        				String ID = temp[1];
+	        				deletingID = Integer.parseInt(ID);
 	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/JoinGame?User="+User1Id+"&Game="+ID;
+	        				callUrl(stringUrl);
+
+	        			}
+	        			
+	        		});
+		            final Button c = new Button(this);
+		            c.setId(-2*gameID);
+		            c.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
+		            c.setText("Decline");
+		            c.setTextSize(12);
+		            c.setHint("GameId:"+gameID);
+		            tr.addView(c);
+		            c.setOnClickListener(new OnClickListener()
+	        		{
+	        			@Override
+	        			public void onClick(View v) 
+	        			{
+	        				String[] temp = b.getHint().toString().split(":");
+	        				String ID = temp[1];
+	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?User="+User1Id+"&Game="+ID;
 	        				callUrl(stringUrl);
 
 	        			}
@@ -217,6 +239,9 @@ public class JoinGame extends Activity
 			            	myIntent.putExtra("UserID", User1Id);
 			            	startActivity(myIntent);
 			            	JoinGame.this.finish();
+						}
+						else if(resultArray!=null && resultArray[0].equals("PlayerDeleted")){
+							gameList.removeView((TableRow)findViewById(deletingID));
 						}
 						else{
 	                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
