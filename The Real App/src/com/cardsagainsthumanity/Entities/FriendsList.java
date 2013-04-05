@@ -112,6 +112,7 @@ public class FriendsList extends Activity
             Friends.add(testStrings.get(current));
             labelTV.setId(++current);
             labelTV.setTextColor(Color.WHITE);
+            tr.setBackgroundResource(R.drawable.friendsrow);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
 
@@ -123,7 +124,7 @@ public class FriendsList extends Activity
             b.setHint("UserId:"+UserId);
             if(testStrings.get(current).equals("1")){
             	b.setText("Delete");
-            	
+            	b.setMaxWidth(50);
             	b.setOnClickListener(new OnClickListener()
         		{
 

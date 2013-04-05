@@ -61,18 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/AddFriendBox"
-        android:layout_toLeftOf="@+id/btnDeleteFriend"
+        android:layout_centerHorizontal="true"
         android:text="@string/friend_invite"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/btnDeleteFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnAddFriend"
-        android:layout_alignBottom="@+id/btnAddFriend"
-        android:layout_alignRight="@+id/friendsTable"
-        android:text="@string/delete_friend"
         android:textColor="@color/White" />
 
 </RelativeLayout>
