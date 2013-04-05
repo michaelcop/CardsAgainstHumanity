@@ -14,41 +14,6 @@
         android:text="@string/returntomenu"
         android:textColor="@color/White" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/cg_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/White"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/NumberofRoundsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="20dp"
-        android:text="@string/numRounds"
-        android:textColor="@color/white" />
-
-    <EditText
-        android:id="@+id/numRounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/NumberofRoundsLabel"
-        android:layout_below="@+id/NumberofRoundsLabel"
-        android:layout_marginTop="19dp"
-        android:ems="10"
-        android:hint="@string/numRounds"
-        android:inputType="number"
-        android:textColor="@color/red" />
-
     <Button
         android:id="@+id/btnCreate"
         android:layout_width="wrap_content"
@@ -67,5 +32,35 @@
         android:layout_marginBottom="38dp"
         android:text="@string/error"
         android:textColor="@color/white" />
+
+    <Spinner
+        android:id="@+id/roundsSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NumberofRoundsLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:id="@+id/NumberofRoundsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:text="@string/numRounds"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="@string/cg_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/White"
+        android:textStyle="bold" />
 
 </RelativeLayout>

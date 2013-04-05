@@ -18,7 +18,8 @@ public class HowToPlay extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		
+
+       // getActionBar().setDisplayShowTitleEnabled(false);
 		setContentView(R.layout.howtoplay);
 		
 		TextView howPlay = (TextView) findViewById(R.id.rulesLabel);

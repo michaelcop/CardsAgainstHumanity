@@ -65,6 +65,7 @@ public class GameLobby extends Activity
 		}
 		ActionBar actionBar = GameLobby.this.getActionBar();
 		if(actionBar!=null){actionBar.show();}
+        getActionBar().setDisplayShowTitleEnabled(false);
 		
 		gameSizeTextView = (TextView) findViewById(R.id.playerListLobby);
 		

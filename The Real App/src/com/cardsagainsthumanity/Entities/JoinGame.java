@@ -47,6 +47,7 @@ public class JoinGame extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.joingame);
 		Bundle extras = getIntent().getExtras();
+		//getActionBar().setDisplayShowTitleEnabled(false);
 		
 		if (extras != null) 
 		{

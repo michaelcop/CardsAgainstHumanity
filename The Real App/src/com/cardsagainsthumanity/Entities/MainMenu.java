@@ -62,6 +62,7 @@ public class MainMenu extends Activity
         	MainMenu.this.finish();
 		}
         MenuInflater menuInflater = getMenuInflater();
+        getActionBar().setDisplayShowTitleEnabled(false);
         menuInflater.inflate(R.menu.menu, menu);
 		error = (TextView) findViewById(R.id.error);
         return true;

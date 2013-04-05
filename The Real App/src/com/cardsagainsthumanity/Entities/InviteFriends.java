@@ -50,6 +50,8 @@ public class InviteFriends extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.invitefriend);
 		Bundle extras = getIntent().getExtras();
+
+        //getActionBar().setDisplayShowTitleEnabled(false);
 		if (extras != null) {
 			User1Id = extras.getString("UserId");
 			GameId = extras.getString("GameId");

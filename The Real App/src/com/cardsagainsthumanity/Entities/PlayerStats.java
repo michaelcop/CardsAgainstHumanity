@@ -45,7 +45,8 @@ public class PlayerStats extends Activity
 		playerNameStat= (TextView) findViewById(R.id.PlayerNameStat);
 		gamesWonTextView= (TextView) findViewById(R.id.GamesWonStat);
 		gamesLostTextView= (TextView) findViewById(R.id.GamesLostStat);
-		
+
+        //getActionBar().setDisplayShowTitleEnabled(false);
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
 		{
