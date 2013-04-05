@@ -96,7 +96,7 @@ public class Game extends Activity
 		card7 = (TextView) findViewById(R.id.c7);
 		blackCard = (TextView) findViewById(R.id.blackcard);
 		
-		sendMessage = (Button) findViewById(R.id.sendMessage);
+		//sendMessage = (Button) findViewById(R.id.sendMessage);
 		submit = (Button) findViewById(R.id.submit);
 		
 
@@ -110,7 +110,7 @@ public class Game extends Activity
 		card6.setMovementMethod(new ScrollingMovementMethod());
 		card7.setMovementMethod(new ScrollingMovementMethod());
 		blackCard.setMovementMethod(new ScrollingMovementMethod());
-		sendMessage.setEnabled(false);
+		//sendMessage.setEnabled(false);
 		
 		//card1.setHint(hint);
 		
@@ -254,7 +254,7 @@ public class Game extends Activity
 			}
 		});
 		
-		sendMessage.setOnClickListener(new OnClickListener()
+		/*sendMessage.setOnClickListener(new OnClickListener()
 		{
 
 			@Override
@@ -264,7 +264,7 @@ public class Game extends Activity
 				//chatBox.append("\n" + value);
 			}
 			
-		});
+		}); */
 		
 		submit.setOnClickListener(new OnClickListener()
 		{

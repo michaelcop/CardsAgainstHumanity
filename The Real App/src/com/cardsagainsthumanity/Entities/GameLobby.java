@@ -338,6 +338,11 @@ private class DownloadWebpageText extends AsyncTask {
 						  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
 								exitURLHandler();//deal with exiting on post execute
+								SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+			                	SharedPreferences.Editor spEditor = othSettings.edit();
+			                	spEditor.remove("inGame").commit();
+			                	spEditor.remove("CurGameID").commit();
+								GameLobby.this.finish();
 							} 
 						
 						}) 
