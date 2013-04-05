@@ -517,6 +517,7 @@ private class DownloadWebpageText extends AsyncTask {
 						{
 							currentUser.whiteCardsList.add(data.get(i));
 							Toast.makeText(Game.this, "white card =  " + currentUser.whiteCardsList.get(currentUser.whiteCardsList.size()-1), Toast.LENGTH_SHORT).show();
+							//issue here gets past the first one check after
 							if(1==1)
 								return;
 						}
