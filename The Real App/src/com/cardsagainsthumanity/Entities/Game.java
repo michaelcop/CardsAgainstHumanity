@@ -72,6 +72,7 @@ public class Game extends Activity
 	TextView card6;
 	TextView card7;
 	TextView blackCard;
+	TextView playerList;
 	
 	Button sendMessage;
 	Button submit;
@@ -96,6 +97,7 @@ public class Game extends Activity
 		card4 = (TextView) findViewById(R.id.c4);
 		card5 = (TextView) findViewById(R.id.c5);
 		blackCard = (TextView) findViewById(R.id.blackcard);
+		playerList = (TextView) findViewById(R.id.playerList);
 		
 		//sendMessage = (Button) findViewById(R.id.sendMessage);
 		submit = (Button) findViewById(R.id.submit);
@@ -524,6 +526,25 @@ private class DownloadWebpageText extends AsyncTask {
 								return;
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
+						
+						if(currentUser.whiteCardsList.size() > 0)
+							card1.setText(currentUser.whiteCardsList.get(0));
+						if(currentUser.whiteCardsList.size() > 1)
+							card2.setText(currentUser.whiteCardsList.get(1));
+						if(currentUser.whiteCardsList.size() > 2)
+							card3.setText(currentUser.whiteCardsList.get(2));
+						if(currentUser.whiteCardsList.size() > 3)
+							card4.setText(currentUser.whiteCardsList.get(3));
+						if(currentUser.whiteCardsList.size() > 4)
+							card5.setText(currentUser.whiteCardsList.get(5));
+						blackCard.setText(currentUser.blackCard);
+						
+						String playerListString = "";
+						for(int i=0; i<currentUser.otherUsers.size(); i++)
+						{
+							playerListString += currentUser.otherUsers.get(i) + " : " + currentUser.otherUsersScore.get(i) + "\n";
+						}
+						playerList.setText(playerListString);
 						
 						//game round, list of users in game, current czar, your list of white cards,
 						//the black card from the czar,
