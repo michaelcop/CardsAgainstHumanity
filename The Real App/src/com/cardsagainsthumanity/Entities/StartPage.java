@@ -69,6 +69,15 @@ public class StartPage extends Activity {
 	        	//login
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
+	        	/*
+	        	if(userName.length() < 5 || password.length() < 5)
+	        	{
+	        		Toast.makeText(StartPage.this, "Error user name and password must be atleast 5 characters.  Try Again!", Toast.LENGTH_LONG).show();
+	        		inputUsername.setText("");
+	        		inputPassword.setText("");
+	        		return;
+	        	}
+	        	*/
 	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
                 MessageDigest Enc = null;
                 try {

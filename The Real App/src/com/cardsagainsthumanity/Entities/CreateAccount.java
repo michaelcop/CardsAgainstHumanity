@@ -26,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreateAccount extends Activity
 {
@@ -80,6 +81,14 @@ public class CreateAccount extends Activity
 	        	if(!password.equals(confirm)){
 	                error.setText("Password and Confirmed password are different");
 	                return;
+	        	}
+	        	if(userName.length() < 5 || password.length() < 5)
+	        	{
+	        		Toast.makeText(CreateAccount.this, "Error user name and password must be atleast 5 characters.  Try Again!", Toast.LENGTH_LONG).show();
+	        		inputUsername.setText("");
+	        		inputPassword.setText("");
+	        		confirmPassword.setText("");
+	        		return;
 	        	}
 	        	
 	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
