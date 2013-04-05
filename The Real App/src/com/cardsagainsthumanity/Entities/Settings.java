@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -21,8 +22,10 @@ public class Settings extends Activity
 {
 	private User user;
 	private Game games;
+	public String defaultGameRounds;
 	
 	final Context context = this;
+	private EditText inputDefaultRounds;
 	public static final String SPREF_USER = "othPrefs";
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +33,15 @@ public class Settings extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.settings);
+		
+		inputDefaultRounds = (EditText) findViewById(R.id.DefaultRoundsValue);
+		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+    	
+		if(othSettings.contains("defGameRounds"))
+		{
+			inputDefaultRounds.setText(othSettings.getString("defGameRounds", ""));
+		}
+		
 		
 		//Save Button listener----------------------------------------------
 		Button saveButton = (Button) findViewById(R.id.SaveButton);
@@ -44,9 +56,18 @@ public class Settings extends Activity
 				{
 					Toast.makeText(Settings.this, "Toggle Button is on", Toast.LENGTH_SHORT).show();
 				}
+				
+            	
+
+            	defaultGameRounds = inputDefaultRounds.getText().toString();
+            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+            	SharedPreferences.Editor spEditor = othSettings.edit();
+            	spEditor.putString("defGameRounds", defaultGameRounds).commit();
+				
 			}
 			
 		});
+		
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
@@ -71,7 +92,13 @@ public class Settings extends Activity
 			
 		});
 		
+		
+		
+		
+		
 	}
+	
+	
 	
 	public User getUser() {
 		return user;
@@ -96,6 +123,7 @@ public class Settings extends Activity
     	spEditor.remove("UserName").commit();
     	spEditor.remove("digest").commit();
     	spEditor.remove("ID").commit();
+    	spEditor.remove("defGameRounds");
     	//End erasing username & pw
     	
     	//Inform user of logout status on game close

@@ -646,7 +646,7 @@ private class DownloadWebpageText extends AsyncTask {
 									exitURLHandler();//deal with exiting on post execute
 									SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 				                	SharedPreferences.Editor spEditor = othSettings.edit();
-				                	spEditor.remove("inGame").commit();
+				                	spEditor.putBoolean("inGame", false);
 				                	spEditor.remove("CurGameID").commit();
 									Game.this.finish();
 								} 

@@ -110,6 +110,7 @@
     <string name="lobbyWelcome">Welcome to the Lobby!</string>
     <string name="lobbyDirections">Please invite people to the game</string>
     <string name="lobbyInvite">Invite Friends</string>
+    <string name="defaultRounds">Default Rounds: </string>
     
     
 </resources>
