@@ -59,7 +59,7 @@ public class StartActivity extends Activity
             
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             if (networkInfo != null && networkInfo.isConnected()) {
-//                Toast.makeText(context, "Logging in", Toast.LENGTH_SHORT).show();
+
             	super.onCreate(savedInstanceState);
         		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         		setContentView(R.layout.loggingin);
@@ -161,7 +161,8 @@ public class StartActivity extends Activity
 	  }
 		
 	  	//Reads an InputStream and converts it to a String.
-		public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+		public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException 
+		{
 		   Reader reader = null;
 		   reader = new InputStreamReader(stream, "UTF-8");        
 		   char[] buffer = new char[len];

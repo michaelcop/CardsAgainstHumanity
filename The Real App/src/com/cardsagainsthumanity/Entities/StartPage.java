@@ -78,6 +78,7 @@ public class StartPage extends Activity {
 	        		return;
 	        	}
 	        	*/
+	        	
 	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
                 MessageDigest Enc = null;
                 try {
@@ -88,6 +89,8 @@ public class StartPage extends Activity {
                 } // Encryption algorithm
                 Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
                 sha = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
+                //Digest made
+                
 	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+userName+"&password="+sha;
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
