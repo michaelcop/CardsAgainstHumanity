@@ -123,7 +123,7 @@ public class Settings extends Activity
     	spEditor.remove("UserName").commit();
     	spEditor.remove("digest").commit();
     	spEditor.remove("ID").commit();
-    	spEditor.remove("defGameRounds");
+    	spEditor.remove("defGameRounds").commit();
     	//End erasing username & pw
     	
     	//Inform user of logout status on game close
