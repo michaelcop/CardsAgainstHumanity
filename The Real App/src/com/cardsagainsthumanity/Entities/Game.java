@@ -518,7 +518,7 @@ private class DownloadWebpageText extends AsyncTask {
 						currentUser.currentCzar = data.get(userNameEndIndex);
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
 						int whiteCardsStartIndex = userNameEndIndex + 2;
-						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex+1;
+						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex;
 						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i++)
 						{
 							currentUser.whiteCardsList.add(data.get(i));
