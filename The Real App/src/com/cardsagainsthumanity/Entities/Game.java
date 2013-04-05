@@ -8,10 +8,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +31,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Game extends Activity
 {
@@ -37,6 +41,9 @@ public class Game extends Activity
 	private Deck deck;
 	private List<User> users;
 	private int cardCzarIndex;
+	
+	final Context context = this;
+	public static final String SPREF_USER = "othPrefs";
 	
 	String check;
 	
@@ -603,7 +610,77 @@ private class DownloadWebpageText extends AsyncTask {
 	   return new String(buffer);
 	} 
 	
-	
-	
+	//Back button functionality------------------------------------
+			@Override
+			public boolean onKeyDown(int keyCode, KeyEvent event) 
+			{
+				
+			    if (keyCode == KeyEvent.KEYCODE_BACK) 
+			    {
+			    	
+			    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			 
+						// set title
+						alertDialogBuilder.setTitle("Leaving \"Oh the Humanity!\"");
+			 
+						// set dialog message
+						alertDialogBuilder
+							.setMessage("Do you want to close application or quit game?")
+							.setCancelable(true)
+							.setPositiveButton("Close",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// close current activity
+									Game.this.finish();
+							    	//stopRepeatingTask();
+								}
+							  })
+							  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									exitURLHandler();//deal with exiting on post execute
+									SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+				                	SharedPreferences.Editor spEditor = othSettings.edit();
+				                	spEditor.remove("inGame").commit();
+				                	spEditor.remove("CurGameID").commit();
+									Game.this.finish();
+								} 
+							
+							}) 
+							.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// cancel back button op
+									dialog.cancel();
+								}
+							
+							});
+			 
+							// create alert dialog
+							AlertDialog alertDialog = alertDialogBuilder.create();
+			 
+							// show it
+							alertDialog.show();
+			    	
+			        //moveTaskToBack(true);
+			        return true;
+			    }
+			    return super.onKeyDown(keyCode, event);
+			}  //End back button functionality---------------------------------
+			
+			public void exitURLHandler()
+			{
+				//URL contains the userID and gameID
+				//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameID+"&User="+userID;
+		    	check = "LeaveGame";
+		    	ConnectivityManager connMgr = (ConnectivityManager) 
+				getSystemService(Context.CONNECTIVITY_SERVICE);
+		        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		        //Toast.makeText(GameLobby.this, "At refresh game lobby", Toast.LENGTH_SHORT).show();
+		        //error.setText("creating");
+		        if (networkInfo != null && networkInfo.isConnected()) {
+		            new DownloadWebpageText().execute(stringUrl);
+		        } else {
+		            //error.setText("No network connection available.");
+		        }
+			}
 
 }
