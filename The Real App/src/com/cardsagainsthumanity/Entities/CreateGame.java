@@ -30,6 +30,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class CreateGame extends Activity
     
     final Context context = this;
     public static final String SPREF_USER = "othPrefs";
+    private ProgressBar mProgress;
     
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -98,6 +100,7 @@ public class CreateGame extends Activity
 	        	}
 				*/
 				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+UserName+"&rounds="+rounds;
+				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "Game";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -117,8 +120,12 @@ public class CreateGame extends Activity
 	
 	private class DownloadWebpageText extends AsyncTask {
         
+		@Override
+        protected void onPreExecute()
+		{
+			mProgress.setVisibility(ProgressBar.VISIBLE);
+		}
     	
-
 		@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
@@ -132,6 +139,9 @@ public class CreateGame extends Activity
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        	
+        mProgress.setVisibility(ProgressBar.INVISIBLE);
+        
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){

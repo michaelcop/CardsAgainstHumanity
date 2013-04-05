@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ public class GameLobby extends Activity
 	public static final String SPREF_USER = "othPrefs";
 	
 	boolean isInFront = true;
+	
+	private ProgressBar mProgress;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -170,6 +173,7 @@ public class GameLobby extends Activity
 		//URL contains the userID and gameID
 		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameID+"&User="+userID;
+		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
     	check = "LeaveGame";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -184,7 +188,13 @@ public class GameLobby extends Activity
 	}
 	
 private class DownloadWebpageText extends AsyncTask {
-        
+	
+		@Override
+		protected void onPreExecute()
+		{
+			mProgress.setVisibility(ProgressBar.VISIBLE);
+		}
+	
     	@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
@@ -198,6 +208,9 @@ private class DownloadWebpageText extends AsyncTask {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        
+        mProgress.setVisibility(ProgressBar.INVISIBLE);
+        	
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){

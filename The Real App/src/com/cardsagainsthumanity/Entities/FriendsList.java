@@ -24,6 +24,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class FriendsList extends Activity
 	String User1Id;
 	List<String> Friends;
 	int buttonId = 0;
+	private ProgressBar mProgress;
 	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
@@ -176,6 +178,7 @@ public class FriendsList extends Activity
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+User1Id+"&User2="+ID;
+        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 			        	error.setText("USER ID FOR ACCEPTING IS: " +ID);
         				callUrl(stringUrl);
         				
@@ -195,6 +198,12 @@ public class FriendsList extends Activity
         }
 	} 
 	private class DownloadWebpageText extends AsyncTask {
+		
+		@Override
+		protected void onPreExecute()
+		{
+			mProgress.setVisibility(ProgressBar.VISIBLE);
+		}
         
     	@Override
         protected Object doInBackground(Object... urls) {
@@ -209,6 +218,9 @@ public class FriendsList extends Activity
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        	
+        mProgress.setVisibility(ProgressBar.INVISIBLE);
+        	
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){
