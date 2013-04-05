@@ -329,6 +329,11 @@ public class Game extends Activity
             
             startActivityForResult(set2, 0);
             return true;
+            
+        case R.id.refresh_button:
+        	refreshUser();
+        	inviteList();
+        	return true;
  
         default:
             return super.onOptionsItemSelected(item);
