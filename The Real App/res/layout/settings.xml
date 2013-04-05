@@ -91,7 +91,8 @@
         android:layout_below="@+id/DefaultRoundsText"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="number" >
+        android:inputType="number"
+        android:textColor="@color/White" >
 
         <requestFocus />
     </EditText>
