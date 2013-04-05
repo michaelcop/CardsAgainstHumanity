@@ -41,6 +41,7 @@ public class FriendsList extends Activity
 	int  UserId;
 	String User1Id;
 	List<String> Friends;
+	int buttonId = 0;
 	
 	ArrayList<String> testStrings;
 	protected void onCreate(Bundle savedInstanceState)
@@ -117,7 +118,7 @@ public class FriendsList extends Activity
             // Create a TextView to house the value of the after-tax income
             
             final Button b = new Button(this);
-            b.setId(500+UserId);
+            b.setId(++buttonId);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             b.setHint("UserId:"+UserId);
             if(testStrings.get(current).equals("1")){
@@ -229,7 +230,7 @@ public class FriendsList extends Activity
                         final Button A = new Button(FriendsList.this);
                         A.setText("Cancel Request");
                         A.setHint("UserID:"+UserIdReturned);
-                        A.setId(Integer.parseInt(UserIdReturned)+500);
+                        A.setId(++buttonId);
                         A.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         A.setOnClickListener(new OnClickListener(){
 							@Override
@@ -260,7 +261,7 @@ public class FriendsList extends Activity
 						t.removeView((TableRow)findViewById(Integer.parseInt(resultArray[1].toString())));
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted")){
-						final Button button =  (Button) findViewById(Integer.parseInt(resultArray[1])+500);
+						final Button button =  (Button) findViewById(++buttonId);
 						String UserIdReturned =  resultArray[1];
 						button.setText("Delete");
 						button.setEnabled(true);

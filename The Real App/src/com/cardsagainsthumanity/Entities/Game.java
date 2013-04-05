@@ -283,7 +283,8 @@ public class Game extends Activity
         case R.id.invite_friend:
             // Toast.makeText(MainMenu.this, "Invite Friend is Selected", Toast.LENGTH_SHORT).show();
             Intent set2 = new Intent(Game.this, InviteFriends.class);
-            
+            set2.putExtra("GameId", String.valueOf(gameID));
+            set2.putExtra("UserId", userID);
             startActivityForResult(set2, 0);
             return true;
             
