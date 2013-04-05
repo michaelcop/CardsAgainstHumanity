@@ -538,7 +538,7 @@ private class DownloadWebpageText extends AsyncTask {
 						if(currentUser.whiteCardsList.size() > 3)
 							card4.setText(currentUser.whiteCardsList.get(3));
 						if(currentUser.whiteCardsList.size() > 4)
-							card5.setText(currentUser.whiteCardsList.get(5));
+							card5.setText(currentUser.whiteCardsList.get(4));
 						blackCard.setText(currentUser.blackCard);
 						
 						String playerListString = "";
