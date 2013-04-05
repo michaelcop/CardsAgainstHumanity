@@ -454,8 +454,8 @@ public class Game extends Activity
 	public void refreshUser()
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameState?User=" + userID + "&gameID="+gameID;
-    	check = "UserGameState";
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?User=" + userID + "&gameID="+gameID;
+    	check = "RefreshGame";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
