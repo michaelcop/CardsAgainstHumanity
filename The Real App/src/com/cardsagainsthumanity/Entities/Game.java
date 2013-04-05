@@ -332,7 +332,9 @@ public class Game extends Activity
             
         case R.id.refresh_button:
         	refreshUser();
-        	inviteList();
+        	//Toast.makeText(Game.this, "afterRefreshUser", Toast.LENGTH_SHORT).show();
+        	//inviteList();
+        	//Toast.makeText(Game.this, "afterInviteList", Toast.LENGTH_SHORT).show();
         	return true;
  
         default:
@@ -481,7 +483,7 @@ public class Game extends Activity
         if (networkInfo != null && networkInfo.isConnected()) {
             new DownloadWebpageText().execute(stringUrl);
         } else {
-            error.setText("No network connection available.");
+            //error.setText("No network connection available.");
         }
 	}
 	
@@ -497,12 +499,11 @@ public class Game extends Activity
         if (networkInfo != null && networkInfo.isConnected()) {
             new DownloadWebpageText().execute(stringUrl);
         } else {
-            error.setText("No network connection available.");
+           // error.setText("No network connection available.");
         }
 	}
 	
 private class DownloadWebpageText extends AsyncTask {
-        
     	@Override
         protected Object doInBackground(Object... urls) {
             // params comes from the execute() call: params[0] is the url.
@@ -516,11 +517,13 @@ private class DownloadWebpageText extends AsyncTask {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        	Toast.makeText(Game.this, "onPostExecute", Toast.LENGTH_SHORT).show();
         if(result!=null){
+        	Toast.makeText(Game.this, "In result!=null", Toast.LENGTH_SHORT).show();
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	
+	        	Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 					//error.setText("");
@@ -566,17 +569,17 @@ private class DownloadWebpageText extends AsyncTask {
 						//function for I am card czar and find out what people played
 					}
 					else if(resultArray[0]=="none") {
-						error.setText("Result Array null");
+						Toast.makeText(Game.this, "Error in RefreshUser", Toast.LENGTH_SHORT).show();
 					}
 	
 	            }
 	            else{
-	            	error.setText(results);
+	            	Toast.makeText(Game.this, "Error in RefreshUser", Toast.LENGTH_SHORT).show();
 	            }
         	}
         }
         else{
-        	error.setText("Result was null");
+        	//error.setText("Result was null");
         }
        }
 
