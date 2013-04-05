@@ -125,7 +125,7 @@ public class FriendsList extends Activity
             b.setHint("UserId:"+UserId);
             if(testStrings.get(current).equals("1")){
             	b.setText("Delete");
-            	b.setMaxWidth(30);
+            	b.setWidth(20);
             	b.setOnClickListener(new OnClickListener()
         		{
 
