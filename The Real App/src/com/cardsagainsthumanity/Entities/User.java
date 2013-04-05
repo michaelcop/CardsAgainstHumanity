@@ -8,14 +8,17 @@ public class User
 	public String name;//Assume each person has a unique name
 	public int gameRound;
 	public List<String> otherUsers;
+	public List<Integer> otherUsersScore;
 	public String currentCzar;
 	public boolean isCzar;
 	public List<String> whiteCardsList;
 	public String blackCard;
+	public int userScore;
 	
 	User()
 	{
 		otherUsers = new ArrayList<String>();
+		otherUsersScore = new ArrayList<Integer>();
 		whiteCardsList = new ArrayList<String>();
 	}
 	
