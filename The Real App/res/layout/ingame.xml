@@ -217,10 +217,9 @@
 
                 <TextView
                     android:id="@+id/c5"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_weight="1"
+                    android:layout_weight=".5"
                     android:background="@drawable/white"
                     android:hint="@string/defaultCard"
                     android:paddingLeft="8dp"
@@ -241,7 +240,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/messageInput"
         android:layout_alignTop="@+id/messageInput"
-        android:text="@string/card1"
-        android:textSize="10sp" />
+        android:text="Send"
+        android:textSize="12sp" />
 
 </RelativeLayout>
