@@ -47,8 +47,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="27dp"
         android:clickable="false"
-        android:enabled="false"
-        android:text="@string/setting_save" />
+        android:text="@string/setting_save"
+        android:textColor="@color/White" />
 
     <Button
         android:id="@+id/ReturnToMenu"
