@@ -93,8 +93,6 @@ public class Game extends Activity
 		card3 = (TextView) findViewById(R.id.c3);
 		card4 = (TextView) findViewById(R.id.c4);
 		card5 = (TextView) findViewById(R.id.c5);
-		card6 = (TextView) findViewById(R.id.c6);
-		card7 = (TextView) findViewById(R.id.c7);
 		blackCard = (TextView) findViewById(R.id.blackcard);
 		
 		//sendMessage = (Button) findViewById(R.id.sendMessage);
@@ -108,8 +106,6 @@ public class Game extends Activity
 		card3.setMovementMethod(new ScrollingMovementMethod());
 		card4.setMovementMethod(new ScrollingMovementMethod());
 		card5.setMovementMethod(new ScrollingMovementMethod());
-		card6.setMovementMethod(new ScrollingMovementMethod());
-		card7.setMovementMethod(new ScrollingMovementMethod());
 		blackCard.setMovementMethod(new ScrollingMovementMethod());
 		//sendMessage.setEnabled(false);
 		
@@ -218,45 +214,6 @@ public class Game extends Activity
 				card7.setBackgroundResource(R.drawable.white);
 				
 				currentBlankCard = 5;
-			}
-		});
-		card6.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View arg0) 
-			{
-				submissionID = (String) card6.getHint();
-				card6.setBackgroundResource(R.drawable.selectedcard);
-				
-				card2.setBackgroundResource(R.drawable.white);
-				card3.setBackgroundResource(R.drawable.white);
-				card4.setBackgroundResource(R.drawable.white);
-				card5.setBackgroundResource(R.drawable.white);
-				card1.setBackgroundResource(R.drawable.white);
-				card7.setBackgroundResource(R.drawable.white);
-				
-				currentBlankCard = 6;
-			}
-		});
-		
-		card7.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View arg0) 
-			{
-				submissionID = (String) card7.getHint();
-				card7.setBackgroundResource(R.drawable.selectedcard);
-				
-				card2.setBackgroundResource(R.drawable.white);
-				card3.setBackgroundResource(R.drawable.white);
-				card4.setBackgroundResource(R.drawable.white);
-				card5.setBackgroundResource(R.drawable.white);
-				card6.setBackgroundResource(R.drawable.white);
-				card1.setBackgroundResource(R.drawable.white);
-				
-				currentBlankCard = 7;
 			}
 		});
 		
