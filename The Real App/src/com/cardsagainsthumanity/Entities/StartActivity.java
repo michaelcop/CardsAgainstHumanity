@@ -5,14 +5,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,12 +17,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class StartActivity extends Activity
@@ -35,7 +28,8 @@ public class StartActivity extends Activity
 	
 	private String userName;
 	private String sha;
-    private EditText urlText;
+    @SuppressWarnings("unused")
+	private EditText urlText;
     private String results;
     private String UserId;
     
@@ -45,8 +39,11 @@ public class StartActivity extends Activity
 	public static final String SPREF_USER = "othPrefs";
 	final Context context = this;
 	
+	@SuppressLint("ShowToast")
+	@SuppressWarnings("unchecked")
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		//Auto-Login --------------------------------------------------------------------------------------------
 		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		if(othSettings.contains("UserName") && othSettings.contains("digest") && othSettings.contains("ID"))
 		{
@@ -71,24 +68,28 @@ public class StartActivity extends Activity
         		frameAnimation.start();
                 new DownloadWebpageText().execute(stringUrl);
                 
-            }
+            }  
             else 
             {
                 Toast.makeText(context, "No network connection available.", Toast.LENGTH_SHORT);
             }
-		}
+		}  //End Auto-Login -----------------------------------------------------------------------------------------
+		
+		
+		//Login on startup -----------------------------------------------------------------------------------------
 		else
 		{
 			super.onCreate(savedInstanceState);
 			Intent myIntent = new Intent(this, StartPage.class);
 			startActivity(myIntent);
 			StartActivity.this.finish();
-		}
+		}// End login on startup -----------------------------------------------------------------------------------
 		
 
 	}
 	
-	 private class DownloadWebpageText extends AsyncTask {
+	 @SuppressWarnings("rawtypes")
+	private class DownloadWebpageText extends AsyncTask {
 	        
 	    	@Override
 	        protected Object doInBackground(Object... urls) {
@@ -109,7 +110,7 @@ public class StartActivity extends Activity
 	            String[] resultArr = results.split(":"); 
              if(resultArr[0].equals("User")){
              	
-            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);            	
+            	            	
              	UserId = resultArr[1];
              	
              	
