@@ -135,6 +135,9 @@ public class GameLobby extends Activity
         case R.id.refresh_button:
         	refreshGameLobby();
         	return true;
+        	
+        case R.id.exit_button:
+        	GameLobby.this.finish();
  
         default:
             return super.onOptionsItemSelected(item);

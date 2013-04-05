@@ -220,6 +220,23 @@ public class CreateGame extends Activity
 	   reader.read(buffer);
 	   return new String(buffer);
 	}  
+	
+	//Back button functionality------------------------------------
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event) 
+		{
+			
+		    if (keyCode == KeyEvent.KEYCODE_BACK) 
+		    {
+		    	Intent myIntent = new Intent(context, MainMenu.class);
+             	myIntent.putExtra("UserName", UserName);
+             	myIntent.putExtra("UserId", userId);
+             	startActivityForResult(myIntent, 0);
+             	CreateGame.this.finish();	//Close CreateGame page when MainMenu starts
+		    }
+				
+		    return super.onKeyDown(keyCode, event);
+		}  //End back button functionality---------------------------------
 
 
 
