@@ -265,6 +265,9 @@ public class Game extends Activity
         
         MenuInflater menuInflater2 = getMenuInflater();
         menuInflater2.inflate(R.menu.invite, menu);
+        
+        MenuInflater menuInflater3 = getMenuInflater();
+        menuInflater3.inflate(R.menu.refresh, menu);
         return true;
     }
     
@@ -289,6 +292,7 @@ public class Game extends Activity
             return true;
             
         case R.id.refresh_button:
+        	Toast.makeText(Game.this, "Refresh", Toast.LENGTH_SHORT).show();
         	refreshUser();
         	//Toast.makeText(Game.this, "afterRefreshUser", Toast.LENGTH_SHORT).show();
         	//inviteList();
@@ -481,15 +485,17 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
+	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
 	        	Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
 	            //check the result for the what's needed to move on
 	            if(results!=null){
-					//error.setText("");
+					//error.setText("");Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
 	            	String[] resultArray = results.split(";");
 	            	if(resultArray!=null && resultArray[0].equals(check)){
 	            		//lets delete the contents of the the arraylist other users and whiteCardsList
 	            		currentUser.whiteCardsList.clear();
 	            		currentUser.otherUsers.clear();
+	            		currentUser.otherUsersScore.clear();
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
@@ -504,6 +510,7 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.otherUsersScore.add(Integer.parseInt(data.get(userNameStartIndex+1)));
 						}
 						currentUser.currentCzar = data.get(userNameEndIndex);
+						Toast.makeText(Game.this, "card czar =  " + currentUser.currentCzar, Toast.LENGTH_SHORT).show();
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
 						int whiteCardsStartIndex = Integer.parseInt(data.get(userNameEndIndex + 2));
 						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex;
