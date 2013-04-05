@@ -216,11 +216,12 @@ private class DownloadWebpageText extends AsyncTask {
 						}
 						
 						GameLobby.this.gameSizeTextView.setText(playersInGame);
-						if(numPlayersInGame >= 3)
+						//changing numPlayersInGame >= 0 to test Game.java and get in the Game easier
+						if(numPlayersInGame >= 0)
 						{
 							//stopRepeatingTask();
 							//go to start game activity and kill the game lobby activity
-							Intent myIntent = new Intent(GameLobby.this, Game.class);;
+							Intent myIntent = new Intent(GameLobby.this, Game.class);
 			            	myIntent.putExtra("UserName", userName);
 			            	myIntent.putExtra("UserID", userID);
 			            	startActivity(myIntent);
