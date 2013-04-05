@@ -73,6 +73,7 @@ public class Game extends Activity
 	TextView card7;
 	TextView blackCard;
 	TextView playerList;
+	TextView currentRound;
 	
 	Button sendMessage;
 	Button submit;
@@ -98,6 +99,7 @@ public class Game extends Activity
 		card5 = (TextView) findViewById(R.id.c5);
 		blackCard = (TextView) findViewById(R.id.blackcard);
 		playerList = (TextView) findViewById(R.id.playerList);
+		currentRound = (TextView) findViewById(R.id.playerRound);
 		
 		//sendMessage = (Button) findViewById(R.id.sendMessage);
 		submit = (Button) findViewById(R.id.submit);
@@ -545,6 +547,9 @@ private class DownloadWebpageText extends AsyncTask {
 							playerListString += currentUser.otherUsers.get(i) + " : " + currentUser.otherUsersScore.get(i) + "\n";
 						}
 						playerList.setText(playerListString);
+						
+						//put game round to gui
+						currentRound.setText("Currend Round = " + currentUser.gameRound);
 						
 						//game round, list of users in game, current czar, your list of white cards,
 						//the black card from the czar,
