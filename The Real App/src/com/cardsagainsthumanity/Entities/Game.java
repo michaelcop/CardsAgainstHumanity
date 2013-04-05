@@ -523,12 +523,14 @@ private class DownloadWebpageText extends AsyncTask {
 						data.remove(0);//we are removing the check data field
 						//now lets take that data an update it with the local fields in Game.java
 						currentUser.gameRound = Integer.parseInt(data.get(0));
-						int numOtherUsers = Integer.parseInt(data.get(1));
-						int userNameStartIndex = 2;
-						int userNameEndIndex = userNameStartIndex + numOtherUsers;
-						for(int i=userNameStartIndex; i<userNameEndIndex; userNameStartIndex++)
+						currentUser.userScore = Integer.parseInt(data.get(1));
+						int numOtherUsers = Integer.parseInt(data.get(2));
+						int userNameStartIndex = 3;
+						int userNameEndIndex = userNameStartIndex + (numOtherUsers *2);
+						for(int i=userNameStartIndex; i<userNameEndIndex; userNameStartIndex+=2)
 						{
 							currentUser.otherUsers.add(data.get(userNameStartIndex));
+							currentUser.otherUsersScore.add(Integer.parseInt(data.get(userNameStartIndex+1)));
 						}
 						currentUser.currentCzar = data.get(userNameEndIndex);
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
@@ -546,7 +548,8 @@ private class DownloadWebpageText extends AsyncTask {
 						/*
 						 * Example data
 						 * 5;//game round
-						 * 3; bob; jeff; jane;
+						 * 14;the users score
+						 * 3; bob ;35; jeff; 5; jane; 6;//the numbers after the name is the other users score
 						 * jeff;//jeff is czar
 						 * 2; card 1 description; card 2 description;
 						 * black card description
