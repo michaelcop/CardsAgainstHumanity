@@ -68,14 +68,6 @@ public class JoinGame extends Activity
 			makeTable(pass);
 		}
 		
-		Button join = (Button) findViewById(R.id.joinButton);
-		join.setOnClickListener(new OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				
-			}
-		});
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
@@ -129,7 +121,6 @@ public class JoinGame extends Activity
 	        			{
 	        				String[] temp = b.getHint().toString().split(":");
 	        				String ID = temp[1];
-	        				deletingID = Integer.parseInt(ID);
 	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/JoinGame?User="+User1Id+"&Game="+ID;
 	        				callUrl(stringUrl);
 
@@ -150,6 +141,7 @@ public class JoinGame extends Activity
 	        			{
 	        				String[] temp = b.getHint().toString().split(":");
 	        				String ID = temp[1];
+	        				deletingID = Integer.parseInt(ID);
 	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?User="+User1Id+"&Game="+ID;
 	        				callUrl(stringUrl);
 
@@ -241,7 +233,9 @@ public class JoinGame extends Activity
 			            	JoinGame.this.finish();
 						}
 						else if(resultArray!=null && resultArray[0].equals("PlayerDeleted")){
+							gameList = (TableLayout) findViewById(R.id.gameTable);
 							gameList.removeView((TableRow)findViewById(deletingID));
+							Toast.makeText(context, "Removed Game Invite", Toast.LENGTH_LONG).show();
 						}
 						else{
 	                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
