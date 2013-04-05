@@ -45,8 +45,6 @@ public class PlayerStats extends Activity
 		playerNameStat= (TextView) findViewById(R.id.PlayerNameStat);
 		gamesWonTextView= (TextView) findViewById(R.id.GamesWonStat);
 		gamesLostTextView= (TextView) findViewById(R.id.GamesLostStat);
-		averagePointsPerGameTextView= (TextView) findViewById(R.id.AveragePointsStat);
-		maxPointsInRoundTextView= (TextView) findViewById(R.id.MostPointsInRoundStat);
 		
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()

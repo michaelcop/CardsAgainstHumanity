@@ -26,8 +26,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/messageInput"
         android:background="@color/SteelBlue"
-        android:lines="6"
-        android:maxLines="6"
+        android:lines="3"
+        android:maxLines="3"
         android:scrollbars="vertical"
         android:text="@string/test"
         android:textColor="@color/white" />
@@ -231,16 +231,5 @@
 
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/sendMessage"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/messageInput"
-        android:layout_alignTop="@+id/messageInput"
-        android:text="Send"
-        android:textSize="12sp" />
 
 </RelativeLayout>

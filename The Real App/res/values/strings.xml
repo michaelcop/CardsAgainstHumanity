@@ -62,7 +62,7 @@
     <!-- InGame Strings -->
     
     <string name="action_settings">Settings</string>
-	<string name="hint">Type message here</string>
+	<string name="hint"> </string>
 	<string name="points">Points: 70</string>
 	<string name="submit">Submit</string>
 	<string name="settings">Settings</string>
