@@ -454,7 +454,7 @@ public class Game extends Activity
 	public void refreshUser()
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?User=" + userID + "&gameID="+gameID;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?UserID=" + userID + "&GameID="+gameID;
     	check = "RefreshGame";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -512,10 +512,9 @@ private class DownloadWebpageText extends AsyncTask {
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
 						//now lets take that data an update it with the local fields in Game.java
-						currentUser.name = data.get(0);//set user name
-						currentUser.gameRound = Integer.parseInt(data.get(1));
-						int numOtherUsers = Integer.parseInt(data.get(2));
-						int userNameStartIndex = 3;
+						currentUser.gameRound = Integer.parseInt(data.get(0));
+						int numOtherUsers = Integer.parseInt(data.get(1));
+						int userNameStartIndex = 2;
 						int userNameEndIndex = userNameStartIndex + numOtherUsers;
 						for(int i=userNameStartIndex; i<userNameEndIndex; userNameStartIndex++)
 						{
@@ -536,7 +535,6 @@ private class DownloadWebpageText extends AsyncTask {
 						//Note we are using ; as the delim you should do a String.split(";")
 						/*
 						 * Example data
-						 * joe;
 						 * 5;//game round
 						 * 3; bob; jeff; jane;
 						 * jeff;//jeff is czar
