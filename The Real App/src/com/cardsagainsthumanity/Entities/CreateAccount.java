@@ -25,6 +25,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class CreateAccount extends Activity
 	Button v;
 	String check;
     private TextView error;
+	private ProgressBar mProgress;
 
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -65,7 +67,7 @@ public class CreateAccount extends Activity
 		Button create = (Button) findViewById(R.id.Create);
 		create.setOnClickListener(new OnClickListener()
 		{
-	
+
 			@Override
 			public void onClick(View v) 
 			{
@@ -103,6 +105,7 @@ public class CreateAccount extends Activity
                 hash = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
 	        	
 	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateAccount?User="+userName+"&password="+hash;
+	        	mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "User: "+userName+" successfully created!";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -120,6 +123,12 @@ public class CreateAccount extends Activity
 	}
 
 	private class DownloadWebpageText extends AsyncTask {
+		
+		@Override
+        protected void onPreExecute()
+		{
+			mProgress.setVisibility(ProgressBar.VISIBLE);
+		}
         
     	@Override
         protected Object doInBackground(Object... urls) {
@@ -134,6 +143,9 @@ public class CreateAccount extends Activity
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        
+        mProgress.setVisibility(ProgressBar.INVISIBLE);
+        
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){
