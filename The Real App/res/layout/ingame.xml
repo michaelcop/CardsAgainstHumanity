@@ -65,24 +65,7 @@
 
     <!-- CARDS PLEASE -->
 
-    <TextView
-        android:id="@+id/blackcard"
-        android:layout_width="150dp"
-        android:layout_height="235dp"
-        android:layout_above="@+id/c1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/playerList"
-        android:background="@drawable/rectangle"
-        android:hint="@string/defaultCard"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/blackText"
-        android:textColor="@color/white" />
+    
 
     <!--  -->
 
@@ -95,130 +78,208 @@
         android:layout_alignTop="@+id/messageInput"
         android:layout_toLeftOf="@+id/settings"
         android:layout_toRightOf="@+id/blackcard"
-        android:text="Send"
+        android:text="@string/card1"
         android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/playerList"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listLabel"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/listLabel"
-        android:layout_marginRight="10dp"
-        android:background="@color/SteelBlue"
-        android:lines="7"
-        android:maxLines="7"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/c5"
-        android:layout_width="100dp"
-        android:layout_height="160dp"
-        android:layout_above="@+id/playerPoints"
-        android:layout_alignRight="@+id/playerList"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/card5" />
-
-    <TextView
-        android:id="@+id/c6"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:layout_alignLeft="@+id/c5"
-        android:layout_below="@+id/blackcard"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/card6" />
-
-    <TextView
-        android:id="@+id/c7"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_above="@+id/playerPoints"
-        android:layout_alignLeft="@+id/c5"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/card7" />
-
-    <TextView
-        android:id="@+id/c3"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:layout_above="@+id/chatBox"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:lines="4"
-        android:maxLines="4"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/card3" />
-
-    <TextView
-        android:id="@+id/c1"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:layout_above="@+id/chatBox"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:lines="4"
-        android:maxLines="4"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/card1" />
-
-    <TextView
-        android:id="@+id/c2"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_alignBottom="@+id/c1"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:lines="4"
-        android:maxHeight="45dp"
-        android:maxLines="4"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/cardtext"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/c4"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_above="@+id/playerPoints"
-        android:layout_alignLeft="@+id/c3"
-        android:background="@drawable/white"
-        android:hint="@string/defaultCard"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        android:scrollbars="vertical"
-        android:text="@string/card4" />
-
-    <TextView
-        android:id="@+id/listLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/c3"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="35dp"
-        android:text="@string/playerList"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:orientation="vertical" >
+    
+        <LinearLayout
+        android:id="@+id/cardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight = ".5" >
+    
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="191dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/playerPoints"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            android:id="@+id/c5"
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/card5" />
+
+        <TextView
+            android:id="@+id/c6"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/card6" />
+
+        <TextView
+            android:id="@+id/c7"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/card7" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="332dp"
+        android:layout_above="@+id/playerPoints"
+        android:layout_alignLeft="@+id/playerPoints"
+        android:layout_toLeftOf="@+id/relativeLayout1"
+        android:layout_weight="0.33" >
+
+        <TextView
+            android:id="@+id/c3"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:lines="4"
+            android:maxLines="4"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/card3" />
+
+        <TextView
+            android:id="@+id/c4"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignLeft="@+id/c3"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/card4" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/sendMessage"
+        android:layout_weight="0.33" >
+
+        <TextView
+            android:id="@+id/c1"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:lines="4"
+            android:maxLines="4"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/card1" />
+
+        <TextView
+            android:id="@+id/c2"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/white"
+            android:hint="@string/defaultCard"
+            android:lines="4"
+            android:maxHeight="45dp"
+            android:maxLines="4"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:scrollbars="vertical"
+            android:text="@string/cardtext"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
+	</LinearLayout>
+	
+	<!-- layout 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="374dp" >
+        
+    <RelativeLayout
+        android:layout_width="321dp"
+        android:layout_height="match_parent"
+        android:weight >
+
+        <TextView
+            android:id="@+id/listLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/playerList"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/playerList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/listLabel"
+            android:background="@color/SteelBlue"
+            android:lines="7"
+            android:maxLines="7" />
+        
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight=".5" >
+
+    <TextView
+        android:id="@+id/blackcard"
+        android:layout_width="150dp"
+        android:layout_height="235dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rectangle"
+        android:hint="@string/defaultCard"
+        android:paddingLeft="8dp"
+        android:paddingTop="5dp"
+        android:scrollbars="vertical"
+        android:text="@string/blackText"
         android:textColor="@color/white" />
+    
+    </RelativeLayout>
+    </LinearLayout>
+        
+    </LinearLayout>
 
 </RelativeLayout>

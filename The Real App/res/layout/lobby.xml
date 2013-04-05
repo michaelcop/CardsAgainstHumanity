@@ -43,9 +43,9 @@
         android:layout_alignRight="@+id/lobbyWelcome"
         android:layout_below="@+id/playerListLobbyLabel"
         android:layout_marginTop="18dp"
+        android:textColor="@color/white"
         android:maxLines="6"
-        android:lines = "6"
-        android:text="TextView" />
+        android:lines = "6"/>
 
     <Button
         android:id="@+id/lobbyInviteButton"

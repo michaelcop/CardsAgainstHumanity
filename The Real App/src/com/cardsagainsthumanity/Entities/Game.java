@@ -20,6 +20,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -116,6 +117,11 @@ public class Game extends Activity
 		
 		//Drawable selected = res.getDrawable(R.drawable.selectedCard);
 		
+		//android.view.Display display = ((android.view.WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		
+		card1.setWidth((int)(metrics.widthPixels * .33) );
 		
 		card1.setOnClickListener(new OnClickListener()
 		{
