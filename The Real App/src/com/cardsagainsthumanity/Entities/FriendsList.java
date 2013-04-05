@@ -64,7 +64,8 @@ public class FriendsList extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				if(Friends.size()<=3){
+				Toast.makeText(context, "Num Friends = " + Friends.size(), Toast.LENGTH_LONG).show();
+				if(Friends.size()<=49){
 					TextView add = (TextView) findViewById(R.id.AddFriendBox);
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
 					if(User2!="" && User2!=null && UserName!=null && (!User2.equals(UserName))){
@@ -215,7 +216,8 @@ public class FriendsList extends Activity
 	            	String[] resultArray = results.split(";");
 					if(resultArray!=null && resultArray[0].equals("Added") && resultArray.length==2){
                 		Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
-					
+                		TextView add = (TextView) findViewById(R.id.AddFriendBox);
+                		Friends.add(add.getText().toString());
 					// ADD ROW TO TABLE
                         TableRow tr = new TableRow(FriendsList.this);
                         String UserIdReturned =  resultArray[1];
