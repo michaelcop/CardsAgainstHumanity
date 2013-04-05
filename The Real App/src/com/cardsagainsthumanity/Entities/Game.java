@@ -485,7 +485,7 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
+	        	results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
 	        	Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
 	            //check the result for the what's needed to move on
 	            if(results!=null){
@@ -504,19 +504,21 @@ private class DownloadWebpageText extends AsyncTask {
 						int numOtherUsers = Integer.parseInt(data.get(1));
 						int userNameStartIndex = 2;
 						int userNameEndIndex = userNameStartIndex + (numOtherUsers *2);
-						for(int i=userNameStartIndex; i<userNameEndIndex; userNameStartIndex+=2)
+						for(int i=userNameStartIndex; i<userNameEndIndex; i+=2)
 						{
-							currentUser.otherUsers.add(data.get(userNameStartIndex));
-							currentUser.otherUsersScore.add(Integer.parseInt(data.get(userNameStartIndex+1)));
+							currentUser.otherUsers.add(data.get(i));
+							currentUser.otherUsersScore.add(Integer.parseInt(data.get(i+1)));
 						}
 						currentUser.currentCzar = data.get(userNameEndIndex);
-						Toast.makeText(Game.this, "card czar =  " + currentUser.currentCzar, Toast.LENGTH_SHORT).show();
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
-						int whiteCardsStartIndex = Integer.parseInt(data.get(userNameEndIndex + 2));
-						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex;
-						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; whiteCardsStartIndex++)
+						int whiteCardsStartIndex = userNameEndIndex + 2;
+						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex+1;
+						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i++)
 						{
-							currentUser.whiteCardsList.add(data.get(whiteCardsStartIndex));
+							currentUser.whiteCardsList.add(data.get(i));
+							Toast.makeText(Game.this, "white card =  " + currentUser.whiteCardsList.get(currentUser.whiteCardsList.size()-1), Toast.LENGTH_SHORT).show();
+							if(1==1)
+								return;
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
 						
