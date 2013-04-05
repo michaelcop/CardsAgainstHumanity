@@ -36,6 +36,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class MainMenu extends Activity
 	String check;
     private TextView error;
 	private String UserId;
+	private ProgressBar mProgress;
 	
     public static final String SPREF_USER = "othPrefs";
 	
@@ -153,6 +155,7 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				String stringUrl = "http://54.225.225.185:8080/ServerAPP/FriendsList?User="+UserName;
+				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "Friends";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -277,7 +280,11 @@ public class MainMenu extends Activity
 
 	private class DownloadWebpageText extends AsyncTask {
         
-
+		@Override
+		protected void onPreExecute()
+		{
+			mProgress.setVisibility(ProgressBar.VISIBLE);
+		}
 
 		@Override
         protected Object doInBackground(Object... urls) {
@@ -292,6 +299,9 @@ public class MainMenu extends Activity
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        
+        mProgress.setVisibility(ProgressBar.INVISIBLE);
+        
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){

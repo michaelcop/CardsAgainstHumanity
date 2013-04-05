@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class PlayerStats extends Activity
@@ -35,6 +36,8 @@ public class PlayerStats extends Activity
 	TextView gamesLostTextView;
 	TextView averagePointsPerGameTextView;
 	TextView maxPointsInRoundTextView;
+	
+	private ProgressBar mProgress;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -74,6 +77,7 @@ public class PlayerStats extends Activity
 	{
 		//URL contains the userID
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameState?User=" + userID;
+		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
     	check = "UserStats";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -87,6 +91,12 @@ public class PlayerStats extends Activity
 	}
 	
 private class DownloadWebpageText extends AsyncTask {
+	
+		@Override
+		protected void onPreExecute()
+		{
+			mProgress.setVisibility(ProgressBar.VISIBLE);
+		}
         
     	@Override
         protected Object doInBackground(Object... urls) {
@@ -101,6 +111,9 @@ private class DownloadWebpageText extends AsyncTask {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
+        
+        mProgress.setVisibility(ProgressBar.INVISIBLE);	
+        	
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){
