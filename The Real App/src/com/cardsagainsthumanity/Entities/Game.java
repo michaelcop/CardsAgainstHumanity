@@ -508,6 +508,9 @@ private class DownloadWebpageText extends AsyncTask {
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
 	            	if(resultArray!=null && resultArray[0].equals(check)){
+	            		//lets delete the contents of the the arraylist other users and whiteCardsList
+	            		currentUser.whiteCardsList.clear();
+	            		currentUser.otherUsers.clear();
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
