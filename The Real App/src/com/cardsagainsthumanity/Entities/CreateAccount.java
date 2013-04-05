@@ -73,7 +73,7 @@ public class CreateAccount extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				//create
+				//create --------------------------------------------------------------------------------------------------
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
 	        	confirm = confirmPassword.getText().toString();
@@ -93,8 +93,9 @@ public class CreateAccount extends Activity
 	        		inputPassword.setText("");
 	        		confirmPassword.setText("");
 	        		return;
-	        	}
+	        	} //End create ------------------------------------------------------------------------------------------
 	        	
+	        	//Encryption -----------------------------------------------------------------------------
 	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
                 MessageDigest Enc = null;
                 try {
@@ -105,6 +106,7 @@ public class CreateAccount extends Activity
                 } // Encryption algorithm
                 Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
                 hash = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
+                //--------------------------------------------------------------------------------------------
 	        	
 	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateAccount?User="+userName+"&password="+hash;
 	        	mProgress = (ProgressBar) findViewById(R.id.progressBar1);
@@ -144,25 +146,31 @@ public class CreateAccount extends Activity
     	
         // onPostExecute displays the results of the AsyncTask.
         @Override
-        protected void onPostExecute(Object result) {
+        protected void onPostExecute(Object result) 
+        {
         
         mProgress.setVisibility(ProgressBar.INVISIBLE);
         
-        if(result!=null){
+        if(result!=null)
+        {
         	String results = (String) result.toString();
-        	if(results!=null){
+        	if(results!=null)
+        	{
 	        	results = results.trim();
 	            //check the result for the what's needed to move on
-	            if(results!=null && results.equalsIgnoreCase(check)){
+	            if(results!=null && results.equalsIgnoreCase(check))
+	            {
 	            	error.setText("Confirmed creation");
 	            	finish();
 	            }
-	            else{
+	            else
+	            {
 	            	error.setText(results);
 	            }
         	}
         }
-        else{
+        else
+        {
         	error.setText("Result was null");
         }
        }
