@@ -152,6 +152,8 @@ public class Game extends Activity
 				else
 				{
 					//this is a regular user playing a white card
+					//set variable to which card they clicked then
+					//when the submit button is pressed register them playing that card
 					String cardText = card1.getText().toString();
 					playWhiteCard(cardText);
 				}
@@ -464,26 +466,6 @@ public class Game extends Activity
 		}
 	}
 	
-	public void czarRefreshCards()
-	{
-		/*
-		 * In refresh call this and if the number of cards played == numotherusers.size - 1
-		 * change gui and update white cards to the to the ones the others have played
-		 */
-		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarRefreshCards?UserID=" + userID + "&GameID="+gameID;
-    	check = "CzarRefreshCards";
-    	ConnectivityManager connMgr = (ConnectivityManager) 
-		getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        //error.setText("creating");
-        if (networkInfo != null && networkInfo.isConnected()) {
-            new DownloadWebpageText().execute(stringUrl);
-        } else {
-            //error.setText("No network connection available.");
-        }
-	}
-	
 	public void playWhiteCard(String text)
 	{
 		//URL contains the userID and gameID
@@ -503,7 +485,7 @@ public class Game extends Activity
 	public void czarSelectCard(String text)
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/czarSelectCard?UserID=" + userID + "&GameID="+gameID + "&CzarCard="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?UserID=" + userID + "&GameID="+gameID + "&CzarCard="+text;
     	check = "CzarSelectCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -530,9 +512,6 @@ public class Game extends Activity
         } else {
             //error.setText("No network connection available.");
         }
-        
-        //do we call it to check every time the user refresh
-        //czarRefreshCards();
 	}
 	
 	public void inviteList()
@@ -633,6 +612,14 @@ private class DownloadWebpageText extends AsyncTask {
 							card5.setVisibility(card5.INVISIBLE);
 						}
 						
+						//clear text to make sure we dont leave old stuff and
+						//keep the new items only showing
+						card1.setText("");
+						card2.setText("");
+						card3.setText("");
+						card4.setText("");
+						card5.setText("");
+						
 						if(currentUser.whiteCardsList.size() > 0)
 							card1.setText(currentUser.whiteCardsList.get(0));
 						if(currentUser.whiteCardsList.size() > 1)
@@ -655,6 +642,20 @@ private class DownloadWebpageText extends AsyncTask {
 						//put game round to gui
 						currentRound.setText("Currend Round = " + currentUser.gameRound);
 						
+						if(currentUser.currentCzar.equals(userName))
+						{
+							//this is the card czar deal with his cards
+							if(currentUser.whiteCardsList.size() == currentUser.otherUsers.size() - 1)
+							{
+								int numCardsLeft = currentUser.otherUsers.size()-1 - currentUser.whiteCardsList.size();
+								chatBox.setText("You are the Card Czar!\nWe are waiting on " + numCardsLeft + " cards");
+							}
+							else
+							{
+								chatBox.setText("You are the Card Czar!\nSelect the winner!");
+							}
+						}
+						
 						//game round, list of users in game, current czar, your list of white cards,
 						//the black card from the czar,
 						//Note we are using ; as the delim you should do a String.split(";")
@@ -668,45 +669,6 @@ private class DownloadWebpageText extends AsyncTask {
 						 */
 						//function for I am card czar and find out what people played
 					}
-	            	
-	            	else if(resultArray!=null && resultArray[0].equals("CzarRefreshCards"))
-	            	{
-	            		/*
-	            		 * You can call this each time you refresh then after this make a trigger
-	            		 * to move to the next round
-	            		 * Example data
-	            		 * 4;card1 description; card2 description; card3 description; card4 description
-	            		 */
-	            		ArrayList<String> data;
-						data = new ArrayList<String>(Arrays.asList(resultArray));
-						data.remove(0);//we are removing the check data field
-						int numCardsPlayed = Integer.parseInt(data.get(0));
-						if(numCardsPlayed == currentUser.otherUsers.size() - 1 && userName.equals(currentUser.currentCzar))
-						{
-							//everyone has played their card and this is the card czar
-							//change the gui and have the card czar select
-							List<String> otherCards = new ArrayList<String>();
-							for(int i=0; i<numCardsPlayed; i++)
-							{
-								otherCards.add(data.get(i+1));
-							}
-							if(otherCards.size() > 0)
-								card1.setText(otherCards.get(0));
-							if(otherCards.size() > 1)
-								card2.setText(otherCards.get(1));
-							if(otherCards.size() > 2)
-								card3.setText(otherCards.get(2));
-							if(otherCards.size() > 3)
-								card4.setText(otherCards.get(3));
-							if(otherCards.size() > 4)
-								card5.setText(otherCards.get(4));
-							//gui is updated now deal with pressing the buttons
-						}
-						else
-						{
-							//not everyone has played their card yet
-						}
-	            	}
 	            	
 					else if(resultArray[0]=="none") {
 						Toast.makeText(Game.this, "Error in RefreshUser", Toast.LENGTH_SHORT).show();
