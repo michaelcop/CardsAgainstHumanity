@@ -551,7 +551,7 @@ private class DownloadWebpageText extends AsyncTask {
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	            if(results!=null){
-					//error.setText("");Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
+	            	
 	            	String[] resultArray = results.split(";");
 	            	if(resultArray!=null && resultArray[0].equals("RefreshGame")){
 	            		//lets delete the contents of the the arraylist other users and whiteCardsList
@@ -566,6 +566,7 @@ private class DownloadWebpageText extends AsyncTask {
 						int numOtherUsers = Integer.parseInt(data.get(1));
 						int userNameStartIndex = 2;
 						int userNameEndIndex = userNameStartIndex + (numOtherUsers *2);
+						
 						for(int i=userNameStartIndex; i<userNameEndIndex; i+=2)
 						{
 							currentUser.otherUsers.add(data.get(i));
@@ -575,10 +576,10 @@ private class DownloadWebpageText extends AsyncTask {
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
 						int whiteCardsStartIndex = userNameEndIndex + 2;
 						int whiteCardsEndIndex = (numWhiteCards*2) + whiteCardsStartIndex;
-						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i++)
+						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i+=2)
 						{
 							currentUser.whiteCardsID.add(Integer.parseInt(data.get(i)));
-							currentUser.whiteCardsList.add(data.get(i));
+							currentUser.whiteCardsList.add(data.get(i+1));
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
 						
