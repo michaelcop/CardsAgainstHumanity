@@ -12,6 +12,7 @@ public class User
 	public String currentCzar;
 	public boolean isCzar;
 	public List<String> whiteCardsList;
+	public List<Integer> whiteCardsID;
 	public String blackCard;
 	public int userScore;
 	
@@ -20,6 +21,7 @@ public class User
 		otherUsers = new ArrayList<String>();
 		otherUsersScore = new ArrayList<Integer>();
 		whiteCardsList = new ArrayList<String>();
+		whiteCardsID = new ArrayList<Integer>();
 	}
 	
 	private String password;
