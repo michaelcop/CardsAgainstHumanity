@@ -256,6 +256,7 @@ public class Game extends Activity
         	gameID = Integer.parseInt(g);}
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
+        	Toast.makeText(Game.this, "GameID = " + gameID + " , UserID = " + userID + " , UserName = " + userName, Toast.LENGTH_LONG).show();
 		}
     	Log.d("FUCK", "MIKE TOO");
 		TextView vd = (TextView) findViewById(R.id.textView3);
@@ -294,6 +295,8 @@ public class Game extends Activity
             Intent set2 = new Intent(Game.this, InviteFriends.class);
             set2.putExtra("GameId", String.valueOf(gameID));
             set2.putExtra("UserId", userID);
+            set2.putExtra("UserName", userName);
+
             startActivityForResult(set2, 0);
             return true;
             
