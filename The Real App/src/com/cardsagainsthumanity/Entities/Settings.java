@@ -34,13 +34,13 @@ public class Settings extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.settings);
 		
+		//Get stored default round data --------------------------------------------
 		inputDefaultRounds = (EditText) findViewById(R.id.DefaultRoundsValue);
 		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-    	
 		if(othSettings.contains("defGameRounds"))
 		{
 			inputDefaultRounds.setText(othSettings.getString("defGameRounds", ""));
-		}
+		} //End get def rounds data ------------------------------------------------
 		
 		
 		//Save Button listener----------------------------------------------
@@ -58,11 +58,12 @@ public class Settings extends Activity
 				}
 				
             	
-
+				//Gets and stores default game rounds --------------------------------
             	defaultGameRounds = inputDefaultRounds.getText().toString();
             	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
             	SharedPreferences.Editor spEditor = othSettings.edit();
             	spEditor.putString("defGameRounds", defaultGameRounds).commit();
+            	//End def game rounds store ------------------------------------------
 				
 			}
 			
@@ -118,6 +119,7 @@ public class Settings extends Activity
 
 	void logOut()
 	{
+		//Erase user preferences info.
 		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
     	SharedPreferences.Editor spEditor = othSettings.edit();
     	spEditor.remove("UserName").commit();
@@ -133,6 +135,7 @@ public class Settings extends Activity
     		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();
     	//End logout message  --------------JK
     	
+    	//Goes back to login screen
     	Settings.this.finish();
     	Intent intent = new Intent(getApplicationContext(), StartPage.class);
     	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -189,7 +192,8 @@ public class Settings extends Activity
 	        
 	        char[] inputBuffer = new char[100];
 	        isr.read(inputBuffer);
-	        String readString = new String(inputBuffer);
+	        @SuppressWarnings("unused")
+			String readString = new String(inputBuffer);
 		}
 		catch(IOException ioe)
 		{
