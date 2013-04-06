@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:text="@string/numRounds"
-        android:textColor="@color/white" />
+        android:textColor="@color/White" />
 
     <TextView
         android:id="@+id/textView1"
