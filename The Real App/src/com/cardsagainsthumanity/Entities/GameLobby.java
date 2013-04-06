@@ -141,7 +141,44 @@ public class GameLobby extends Activity
         	return true;
         	
         case R.id.exit_button:
-        	GameLobby.this.finish();
+        	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+   		 
+			// set title
+			alertDialogBuilder.setTitle("Leaving \"Oh the Humanity!\"");
+ 
+			// set dialog message
+			alertDialogBuilder
+				.setMessage("Do you want to close application or quit game?")
+				.setCancelable(true)
+				.setPositiveButton("Close",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// close current activity
+						GameLobby.this.finish();
+					}
+				  })
+				  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						exitURLHandler();//deal with exiting on post execute
+						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+	                	SharedPreferences.Editor spEditor = othSettings.edit();
+	                	spEditor.remove("inGame").commit();
+	                	spEditor.remove("CurGameID").commit();
+						GameLobby.this.finish();
+					} 
+				
+				}) 
+				.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// cancel back button op
+						dialog.cancel();
+					}
+				
+				});
+ 
+				// create and show alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				alertDialog.show();
+				return true;
  
         default:
             return super.onOptionsItemSelected(item);
