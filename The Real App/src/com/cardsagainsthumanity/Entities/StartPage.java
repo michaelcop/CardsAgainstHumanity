@@ -1,23 +1,16 @@
 package com.cardsagainsthumanity.Entities;
 
 
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Random;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +26,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class StartPage extends Activity {
 	
@@ -79,6 +71,7 @@ public class StartPage extends Activity {
 	        	}
 	        	*/
 	        	
+	        	//Encrypt pw ---------------------------------------------------------------------------------
 	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
                 MessageDigest Enc = null;
                 try {
@@ -89,8 +82,9 @@ public class StartPage extends Activity {
                 } // Encryption algorithm
                 Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
                 sha = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
-                //Digest made
+                //Digest made ---------------------------------------------------------------------------------
                 
+                //Send to db -----------------------------------------------------------------------------------
 	        	String stringUrl = "http://54.225.225.185:8080/ServerAPP/Login?User="+userName+"&password="+sha;
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
         		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -104,7 +98,7 @@ public class StartPage extends Activity {
                     
                 } else {
                     login.setText("No network connection available.");
-                }
+                } // End send to db------------------------------------------------------------------------------
                 
         	}
 			
@@ -119,8 +113,8 @@ public class StartPage extends Activity {
 			@Override
 			public void onClick(View v) 
 			{
-				Intent myIntent = new Intent(v.getContext(), CreateAccount.class);
-                startActivity(myIntent);
+				Intent createAccountIntent = new Intent(v.getContext(), CreateAccount.class);
+                startActivity(createAccountIntent);
 				
 			}
 			
@@ -148,16 +142,15 @@ public class StartPage extends Activity {
 	            String[] resultArr = results.split(":"); 
                 if(resultArr[0].equals("User")){
                 	
-                	//Store Username and ID in SharedPref
+                	//Store Username and ID in SharedPref ------------------------------
                 	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("UserName", userName.toString()).commit();
                 	UserId = resultArr[1].toString();
                 	spEditor.putString("ID", UserId).commit();
-                	//End storing username
+                	//End storing username ---------------------------------------------
                 	
-                	//Need to encrypt password and store
-                	
+                	//Need to encrypt password and store ----------------------------------------------------------
                 	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
                     MessageDigest Enc = null;
                     try {
@@ -168,18 +161,18 @@ public class StartPage extends Activity {
                     } // Encryption algorithm
                     Enc.update(stringThatNeedsToBeEncrpyted.getBytes(), 0, stringThatNeedsToBeEncrpyted.length());
                     String sha1 = new BigInteger(1, Enc.digest()).toString(16); //Make the Encrypted string
-                                  	
+                    
                 	//Store hash to file
-                    spEditor.putString("digest", sha1).commit();			    
-                                	
-                	//End store password
+                    spEditor.putString("digest", sha1).commit();			         	
+                	//End store password -------------------------------------------------------------------------
                 	
-                	Intent myIntent = new Intent(v.getContext(), MainMenu.class);
-                	myIntent.putExtra("UserName", userName);
-                	myIntent.putExtra("UserId", UserId);
+                    //Start MainMenu -----------------------------------------------------------------------------
+                	Intent mainMenuIntent = new Intent(v.getContext(), MainMenu.class);
+                	mainMenuIntent.putExtra("UserName", userName);
+                	mainMenuIntent.putExtra("UserId", UserId);
                 	login.setText("");
-                	startActivityForResult(myIntent, 0);
-                	StartPage.this.finish();	//Close login page when Main<enu starts
+                	startActivityForResult(mainMenuIntent, 0);
+                	StartPage.this.finish();	//Close login page when MainMenu starts ---------------------------
                 	
                 }
                 else{
