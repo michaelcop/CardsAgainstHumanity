@@ -87,8 +87,8 @@ public class StartActivity extends Activity
 		else
 		{
 			super.onCreate(savedInstanceState);
-			Intent myIntent = new Intent(this, StartPage.class);
-			startActivity(myIntent);
+			Intent startPageIntent = new Intent(this, StartPage.class);
+			startActivity(startPageIntent);
 			StartActivity.this.finish();
 		}// End login on startup -----------------------------------------------------------------------------------
 		
@@ -121,10 +121,10 @@ public class StartActivity extends Activity
              	UserId = resultArr[1];
              	
              	
-             	Intent myIntent = new Intent(context, MainMenu.class);
-             	myIntent.putExtra("UserName", userName);
-             	myIntent.putExtra("UserId", UserId);
-             	startActivityForResult(myIntent, 0);
+             	Intent mainMenuIntent = new Intent(context, MainMenu.class);
+             	mainMenuIntent.putExtra("UserName", userName);
+             	mainMenuIntent.putExtra("UserId", UserId);
+             	startActivityForResult(mainMenuIntent, 0);
              	StartActivity.this.finish();	//Close StartActivity page when MainMenu starts
              	
              }
