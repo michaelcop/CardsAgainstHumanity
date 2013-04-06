@@ -19,12 +19,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -46,6 +51,7 @@ public class FriendsList extends Activity
 	private ProgressBar mProgress;
 	
 	ArrayList<String> testStrings;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -98,7 +104,7 @@ public class FriendsList extends Activity
 		
 		// Get the TableLayout
         t = (TableLayout) findViewById(R.id.friendsTable);
-
+        
         // Go through each item in the array
         for ( current = 0; current < testStrings.size(); current++)
         {
@@ -107,8 +113,7 @@ public class FriendsList extends Activity
         	// Create a TableRow and give it an ID
             TableRow tr = new TableRow(this);
             tr.setId(UserId);
-            tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));   
-
+            tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT , LayoutParams.WRAP_CONTENT));   
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
             labelTV.setText(testStrings.get(++current));
@@ -119,16 +124,21 @@ public class FriendsList extends Activity
             tr.setBackgroundResource(R.drawable.friendsrow);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
-
             // Create a TextView to house the value of the after-tax income
             
             final Button b = new Button(this);
             b.setId(++buttonId);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             b.setHint("UserId:"+UserId);
-            if(testStrings.get(current).equals("1")){
+            if(testStrings.get(current).equals("1"))
+            {
             	b.setText("Delete");
-            	b.setWidth(20);
+
+            	//Toast.makeText(getApplicationContext(), b.getHeight(), Toast.LENGTH_LONG).show();
+                
+                //final LayoutParams lparams = new LayoutParams(60,60); // Width , height
+                //b.setLayoutParams(lparams);
+	            
             	b.setOnClickListener(new OnClickListener()
         		{
 
@@ -281,6 +291,7 @@ public class FriendsList extends Activity
 						final Button button =  (Button) findViewById(++buttonId);
 						String UserIdReturned =  resultArray[1];
 						button.setText("Delete");
+						button.setWidth(LayoutParams.WRAP_CONTENT);
 						button.setEnabled(true);
 						button.setHint("UserId:"+UserIdReturned);
                 		Toast.makeText(context, "accepted!", Toast.LENGTH_SHORT).show();

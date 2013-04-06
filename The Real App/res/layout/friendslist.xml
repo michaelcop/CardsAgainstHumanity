@@ -14,23 +14,30 @@
         android:text="@string/returntomenu"
         android:textColor="@color/White" />
 
-    <TableLayout
-        android:id="@+id/friendsTable"
-        android:layout_width="250dp"
-        android:layout_height="220dp"
-        android:layout_above="@+id/ReturnToMenu"
+    <ScrollView 
+        android:id="@+id/ScrollView01" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnAddFriend"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:stretchColumns="0,1" >
-
-        <TextView
-            android:id="@+id/error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/error" />
-
-    </TableLayout>
+        android:layout_above="@+id/ReturnToMenu"
+        android:layout_centerHorizontal="true">
+ 
+	    <TableLayout
+	        android:id="@+id/friendsTable"
+	        android:layout_width="250dp"
+	        android:layout_height="220dp"
+	        android:layout_marginBottom="17dp"
+	        android:stretchColumns="0,1" >
+	
+	        <TextView
+	            android:id="@+id/error"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/error" />
+	
+	 	</TableLayout>
+	 	
+	</ScrollView>
 
     <TextView
         android:id="@+id/FriendsList"
@@ -52,10 +59,7 @@
         android:layout_marginTop="18dp"
         android:background="@color/White"
         android:ems="10"
-        android:inputType="text" >
-
-        <requestFocus />
-    </EditText>
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btnAddFriend"

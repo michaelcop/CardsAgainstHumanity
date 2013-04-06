@@ -112,7 +112,8 @@ public class JoinGame extends Activity
 		            b.setId(-1*gameID);
 		            b.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
 		            b.setText("Accept");
-		            b.setTextSize(12);
+		            
+		            
 		            b.setHint("GameId:"+gameID);
 		            tr.addView(b);
 		            b.setOnClickListener(new OnClickListener()
