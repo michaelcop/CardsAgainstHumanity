@@ -8,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -67,9 +71,48 @@ public class LeaveGame extends HttpServlet implements DataSource {
 			Statement stmt;
 			ResultSet rs;
 			int rs2, rs3, rs4;
-			String rs5;
+			ResultSet rs5, rs6;
 			try {
 				stmt = connection.createStatement();
+				
+				// Take Cards from player and put them in the deck before player deleted
+				//Shuffle the deck after
+				rs5 = stmt.executeQuery("SELECT GameDeck FROM tblGames WHERE GameID = " + GameID + ";");
+				rs5.beforeFirst();
+				String GameDeck="", UserHand="";
+				//Check if result set returned any records
+				if(rs5.next()){
+					 GameDeck = rs5.getString(1);
+				}
+				rs6 = stmt.executeQuery("SELECT PlayerHand FROM tblPlayers WHERE PlayerUserID = " + UserID + ";");
+				rs6.beforeFirst();
+				
+				//Check if result set returned any records
+				if(rs6.next()){
+					 UserHand = rs6.getString(1);
+				}
+				
+				//out.println(UserHand);
+				
+				String[] temp = UserHand.split(";");
+				String[] temp2 = GameDeck.split(";");
+				
+				ArrayList<String> UserHandList = new ArrayList<String>(Arrays.asList(temp));
+				ArrayList<String> GameHandList = new ArrayList<String>(Arrays.asList(temp2));
+				
+				GameHandList.addAll(UserHandList);
+				
+				Collections.shuffle(GameHandList, new Random(UserID));
+				GameDeck = "";
+				for(String str: GameHandList){
+					GameDeck = GameDeck + str + ";";
+				}
+				if(GameDeck.endsWith(";")){
+					GameDeck =  GameDeck.substring(0, GameDeck.length()-1);
+				}
+				
+				//out.println(GameDeck);
+				
 				
 				//Query to delete a user from the Players table - Leave a game
 				rs2 = stmt.executeUpdate("DELETE FROM tblPlayers WHERE PlayerGameID = "+ GameID +" AND PlayerUserID = "+ UserID +";");
@@ -86,7 +129,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 					//Check if result set returned any records
 					if(rs.next()){
 						//get number of players
-						NumPlayers = rs.getInt(1);
+						NumPlayers = rs.getInt(1);						
 					}
 					else if(!rs.next()){
 						//No more players are in game
