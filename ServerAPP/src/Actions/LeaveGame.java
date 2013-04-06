@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -70,7 +70,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 		if(connection != null){
 			Statement stmt;
 			ResultSet rs;
-			int rs2, rs3, rs4;
+			int rs2, rs3, rs4, rs7;
 			ResultSet rs5, rs6;
 			try {
 				stmt = connection.createStatement();
@@ -112,6 +112,14 @@ public class LeaveGame extends HttpServlet implements DataSource {
 				}
 				
 				//out.println(GameDeck);
+			
+				// Update Game Deck
+				rs7 = stmt.executeUpdate("UPDATE tblGame SET tblGame.GameDeck = '"+ GameDeck +"' WHERE GameID ="+ GameID +";");
+				
+				if(rs7 == 0)
+				{
+					out.print("Error: updating deck");
+				}
 				
 				
 				//Query to delete a user from the Players table - Leave a game
