@@ -43,6 +43,13 @@ public class StartActivity extends Activity
 	@SuppressWarnings("unchecked")
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		//Used for closing app while clearing entire activity stack
+		Bundle extras = getIntent().getExtras();
+		if (extras != null && extras.getBoolean("EXIT")) 
+		{
+			StartActivity.this.finish();
+		}
+		
 		//Auto-Login --------------------------------------------------------------------------------------------
 		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		if(othSettings.contains("UserName") && othSettings.contains("digest") && othSettings.contains("ID"))
