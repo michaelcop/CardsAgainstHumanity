@@ -83,7 +83,7 @@ public class CreateGame extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				/*
+				
 				String numRounds = ((EditText) findViewById(R.id.numRounds)).getText().toString();
 				if(numRounds == null || numRounds.trim().equals(""))
 				{
@@ -98,7 +98,7 @@ public class CreateGame extends Activity
 					Toast.makeText(CreateGame.this, "Number of rounds invalid defaulting to 10", Toast.LENGTH_LONG).show();
 					rounds = 10;
 	        	}
-				*/
+				
 				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
 				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "Game";

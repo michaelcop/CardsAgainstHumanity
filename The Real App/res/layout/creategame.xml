@@ -33,14 +33,6 @@
         android:text="@string/error"
         android:textColor="@color/white" />
 
-    <Spinner
-        android:id="@+id/roundsSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/NumberofRoundsLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
-
     <TextView
         android:id="@+id/NumberofRoundsLabel"
         android:layout_width="wrap_content"
@@ -71,5 +63,23 @@
         android:layout_alignBottom="@+id/error"
         android:layout_centerHorizontal="true"
         android:visibility="invisible" />
+
+    <Spinner
+        android:id="@+id/roundsSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnCreate"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/numRounds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NumberofRoundsLabel"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/numRounds"
+        android:textColorHint="@color/white" />
 
 </RelativeLayout>
