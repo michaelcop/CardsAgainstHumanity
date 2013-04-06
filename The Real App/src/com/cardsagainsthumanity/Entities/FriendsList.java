@@ -73,6 +73,7 @@ public class FriendsList extends Activity
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
 					if(User2!="" && User2!=null && UserName!=null && (!User2.equals(UserName))){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
+						mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 						Toast.makeText(context, stringUrl, Toast.LENGTH_SHORT).show();
                 		
 						callUrl(stringUrl);}
@@ -138,6 +139,7 @@ public class FriendsList extends Activity
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
+        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				callUrl(stringUrl);
         			}
@@ -158,6 +160,7 @@ public class FriendsList extends Activity
         				String[] temp = b.getHint().toString().split(":");
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
+        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 			        	error.setText("USER ID FOR DELETION IS: " +ID);
         				callUrl(stringUrl);
         			}
