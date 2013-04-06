@@ -7,13 +7,8 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -23,17 +18,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -74,24 +64,26 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			@Override
 			public void onClick(View v) 
 			{
-				Intent myIntent = new Intent(context, MainMenu.class);
-             	myIntent.putExtra("UserName", UserName);
-             	myIntent.putExtra("UserId", userId);
-             	startActivityForResult(myIntent, 0);
+				Intent mainMenuIntent = new Intent(context, MainMenu.class);
+             	mainMenuIntent.putExtra("UserName", UserName);
+             	mainMenuIntent.putExtra("UserId", userId);
+             	startActivityForResult(mainMenuIntent, 0);
              	CreateGame.this.finish();	//Close CreateGame page when MainMenu starts
 			}
 			
 		});
-	
-		Spinner spinner = (Spinner) findViewById(R.id.roundSpinner);
+		
+		//Setup drop down for game rounds ---------------------------------------------------------------
+		Spinner inputGameRounds = (Spinner) findViewById(R.id.roundSpinner);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.roundArray, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(this);
+		inputGameRounds.setAdapter(adapter);
+		inputGameRounds.setOnItemSelectedListener(this);
+		//End drop down ----------------------------------------------------------------------------------
 		
 		Button createButton = (Button) findViewById(R.id.btnCreate);
 		
@@ -102,6 +94,7 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			{
 				if(rounds == 0)
 				{
+					//Use default rounds settings if available --------------------------------------------------------------
 					SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 					if(othSettings.contains("defGameRounds"))
 					{
@@ -124,13 +117,13 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			                error.setText("No network connection available.");
 			            }
 					}
-					else
+					else //Invalid rounds number
 					{
 						Toast.makeText(getApplicationContext(), "Please select a valid numerical value.", Toast.LENGTH_LONG).show();
 
-					}
+					} //End use default rounds ---------------------------------------------------------------------------------
 	        	}
-				else
+				else //Use chosen rounds number --------------------------------------------------------------------------------
 				{
 					String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
 					mProgress = (ProgressBar) findViewById(R.id.progressBar1);
@@ -148,7 +141,7 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 		            {
 		                error.setText("No network connection available.");
 		            }
-				}
+				} //End use chosen rounds number --------------------------------------------------------------------------------
 			}
 			
 		});
@@ -191,25 +184,18 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 	            	Toast.makeText(CreateGame.this, "Created Game", Toast.LENGTH_SHORT).show();
 					error.setText("");
 					
-					Intent myIntent = new Intent(CreateGame.this, GameLobby.class);
-	            	myIntent.putExtra("GameID", resultArr[1]);
+					//Goes to game lobby from create game -------------------------------------------------
+					Intent gameLobbyIntent = new Intent(CreateGame.this, GameLobby.class);
+	            	gameLobbyIntent.putExtra("GameID", resultArr[1]);
 	            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("CurGameID", resultArr[1]).commit(); //Stores current game ID
                 	spEditor.putBoolean("inGame", true).commit();   //Sets flag for user being in game
-	            	myIntent.putExtra("UserName", UserName);
-	            	myIntent.putExtra("UserID", userId);
-	            	startActivity(myIntent);
+	            	gameLobbyIntent.putExtra("UserName", UserName);
+	            	gameLobbyIntent.putExtra("UserID", userId);
+	            	startActivity(gameLobbyIntent);
 	            	CreateGame.this.finish();
-					
-					//mike changing it to go to GameLobby.java first instead of Game.java
-					/*
-	            	Intent myIntent = new Intent(CreateGame.this, Game.class);
-	            	myIntent.putExtra("GameID", resultArr[1]);
-	            	myIntent.putExtra("UserName", UserName);
-	            	myIntent.putExtra("UserID", userId);
-	            	startActivity(myIntent);
-	            	*/	
+	            	//End going to game lobby ---------------------------------------------------------------	
 	            }
 	            else{
 	            	error.setText(results);
@@ -271,10 +257,10 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			
 		    if (keyCode == KeyEvent.KEYCODE_BACK) 
 		    {
-		    	Intent myIntent = new Intent(context, MainMenu.class);
-             	myIntent.putExtra("UserName", UserName);
-             	myIntent.putExtra("UserId", userId);
-             	startActivityForResult(myIntent, 0);
+		    	Intent mainMenuIntent = new Intent(context, MainMenu.class);
+             	mainMenuIntent.putExtra("UserName", UserName);
+             	mainMenuIntent.putExtra("UserId", userId);
+             	startActivityForResult(mainMenuIntent, 0);
              	CreateGame.this.finish();	//Close CreateGame page when MainMenu starts
 		    }
 				
