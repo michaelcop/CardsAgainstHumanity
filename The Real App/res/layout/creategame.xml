@@ -78,8 +78,9 @@
         android:layout_below="@+id/NumberofRoundsLabel"
         android:layout_centerHorizontal="true"
         android:ems="10"
+        android:hint="@string/numRounds"
         android:inputType="number"
-        android:text="@string/numRounds"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/White"
+        android:textColorHint="@color/Gray" />
 
 </RelativeLayout>
