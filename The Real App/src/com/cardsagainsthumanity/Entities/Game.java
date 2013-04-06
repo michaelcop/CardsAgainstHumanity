@@ -143,6 +143,15 @@ public class Game extends Activity
 				 * they have played this white card
 				 * playWhiteCard(get button text)
 				 */
+				if(userName.equals(currentUser.currentCzar))
+				{
+					//get text off card and post to server and post which user the card belonged to 
+					String cardtText = card1.getText().toString();
+				}
+				else
+				{
+					//this is a regular user playing a white card
+				}
 				card1.setBackgroundResource(R.drawable.selectedcard);
 				
 				card2.setBackgroundResource(R.drawable.white);
@@ -452,15 +461,15 @@ public class Game extends Activity
 		}
 	}
 	
-	public void czarCardSelected()
+	public void czarRefreshCards()
 	{
 		/*
 		 * In refresh call this and if the number of cards played == numotherusers.size - 1
 		 * change gui and update white cards to the to the ones the others have played
 		 */
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarCardSelected?UserID=" + userID + "&GameID="+gameID;
-    	check = "CzarCardSelected";
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarRefreshCards?UserID=" + userID + "&GameID="+gameID;
+    	check = "CzarRefreshCards";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -473,6 +482,11 @@ public class Game extends Activity
 	}
 	
 	public void playWhiteCard(String text)
+	{
+		
+	}
+	
+	public void czarSelectCard()
 	{
 		
 	}
@@ -493,7 +507,7 @@ public class Game extends Activity
         }
         
         //do we call it to check every time the user refresh
-        //czarCardSelected();
+        czarRefreshCards();
 	}
 	
 	public void inviteList()
@@ -630,7 +644,7 @@ private class DownloadWebpageText extends AsyncTask {
 						//function for I am card czar and find out what people played
 					}
 	            	
-	            	else if(resultArray!=null && resultArray[0].equals("CzarCardSelected"))
+	            	else if(resultArray!=null && resultArray[0].equals("CzarRefreshCards"))
 	            	{
 	            		/*
 	            		 * You can call this each time you refresh then after this make a trigger
