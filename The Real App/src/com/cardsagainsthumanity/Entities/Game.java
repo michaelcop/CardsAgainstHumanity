@@ -51,8 +51,8 @@ public class Game extends Activity
 	public User currentUser;//this is the meat of the data the where it is stored see User.java
 	//for more info
 	
-	int gameID;
-	String userID;
+	int gameId;
+	String userId;
 	
 	String submissionID;
 	String newCardText;
@@ -275,18 +275,18 @@ public class Game extends Activity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
         	Log.d("FUCK", "Jimmy");
-        	String g = extras.getString("GameID");
+        	String g = extras.getString("gameId");
         	Log.d("FUCK", "Jimmy2");
         	if(g!=null){
-        	gameID = Integer.parseInt(g);}
-        	userID = extras.getString("UserID");
-        	userName = extras.getString("UserName");
-        	Toast.makeText(Game.this, "GameID = " + gameID + " , UserID = " + userID + " , UserName = " + userName, Toast.LENGTH_LONG).show();
+        	gameId = Integer.parseInt(g);}
+        	userId = extras.getString("userId");
+        	userName = extras.getString("userName");
+        	Toast.makeText(Game.this, "GameID = " + gameId + " , UserID = " + userId + " , UserName = " + userName, Toast.LENGTH_LONG).show();
 		}
     	Log.d("FUCK", "MIKE TOO");
 		TextView vd = (TextView) findViewById(R.id.textView3);
 		if(vd!=null){
-			vd.setText(""+gameID);
+			vd.setText(""+gameId);
 		}
 	}
 	
@@ -318,8 +318,8 @@ public class Game extends Activity
         case R.id.invite_friend:
             // Toast.makeText(MainMenu.this, "Invite Friend is Selected", Toast.LENGTH_SHORT).show();
             Intent set2 = new Intent(Game.this, InviteFriends.class);
-            set2.putExtra("GameId", String.valueOf(gameID));
-            set2.putExtra("UserId", userID);
+            set2.putExtra("GameId", String.valueOf(gameId));
+            set2.putExtra("UserId", userId);
             set2.putExtra("UserName", userName);
 
             startActivityForResult(set2, 0);
@@ -379,11 +379,11 @@ public class Game extends Activity
 	}
 
 	public int getGameID() {
-		return gameID;
+		return gameId;
 	}
 
 	 void setGameID(int gameID) {
-		this.gameID = gameID;
+		this.gameId = gameID;
 	}
 
 	 public int getMaxUser() {
@@ -469,7 +469,7 @@ public class Game extends Activity
 	public void playWhiteCard(String text)
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?UserID=" + userID + "&GameID="+gameID + "&WhiteCard="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?UserID=" + userId + "&GameID="+gameId + "&WhiteCard="+text;
     	check = "PlayWhiteCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -485,7 +485,7 @@ public class Game extends Activity
 	public void czarSelectCard(String text)
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?UserID=" + userID + "&GameID="+gameID + "&CzarCard="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?UserID=" + userId + "&GameID="+gameId + "&CzarCard="+text;
     	check = "CzarSelectCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -501,7 +501,7 @@ public class Game extends Activity
 	public void refreshUser()
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?UserID=" + userID + "&GameID="+gameID;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?UserID=" + userId + "&GameID="+gameId;
     	check = "RefreshGame";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -761,8 +761,8 @@ private class DownloadWebpageText extends AsyncTask {
 				                	spEditor.remove("CurGameID").commit();
 				                	Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 							    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							    	intent.putExtra("UserName", userName);
-							    	intent.putExtra("UserId", userID);
+							    	intent.putExtra("userName", userName);
+							    	intent.putExtra("userId", userId);
 							    	startActivity(intent);
 									Game.this.finish();
 								} 
@@ -792,7 +792,7 @@ private class DownloadWebpageText extends AsyncTask {
 			{
 				//URL contains the userID and gameID
 				//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
-				String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameID+"&User="+userID;
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameId+"&User="+userId;
 		    	check = "LeaveGame";
 		    	ConnectivityManager connMgr = (ConnectivityManager) 
 				getSystemService(Context.CONNECTIVITY_SERVICE);

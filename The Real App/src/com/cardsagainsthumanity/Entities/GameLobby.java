@@ -37,8 +37,8 @@ public class GameLobby extends Activity
 	int minNumberPlayers;
 	TextView gameSizeTextView;
 	
-	String gameID;
-	String userID;
+	String gameId;
+	String userId;
 	String check;
 	
 	int numPlayersInGame = 0;
@@ -61,10 +61,10 @@ public class GameLobby extends Activity
 		setContentView(R.layout.lobby);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-        	String g = extras.getString("GameID");
-        	gameID = g;
-        	userID = extras.getString("UserID");
-        	userName = extras.getString("UserName");
+        	String g = extras.getString("gameId");
+        	gameId = g;
+        	userId = extras.getString("userId");
+        	userName = extras.getString("userName");
 		}
 		
 		ActionBar actionBar = GameLobby.this.getActionBar();
@@ -134,8 +134,8 @@ public class GameLobby extends Activity
         case R.id.invite_friend:
         	 Intent setFriend = new Intent(GameLobby.this, InviteFriends.class);
         	 setFriend.putExtra("UserName", userName);        	 
-        	 setFriend.putExtra("UserId", userID);
-        	 setFriend.putExtra("GameId", gameID);
+        	 setFriend.putExtra("UserId", userId);
+        	 setFriend.putExtra("GameId", gameId);
         	 startActivityForResult(setFriend, 0);
              return true;
              
@@ -192,7 +192,7 @@ public class GameLobby extends Activity
 	{
 		//URL contains the userID and gameID
 		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?Game="+gameID;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?Game="+gameId;
 		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
     	check = "GameLobby";
     	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -213,7 +213,7 @@ public class GameLobby extends Activity
 	{
 		//URL contains the userID and gameID
 		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameID+"&User="+userID;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameId+"&User="+userId;
 		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
     	check = "LeaveGame";
     	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -281,8 +281,8 @@ private class DownloadWebpageText extends AsyncTask {
 							//stopRepeatingTask();
 							//go to start game activity and kill the game lobby activity
 							Intent myIntent = new Intent(GameLobby.this, Game.class);
-			            	myIntent.putExtra("UserName", userName);
-			            	myIntent.putExtra("UserID", userID);
+			            	myIntent.putExtra("userName", userName);
+			            	myIntent.putExtra("userId", userId);
 			            	startActivity(myIntent);
 			            	GameLobby.this.finish();
 						}
@@ -308,8 +308,8 @@ private class DownloadWebpageText extends AsyncTask {
 						GameLobby.this.finish();
 						Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 				    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				    	intent.putExtra("UserName", userName);
-				    	intent.putExtra("UserId", userID);
+				    	intent.putExtra("userName", userName);
+				    	intent.putExtra("userId", userId);
 				    	intent.putExtra("EXIT", true);
 				    	startActivity(intent);
 	            	} //End close lobby --------------------------------------------------------------------

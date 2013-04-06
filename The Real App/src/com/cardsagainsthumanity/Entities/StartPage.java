@@ -36,7 +36,7 @@ public class StartPage extends Activity {
     private EditText urlText;
     private TextView login;
     private String results;
-    private String UserId;
+    private String userId;
     private String sha;
     Button v;
     public static final String SPREF_USER = "othPrefs";
@@ -146,8 +146,8 @@ public class StartPage extends Activity {
                 	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("UserName", userName.toString()).commit();
-                	UserId = resultArr[1].toString();
-                	spEditor.putString("ID", UserId).commit();
+                	userId = resultArr[1].toString();
+                	spEditor.putString("ID", userId).commit();
                 	//End storing username ---------------------------------------------
                 	
                 	//Need to encrypt password and store ----------------------------------------------------------
@@ -168,8 +168,8 @@ public class StartPage extends Activity {
                 	
                     //Start MainMenu -----------------------------------------------------------------------------
                 	Intent mainMenuIntent = new Intent(v.getContext(), MainMenu.class);
-                	mainMenuIntent.putExtra("UserName", userName);
-                	mainMenuIntent.putExtra("UserId", UserId);
+                	mainMenuIntent.putExtra("userName", userName);
+                	mainMenuIntent.putExtra("userId", userId);
                 	login.setText("");
                 	startActivityForResult(mainMenuIntent, 0);
                 	StartPage.this.finish();	//Close login page when MainMenu starts ---------------------------

@@ -31,7 +31,7 @@ public class StartActivity extends Activity
     @SuppressWarnings("unused")
 	private EditText urlText;
     private String results;
-    private String UserId;
+    private String userId;
     
     private ImageView img;
 	private AnimationDrawable frameAnimation;
@@ -118,12 +118,12 @@ public class StartActivity extends Activity
              if(resultArr[0].equals("User")){
              	
             	            	
-             	UserId = resultArr[1];
+             	userId = resultArr[1];
              	
              	
              	Intent mainMenuIntent = new Intent(context, MainMenu.class);
-             	mainMenuIntent.putExtra("UserName", userName);
-             	mainMenuIntent.putExtra("UserId", UserId);
+             	mainMenuIntent.putExtra("userName", userName);
+             	mainMenuIntent.putExtra("userId", userId);
              	startActivityForResult(mainMenuIntent, 0);
              	StartActivity.this.finish();	//Close StartActivity page when MainMenu starts
              	

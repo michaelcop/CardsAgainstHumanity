@@ -43,10 +43,10 @@ import android.widget.Toast;
 public class MainMenu extends Activity 
 {
 	final Context context = this;
-	String UserName;
+	String userName;
 	String check;
     private TextView error;
-	private String UserId;
+	private String userId;
 	private ProgressBar mProgress;
 	
     public static final String SPREF_USER = "othPrefs";
@@ -57,9 +57,9 @@ public class MainMenu extends Activity
 		if(othSettings.contains("CurGameID") && othSettings.getBoolean("inGame", true))
 		{
 			Intent rejoin = new Intent(MainMenu.this, GameLobby.class);
-        	rejoin.putExtra("GameID", othSettings.getString("CurGameID", "wtf"));
-        	rejoin.putExtra("UserName", UserName);
-        	rejoin.putExtra("UserID", UserId);
+        	rejoin.putExtra("gameId", othSettings.getString("CurGameID", "wtf"));
+        	rejoin.putExtra("userName", userName);
+        	rejoin.putExtra("userId", userId);
         	startActivity(rejoin);
         	MainMenu.this.finish();
 		}
@@ -101,8 +101,8 @@ public class MainMenu extends Activity
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-		    UserName = extras.getString("UserName");
-		    UserId = extras.getString("UserId");
+		    userName = extras.getString("userName");
+		    userId = extras.getString("userId");
 		}
 		
 		//Create listener----------------------------------------------
@@ -116,9 +116,9 @@ public class MainMenu extends Activity
 			{
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), CreateGame.class);
-        		Toast.makeText(context, UserName, Toast.LENGTH_LONG).show();
-				cGame.putExtra("UserName", UserName);
-				cGame.putExtra("UserID", UserId);
+        		Toast.makeText(context, userName, Toast.LENGTH_LONG).show();
+				cGame.putExtra("userName", userName);
+				cGame.putExtra("userId", userId);
 
 				startActivity(cGame);
 				MainMenu.this.finish();
@@ -136,10 +136,10 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				Intent myIntent = new Intent(v.getContext(), JoinGame.class);
-				myIntent.putExtra("UserName", UserName);
-				myIntent.putExtra("UserID", UserId);
-				startActivity(myIntent);
+				Intent joinGameIntent = new Intent(v.getContext(), JoinGame.class);
+				joinGameIntent.putExtra("userName", userName);
+				joinGameIntent.putExtra("userId", userId);
+				startActivity(joinGameIntent);
 				
 			}
 			
@@ -154,7 +154,7 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				String stringUrl = "http://54.225.225.185:8080/ServerAPP/FriendsList?User="+UserName;
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/FriendsList?User="+userName;
 				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "Friends";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -179,9 +179,9 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				Intent myIntent = new Intent(v.getContext(), PlayerStats.class);
-                myIntent.putExtra("UserName", UserName);
-				startActivity(myIntent);
+				Intent pStatsIntent = new Intent(v.getContext(), PlayerStats.class);
+                pStatsIntent.putExtra("userName", userName);
+				startActivity(pStatsIntent);
 				
 			}
 			
@@ -196,8 +196,8 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				Intent myIntent = new Intent(v.getContext(), HowToPlay.class);
-				startActivity(myIntent);
+				Intent htpIntent = new Intent(v.getContext(), HowToPlay.class);
+				startActivity(htpIntent);
 			}
 			
 		});
@@ -318,9 +318,9 @@ public class MainMenu extends Activity
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);
 						myIntent.putStringArrayListExtra("data", data);
-						myIntent.putExtra("UserName", UserName);
-						myIntent.putExtra("UserId", UserId);
-						Toast.makeText(context, UserId, Toast.LENGTH_SHORT).show();
+						myIntent.putExtra("UserName", userName);
+						myIntent.putExtra("UserId", userId);
+						Toast.makeText(context, userId, Toast.LENGTH_SHORT).show();
 		            	startActivity(myIntent);
 					}
 					else if(resultArray[0]=="none") {

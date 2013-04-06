@@ -32,7 +32,7 @@ import android.widget.Toast;
 public class CreateGame extends Activity implements OnItemSelectedListener 
 {
 	private int rounds;
-	private String UserName;
+	private String userName;
 	Button v;
 	String check;
     private TextView error;
@@ -54,9 +54,11 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-		    UserName = extras.getString("UserName");
-		    userId = extras.getString("UserID");
+		    userName = extras.getString("userName");
+		    userId = extras.getString("userId");
 		}
+		
+		getActionBar().setDisplayShowTitleEnabled(false);
 		
 		Button returns = (Button) findViewById(R.id.btnReturn);
 		returns.setOnClickListener(new OnClickListener()
@@ -65,8 +67,8 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			public void onClick(View v) 
 			{
 				Intent mainMenuIntent = new Intent(context, MainMenu.class);
-             	mainMenuIntent.putExtra("UserName", UserName);
-             	mainMenuIntent.putExtra("UserId", userId);
+             	mainMenuIntent.putExtra("userName", userName);
+             	mainMenuIntent.putExtra("userId", userId);
              	startActivityForResult(mainMenuIntent, 0);
              	CreateGame.this.finish();	//Close CreateGame page when MainMenu starts
 			}
@@ -186,13 +188,13 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 					
 					//Goes to game lobby from create game -------------------------------------------------
 					Intent gameLobbyIntent = new Intent(CreateGame.this, GameLobby.class);
-	            	gameLobbyIntent.putExtra("GameID", resultArr[1]);
+	            	gameLobbyIntent.putExtra("gameId", resultArr[1]);
 	            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
                 	SharedPreferences.Editor spEditor = othSettings.edit();
                 	spEditor.putString("CurGameID", resultArr[1]).commit(); //Stores current game ID
                 	spEditor.putBoolean("inGame", true).commit();   //Sets flag for user being in game
-	            	gameLobbyIntent.putExtra("UserName", UserName);
-	            	gameLobbyIntent.putExtra("UserID", userId);
+	            	gameLobbyIntent.putExtra("userName", userName);
+	            	gameLobbyIntent.putExtra("userId", userId);
 	            	startActivity(gameLobbyIntent);
 	            	CreateGame.this.finish();
 	            	//End going to game lobby ---------------------------------------------------------------	
@@ -258,8 +260,8 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 		    if (keyCode == KeyEvent.KEYCODE_BACK) 
 		    {
 		    	Intent mainMenuIntent = new Intent(context, MainMenu.class);
-             	mainMenuIntent.putExtra("UserName", UserName);
-             	mainMenuIntent.putExtra("UserId", userId);
+             	mainMenuIntent.putExtra("userName", userName);
+             	mainMenuIntent.putExtra("userId", userId);
              	startActivityForResult(mainMenuIntent, 0);
              	CreateGame.this.finish();	//Close CreateGame page when MainMenu starts
 		    }

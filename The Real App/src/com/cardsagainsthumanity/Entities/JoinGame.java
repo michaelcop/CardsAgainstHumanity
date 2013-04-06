@@ -36,7 +36,7 @@ public class JoinGame extends Activity
 	TableLayout gameList;
 	public static final String SPREF_USER = "othPrefs";
 	int current;
-	int gameID;
+	int gameId;
 	int deletingID;
 	String currentUser;
 	String User1Id;
@@ -51,9 +51,9 @@ public class JoinGame extends Activity
 		
 		if (extras != null) 
 		{
-			currentUser = extras.getString("UserName");
+			currentUser = extras.getString("userName");
 			//testStrings = extras.getStringArrayList("data");
-			User1Id = extras.getString("UserID");
+			User1Id = extras.getString("userId");
 		}
 		
 		//Toast.makeText(context, "CallingURL", Toast.LENGTH_LONG).show();
@@ -92,10 +92,10 @@ public class JoinGame extends Activity
 		 {
 			 	//Creates a table row and sets the ID of the table row to the current game ID
 			 	String temp = testStrings.get(current);
-		    	gameID = Integer.parseInt(temp);
+		    	gameId = Integer.parseInt(temp);
 		    	// Create a TableRow and give it an ID
 		        TableRow tr = new TableRow(this);
-		        tr.setId(gameID);
+		        tr.setId(gameId);
 		        tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));
 		        
 		        //Set the actual TextView to the text in the list
@@ -106,15 +106,17 @@ public class JoinGame extends Activity
 	            tr.addView(labelTV);
 	            
 	            //Creating join buttons
-	            if(gameID!=-1)
+	            if(gameId!=-1)
 	            {
 		            final Button b = new Button(this);
-		            b.setId(-1*gameID);
+		            b.setId(-1*gameId);
 		            b.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
 		            b.setText("Accept");
 		            
 		            
-		            b.setHint("GameId:"+gameID);
+		            b.setHint("GameId:"+gameId);
+		            b.setTextSize(12);
+		            b.setHint("GameId:"+gameId);
 		            tr.addView(b);
 		            b.setOnClickListener(new OnClickListener()
 	        		{
@@ -130,11 +132,11 @@ public class JoinGame extends Activity
 	        			
 	        		});
 		            final Button c = new Button(this);
-		            c.setId(-2*gameID);
+		            c.setId(-2*gameId);
 		            c.setTextColor(JoinGame.this.getResources().getColor(R.color.White));
 		            c.setText("Decline");
 		            c.setTextSize(12);
-		            c.setHint("GameId:"+gameID);
+		            c.setHint("GameId:"+gameId);
 		            tr.addView(c);
 		            c.setOnClickListener(new OnClickListener()
 	        		{
@@ -224,13 +226,13 @@ public class JoinGame extends Activity
 						
 						else if(resultArray!=null && resultArray[0].equals("Joining")){
 							Intent myIntent = new Intent(JoinGame.this, GameLobby.class);
-			            	myIntent.putExtra("GameID", gameID+"");
+			            	myIntent.putExtra("gameId", gameId+"");
 			            	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		                	SharedPreferences.Editor spEditor = othSettings.edit();
-		                	spEditor.putString("CurGameID", gameID+"").commit(); //Stores current game ID
+		                	spEditor.putString("CurGameID", gameId+"").commit(); //Stores current game ID
 		                	spEditor.putBoolean("inGame", true).commit();   //Sets flag for user being in game
-			            	myIntent.putExtra("UserName", currentUser);
-			            	myIntent.putExtra("UserID", User1Id);
+			            	myIntent.putExtra("userName", currentUser);
+			            	myIntent.putExtra("userId", User1Id);
 			            	startActivity(myIntent);
 			            	JoinGame.this.finish();
 						}
