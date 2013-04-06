@@ -146,11 +146,14 @@ public class Game extends Activity
 				if(userName.equals(currentUser.currentCzar))
 				{
 					//get text off card and post to server and post which user the card belonged to 
-					String cardtText = card1.getText().toString();
+					String cardText = card1.getText().toString();
+					czarSelectCard(cardText);
 				}
 				else
 				{
 					//this is a regular user playing a white card
+					String cardText = card1.getText().toString();
+					playWhiteCard(cardText);
 				}
 				card1.setBackgroundResource(R.drawable.selectedcard);
 				
@@ -486,7 +489,7 @@ public class Game extends Activity
 		
 	}
 	
-	public void czarSelectCard()
+	public void czarSelectCard(String text)
 	{
 		
 	}
@@ -507,7 +510,7 @@ public class Game extends Activity
         }
         
         //do we call it to check every time the user refresh
-        czarRefreshCards();
+        //czarRefreshCards();
 	}
 	
 	public void inviteList()
