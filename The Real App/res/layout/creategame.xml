@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:text="@string/numRounds"
-        android:textColor="@color/White" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/textView1"
@@ -65,22 +65,11 @@
         android:visibility="invisible" />
 
     <Spinner
-        android:id="@+id/roundsSpinner"
+        android:id="@+id/roundSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnCreate"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:id="@+id/numRounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/NumberofRoundsLabel"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="@string/numRounds"
-        android:inputType="number"
-        android:textColor="@color/White"
-        android:textColorHint="@color/Gray" />
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/NumberofRoundsLabel" />
 
 </RelativeLayout>

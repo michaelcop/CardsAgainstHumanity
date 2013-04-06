@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -28,13 +29,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateGame extends Activity
+public class CreateGame extends Activity implements OnItemSelectedListener 
 {
 	private int rounds;
 	private String UserName;
@@ -75,7 +80,16 @@ public class CreateGame extends Activity
 			
 		});
 	
-	
+		Spinner spinner = (Spinner) findViewById(R.id.roundSpinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.roundArray, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(this);
+		
 		Button create = (Button) findViewById(R.id.btnCreate);
 		create.setOnClickListener(new OnClickListener()
 		{
@@ -83,7 +97,7 @@ public class CreateGame extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				
+				/*
 				String numRounds = ((EditText) findViewById(R.id.numRounds)).getText().toString();
 				if(numRounds == null || numRounds.trim().equals(""))
 				{
@@ -111,7 +125,7 @@ public class CreateGame extends Activity
                 } else {
                     error.setText("No network connection available.");
                 }
-                			
+                */
 			}
 			
 		});
@@ -243,6 +257,50 @@ public class CreateGame extends Activity
 				
 		    return super.onKeyDown(keyCode, event);
 		}  //End back button functionality---------------------------------
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) 
+		{
+			// TODO Auto-generated method stub
+			((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+			//Toast.makeText(getApplicationContext(), (String)parent.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
+			
+			String numRounds = (String)parent.getItemAtPosition(pos);
+			
+			rounds = Integer.parseInt(numRounds);
+			
+			if(rounds == 0)
+			{
+				
+        	}
+			else
+			{
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
+				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+	        	check = "Game";
+	        	ConnectivityManager connMgr = (ConnectivityManager) 
+	    		getSystemService(Context.CONNECTIVITY_SERVICE);
+	            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+	            error.setText("creating");
+	            
+	            if (networkInfo != null && networkInfo.isConnected())
+	            {
+	                new DownloadWebpageText().execute(stringUrl);
+	            }
+	            else 
+	            {
+	                error.setText("No network connection available.");
+	            }
+			}
+			
+			
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) 
+		{
+			// TODO Auto-generated method stub
+		}
 
 
 
