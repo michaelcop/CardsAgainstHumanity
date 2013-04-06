@@ -99,7 +99,7 @@ public class CreateGame extends Activity
 					rounds = 10;
 	        	}
 				*/
-				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+UserName+"&rounds="+rounds;
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
 				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "Game";
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
