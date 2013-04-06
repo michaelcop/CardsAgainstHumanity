@@ -137,6 +137,11 @@ public class Game extends Activity
 				 * then you get the text of this card/button
 				 * send to the server the text on the card and if you can the which user had this card
 				 * because the user who has this card gets a point
+				 * 
+				 * for play white card if this person is not the card czar then they can play a white card
+				 * so you have to check that i.e. if they are not card czar and the pressed the card then
+				 * they have played this white card
+				 * playWhiteCard(get button text)
 				 */
 				card1.setBackgroundResource(R.drawable.selectedcard);
 				
@@ -467,7 +472,7 @@ public class Game extends Activity
         }
 	}
 	
-	public void playWhiteCard()
+	public void playWhiteCard(String text)
 	{
 		
 	}
