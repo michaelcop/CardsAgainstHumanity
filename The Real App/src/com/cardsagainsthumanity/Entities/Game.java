@@ -736,6 +736,11 @@ private class DownloadWebpageText extends AsyncTask {
 				                	SharedPreferences.Editor spEditor = othSettings.edit();
 				                	spEditor.putBoolean("inGame", false).commit();
 				                	spEditor.remove("CurGameID").commit();
+				                	Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+							    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+							    	intent.putExtra("UserName", userName);
+							    	intent.putExtra("UserId", userID);
+							    	startActivity(intent);
 									Game.this.finish();
 								} 
 							
