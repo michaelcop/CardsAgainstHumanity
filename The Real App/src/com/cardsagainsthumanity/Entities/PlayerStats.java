@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PlayerStats extends Activity
 {
@@ -30,7 +31,7 @@ public class PlayerStats extends Activity
 	int gameID;
 	String userID;
 	String userName;
-	
+	Context context;
 	TextView playerNameStat;
 	TextView gamesWonTextView;
 	TextView gamesLostTextView;
@@ -44,11 +45,12 @@ public class PlayerStats extends Activity
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.playerstats);
-
+		context = this;
 		playerNameStat= (TextView) findViewById(R.id.PlayerNameStat);
 		gamesWonTextView= (TextView) findViewById(R.id.GamesWonStat);
 		gamesLostTextView= (TextView) findViewById(R.id.GamesLostStat);
 
+		//refreshPlayerStats();
         //getActionBar().setDisplayShowTitleEnabled(false);
 		Button returns = (Button) findViewById(R.id.ReturnToMenu);
 		returns.setOnClickListener(new OnClickListener()
@@ -65,7 +67,7 @@ public class PlayerStats extends Activity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
         	String g = extras.getString("GameID");
-        	gameID = Integer.parseInt(g);
+        	//gameID = Integer.parseInt(g);
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
 		}
@@ -76,7 +78,7 @@ public class PlayerStats extends Activity
 	public void refreshPlayerStats()
 	{
 		//URL contains the userID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameState?User=" + userID;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayerStats?User=" + userName;
 		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
     	check = "UserStats";
     	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -123,18 +125,16 @@ private class DownloadWebpageText extends AsyncTask {
 	            if(results!=null){
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
-	            	if(resultArray!=null && resultArray[0].equals(check)){
+	            	if(resultArray!=null && resultArray[0].equals("Stats")){
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
 						playerNameStat.setText(userName);
 						gamesWonTextView.setText("Games won = " + data.get(0));
 						gamesLostTextView.setText("Games lost = " + data.get(1));
-						averagePointsPerGameTextView.setText("Average points per game = " + data.get(2));
-						maxPointsInRoundTextView.setText("Most points in a round = " + data.get(3));
 					}
-					else if(resultArray[0]=="none") {
-						
+					else {
+		        		Toast.makeText(PlayerStats.this, results, Toast.LENGTH_SHORT).show();
 					}
 	
 	            }
