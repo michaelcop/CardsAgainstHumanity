@@ -7,22 +7,29 @@ import java.util.*;
 
 import android.app.Activity;
 import android.content.*;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.io.*;
 
-public class Settings extends Activity
+public class Settings extends Activity implements OnItemSelectedListener 
 {
 	private User user;
 	private Game games;
 	public String defaultGameRounds;
+	int rounds = 0;
 	
 	final Context context = this;
 	private EditText inputDefaultRounds;
@@ -34,14 +41,15 @@ public class Settings extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.settings);
 		
-		//Get stored default round data --------------------------------------------
-		inputDefaultRounds = (EditText) findViewById(R.id.DefaultRoundsValue);
-		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-		if(othSettings.contains("defGameRounds"))
-		{
-			inputDefaultRounds.setText(othSettings.getString("defGameRounds", ""));
-		} //End get def rounds data ------------------------------------------------
-		
+		Spinner spinner = (Spinner) findViewById(R.id.settingRoundsSpinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.roundArray, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(this);
 		
 		//Save Button listener----------------------------------------------
 		Button saveButton = (Button) findViewById(R.id.SaveButton);
@@ -199,5 +207,25 @@ public class Settings extends Activity
 		{
 			ioe.printStackTrace();
 		}
+	}
+
+
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) 
+	{
+		// TODO Auto-generated method stub
+		((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+		//Toast.makeText(getApplicationContext(), (String)parent.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
+		
+		String numRounds = (String)parent.getItemAtPosition(pos);
+		rounds = Integer.parseInt(numRounds);
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) 
+	{
+		// TODO Auto-generated method stub
 	}
 }

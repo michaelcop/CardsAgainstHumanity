@@ -82,19 +82,12 @@
         android:textColor="@color/White"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/DefaultRoundsValue"
+    <Spinner
+        android:id="@+id/settingRoundsSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/DefaultRoundsText"
         android:layout_alignRight="@+id/DefaultRoundsText"
-        android:layout_below="@+id/DefaultRoundsText"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="number"
-        android:textColor="@color/White" >
-
-        <requestFocus />
-    </EditText>
+        android:layout_below="@+id/DefaultRoundsText" />
 
 </RelativeLayout>
