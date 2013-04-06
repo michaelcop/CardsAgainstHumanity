@@ -95,15 +95,16 @@ public class InviteFriends extends Activity
             TableRow tr = new TableRow(this);
             tr.setId(UserId);
             tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT ,LayoutParams.WRAP_CONTENT));   
-
+            tr.setBackgroundResource(R.drawable.friendsrow);
             // Create a TextView to house the name of the province
             TextView labelTV = new TextView(this);
             labelTV.setText(testStrings.get(++current));
             labelTV.setId(500+UserId);
             labelTV.setTextColor(Color.WHITE);
+            labelTV.setPadding(10, 0, 5, 0);
             //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             tr.addView(labelTV);
-
+            
             // Create a TextView to house the value of the after-tax income
             if(UserId!=1000){
 	            final Button b = new Button(this);
@@ -128,9 +129,12 @@ public class InviteFriends extends Activity
         			}
         			
         		});
+	            
+	            b.setWidth(LayoutParams.WRAP_CONTENT);
+	            b.setTextSize(12);
             }
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-            
+           
             // Add the TableRow to the TableLayout
             t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }

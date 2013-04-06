@@ -152,10 +152,11 @@ public class JoinGame extends Activity
 	        			}
 	        			
 	        		});
+		            
+
+		            b.setWidth(LayoutParams.WRAP_CONTENT);
+		            c.setWidth(LayoutParams.WRAP_CONTENT);
 	            }
-	            
-	            
-	            
 	            
 	            //Add the new table row to the list
 	            gameList.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
