@@ -1,4 +1,4 @@
-package src.Actions;
+package Actions;
 import java.io.*;
 import java.sql.*;
 import java.util.logging.Logger;
@@ -118,7 +118,7 @@ public class CreateGame extends HttpServlet implements DataSource {
 						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound, GameDeck) VALUES (" + rounds + "," + UserID +"," + 0 + ",'"+ GameDeck +"');");                           
 						System.out.println(rs2);
 						if(rs2!=0){
-							out.println("Game Created!\n");
+							//out.println("Game Created!\n");
 						}
 						else{
 							out.println("Unable to create game!");
