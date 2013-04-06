@@ -67,6 +67,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 			Statement stmt;
 			ResultSet rs;
 			int rs2, rs3, rs4;
+			String rs5;
 			try {
 				stmt = connection.createStatement();
 				
