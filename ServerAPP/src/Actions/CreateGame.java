@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 import java.io.*;
 import java.sql.*;
 import java.util.logging.Logger;
@@ -11,12 +11,32 @@ import javax.sql.DataSource;
 
 @WebServlet(urlPatterns={"/CreateGame"})
 
+
+//Note: This takes in a UserID. It can be changed to take a Username
+// 		just add the following lines of code to query and get the UserID.
+//
+//	Resultset rs5;
+//	Statement stmt5;
+//  
+//	stmt5 = connection.createStatement();
+//	//Query to get User’s friend ID
+//	rs5 = stmt.executeQuery("SELECT UserID FROM tblUsers WHERE Username = '" + User + "';");
+//	if(rs5.next())
+//	}
+//  	UserID = rs.getInt(1);
+//	}
+
+
 public class CreateGame extends HttpServlet implements DataSource {
 
  		private String User =  null;
 		private int UserID, GameID;
 		private int rounds = -1;
- 		Connection connection = null;
+		
+		//private String qryRandomDeck = "SELECT CardID FROM tblCards WHERE CardType = 1 ORDER BY RAND() LIMIT 60;";
+ 		private String GameDeck = null;
+ 		
+		Connection connection = null;
 
  		
 		public String getUser() {
@@ -29,7 +49,7 @@ public class CreateGame extends HttpServlet implements DataSource {
  		public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  			if(request.getParameter("User") != null){ 
  				this.setUser((String) request.getParameter("User").toString());
- 				System.out.println(User);
+ 				UserID =  Integer.parseInt(User);
  			}
 
 			if(request.getParameter("rounds") != null){
@@ -66,22 +86,40 @@ public class CreateGame extends HttpServlet implements DataSource {
 						stmt2 = connection.createStatement();
 						stmt3 = connection.createStatement();
 						stmt4 = connection.createStatement();
-
-						//Get user ID
- 						rs = stmt.executeQuery("SELECT * FROM tblUsers WHERE Username = '" + User + "';");
 						
- 						//Ensure record set has one record
-						if(rs.next()){
-							System.out.println("UserID: "+ rs.getInt(1));
-							UserID = rs.getInt(1);
+						// get random deck of 60 cards
+						rs = stmt.executeQuery("SELECT CardID FROM tblCards WHERE CardType = 1 ORDER BY RAND() LIMIT 60;");
+						//rs5.next();
+						//out.print("First Card: " + rs5.getInt(1));
+						// comma separate 60 cards
+						if(!rs.isBeforeFirst()){
+							//No cards in query
 						}
-
+						else{
+							GameDeck = "";
+							//Create comma separated string with card deck
+							//out.println("Before Deck: "+ GameDeck);
+							while(rs.next()){
+								GameDeck = GameDeck + rs.getInt(1) + ";";
+							}
+							//strip last comma off of game deck
+							if(GameDeck.endsWith(";")){
+								GameDeck = GameDeck.substring(0, GameDeck.length()-1);								
+							}
+							//System.out.println("Game Deck: " + GameDeck);
+							//out.println("After Deck: "+ GameDeck);
+							//out.println("Deck Created");
+						}
+						
+						//out.print("Before Game creation");
 						//Create game record
-						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound) VALUES (" + rounds + "," + UserID +"," + 0 + ");");                           
+						//System.out.println("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound, GameDeck) VALUES (" + rounds + "," + UserID +"," + 0 + ",'"+ GameDeck +"');");
+						
+						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound, GameDeck) VALUES (" + rounds + "," + UserID +"," + 0 + ",'"+ GameDeck +"');");                           
 						System.out.println(rs2);
 						if(rs2!=0){
-							//out.println("Game Created!\n");
-							}
+							out.println("Game Created!\n");
+						}
 						else{
 							out.println("Unable to create game!");
 							return;
@@ -98,7 +136,7 @@ public class CreateGame extends HttpServlet implements DataSource {
 						
 						
 						//Add user that created game into players table -- 'tblPlayers'
-						rs3 = stmt3.executeUpdate("INSERT INTO tblPlayers (PlayerGameID, PlayerUserID, PlayerStatus) VALUES (" + GameID + "," + UserID + ",1);");                           
+						rs3 = stmt3.executeUpdate("INSERT INTO tblPlayers (PlayerGameID, PlayerUserID, PlayerStatus) VALUES (" + GameID + "," + UserID +",1);");                           
 						System.out.println(rs3);
 						if(rs3!=0){
 							out.println("Game:"+ GameID);
@@ -108,7 +146,7 @@ public class CreateGame extends HttpServlet implements DataSource {
  						}										
 						
 						//Close record sets and connection
- 						rs.close();
+ 						//rs.close();
  						rs4.close();
  						stmt.close();
  						stmt2.close();

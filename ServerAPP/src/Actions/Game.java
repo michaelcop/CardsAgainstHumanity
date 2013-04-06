@@ -35,6 +35,9 @@ public class Game extends HttpServlet implements DataSource {
 	Connection connection = null;
 	List<String> UsersInGame;
 	
+	//Queries
+	private String qryNumPlayers;
+	
 	
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
