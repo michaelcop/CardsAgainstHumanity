@@ -438,6 +438,26 @@ public class Game extends Activity
 		}
 	}
 	
+	public void czarCardSelected()
+	{
+		/*
+		 * In refresh call this and if the number of cards played == numotherusers.size - 1
+		 * change gui and update white cards to the to the ones the others have played
+		 */
+		//URL contains the userID and gameID
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarCardSelected?UserID=" + userID + "&GameID="+gameID;
+    	check = "CzarCardSelected";
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+		getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //error.setText("creating");
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new DownloadWebpageText().execute(stringUrl);
+        } else {
+            //error.setText("No network connection available.");
+        }
+	}
+	
 	public void refreshUser()
 	{
 		//URL contains the userID and gameID
@@ -493,7 +513,7 @@ private class DownloadWebpageText extends AsyncTask {
 	            if(results!=null){
 					//error.setText("");Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
 	            	String[] resultArray = results.split(";");
-	            	if(resultArray!=null && resultArray[0].equals(check)){
+	            	if(resultArray!=null && resultArray[0].equals("RefreshGame")){
 	            		//lets delete the contents of the the arraylist other users and whiteCardsList
 	            		currentUser.whiteCardsList.clear();
 	            		currentUser.otherUsers.clear();
@@ -587,6 +607,44 @@ private class DownloadWebpageText extends AsyncTask {
 						 */
 						//function for I am card czar and find out what people played
 					}
+	            	
+	            	else if(resultArray!=null && resultArray[0].equals("CzarCardSelected"))
+	            	{
+	            		/*
+	            		 * Example data
+	            		 * 4;card1 description; card2 description; card3 description; card4 description
+	            		 */
+	            		ArrayList<String> data;
+						data = new ArrayList<String>(Arrays.asList(resultArray));
+						data.remove(0);//we are removing the check data field
+						int numCardsPlayed = Integer.parseInt(data.get(0));
+						if(numCardsPlayed == currentUser.otherUsers.size() - 1 && userName.equals(currentUser.currentCzar))
+						{
+							//everyone has played their card and this is the card czar
+							//change the gui and have the card czar select
+							List<String> otherCards = new ArrayList<String>();
+							for(int i=0; i<numCardsPlayed; i++)
+							{
+								otherCards.add(data.get(i+1));
+							}
+							if(otherCards.size() > 0)
+								card1.setText(otherCards.get(0));
+							if(otherCards.size() > 1)
+								card2.setText(otherCards.get(1));
+							if(otherCards.size() > 2)
+								card3.setText(otherCards.get(2));
+							if(otherCards.size() > 3)
+								card4.setText(otherCards.get(3));
+							if(otherCards.size() > 4)
+								card5.setText(otherCards.get(4));
+							//gui is updated now deal with pressing the buttons
+						}
+						else
+						{
+							//not everyone has played their card yet
+						}
+	            	}
+	            	
 					else if(resultArray[0]=="none") {
 						Toast.makeText(Game.this, "Error in RefreshUser", Toast.LENGTH_SHORT).show();
 					}
