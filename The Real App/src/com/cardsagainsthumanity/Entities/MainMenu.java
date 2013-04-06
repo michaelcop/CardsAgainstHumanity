@@ -53,6 +53,7 @@ public class MainMenu extends Activity
 	
 	public boolean onCreateOptionsMenu(Menu menu)
     {
+		//Returns user to their ongoing game --------------------------------------------
 		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 		if(othSettings.contains("CurGameID") && othSettings.getBoolean("inGame", true))
 		{
@@ -62,7 +63,9 @@ public class MainMenu extends Activity
         	rejoin.putExtra("userId", userId);
         	startActivity(rejoin);
         	MainMenu.this.finish();
-		}
+		} //------------------------------------------------------------------------------
+		
+		//Create menu --------------------------------------------------------------------
         MenuInflater menuInflater = getMenuInflater();
         getActionBar().setDisplayShowTitleEnabled(false);
         menuInflater.inflate(R.menu.menu, menu);
@@ -145,7 +148,7 @@ public class MainMenu extends Activity
 			
 		});
 		
-		
+		//Friends listener ----------------------------------------------------------------------------
 		ImageButton friends = (ImageButton) findViewById(R.id.friendsButton);
 		
 		friends.setOnClickListener(new OnClickListener()
@@ -171,6 +174,7 @@ public class MainMenu extends Activity
 			
 		});
 		
+		//Player stats listener ----------------------------------------------------------------------------
 		ImageButton stats = (ImageButton) findViewById(R.id.statsButton);
 		
 		stats.setOnClickListener(new OnClickListener()
