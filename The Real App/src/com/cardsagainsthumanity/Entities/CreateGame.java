@@ -67,15 +67,18 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 		    UserName = extras.getString("UserName");
 		    userId = extras.getString("UserID");
 		}
+		
 		Button returns = (Button) findViewById(R.id.btnReturn);
-		
-		
 		returns.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v) 
 			{
-				finish();
+				Intent myIntent = new Intent(context, MainMenu.class);
+             	myIntent.putExtra("UserName", UserName);
+             	myIntent.putExtra("UserId", userId);
+             	startActivityForResult(myIntent, 0);
+             	CreateGame.this.finish();	//Close CreateGame page when MainMenu starts
 			}
 			
 		});
