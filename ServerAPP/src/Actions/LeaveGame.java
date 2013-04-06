@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +66,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 		if(connection != null){
 			Statement stmt;
 			ResultSet rs;
-			int rs2, rs3;
+			int rs2, rs3, rs4;
 			try {
 				stmt = connection.createStatement();
 				
@@ -78,7 +78,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 					out.println("PlayerDeleted;"+UserID);
 					
 					//Query to get the numPlayers in a game
-					rs = stmt.executeQuery("SELECT Count(PlayerUserID) AS CountOfPlayers FROM tblPlayers GROUP BY PlayerGameID HAVING PlayerGameID="+GameID+";");
+					rs = stmt.executeQuery("SELECT Count(PlayerUserID) AS CountOfPlayers FROM tblPlayers GROUP BY PlayerGameID, PlayerStatus HAVING (PlayerGameID = "+ GameID +" AND PlayerStatus = 1);");
 					//point to 0 position in result set
 					rs.beforeFirst();
 					
@@ -90,6 +90,20 @@ public class LeaveGame extends HttpServlet implements DataSource {
 					else if(!rs.next()){
 						//No more players are in game
 						NumPlayers = 0;
+						
+						//If last player in game, with status '1' leaves, delete all players from game
+						rs4 = stmt.executeUpdate("DELETE FROM tblPlayers WHERE PlayerGameID ="+ GameID +";");
+						
+						if(rs4 != 0){
+							//Deleted players from game
+							//out.println("All invited players deleted from game");
+						}
+						else{
+							//Error occurred when deleting game
+							out.println("Error: unable to delete players from game.");
+						}
+						
+						
 						//Delete game record from Game table
 						rs3 = stmt.executeUpdate("DELETE FROM tblGames WHERE GameID="+GameID+";");
 						
