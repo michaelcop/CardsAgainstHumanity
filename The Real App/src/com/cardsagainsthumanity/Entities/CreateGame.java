@@ -90,42 +90,36 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(this);
 		
-		Button create = (Button) findViewById(R.id.btnCreate);
-		create.setOnClickListener(new OnClickListener()
+		Button createButton = (Button) findViewById(R.id.btnCreate);
+		
+		createButton.setOnClickListener(new OnClickListener()
 		{
-	
 			@Override
 			public void onClick(View v) 
 			{
-				/*
-				String numRounds = ((EditText) findViewById(R.id.numRounds)).getText().toString();
-				if(numRounds == null || numRounds.trim().equals(""))
+				if(rounds == 0)
 				{
-
-						Toast.makeText(CreateGame.this, "Number of rounds invalid defaulting to 10", Toast.LENGTH_LONG).show();
-						numRounds = "10";
-
-					
-				}
-				rounds = Integer.parseInt(numRounds);
-				if(!(rounds>0) || !(rounds < 50) ){
-					Toast.makeText(CreateGame.this, "Number of rounds invalid defaulting to 10", Toast.LENGTH_LONG).show();
-					rounds = 10;
+					Toast.makeText(getApplicationContext(), "Please select a valid numerical value.", Toast.LENGTH_LONG).show();
 	        	}
-				
-				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
-				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-	        	check = "Game";
-	        	ConnectivityManager connMgr = (ConnectivityManager) 
-        		getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                error.setText("creating");
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    new DownloadWebpageText().execute(stringUrl);
-                } else {
-                    error.setText("No network connection available.");
-                }
-                */
+				else
+				{
+					String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
+					mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+		        	check = "Game";
+		        	ConnectivityManager connMgr = (ConnectivityManager) 
+		    		getSystemService(Context.CONNECTIVITY_SERVICE);
+		            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		            error.setText("creating");
+		            
+		            if (networkInfo != null && networkInfo.isConnected())
+		            {
+		                new DownloadWebpageText().execute(stringUrl);
+		            }
+		            else 
+		            {
+		                error.setText("No network connection available.");
+		            }
+				}
 			}
 			
 		});
@@ -268,31 +262,6 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			String numRounds = (String)parent.getItemAtPosition(pos);
 			
 			rounds = Integer.parseInt(numRounds);
-			
-			if(rounds == 0)
-			{
-				
-        	}
-			else
-			{
-				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
-				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-	        	check = "Game";
-	        	ConnectivityManager connMgr = (ConnectivityManager) 
-	    		getSystemService(Context.CONNECTIVITY_SERVICE);
-	            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-	            error.setText("creating");
-	            
-	            if (networkInfo != null && networkInfo.isConnected())
-	            {
-	                new DownloadWebpageText().execute(stringUrl);
-	            }
-	            else 
-	            {
-	                error.setText("No network connection available.");
-	            }
-			}
-			
 			
 		}
 
