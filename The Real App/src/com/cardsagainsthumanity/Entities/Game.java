@@ -486,12 +486,34 @@ public class Game extends Activity
 	
 	public void playWhiteCard(String text)
 	{
-		
+		//URL contains the userID and gameID
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?UserID=" + userID + "&GameID="+gameID + "&WhiteCard="+text;
+    	check = "PlayWhiteCard";
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+		getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //error.setText("creating");
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new DownloadWebpageText().execute(stringUrl);
+        } else {
+            //error.setText("No network connection available.");
+        }
 	}
 	
 	public void czarSelectCard(String text)
 	{
-		
+		//URL contains the userID and gameID
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/czarSelectCard?UserID=" + userID + "&GameID="+gameID + "&CzarCard="+text;
+    	check = "CzarSelectCard";
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+		getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        //error.setText("creating");
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new DownloadWebpageText().execute(stringUrl);
+        } else {
+            //error.setText("No network connection available.");
+        }
 	}
 	
 	public void refreshUser()
@@ -547,7 +569,7 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
+	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 					//error.setText("");Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
