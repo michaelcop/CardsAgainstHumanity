@@ -180,7 +180,8 @@ public class MainMenu extends Activity
 			public void onClick(View v) 
 			{
 				Intent myIntent = new Intent(v.getContext(), PlayerStats.class);
-                startActivity(myIntent);
+                myIntent.putExtra("UserName", UserName);
+				startActivity(myIntent);
 				
 			}
 			
