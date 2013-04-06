@@ -548,7 +548,7 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
+	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 					//error.setText("");Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
@@ -574,9 +574,10 @@ private class DownloadWebpageText extends AsyncTask {
 						currentUser.currentCzar = data.get(userNameEndIndex);
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
 						int whiteCardsStartIndex = userNameEndIndex + 2;
-						int whiteCardsEndIndex = numWhiteCards + whiteCardsStartIndex;
+						int whiteCardsEndIndex = (numWhiteCards*2) + whiteCardsStartIndex;
 						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i++)
 						{
+							currentUser.whiteCardsID.add(Integer.parseInt(data.get(i)));
 							currentUser.whiteCardsList.add(data.get(i));
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
