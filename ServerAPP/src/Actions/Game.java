@@ -39,7 +39,7 @@ public class Game extends HttpServlet implements DataSource {
 	private int CurrentRound;
 	
 	//Player In game variables
-	private int NumPlayers;
+	private int NumPlayers=0;
 	private String Players;
 	
 	//Card Czar Information
@@ -106,6 +106,7 @@ public class Game extends HttpServlet implements DataSource {
 					else{
 						//out.print("Successful");
 						Players = "";
+						NumPlayers=0;
 						while(rs3.next()){
 							//out.print("; List");
 							Players = Players + rs3.getString(1) + ";" + rs3.getInt(2) + ";";
@@ -115,7 +116,6 @@ public class Game extends HttpServlet implements DataSource {
 					
 					// get current round, black cards list, and game judge
 					rs = stmt.executeQuery("SELECT GameCurRound, GameBlackCards, GameJudge FROM tblGames WHERE GameID = "+GameID+";");
-					
 					if(rs.next())
 					{
 						//Get game info
@@ -193,7 +193,7 @@ public class Game extends HttpServlet implements DataSource {
 //							{
 //								out.print("HERE");
 //							}
-							
+							HandIDs = "";
 							if(rs5.next())
 							{
 								//out.print("rs5 :"+HandIDs);
@@ -202,6 +202,7 @@ public class Game extends HttpServlet implements DataSource {
 							
 							
 							rs5.close();
+							Hand = "";
 							//Get card text from user's hand
 							Hand = HandIDs.replaceAll(";", ",");
 							//out.print(Hand);
@@ -214,6 +215,7 @@ public class Game extends HttpServlet implements DataSource {
 							else{
 								//out.print("Successful");
 								NumCards = 0;
+								HandText="";
 								while(rs6.next()){
 									//out.print("; List");
 									HandText = HandText + rs6.getInt(1) + ";" + rs6.getString(2) + ";";
