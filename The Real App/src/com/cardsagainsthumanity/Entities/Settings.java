@@ -28,7 +28,7 @@ public class Settings extends Activity implements OnItemSelectedListener
 {
 	private User user;
 	private Game games;
-	public String defaultGameRounds;
+	public int defaultGameRounds;
 	int rounds = 0;
 	
 	final Context context = this;
@@ -67,10 +67,9 @@ public class Settings extends Activity implements OnItemSelectedListener
 				
             	
 				//Gets and stores default game rounds --------------------------------
-            	defaultGameRounds = inputDefaultRounds.getText().toString();
             	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
             	SharedPreferences.Editor spEditor = othSettings.edit();
-            	spEditor.putString("defGameRounds", defaultGameRounds).commit();
+            	spEditor.putInt("defGameRounds", rounds).commit();
             	//End def game rounds store ------------------------------------------
 				
 			}

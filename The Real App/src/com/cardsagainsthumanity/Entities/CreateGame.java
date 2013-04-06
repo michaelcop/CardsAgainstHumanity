@@ -102,7 +102,33 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			{
 				if(rounds == 0)
 				{
-					Toast.makeText(getApplicationContext(), "Please select a valid numerical value.", Toast.LENGTH_LONG).show();
+					SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+					if(othSettings.contains("defGameRounds"))
+					{
+						Toast.makeText(getApplicationContext(), "Using set default rounds", Toast.LENGTH_SHORT).show();
+						rounds = othSettings.getInt("defGameRounds", 1);
+						String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
+						mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+			        	check = "Game";
+			        	ConnectivityManager connMgr = (ConnectivityManager) 
+			    		getSystemService(Context.CONNECTIVITY_SERVICE);
+			            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+			            error.setText("creating");
+			            
+			            if (networkInfo != null && networkInfo.isConnected())
+			            {
+			                new DownloadWebpageText().execute(stringUrl);
+			            }
+			            else 
+			            {
+			                error.setText("No network connection available.");
+			            }
+					}
+					else
+					{
+						Toast.makeText(getApplicationContext(), "Please select a valid numerical value.", Toast.LENGTH_LONG).show();
+
+					}
 	        	}
 				else
 				{
