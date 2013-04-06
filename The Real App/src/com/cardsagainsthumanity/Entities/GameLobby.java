@@ -66,6 +66,7 @@ public class GameLobby extends Activity
         	userID = extras.getString("UserID");
         	userName = extras.getString("UserName");
 		}
+		
 		ActionBar actionBar = GameLobby.this.getActionBar();
 		if(actionBar!=null){actionBar.show();}
         getActionBar().setDisplayShowTitleEnabled(false);
@@ -108,6 +109,8 @@ public class GameLobby extends Activity
 	    m_handler.removeCallbacks(m_statusChecker);
 	}
 	*/
+	
+	//Options menu ------------------------------------------------------------------------------------
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
@@ -183,7 +186,7 @@ public class GameLobby extends Activity
         default:
             return super.onOptionsItemSelected(item);
         }
-    }
+    } //End options menu ----------------------------------------------------------------------------------
 
 	public void refreshGameLobby()
 	{
@@ -248,7 +251,8 @@ private class DownloadWebpageText extends AsyncTask {
         protected void onPostExecute(Object result) {
         
         mProgress.setVisibility(ProgressBar.INVISIBLE);
-        	
+        
+        //Set up game from game lobby ---------------------------------------------------------------
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){
@@ -282,8 +286,9 @@ private class DownloadWebpageText extends AsyncTask {
 			            	startActivity(myIntent);
 			            	GameLobby.this.finish();
 						}
-					}
+					} //End game from lobby -------------------------------------------------------------
 	            	
+	            	//Close lobby if player gone --------------------------------------------------------
 	            	else if(resultArray!=null && resultArray[0].equals("PlayerDeleted"))
 	            	{
 	                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
@@ -307,7 +312,7 @@ private class DownloadWebpageText extends AsyncTask {
 				    	intent.putExtra("UserId", userID);
 				    	intent.putExtra("EXIT", true);
 				    	startActivity(intent);
-	            	}
+	            	} //End close lobby --------------------------------------------------------------------
 	            	
 					else if(resultArray[0]=="none") {
 						//Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
@@ -409,13 +414,10 @@ private class DownloadWebpageText extends AsyncTask {
 						
 						});
 		 
-						// create alert dialog
+						// create and show alert dialog
 						AlertDialog alertDialog = alertDialogBuilder.create();
-		 
-						// show it
 						alertDialog.show();
-		    	
-		        //moveTaskToBack(true);
+						
 		        return true;
 		    }
 		    return super.onKeyDown(keyCode, event);
