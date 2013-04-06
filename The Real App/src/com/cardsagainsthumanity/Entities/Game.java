@@ -131,7 +131,13 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				submissionID =  (String) card1.getHint();
+				//submissionID =  (String) card1.getHint();
+				/*
+				 * Card czar selects a card which corresponds to this button
+				 * then you get the text of this card/button
+				 * send to the server the text on the card and if you can the which user had this card
+				 * because the user who has this card gets a point
+				 */
 				card1.setBackgroundResource(R.drawable.selectedcard);
 				
 				card2.setBackgroundResource(R.drawable.white);
@@ -461,6 +467,11 @@ public class Game extends Activity
         }
 	}
 	
+	public void playWhiteCard()
+	{
+		
+	}
+	
 	public void refreshUser()
 	{
 		//URL contains the userID and gameID
@@ -475,6 +486,9 @@ public class Game extends Activity
         } else {
             //error.setText("No network connection available.");
         }
+        
+        //do we call it to check every time the user refresh
+        //czarCardSelected();
 	}
 	
 	public void inviteList()
@@ -614,6 +628,8 @@ private class DownloadWebpageText extends AsyncTask {
 	            	else if(resultArray!=null && resultArray[0].equals("CzarCardSelected"))
 	            	{
 	            		/*
+	            		 * You can call this each time you refresh then after this make a trigger
+	            		 * to move to the next round
 	            		 * Example data
 	            		 * 4;card1 description; card2 description; card3 description; card4 description
 	            		 */
