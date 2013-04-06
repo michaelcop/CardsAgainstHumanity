@@ -298,7 +298,6 @@ public class Game extends Activity
             return true;
             
         case R.id.refresh_button:
-        	Toast.makeText(Game.this, "Refresh", Toast.LENGTH_SHORT).show();
         	refreshUser();
         	//Toast.makeText(Game.this, "afterRefreshUser", Toast.LENGTH_SHORT).show();
         	//inviteList();
@@ -485,14 +484,11 @@ private class DownloadWebpageText extends AsyncTask {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(Object result) {
-        	Toast.makeText(Game.this, "onPostExecute", Toast.LENGTH_SHORT).show();
         if(result!=null){
-        	Toast.makeText(Game.this, "In result!=null", Toast.LENGTH_SHORT).show();
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
 	        	results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1 descrpiton;card2 description;black card description";
-	        	Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 					//error.setText("");Toast.makeText(Game.this, "In results = " + results, Toast.LENGTH_SHORT).show();
@@ -522,12 +518,39 @@ private class DownloadWebpageText extends AsyncTask {
 						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i++)
 						{
 							currentUser.whiteCardsList.add(data.get(i));
-							Toast.makeText(Game.this, "white card =  " + currentUser.whiteCardsList.get(currentUser.whiteCardsList.size()-1), Toast.LENGTH_SHORT).show();
-							//issue here gets past the first one check after
-							if(1==1)
-								return;
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
+						
+						if(currentUser.whiteCardsList.size() <1)
+						{
+							card1.setVisibility(card1.INVISIBLE);
+							card2.setVisibility(card2.INVISIBLE);
+							card3.setVisibility(card3.INVISIBLE);
+							card4.setVisibility(card4.INVISIBLE);
+							card5.setVisibility(card5.INVISIBLE);
+						}
+						else if(currentUser.whiteCardsList.size() <2)
+						{
+							card2.setVisibility(card2.INVISIBLE);
+							card3.setVisibility(card3.INVISIBLE);
+							card4.setVisibility(card4.INVISIBLE);
+							card5.setVisibility(card5.INVISIBLE);
+						}
+						else if(currentUser.whiteCardsList.size() <3)
+						{
+							card3.setVisibility(card3.INVISIBLE);
+							card4.setVisibility(card4.INVISIBLE);
+							card5.setVisibility(card5.INVISIBLE);
+						}
+						else if(currentUser.whiteCardsList.size() <4)
+						{
+							card4.setVisibility(card4.INVISIBLE);
+							card5.setVisibility(card5.INVISIBLE);
+						}
+						else if(currentUser.whiteCardsList.size() <5)
+						{
+							card5.setVisibility(card5.INVISIBLE);
+						}
 						
 						if(currentUser.whiteCardsList.size() > 0)
 							card1.setText(currentUser.whiteCardsList.get(0));
