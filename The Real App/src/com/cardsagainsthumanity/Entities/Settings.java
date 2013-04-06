@@ -32,7 +32,6 @@ public class Settings extends Activity implements OnItemSelectedListener
 	int rounds = 0;
 	
 	final Context context = this;
-	private EditText inputDefaultRounds;
 	public static final String SPREF_USER = "othPrefs";
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -41,15 +40,15 @@ public class Settings extends Activity implements OnItemSelectedListener
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.settings);
 		
-		Spinner spinner = (Spinner) findViewById(R.id.settingRoundsSpinner);
+		Spinner inputRounds = (Spinner) findViewById(R.id.settingRoundsSpinner);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.roundArray, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(this);
+		inputRounds.setAdapter(adapter);
+		inputRounds.setOnItemSelectedListener(this);
 		
 		//Save Button listener----------------------------------------------
 		Button saveButton = (Button) findViewById(R.id.SaveButton);
