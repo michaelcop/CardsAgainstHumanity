@@ -153,6 +153,7 @@ public class GameLobby extends Activity
 		//URL contains the userID and gameID
 		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/UserGameLobby?Game="+gameID;
+		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
     	check = "GameLobby";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
