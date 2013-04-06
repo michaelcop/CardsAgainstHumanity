@@ -23,6 +23,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -130,14 +131,15 @@ public class FriendsList extends Activity
             b.setId(++buttonId);
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             b.setHint("UserId:"+UserId);
+            
             if(testStrings.get(current).equals("1"))
             {
             	b.setText("Delete");
-
-            	//Toast.makeText(getApplicationContext(), b.getHeight(), Toast.LENGTH_LONG).show();
-                
-                //final LayoutParams lparams = new LayoutParams(60,60); // Width , height
+            	
+                //final LayoutParams lparams = new LayoutParams(500,500); // Width , height
                 //b.setLayoutParams(lparams);
+            
+                //b.setLayoutParams(params);
 	            
             	b.setOnClickListener(new OnClickListener()
         		{
@@ -155,6 +157,7 @@ public class FriendsList extends Activity
         			}
         			
         		});
+            	
             	tr.addView(b);
             }
             else if(testStrings.get(current).equals("2")){
@@ -207,6 +210,8 @@ public class FriendsList extends Activity
             //valueTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
             
             // Add the TableRow to the TableLayout
+            b.setWidth(LayoutParams.WRAP_CONTENT);
+            b.setTextSize(14);
             t.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
         }
 	} 
@@ -287,11 +292,11 @@ public class FriendsList extends Activity
                 		
 						t.removeView((TableRow)findViewById(Integer.parseInt(resultArray[1].toString())));
 					}
-					else if(resultArray!=null && resultArray[0].equals("Accepted")){
+					else if(resultArray!=null && resultArray[0].equals("Accepted"))
+					{
 						final Button button =  (Button) findViewById(++buttonId);
 						String UserIdReturned =  resultArray[1];
 						button.setText("Delete");
-						button.setWidth(LayoutParams.WRAP_CONTENT);
 						button.setEnabled(true);
 						button.setHint("UserId:"+UserIdReturned);
                 		Toast.makeText(context, "accepted!", Toast.LENGTH_SHORT).show();
