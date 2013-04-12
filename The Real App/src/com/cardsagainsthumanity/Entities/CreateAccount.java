@@ -193,7 +193,6 @@ public class CreateAccount extends Activity
           // Starts the query
           conn.connect();
           int response = conn.getResponseCode();
-          //Log.d("FUCK", "The response is: " + response);
           is = conn.getInputStream();
 
           // Convert the InputStream into a string

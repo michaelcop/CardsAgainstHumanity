@@ -151,9 +151,7 @@ public class CreateGame extends Activity implements OnItemSelectedListener
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	Log.d("FUCK", "First");
 	        	String[] resultArr = results.split(":");
-	        	Log.d("FUCK", resultArr[0]);
 	            //check the result for the what's needed to move on
 	            if(resultArr!=null && (resultArr[0]).equalsIgnoreCase(check)){
 					error.setText("");
@@ -199,7 +197,6 @@ public class CreateGame extends Activity implements OnItemSelectedListener
           // Starts the query
           conn.connect();
           int response = conn.getResponseCode();
-          Log.d("FUCK", "The response is: " + response);
           is = conn.getInputStream();
 
           // Convert the InputStream into a string
