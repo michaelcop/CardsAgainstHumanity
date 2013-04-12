@@ -52,7 +52,7 @@
     
     <string name="numPlayers">Number of Players (3 to 6)</string>
     <string name="numPlayers2">Number of Players</string>
-    <string name="numRounds">Max Number of Rounds</string>
+    <string name="numRounds">Enter the desired max number of rounds</string>
     <string name="gameName">Instance Name</string>
     <string name="Create">Create Game</string>
     
