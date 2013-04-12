@@ -101,7 +101,8 @@ public class Game extends HttpServlet implements DataSource {
 					rs3 = stmt.executeQuery("SELECT Username, PlayerScore FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE PlayerGameID = "+ GameID +" AND PlayerStatus = 1 GROUP BY Username, PlayerScore;");
 					
 					if(!rs3.isBeforeFirst()){
-						//out.println("None in the List");
+						out.println("No Users");
+						return;
 					}
 					else{
 						//out.print("Successful");
