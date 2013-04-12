@@ -66,6 +66,7 @@ public class FriendsList extends Activity
 			UserName = extras.getString("UserName");
 			User1Id = extras.getString("UserId");
 			testStrings = extras.getStringArrayList("data");
+			Toast.makeText(context, "UN " + UserName + " Id " + User1Id, Toast.LENGTH_LONG).show();
 		}
 		
 		Button AddFriend = (Button) findViewById(R.id.btnAddFriend);
