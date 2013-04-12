@@ -165,7 +165,7 @@ public class CreateAccount extends Activity
 	            }
 	            else
 	            {
-	            	error.setText(results);
+	        		Toast.makeText(CreateAccount.this, "User already exists", Toast.LENGTH_LONG).show();
 	            }
         	}
         }
