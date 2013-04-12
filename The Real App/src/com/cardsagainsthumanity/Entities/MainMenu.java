@@ -185,6 +185,7 @@ public class MainMenu extends Activity
 			{
 				Intent pStatsIntent = new Intent(v.getContext(), PlayerStats.class);
                 pStatsIntent.putExtra("userName", userName);
+                pStatsIntent.putExtra("userId", userId);
 				startActivity(pStatsIntent);
 				
 			}

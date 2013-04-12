@@ -68,8 +68,8 @@ public class PlayerStats extends Activity
 		if (extras != null) {
         	String g = extras.getString("GameID");
         	//gameID = Integer.parseInt(g);
-        	userID = extras.getString("UserID");
-        	userName = extras.getString("UserName");
+        	userID = extras.getString("userId");
+        	userName = extras.getString("userName");
 		}
 		refreshPlayerStats();
 	} 
