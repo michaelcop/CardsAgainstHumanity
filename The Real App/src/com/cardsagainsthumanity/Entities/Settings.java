@@ -65,7 +65,7 @@ public class Settings extends Activity implements OnItemSelectedListener
 				ToggleButton notificationsToggleButton = (ToggleButton) findViewById(R.id.toggleNotificationsButton);
 				if(notificationsToggleButton.isChecked())
 				{
-					Toast.makeText(Settings.this, "Toggle Button is on", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(Settings.this, "Toggle Button is on", Toast.LENGTH_SHORT).show();
 				}
 				
             	
