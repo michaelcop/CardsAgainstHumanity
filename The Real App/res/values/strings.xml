@@ -113,7 +113,6 @@
     <string name="defaultRounds">Default Rounds: </string>
     
      <string-array name="roundArray">
-        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
