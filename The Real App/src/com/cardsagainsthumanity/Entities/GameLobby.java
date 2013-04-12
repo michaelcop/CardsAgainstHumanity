@@ -166,6 +166,10 @@ public class GameLobby extends Activity
 	                	SharedPreferences.Editor spEditor = othSettings.edit();
 	                	spEditor.remove("inGame").commit();
 	                	spEditor.remove("CurGameID").commit();
+	                	Intent mainMenuIntent = new Intent(context, MainMenu.class);
+	                 	mainMenuIntent.putExtra("userName", userName);
+	                 	mainMenuIntent.putExtra("userId", userId);
+	                 	startActivityForResult(mainMenuIntent, 0);
 						GameLobby.this.finish();
 					} 
 				
