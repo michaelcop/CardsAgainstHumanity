@@ -129,7 +129,7 @@ public class FriendsList extends Activity
             // Create a TextView to house the value of the after-tax income
             
             final Button b = new Button(this);
-            b.setId(++buttonId);
+            b.setId((UserId+1000000));
             b.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
             b.setHint("UserId:"+UserId);
             
@@ -153,7 +153,7 @@ public class FriendsList extends Activity
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
         				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-			        	error.setText("USER ID FOR DELETION IS: " +ID);
+			        	//error.setText("USER ID FOR DELETION IS: " +ID);
         				callUrl(stringUrl);
         			}
         			
@@ -175,7 +175,7 @@ public class FriendsList extends Activity
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
         				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-			        	error.setText("USER ID FOR DELETION IS: " +ID);
+			        	//error.setText("USER ID FOR DELETION IS: " +ID);
         				callUrl(stringUrl);
         			}
         			
@@ -196,7 +196,7 @@ public class FriendsList extends Activity
         				String ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/AcceptFriend?User="+User1Id+"&User2="+ID;
         				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-			        	error.setText("USER ID FOR ACCEPTING IS: " +ID);
+			        	//error.setText("USER ID FOR ACCEPTING IS: " +ID);
         				callUrl(stringUrl);
         				
         			}
@@ -263,7 +263,7 @@ public class FriendsList extends Activity
                         final Button A = new Button(FriendsList.this);
                         A.setText("Cancel Request");
                         A.setHint("UserID:"+UserIdReturned);
-                        A.setId(++buttonId);
+                        A.setId((1000000+Integer.parseInt(UserIdReturned)));
                         A.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
                         A.setOnClickListener(new OnClickListener(){
 							@Override
@@ -295,8 +295,8 @@ public class FriendsList extends Activity
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted"))
 					{
-						final Button button =  (Button) findViewById(++buttonId);
 						String UserIdReturned =  resultArray[1];
+						final Button button =  (Button) findViewById(1000000+Integer.parseInt(UserIdReturned));
 						button.setText("Delete");
 						button.setEnabled(true);
 						button.setHint("UserId:"+UserIdReturned);
