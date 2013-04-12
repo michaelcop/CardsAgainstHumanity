@@ -165,8 +165,6 @@ public class Game extends Activity
 				card3.setBackgroundResource(R.drawable.white);
 				card4.setBackgroundResource(R.drawable.white);
 				card5.setBackgroundResource(R.drawable.white);
-				card6.setBackgroundResource(R.drawable.white);
-				card7.setBackgroundResource(R.drawable.white);
 				
 				currentBlankCard = 1;
 			}
@@ -201,8 +199,6 @@ public class Game extends Activity
 				card3.setBackgroundResource(R.drawable.white);
 				card4.setBackgroundResource(R.drawable.white);
 				card5.setBackgroundResource(R.drawable.white);
-				card6.setBackgroundResource(R.drawable.white);
-				card7.setBackgroundResource(R.drawable.white);
 				
 				currentBlankCard = 2;
 			}
@@ -237,8 +233,6 @@ public class Game extends Activity
 				card1.setBackgroundResource(R.drawable.white);
 				card4.setBackgroundResource(R.drawable.white);
 				card5.setBackgroundResource(R.drawable.white);
-				card6.setBackgroundResource(R.drawable.white);
-				card7.setBackgroundResource(R.drawable.white);
 				
 				currentBlankCard = 3;
 			}
@@ -273,8 +267,6 @@ public class Game extends Activity
 				card3.setBackgroundResource(R.drawable.white);
 				card1.setBackgroundResource(R.drawable.white);
 				card5.setBackgroundResource(R.drawable.white);
-				card6.setBackgroundResource(R.drawable.white);
-				card7.setBackgroundResource(R.drawable.white);
 				
 				currentBlankCard = 4;
 			}
@@ -308,8 +300,6 @@ public class Game extends Activity
 				card3.setBackgroundResource(R.drawable.white);
 				card4.setBackgroundResource(R.drawable.white);
 				card1.setBackgroundResource(R.drawable.white);
-				card6.setBackgroundResource(R.drawable.white);
-				card7.setBackgroundResource(R.drawable.white);
 				
 				currentBlankCard = 5;
 			}
@@ -548,6 +538,7 @@ public class Game extends Activity
         } else {
             //error.setText("No network connection available.");
         }
+        refreshUser();
 	}
 	
 	public void czarSelectCard(String text)
@@ -565,6 +556,7 @@ public class Game extends Activity
         } else {
             //error.setText("No network connection available.");
         }
+        refreshUser();
 	}
 	
 	public void refreshUser()
@@ -617,7 +609,7 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;staci;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
+	        	//results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;staci;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	            if(results!=null){
