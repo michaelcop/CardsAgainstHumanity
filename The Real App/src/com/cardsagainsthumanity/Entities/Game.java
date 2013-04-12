@@ -617,7 +617,8 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
+	        	results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;staci;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
+	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	            if(results!=null){
 	            	
@@ -691,17 +692,20 @@ private class DownloadWebpageText extends AsyncTask {
 						card4.setText("");
 						card5.setText("");
 						
-						if(currentUser.whiteCardsList.size() > 0)
-							card1.setText(currentUser.whiteCardsList.get(0));
-						if(currentUser.whiteCardsList.size() > 1)
-							card2.setText(currentUser.whiteCardsList.get(1));
-						if(currentUser.whiteCardsList.size() > 2)
-							card3.setText(currentUser.whiteCardsList.get(2));
-						if(currentUser.whiteCardsList.size() > 3)
-							card4.setText(currentUser.whiteCardsList.get(3));
-						if(currentUser.whiteCardsList.size() > 4)
-							card5.setText(currentUser.whiteCardsList.get(4));
-						blackCard.setText(currentUser.blackCard);
+						if(!currentUser.currentCzar.equals(userName) || (currentUser.currentCzar.equals(userName) && currentUser.whiteCardsList.size() == currentUser.otherUsers.size() - 1))
+						{
+							if(currentUser.whiteCardsList.size() > 0)
+								card1.setText(currentUser.whiteCardsList.get(0));
+							if(currentUser.whiteCardsList.size() > 1)
+								card2.setText(currentUser.whiteCardsList.get(1));
+							if(currentUser.whiteCardsList.size() > 2)
+								card3.setText(currentUser.whiteCardsList.get(2));
+							if(currentUser.whiteCardsList.size() > 3)
+								card4.setText(currentUser.whiteCardsList.get(3));
+							if(currentUser.whiteCardsList.size() > 4)
+								card5.setText(currentUser.whiteCardsList.get(4));
+							blackCard.setText(currentUser.blackCard);	
+						}
 						
 						String playerListString = "";
 						for(int i=0; i<currentUser.otherUsers.size(); i++)
@@ -716,14 +720,17 @@ private class DownloadWebpageText extends AsyncTask {
 						if(currentUser.currentCzar.equals(userName))
 						{
 							//this is the card czar deal with his cards
-							if(currentUser.whiteCardsList.size() == currentUser.otherUsers.size() - 1)
+							if(currentUser.whiteCardsList.size() < currentUser.otherUsers.size() - 1)
 							{
 								int numCardsLeft = currentUser.otherUsers.size()-1 - currentUser.whiteCardsList.size();
-								chatBox.setText("You are the Card Czar!\nWe are waiting on " + numCardsLeft + " cards");
+								chatBox.setText("You are the Card Czar!\nWe are waiting on " + numCardsLeft + " cards" + "\n" + 
+												currentUser.whiteCardsList.size() + ":" + currentUser.otherUsers.size());
+								
 							}
 							else
 							{
-								chatBox.setText("You are the Card Czar!\nSelect the winner!");
+								chatBox.setText("You are the Card Czar!\nSelect the winner!"  + "\n" + 
+										currentUser.whiteCardsList.size() + ":" + currentUser.otherUsers.size());
 							}
 						}
 						
@@ -738,7 +745,7 @@ private class DownloadWebpageText extends AsyncTask {
 						 * 2; card 1 description; card 2 description;
 						 * black card description
 						 */
-						//function for I am card czar and find out what people played
+						//function fgggggggor I am card czar and find out what people played
 					}
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("PlayWhiteCard"))
