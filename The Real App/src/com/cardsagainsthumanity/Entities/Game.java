@@ -147,6 +147,8 @@ public class Game extends Activity
 				{
 					//get text off card and post to server and post which user the card belonged to 
 					String cardText = card1.getText().toString();
+					int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+					cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 					czarSelectCard(cardText);
 				}
 				else
@@ -176,7 +178,23 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				submissionID = (String) card2.getHint();
+				if(userName.equals(currentUser.currentCzar))
+				{
+					//get text off card and post to server and post which user the card belonged to 
+					String cardText = card2.getText().toString();
+					int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+					cardText = currentUser.whiteCardsID.get(tempIndex) + "";
+					czarSelectCard(cardText);
+				}
+				else
+				{
+					//this is a regular user playing a white card
+					//set variable to which card they clicked then
+					//when the submit button is pressed register them playing that card
+					String cardText = card2.getText().toString();
+					playWhiteCard(cardText);
+				}
+				//submissionID = (String) card2.getHint();
 				card2.setBackgroundResource(R.drawable.selectedcard);
 				
 				card1.setBackgroundResource(R.drawable.white);
@@ -196,7 +214,23 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				submissionID = (String) card3.getHint();
+				if(userName.equals(currentUser.currentCzar))
+				{
+					//get text off card and post to server and post which user the card belonged to 
+					String cardText = card3.getText().toString();
+					int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+					cardText = currentUser.whiteCardsID.get(tempIndex) + "";
+					czarSelectCard(cardText);
+				}
+				else
+				{
+					//this is a regular user playing a white card
+					//set variable to which card they clicked then
+					//when the submit button is pressed register them playing that card
+					String cardText = card3.getText().toString();
+					playWhiteCard(cardText);
+				}
+				//submissionID = (String) card3.getHint();
 				card3.setBackgroundResource(R.drawable.selectedcard);
 				
 				card2.setBackgroundResource(R.drawable.white);
@@ -215,7 +249,24 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				submissionID = (String) card4.getHint();
+				if(userName.equals(currentUser.currentCzar))
+				{
+					//get text off card and post to server and post which user the card belonged to 
+					String cardText = card4.getText().toString();
+					int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+					cardText = currentUser.whiteCardsID.get(tempIndex) + "";
+					czarSelectCard(cardText);
+				}
+				else
+				{
+					//this is a regular user playing a white card
+					//set variable to which card they clicked then
+					//when the submit button is pressed register them playing that card
+					String cardText = card4.getText().toString();
+					playWhiteCard(cardText);
+				}
+				
+				//submissionID = (String) card4.getHint();
 				card4.setBackgroundResource(R.drawable.selectedcard);
 				
 				card2.setBackgroundResource(R.drawable.white);
@@ -234,7 +285,23 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				submissionID = (String) card5.getHint();
+				if(userName.equals(currentUser.currentCzar))
+				{
+					//get text off card and post to server and post which user the card belonged to 
+					String cardText = card5.getText().toString();
+					int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+					cardText = currentUser.whiteCardsID.get(tempIndex) + "";
+					czarSelectCard(cardText);
+				}
+				else
+				{
+					//this is a regular user playing a white card
+					//set variable to which card they clicked then
+					//when the submit button is pressed register them playing that card
+					String cardText = card5.getText().toString();
+					playWhiteCard(cardText);
+				}
+				//submissionID = (String) card5.getHint();
 				card5.setBackgroundResource(R.drawable.selectedcard);
 				
 				card2.setBackgroundResource(R.drawable.white);
@@ -671,6 +738,30 @@ private class DownloadWebpageText extends AsyncTask {
 						 */
 						//function for I am card czar and find out what people played
 					}
+	            	
+	            	else if(resultArray!=null && resultArray[0].equals("PlayWhiteCard"))
+	            	{
+	            		if(resultArray[1] == "Works")
+	            		{
+	            			//works
+	            		}
+	            		else
+	            		{
+	            			
+	            		}
+	            	}
+	            	
+	            	else if(resultArray!=null && resultArray[0].equals("RefreshGame"))
+	            	{
+	            		if(resultArray[1] == "Works")
+	            		{
+	            			//works
+	            		}
+	            		else
+	            		{
+	            			
+	            		}
+	            	}
 	            	
 					else if(resultArray[0]=="none") {
 						Toast.makeText(Game.this, "Error in RefreshUser", Toast.LENGTH_SHORT).show();
