@@ -39,37 +39,6 @@
         android:textColor="@color/White"
         android:visibility="invisible" />
 
-    <Button
-        android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/toggleNotificationsButton"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="27dp"
-        android:clickable="false"
-        android:text="@string/setting_save"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/ReturnToMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/SaveButton"
-        android:layout_alignBottom="@+id/SaveButton"
-        android:layout_alignLeft="@+id/LogOutButton"
-        android:text="@string/returntomenu"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/LogOutButton"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/SaveButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:text="@string/setting_switch"
-        android:textColor="@color/White" />
-
     <TextView
         android:id="@+id/DefaultRoundsText"
         android:layout_width="wrap_content"
@@ -89,5 +58,37 @@
         android:layout_alignLeft="@+id/DefaultRoundsText"
         android:layout_alignRight="@+id/DefaultRoundsText"
         android:layout_below="@+id/DefaultRoundsText" />
+
+    <Button
+        android:id="@+id/ReturnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/LogOutButton"
+        android:text="@string/returntomenu"
+        android:textColor="@color/White"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/toggleNotificationsButton"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="18dp"
+        android:clickable="false"
+        android:text="@string/setting_save"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/LogOutButton"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/SaveButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:text="@string/setting_switch"
+        android:textColor="@color/White" />
 
 </RelativeLayout>

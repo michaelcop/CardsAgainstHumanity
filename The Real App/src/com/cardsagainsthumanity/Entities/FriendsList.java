@@ -256,12 +256,16 @@ public class FriendsList extends Activity
                         TextView tn = new TextView(FriendsList.this);
                         tn.setText(User2);
                         tn.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
+                        tr.setBackgroundResource(R.drawable.friendsrow);
+                        tn.setPadding(10, 0, 5, 0);
                         tr.addView(tn);
                         final Button A = new Button(FriendsList.this);
                         A.setText("Cancel Request");
                         A.setHint("UserID:"+UserIdReturned);
                         A.setId((1000000+Integer.parseInt(UserIdReturned)));
                         A.setTextColor(FriendsList.this.getResources().getColor(R.color.White));
+                        A.setWidth(LayoutParams.WRAP_CONTENT);
+                        A.setTextSize(14);
                         A.setOnClickListener(new OnClickListener(){
 							@Override
 							public void onClick(View v) {
