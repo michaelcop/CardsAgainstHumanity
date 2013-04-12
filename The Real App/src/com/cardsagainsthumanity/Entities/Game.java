@@ -536,6 +536,7 @@ public class Game extends Activity
 	public void playWhiteCard(String text)
 	{
 		//URL contains the userID and gameID
+		//passing in cardID as text see the buttons
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?UserID=" + userId + "&GameID="+gameId + "&WhiteCard="+text;
     	check = "PlayWhiteCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -552,6 +553,7 @@ public class Game extends Activity
 	public void czarSelectCard(String text)
 	{
 		//URL contains the userID and gameID
+		//passing in cardID as text see the buttons
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?UserID=" + userId + "&GameID="+gameId + "&CzarCard="+text;
     	check = "CzarSelectCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
@@ -747,11 +749,11 @@ private class DownloadWebpageText extends AsyncTask {
 	            		}
 	            		else
 	            		{
-	            			
+	            			Toast.makeText(Game.this, "Error playing your white card", Toast.LENGTH_SHORT).show();
 	            		}
 	            	}
 	            	
-	            	else if(resultArray!=null && resultArray[0].equals("RefreshGame"))
+	            	else if(resultArray!=null && resultArray[0].equals("CzarSelectCard"))
 	            	{
 	            		if(resultArray[1] == "Works")
 	            		{
@@ -759,7 +761,7 @@ private class DownloadWebpageText extends AsyncTask {
 	            		}
 	            		else
 	            		{
-	            			
+	            			Toast.makeText(Game.this, "Error selecting a card czar", Toast.LENGTH_SHORT).show();
 	            		}
 	            	}
 	            	
