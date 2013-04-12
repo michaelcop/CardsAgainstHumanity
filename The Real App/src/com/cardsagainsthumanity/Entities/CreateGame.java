@@ -84,8 +84,16 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
 		inputGameRounds.setAdapter(adapter);
+		//Set spinner to default game rounds if available
+		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+		if(othSettings.contains("defGameRounds"))
+		{
+			inputGameRounds.setSelection(othSettings.getInt("defGameRounds", 2) - 1);
+		} 
 		inputGameRounds.setOnItemSelectedListener(this);
 		//End drop down ----------------------------------------------------------------------------------
+		
+		
 		
 		Button createButton = (Button) findViewById(R.id.btnCreate);
 		
@@ -94,58 +102,23 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 			@Override
 			public void onClick(View v) 
 			{
-				if(rounds == 0)
-				{
-					//Use default rounds settings if available --------------------------------------------------------------
-					SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-					if(othSettings.contains("defGameRounds"))
-					{
-						Toast.makeText(getApplicationContext(), "Using set default rounds", Toast.LENGTH_SHORT).show();
-						rounds = othSettings.getInt("defGameRounds", 1);
-						String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
-						mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-			        	check = "Game";
-			        	ConnectivityManager connMgr = (ConnectivityManager) 
-			    		getSystemService(Context.CONNECTIVITY_SERVICE);
-			            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-			            error.setText("creating");
-			            
-			            if (networkInfo != null && networkInfo.isConnected())
-			            {
-			                new DownloadWebpageText().execute(stringUrl);
-			            }
-			            else 
-			            {
-			                error.setText("No network connection available.");
-			            }
-					}
-					else //Invalid rounds number
-					{
-						Toast.makeText(getApplicationContext(), "Please select a valid numerical value.", Toast.LENGTH_LONG).show();
-
-					} //End use default rounds ---------------------------------------------------------------------------------
-	        	}
-				else //Use chosen rounds number --------------------------------------------------------------------------------
-				{
-					String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
-					mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-		        	check = "Game";
-		        	ConnectivityManager connMgr = (ConnectivityManager) 
-		    		getSystemService(Context.CONNECTIVITY_SERVICE);
-		            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		            error.setText("creating");
-		            
-		            if (networkInfo != null && networkInfo.isConnected())
-		            {
-		                new DownloadWebpageText().execute(stringUrl);
-		            }
-		            else 
-		            {
-		                error.setText("No network connection available.");
-		            }
-				} //End use chosen rounds number --------------------------------------------------------------------------------
-			}
-			
+				String stringUrl = "http://54.225.225.185:8080/ServerAPP/CreateGame?User="+userId+"&rounds="+rounds;
+				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+	        	check = "Game";
+	        	ConnectivityManager connMgr = (ConnectivityManager) 
+	    		getSystemService(Context.CONNECTIVITY_SERVICE);
+	            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+	            error.setText("creating");
+	            
+	            if (networkInfo != null && networkInfo.isConnected())
+	            {
+	                new DownloadWebpageText().execute(stringUrl);
+	            }
+	            else 
+	            {
+	                error.setText("No network connection available.");
+	            }
+			} 			
 		});
 	
 	}  
