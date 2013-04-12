@@ -47,21 +47,12 @@
         android:maxLines="6"
         android:lines = "6"/>
 
-    <Button
-        android:id="@+id/lobbyInviteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/playerListLobby"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="@string/lobbyInvite" />
-
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lobbyInviteButton"
+        android:layout_below="@+id/playerListLobby"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:visibility="invisible" />

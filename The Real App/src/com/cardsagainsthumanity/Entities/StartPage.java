@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class StartPage extends Activity {
@@ -40,6 +41,7 @@ public class StartPage extends Activity {
     private String sha;
     Button v;
     public static final String SPREF_USER = "othPrefs";
+    private ProgressBar loginProgress;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -61,6 +63,10 @@ public class StartPage extends Activity {
 	        	//login
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
+	        	
+	        	loginProgress = (ProgressBar) findViewById(R.id.loginProgressBar);
+	        	
+	        	
 	        	/*
 	        	if(userName.length() < 5 || password.length() < 5)
 	        	{
@@ -74,6 +80,7 @@ public class StartPage extends Activity {
 	        	//Encrypt pw ---------------------------------------------------------------------------------
 	        	String stringThatNeedsToBeEncrpyted = password; // Value to encrypt
                 MessageDigest Enc = null;
+                
                 try {
                     Enc = MessageDigest.getInstance("SHA-1");
                 } catch (NoSuchAlgorithmException e) {
@@ -120,8 +127,12 @@ public class StartPage extends Activity {
 		});
 	}
 	
-	 private class DownloadWebpageText extends AsyncTask {
-	        
+	 private class DownloadWebpageText extends AsyncTask
+	 {
+		 	protected void onPreExecute()
+			{
+				loginProgress.setVisibility(ProgressBar.VISIBLE);
+			}
 	    	@Override
 	        protected Object doInBackground(Object... urls) {
 	            // params comes from the execute() call: params[0] is the url.
@@ -134,7 +145,9 @@ public class StartPage extends Activity {
 	    	
 	        // onPostExecute displays the results of the AsyncTask.
 	        @Override
-	        protected void onPostExecute(Object result) {
+	        protected void onPostExecute(Object result) 
+	        {
+	        	 loginProgress.setVisibility(ProgressBar.INVISIBLE);
 	            results = (String) result.toString();
 	            results = results.trim();
 	            //check the result for the what's needed to move on
