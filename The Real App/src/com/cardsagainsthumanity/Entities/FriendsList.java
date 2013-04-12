@@ -66,7 +66,6 @@ public class FriendsList extends Activity
 			UserName = extras.getString("UserName");
 			User1Id = extras.getString("UserId");
 			testStrings = extras.getStringArrayList("data");
-			Toast.makeText(context, "UN " + UserName + " Id " + User1Id, Toast.LENGTH_LONG).show();
 		}
 		
 		Button AddFriend = (Button) findViewById(R.id.btnAddFriend);
@@ -75,14 +74,12 @@ public class FriendsList extends Activity
 			@Override
 			public void onClick(View v) 
 			{
-				Toast.makeText(context, "Num Friends = " + Friends.size(), Toast.LENGTH_LONG).show();
 				if(Friends.size()<=49){
 					TextView add = (TextView) findViewById(R.id.AddFriendBox);
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
 					if(User2!="" && User2!=null && UserName!=null && (!User2.equals(UserName))){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
 						mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-						Toast.makeText(context, stringUrl, Toast.LENGTH_SHORT).show();
                 		
 						callUrl(stringUrl);}
 					}
@@ -249,7 +246,7 @@ public class FriendsList extends Activity
 					error.setText("");
 	            	String[] resultArray = results.split(";");
 					if(resultArray!=null && resultArray[0].equals("Added") && resultArray.length==2){
-                		Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
+                		//Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
                 		TextView add = (TextView) findViewById(R.id.AddFriendBox);
                 		Friends.add(add.getText().toString());
 					// ADD ROW TO TABLE
@@ -289,7 +286,7 @@ public class FriendsList extends Activity
 						}
 					}
 					else if(resultArray!=null && resultArray[0].equals("Deleted")){
-                		Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                		//Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                 		
 						t.removeView((TableRow)findViewById(Integer.parseInt(resultArray[1].toString())));
 					}
@@ -300,7 +297,7 @@ public class FriendsList extends Activity
 						button.setText("Delete");
 						button.setEnabled(true);
 						button.setHint("UserId:"+UserIdReturned);
-                		Toast.makeText(context, "accepted!", Toast.LENGTH_SHORT).show();
+                		//Toast.makeText(context, "accepted!", Toast.LENGTH_SHORT).show();
                 		button.setOnClickListener(new OnClickListener(){
 
                 			@Override
@@ -317,8 +314,7 @@ public class FriendsList extends Activity
                 		});
 					}
 					else{
-                		Toast.makeText(context, "You broke it.", Toast.LENGTH_SHORT).show();
-                		Toast.makeText(context, results, Toast.LENGTH_SHORT).show();
+                		//Toast.makeText(context, "You broke it.", Toast.LENGTH_SHORT).show();
                 		
 						}
 	            }
