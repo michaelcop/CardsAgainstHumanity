@@ -156,7 +156,6 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 	        	Log.d("FUCK", resultArr[0]);
 	            //check the result for the what's needed to move on
 	            if(resultArr!=null && (resultArr[0]).equalsIgnoreCase(check)){
-	            	Toast.makeText(CreateGame.this, "Created Game", Toast.LENGTH_SHORT).show();
 					error.setText("");
 					
 					//Goes to game lobby from create game -------------------------------------------------
