@@ -203,7 +203,7 @@ public class JoinGame extends Activity
         @Override
         protected void onPostExecute(Object result)
         {
-    		Toast.makeText(context, "postExe", Toast.LENGTH_LONG).show();
+    		//Toast.makeText(context, "postExe", Toast.LENGTH_LONG).show();
 
         	if(result!=null)
         	{
@@ -222,7 +222,7 @@ public class JoinGame extends Activity
 			            	ArrayList<String> data = new ArrayList<String>(Arrays.asList(resultArray));
 							data.remove(0);
 			            	makeTable(data);
-	                		Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
+	                		//Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 						}
 						
 						else if(resultArray!=null && resultArray[0].equals("Joining")){
@@ -243,13 +243,13 @@ public class JoinGame extends Activity
 							Toast.makeText(context, "Removed Game Invite", Toast.LENGTH_LONG).show();
 						}
 						else{
-	                		Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
+	                		//Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
 						}
 		            }
 		            else
 		            {
 		            	//error.setText(results);
-	            		Toast.makeText(context, results, Toast.LENGTH_LONG).show();
+	            		//Toast.makeText(context, results, Toast.LENGTH_LONG).show();
 	
 		            }
 	        	}
@@ -257,7 +257,7 @@ public class JoinGame extends Activity
         	else
         	{
         		//error.setText("Result was null");
-        		Toast.makeText(context, "Result = null", Toast.LENGTH_LONG).show();
+        		//Toast.makeText(context, "Result = null", Toast.LENGTH_LONG).show();
         	}
         }
     }
