@@ -48,6 +48,10 @@ public class Settings extends Activity implements OnItemSelectedListener
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
 		inputRounds.setAdapter(adapter);
+		//Set spinner to default
+		SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+		if(othSettings.contains("defGameRounds"))
+			inputRounds.setSelection(othSettings.getInt("defGameRounds", 2) - 1);
 		inputRounds.setOnItemSelectedListener(this);
 		
 		//Save Button listener----------------------------------------------
