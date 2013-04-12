@@ -80,7 +80,6 @@ public class MainMenu extends Activity
         {
 
         case R.id.menu_preferences:
-           // Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
             Intent set = new Intent(MainMenu.this, Settings.class);
             startActivityForResult(set, 0);
             return true;
@@ -119,7 +118,6 @@ public class MainMenu extends Activity
 			{
 				// TODO Auto-generated method stub
 				Intent cGame = new Intent(v.getContext(), CreateGame.class);
-        		Toast.makeText(context, userName, Toast.LENGTH_LONG).show();
 				cGame.putExtra("userName", userName);
 				cGame.putExtra("userId", userId);
 
@@ -325,7 +323,6 @@ public class MainMenu extends Activity
 						myIntent.putStringArrayListExtra("data", data);
 						myIntent.putExtra("UserName", userName);
 						myIntent.putExtra("UserId", userId);
-						Toast.makeText(context, userId, Toast.LENGTH_SHORT).show();
 		            	startActivity(myIntent);
 					}
 					else if(resultArray[0]=="none") {
