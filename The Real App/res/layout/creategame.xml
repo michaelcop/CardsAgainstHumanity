@@ -72,4 +72,14 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/NumberofRoundsLabel" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar1"
+        android:layout_alignLeft="@+id/roundSpinner"
+        android:layout_alignRight="@+id/btnCreate"
+        android:text="@string/use_dr"
+        android:textColor="@color/White" />
+
 </RelativeLayout>
