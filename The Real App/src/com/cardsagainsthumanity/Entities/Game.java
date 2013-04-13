@@ -822,6 +822,7 @@ private class DownloadWebpageText extends AsyncTask {
 								card5.setText(currentUser.whiteCardsList.get(4));
 							blackCard.setText(currentUser.blackCard);	
 						}
+						blackCard.setText(currentUser.blackCard);	
 						
 						String playerListString = "";
 						for(int i=0; i<currentUser.otherUsers.size(); i++)
