@@ -757,6 +757,17 @@ private class DownloadWebpageText extends AsyncTask {
 	            	else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
 	            	{
 	            		Toast.makeText(Game.this, "Leaving Game", Toast.LENGTH_SHORT).show();
+	            		//handles the leave game/quit game code only when in post execute
+						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+	                	SharedPreferences.Editor spEditor = othSettings.edit();
+	                	spEditor.putBoolean("inGame", false).commit();
+	                	spEditor.remove("CurGameID").commit();
+	                	Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+				    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				    	intent.putExtra("userName", userName);
+				    	intent.putExtra("userId", userId);
+				    	startActivity(intent);
+						Game.this.finish();
 	            	}
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("PlayWhiteCard"))
@@ -867,16 +878,6 @@ private class DownloadWebpageText extends AsyncTask {
 							  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,int id) {
 									exitURLHandler();//deal with exiting on post execute
-									SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-				                	SharedPreferences.Editor spEditor = othSettings.edit();
-				                	spEditor.putBoolean("inGame", false).commit();
-				                	spEditor.remove("CurGameID").commit();
-				                	Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-							    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							    	intent.putExtra("userName", userName);
-							    	intent.putExtra("userId", userId);
-							    	startActivity(intent);
-									Game.this.finish();
 								} 
 							
 							}) 
