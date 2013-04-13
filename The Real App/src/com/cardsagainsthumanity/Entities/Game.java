@@ -14,7 +14,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,17 +22,13 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -127,195 +122,129 @@ public class Game extends Activity
 		//Drawable selected = res.getDrawable(R.drawable.selectedCard);
 		
 		//android.view.Display display = ((android.view.WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		//DisplayMetrics metrics = new DisplayMetrics();
-		//getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
-		//card1.setWidth((int)(metrics.widthPixels * .33) );
+		card1.setWidth((int)(metrics.widthPixels * .33) );
 		
-		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		
-		//Point size = new Point();
-		//display.getSize(size);
-		
-		@SuppressWarnings("deprecation")
-		int width = display.getWidth();
-		@SuppressWarnings("deprecation")
-		int height = display.getHeight();
-		
-		card1.setWidth(width/5);
-		card2.setWidth(width/5);
-		card3.setWidth(width/5);
-		card4.setWidth(width/5);
-		card5.setWidth(width/5);
-		
-		//New stuff is here!
-		
-		card1.setOnTouchListener(new OnTouchListener()
+		card1.setOnClickListener(new OnClickListener()
 		{
 			
 			@Override
-			public boolean onTouch(View v, MotionEvent event) 
+			public void onClick(View arg0) 
 			{
-				 if (event.getAction() == MotionEvent.ACTION_UP)
-				 {
-					 if(currentUser.submitted)
-							return true;
-						//submissionID =  (String) card1.getHint();
-						/*
-						 * Card czar selects a card which corresponds to this button
-						 * then you get the text of this card/button
-						 * send to the server the text on the card and if you can the which user had this card
-						 * because the user who has this card gets a point
-						 * 
-						 * for play white card if this person is not the card czar then they can play a white card
-						 * so you have to check that i.e. if they are not card czar and the pressed the card then
-						 * they have played this white card
-						 * playWhiteCard(get button text)
-						 */
-						currentCardSelected = 1;
-						
-						card1.setBackgroundResource(R.drawable.selectedcard);
-						
-						card2.setBackgroundResource(R.drawable.white);
-						card3.setBackgroundResource(R.drawable.white);
-						card4.setBackgroundResource(R.drawable.white);
-						card5.setBackgroundResource(R.drawable.white);
-						
-						currentBlankCard = 1;
-				 }
-				 if (event.getAction() == MotionEvent.ACTION_MOVE) 
-		        {
-		            // Offsets are for centering the TextView on the touch location
-		            v.setX(event.getRawX() - v.getWidth() / 2.0f);
-		            //v.setY(event.getRawY() - v.getHeight() / 2.0f);
-		        }
-				return false;
+				if(currentUser.submitted)
+					return;
+				//submissionID =  (String) card1.getHint();
+				/*
+				 * Card czar selects a card which corresponds to this button
+				 * then you get the text of this card/button
+				 * send to the server the text on the card and if you can the which user had this card
+				 * because the user who has this card gets a point
+				 * 
+				 * for play white card if this person is not the card czar then they can play a white card
+				 * so you have to check that i.e. if they are not card czar and the pressed the card then
+				 * they have played this white card
+				 * playWhiteCard(get button text)
+				 */
+				currentCardSelected = 1;
+				
+				card1.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 1;
 			}
 		});
 
-		card2.setOnTouchListener(new OnTouchListener()
+		card2.setOnClickListener(new OnClickListener()
 		{
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) 
+			public void onClick(View arg0) 
 			{
-				 if (event.getAction() == MotionEvent.ACTION_UP)
-				 {
-					 if(currentUser.submitted)
-							return true;
-						currentCardSelected = 2;
-						
-						//submissionID = (String) card2.getHint();
-						card2.setBackgroundResource(R.drawable.selectedcard);
-						
-						card1.setBackgroundResource(R.drawable.white);
-						card3.setBackgroundResource(R.drawable.white);
-						card4.setBackgroundResource(R.drawable.white);
-						card5.setBackgroundResource(R.drawable.white);
-						
-						currentBlankCard = 2;
-				 }
-				 if (event.getAction() == MotionEvent.ACTION_MOVE) 
-			        {
-			            // Offsets are for centering the TextView on the touch location
-			            v.setX(event.getRawX() - v.getWidth() / 2.0f);
-			            //v.setY(event.getRawY() - v.getHeight() / 2.0f);
-			        }
-				return false;
+				if(currentUser.submitted)
+					return;
+				currentCardSelected = 2;
 				
+				//submissionID = (String) card2.getHint();
+				card2.setBackgroundResource(R.drawable.selectedcard);
+				
+				card1.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 2;
 			}
 		});
 		
-		card3.setOnTouchListener(new OnTouchListener()
+		card3.setOnClickListener(new OnClickListener()
 		{
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) 
+			public void onClick(View arg0) 
 			{
-				 if (event.getAction() == MotionEvent.ACTION_UP)
-				 {
-					 if(currentUser.submitted)
-							return true;
-					currentCardSelected = 3;
+				if(currentUser.submitted)
+					return;
+				currentCardSelected = 3;
 
-					//submissionID = (String) card3.getHint();
-					card3.setBackgroundResource(R.drawable.selectedcard);
-					
-					card2.setBackgroundResource(R.drawable.white);
-					card1.setBackgroundResource(R.drawable.white);
-					card4.setBackgroundResource(R.drawable.white);
-					card5.setBackgroundResource(R.drawable.white);
-					
-					currentBlankCard = 3;
-				 }
-				return false;
+				//submissionID = (String) card3.getHint();
+				card3.setBackgroundResource(R.drawable.selectedcard);
 				
-			}
-		});
-		card4.setOnTouchListener(new OnTouchListener()
-		{
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) 
-			{
-				 if (event.getAction() == MotionEvent.ACTION_UP)
-				 {
-					 if(currentUser.submitted)
-							return true;
-						currentCardSelected = 4;
-						
-						//submissionID = (String) card4.getHint();
-						card4.setBackgroundResource(R.drawable.selectedcard);
-						
-						card2.setBackgroundResource(R.drawable.white);
-						card3.setBackgroundResource(R.drawable.white);
-						card1.setBackgroundResource(R.drawable.white);
-						card5.setBackgroundResource(R.drawable.white);
-						
-						currentBlankCard = 4;
-				 }
-				 if (event.getAction() == MotionEvent.ACTION_MOVE) 
-			        {
-			            // Offsets are for centering the TextView on the touch location
-			            v.setX(event.getRawX() - v.getWidth() / 2.0f);
-			            //v.setY(event.getRawY() - v.getHeight() / 2.0f);
-			        }
-				return false;
+				card2.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
 				
+				currentBlankCard = 3;
 			}
 		});
-		card5.setOnTouchListener(new OnTouchListener()
+		card4.setOnClickListener(new OnClickListener()
 		{
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) 
+			public void onClick(View arg0) 
 			{
-				 if (event.getAction() == MotionEvent.ACTION_UP)
-				 {
-					 if(currentUser.submitted)
-							return false;
-						currentCardSelected = 5;
-
-						//submissionID = (String) card5.getHint();
-						card5.setBackgroundResource(R.drawable.selectedcard);
-						
-						card2.setBackgroundResource(R.drawable.white);
-						card3.setBackgroundResource(R.drawable.white);
-						card4.setBackgroundResource(R.drawable.white);
-						card1.setBackgroundResource(R.drawable.white);
-						
-						currentBlankCard = 5;
-				 }
-				 if (event.getAction() == MotionEvent.ACTION_MOVE) 
-			        {
-			            // Offsets are for centering the TextView on the touch location
-			            v.setX(event.getRawX() - v.getWidth() / 2.0f);
-			            //v.setY(event.getRawY() - v.getHeight() / 2.0f);
-			        }
-				return false;
+				if(currentUser.submitted)
+					return;
+				currentCardSelected = 4;
+				
+				//submissionID = (String) card4.getHint();
+				card4.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				card5.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 4;
 			}
 		});
-		
+		card5.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View arg0) 
+			{
+				if(currentUser.submitted)
+					return;
+				currentCardSelected = 5;
+
+				//submissionID = (String) card5.getHint();
+				card5.setBackgroundResource(R.drawable.selectedcard);
+				
+				card2.setBackgroundResource(R.drawable.white);
+				card3.setBackgroundResource(R.drawable.white);
+				card4.setBackgroundResource(R.drawable.white);
+				card1.setBackgroundResource(R.drawable.white);
+				
+				currentBlankCard = 5;
+			}
+		});
 		
 		/*sendMessage.setOnClickListener(new OnClickListener()
 		{
@@ -822,7 +751,7 @@ private class DownloadWebpageText extends AsyncTask {
 								card5.setText(currentUser.whiteCardsList.get(4));
 							blackCard.setText(currentUser.blackCard);	
 						}
-						blackCard.setText(currentUser.blackCard);	
+						blackCard.setText(currentUser.blackCard);
 						
 						String playerListString = "";
 						for(int i=0; i<currentUser.otherUsers.size(); i++)
@@ -892,6 +821,7 @@ private class DownloadWebpageText extends AsyncTask {
 						card4.setVisibility(card4.INVISIBLE);
 						card5.setVisibility(card5.INVISIBLE);
 						blackCard.setVisibility(blackCard.INVISIBLE);
+						submit.setEnabled(false);
 	            	}
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("Success"))
