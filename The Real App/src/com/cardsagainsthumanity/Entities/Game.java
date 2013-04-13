@@ -279,6 +279,8 @@ public class Game extends Activity
 						//set variable to which card they clicked then
 						//when the submit button is pressed register them playing that card
 						String cardText = card1.getText().toString();
+						int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
 				}
@@ -298,6 +300,8 @@ public class Game extends Activity
 						//set variable to which card they clicked then
 						//when the submit button is pressed register them playing that card
 						String cardText = card2.getText().toString();
+						int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
 				}
@@ -317,6 +321,8 @@ public class Game extends Activity
 						//set variable to which card they clicked then
 						//when the submit button is pressed register them playing that card
 						String cardText = card3.getText().toString();
+						int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
 				}
@@ -336,6 +342,8 @@ public class Game extends Activity
 						//set variable to which card they clicked then
 						//when the submit button is pressed register them playing that card
 						String cardText = card4.getText().toString();
+						int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
 				}
@@ -355,6 +363,8 @@ public class Game extends Activity
 						//set variable to which card they clicked then
 						//when the submit button is pressed register them playing that card
 						String cardText = card5.getText().toString();
+						int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
+						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
 				}
@@ -366,20 +376,20 @@ public class Game extends Activity
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-        	Log.d("FUCK", "Jimmy");
         	String g = extras.getString("gameId");
-        	Log.d("FUCK", "Jimmy2");
         	if(g!=null){
         	gameId = Integer.parseInt(g);}
         	userId = extras.getString("userId");
         	userName = extras.getString("userName");
         	Toast.makeText(Game.this, "GameID = " + gameId + " , UserID = " + userId + " , UserName = " + userName, Toast.LENGTH_LONG).show();
 		}
-    	Log.d("FUCK", "MIKE TOO");
+
 		TextView vd = (TextView) findViewById(R.id.textView3);
 		if(vd!=null){
 			vd.setText(""+gameId);
 		}
+		
+		refreshUser();//refresh after creating everything
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -562,7 +572,7 @@ public class Game extends Activity
 	{
 		//URL contains the userID and gameID
 		//passing in cardID as text see the buttons
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?User=" + userId + "&Game="+gameId + "&Card="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/SubmitCard?User=" + userId + "&Game="+gameId + "&Card="+text;
     	check = "PlayWhiteCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -580,7 +590,7 @@ public class Game extends Activity
 	{
 		//URL contains the userID and gameID
 		//passing in cardID as text see the buttons
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?User=" + userId + "&Game="+gameId + "&Card="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/SubmitCard?User=" + userId + "&Game="+gameId + "&Card="+text;
     	check = "CzarSelectCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -812,27 +822,15 @@ private class DownloadWebpageText extends AsyncTask {
 						blackCard.setVisibility(blackCard.INVISIBLE);
 	            	}
 	            	
-	            	else if(resultArray!=null && resultArray[0].equals("PlayWhiteCard"))
+	            	else if(resultArray!=null && resultArray[0].equals("Success"))
 	            	{
 	            		if(resultArray[1] == "Success")
 	            		{
-	            			Toast.makeText(Game.this, "Successfully played the white card", Toast.LENGTH_SHORT).show();
+	            			Toast.makeText(Game.this, "Successfully submitted the card", Toast.LENGTH_SHORT).show();
 	            		}
 	            		else
 	            		{
-	            			Toast.makeText(Game.this, "Error playing your white card", Toast.LENGTH_SHORT).show();
-	            		}
-	            	}
-	            	
-	            	else if(resultArray!=null && resultArray[0].equals("CzarSelectCard"))
-	            	{
-	            		if(resultArray[1] == "Works")
-	            		{
-	            			//works
-	            		}
-	            		else
-	            		{
-	            			Toast.makeText(Game.this, "Error selecting a card czar", Toast.LENGTH_SHORT).show();
+	            			Toast.makeText(Game.this, "Error submitting card", Toast.LENGTH_SHORT).show();
 	            		}
 	            	}
 	            	
