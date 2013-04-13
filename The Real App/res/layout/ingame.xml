@@ -56,9 +56,7 @@
         android:textSize="12dp"
         android:textColor="@color/black" />
 
-    <!-- CARDS PLEASE -->
-
-    <!-- WHOLE LAYOUT -->
+  
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -143,12 +141,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-
-            <!-- CARDS 1 AND 2 -->
-
-     <!-- CARDS 3 AND 4 -->
-
-     <!-- CARDS 5, 6, AND 7 -->
 
          <TextView
              android:id="@+id/c1"
