@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +39,7 @@ public class Game extends HttpServlet implements DataSource {
 	private int CurrentRound;
 	
 	//Player In game variables
-	private int NumPlayers=0;
+	private int NumPlayers;
 	private String Players;
 	
 	//Card Czar Information
@@ -101,13 +101,11 @@ public class Game extends HttpServlet implements DataSource {
 					rs3 = stmt.executeQuery("SELECT Username, PlayerScore FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE PlayerGameID = "+ GameID +" AND PlayerStatus = 1 GROUP BY Username, PlayerScore;");
 					
 					if(!rs3.isBeforeFirst()){
-						out.println("No Users");
-						return;
+						//out.println("None in the List");
 					}
 					else{
 						//out.print("Successful");
 						Players = "";
-						NumPlayers=0;
 						while(rs3.next()){
 							//out.print("; List");
 							Players = Players + rs3.getString(1) + ";" + rs3.getInt(2) + ";";
@@ -117,6 +115,7 @@ public class Game extends HttpServlet implements DataSource {
 					
 					// get current round, black cards list, and game judge
 					rs = stmt.executeQuery("SELECT GameCurRound, GameBlackCards, GameJudge FROM tblGames WHERE GameID = "+GameID+";");
+					
 					if(rs.next())
 					{
 						//Get game info
@@ -182,8 +181,9 @@ public class Game extends HttpServlet implements DataSource {
 						// If User is not the Czar
 						else if(CzarID != UserID)
 						{
+							//out.println("Not Czar");
 							//Return the user's cards in hand
-							rs5 = stmt.executeQuery("SELECT PlayerHand FROM tblPlayers WHERE PlayerUserID = "+UserID+";");
+							rs5 = stmt.executeQuery("SELECT PlayerHand FROM tblPlayers WHERE PlayerUserID = "+UserID+" AND PlayerGameID = "+GameID+";");
 							
 //							if(!rs5.isBeforeFirst())
 //							{
@@ -194,16 +194,16 @@ public class Game extends HttpServlet implements DataSource {
 //							{
 //								out.print("HERE");
 //							}
-							HandIDs = "";
+							
 							if(rs5.next())
 							{
-								//out.print("rs5 :"+HandIDs);
+								//out.print("rs5 before:"+HandIDs);
 								HandIDs = rs5.getString(1);
+								//out.print("rs5 after:"+HandIDs);
 							}
 							
 							
 							rs5.close();
-							Hand = "";
 							//Get card text from user's hand
 							Hand = HandIDs.replaceAll(";", ",");
 							//out.print(Hand);
@@ -216,7 +216,6 @@ public class Game extends HttpServlet implements DataSource {
 							else{
 								//out.print("Successful");
 								NumCards = 0;
-								HandText="";
 								while(rs6.next()){
 									//out.print("; List");
 									HandText = HandText + rs6.getInt(1) + ";" + rs6.getString(2) + ";";
