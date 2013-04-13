@@ -298,7 +298,7 @@ private class DownloadWebpageText extends AsyncTask {
 	                	//End erasing
 	                	
 	                	//Inform user of logout status on game close
-	                	if(!othSettings.contains("CurGameID") && !othSettings.getBoolean("inGame",true))
+	                	if(!othSettings.contains("CurGameID") && !othSettings.contains("inGame"))
 	                		Toast.makeText(context, "Quitting Game", Toast.LENGTH_SHORT).show();
 	                	else
 	                		Toast.makeText(context, "Failed to quit game", Toast.LENGTH_SHORT).show();
