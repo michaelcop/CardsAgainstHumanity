@@ -136,6 +136,10 @@ public class Settings extends Activity implements OnItemSelectedListener
     	spEditor.remove("digest").commit();
     	spEditor.remove("ID").commit();
     	spEditor.remove("defGameRounds").commit();
+    	if(othSettings.contains("inGame"))
+    		spEditor.remove("inGame");
+    	if(othSettings.contains("CurGameID"))
+    		spEditor.remove("CurGameID");
     	//End erasing username & pw
     	
     	//Inform user of logout status on game close
