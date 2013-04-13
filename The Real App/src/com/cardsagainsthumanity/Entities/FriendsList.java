@@ -12,8 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -138,20 +141,45 @@ public class FriendsList extends Activity
                 //b.setLayoutParams(lparams);
             
                 //b.setLayoutParams(params);
-	            
+            	
             	b.setOnClickListener(new OnClickListener()
         		{
 
         			@Override
         			public void onClick(View v) 
         			{
-        				//Delete
-        				String[] temp = b.getHint().toString().split(":");
-        				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
-        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-			        	//error.setText("USER ID FOR DELETION IS: " +ID);
-        				callUrl(stringUrl);
+        				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        	           	 
+        				// set title
+        				alertDialogBuilder.setTitle("Confirm Delete Friend");
+        	 
+        				// set dialog message
+        				alertDialogBuilder
+        					.setMessage("Are you sure you want to delete this friend?")
+        					.setCancelable(true)
+        					.setPositiveButton("Delete",new DialogInterface.OnClickListener() {
+        						public void onClick(DialogInterface dialog,int id) {
+        							//Delete
+        	        				String[] temp = b.getHint().toString().split(":");
+        	        				String ID = temp[1];
+        	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
+        	        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+        				        	//error.setText("USER ID FOR DELETION IS: " +ID);
+        	        				callUrl(stringUrl);
+        						}
+        					  })
+        					  
+        					.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+        						public void onClick(DialogInterface dialog,int id) {
+        							dialog.cancel();
+        						}
+        					
+        					});
+        	 
+        					// create alert dialog
+        					AlertDialog alertDialog = alertDialogBuilder.create();
+        					// show it
+        					alertDialog.show();
         			}
         			
         		});
@@ -166,14 +194,39 @@ public class FriendsList extends Activity
         			@Override
         			public void onClick(View v) 
         			{
-        				//Cancel 
-        				//Delete
-        				String[] temp = b.getHint().toString().split(":");
-        				String ID = temp[1];
-        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
-        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-			        	//error.setText("USER ID FOR DELETION IS: " +ID);
-        				callUrl(stringUrl);
+        				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+       	           	 
+        				// set title
+        				alertDialogBuilder.setTitle("Confirm Cancel Friend Request");
+        	 
+        				// set dialog message
+        				alertDialogBuilder
+        					.setMessage("Are you sure you want to cancel friend request?")
+        					.setCancelable(true)
+        					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+        						public void onClick(DialogInterface dialog,int id) {
+        							//Cancel 
+        	        				//Delete
+        	        				String[] temp = b.getHint().toString().split(":");
+        	        				String ID = temp[1];
+        	        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
+        	        				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+        				        	//error.setText("USER ID FOR DELETION IS: " +ID);
+        	        				callUrl(stringUrl);
+        						}
+        					  })
+        					  
+        					.setNegativeButton("No",new DialogInterface.OnClickListener() {
+        						public void onClick(DialogInterface dialog,int id) {
+        							dialog.cancel();
+        						}
+        					
+        					});
+        	 
+        					// create alert dialog
+        					AlertDialog alertDialog = alertDialogBuilder.create();
+        					// show it
+        					alertDialog.show();
         			}
         			
         		});
@@ -187,6 +240,7 @@ public class FriendsList extends Activity
         			@Override
         			public void onClick(View v) 
         			{
+        				
         				//Accept
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
