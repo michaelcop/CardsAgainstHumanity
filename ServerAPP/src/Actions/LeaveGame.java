@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -67,7 +67,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 		}
 		
 		PrintWriter out = response.getWriter();
-		if(connection != null){
+		if(connection != null && Game != null && User != null){
 			Statement stmt;
 			ResultSet rs;
 			int rs2, rs3, rs4, rs7;
@@ -152,7 +152,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 						}
 						else{
 							//Error occurred when deleting game
-							out.println("Error: unable to delete players from game.");
+							//out.println("Error: unable to delete players from game.");
 						}
 						
 						
@@ -165,7 +165,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 						}
 						else{
 							//Error occurred when deleting game
-							out.println("Error: unable to delete game.");
+							//out.println("Error: unable to delete game.");
 						}
 					}
 					//Close record set
@@ -173,7 +173,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 				}
 				else{
 					//Error occurred when deleting player from game
-					out.println("Error: unable to delete.");
+					//out.println("Error: unable to delete.");
 				}
 				
 				stmt.close();
@@ -183,6 +183,10 @@ public class LeaveGame extends HttpServlet implements DataSource {
 				e.printStackTrace();
 			}
 		
+		}
+		else
+		{
+			out.print("");
 		}
 		
 	}
