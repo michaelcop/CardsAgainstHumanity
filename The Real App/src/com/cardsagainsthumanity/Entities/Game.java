@@ -800,11 +800,23 @@ private class DownloadWebpageText extends AsyncTask {
 						Game.this.finish();
 	            	}
 	            	
+	            	else if(resultArray!=null && resultArray[0].equals("GameOver"))
+	            	{
+	            		String winner = resultArray[1];
+	            		chatBox.setText("The winner is " + winner);
+	            		card1.setVisibility(card1.INVISIBLE);
+						card2.setVisibility(card2.INVISIBLE);
+						card3.setVisibility(card3.INVISIBLE);
+						card4.setVisibility(card4.INVISIBLE);
+						card5.setVisibility(card5.INVISIBLE);
+						blackCard.setVisibility(blackCard.INVISIBLE);
+	            	}
+	            	
 	            	else if(resultArray!=null && resultArray[0].equals("PlayWhiteCard"))
 	            	{
-	            		if(resultArray[1] == "Works")
+	            		if(resultArray[1] == "Success")
 	            		{
-	            			//works
+	            			Toast.makeText(Game.this, "Successfully played the white card", Toast.LENGTH_SHORT).show();
 	            		}
 	            		else
 	            		{
