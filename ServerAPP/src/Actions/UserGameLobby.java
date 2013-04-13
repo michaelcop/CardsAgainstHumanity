@@ -63,14 +63,14 @@ public class UserGameLobby extends HttpServlet implements DataSource {
 			try {
 				stmt = connection.createStatement();
 				//Query to get the numPlayers in a game
-				rs = stmt.executeQuery("SELECT Count(PlayerUserID) AS CountOfPlayers FROM tblPlayers GROUP BY PlayerGameID HAVING PlayerGameID="+GameID+";");
+				rs = stmt.executeQuery("SELECT Count(PlayerUserID) AS CountOfPlayers FROM tblPlayers GROUP BY PlayerGameID, PlayerStatus HAVING PlayerGameID="+GameID+" AND tblPlayers.PlayerStatus="+1+";");
 				if(rs.next()){
 					//get number of players
 					NumPlayers = rs.getInt(1);
 				}
 				
 				//Query to get the usernames of players in a game
-				rs = stmt.executeQuery("SELECT tblUsers.Username FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE tblPlayers.PlayerGameID="+ GameID +";");
+				rs = stmt.executeQuery("SELECT tblUsers.Username FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE tblPlayers.PlayerGameID="+ GameID +" AND tblPlayers.PlayerStatus="+1+";");
 				if(!rs.isBeforeFirst()){
 					//this situation shouldn't be possible
 					out.println("GameLobby;0;None;-1");
