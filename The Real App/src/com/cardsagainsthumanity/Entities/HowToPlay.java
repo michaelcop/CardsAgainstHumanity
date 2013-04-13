@@ -35,12 +35,13 @@ public class HowToPlay extends Activity
 		
 		final String testContent = "<html><body><p>To start a game, select Create Game from the Main Menu</p>" + "<img src=\"ss_menu.png\"/>" +
 				"<p>Next, select the Number of Rounds</p>"+	"<p>Once the desired number of rounds has been chosen, select Create Game. Now, in " +
-				"the Player Lobby, press the Invite Friend icon</p>"+ "<img src=\"ss_invitefriendbutton.jpg\"/>"+ "<p>There are three terms that players should be familiar with. They are Black Cards, White Cards, and Card Czar. The objective " +
-				"of the game is to use the terms on the White Cards to fill in the blanks on the Black Cards, in order to win points from the Card " +
-				"Czar, who will decide the best/funniest card combination. When the game begins, the game host will be assigned the role of Card Czar. " +
-				"All other players will get five White Cards.</p>"+"<img src=\"ss_whitecards\"/>"+"<p>Next, they will select one of their White Cards that they feel will best complete the " +
-				"Black Card, and will submit it for judging.</p>" +"<img src=\"ss_blackcards\"/>"+ "<p>At the end of every round, a new Card Czar will be assigned. In the end, who ever ends up " +
-				"with the most points will win.</p></body></html>";
+				"the Player Lobby, press the Invite Friend icon</p>"+ "<img src=\"ss_invitefriendbutton.jpg\"/>"+ "<p>There are three terms that " +
+				"players should be familiar with. They are Black Cards, White Cards, and Card Czar. The objective of the game is to use the terms on " +
+				"the White Cards to fill in the blanks on the Black Cards, in order to win points from the Card Czar, who will decide the best/funniest " +
+				"card combination. When the game begins, the game host will be assigned the role of Card Czar. All other players will get five White " +
+				"Cards.</p>"+"<img src=\"ss_whitecards\"/>"+"<p>Next, they will select one of their White Cards that they feel will best complete the " +
+				"Black Card, and will submit it for judging.</p>" +"<img src=\"ss_blackcards\"/>"+ "<p>At the end of every round, a new Card Czar will be " +
+				"assigned. In the end, who ever ends up with the most points will win.</p></body></html>";
 		
 	    howPlay.setText(Html.fromHtml(testContent, imgGetter, null));
 		
