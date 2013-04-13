@@ -114,7 +114,7 @@ public class LeaveGame extends HttpServlet implements DataSource {
 				//out.println(GameDeck);
 			
 				// Update Game Deck
-				rs7 = stmt.executeUpdate("UPDATE tblGame SET tblGame.GameDeck = '"+ GameDeck +"' WHERE GameID ="+ GameID +";");
+				rs7 = stmt.executeUpdate("UPDATE tblGames SET GameDeck = '"+ GameDeck +"' WHERE GameID ="+ GameID +";");
 				
 				if(rs7 == 0)
 				{
