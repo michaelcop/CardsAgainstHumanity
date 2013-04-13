@@ -155,7 +155,6 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card1" 
-             android:layout_marginBottom="10dp"
              android:layout_marginTop="10dp"/>
 
          <TextView
@@ -171,7 +170,6 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card2"
-             android:layout_marginBottom="10dp"
              android:layout_marginTop="10dp" />
 
          <TextView
@@ -188,7 +186,6 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card3"
-             android:layout_marginBottom="10dp"
              android:layout_marginTop="10dp" />
 
          <TextView
@@ -205,7 +202,6 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card4"
-             android:layout_marginBottom="10dp"
              android:layout_marginTop="10dp" />
 
          <TextView
@@ -220,7 +216,6 @@
              android:paddingLeft="8dp"
              android:paddingTop="5dp"
              android:scrollbars="vertical"
-             android:layout_marginBottom="10dp"
              android:layout_marginTop="10dp"
              android:text="@string/card5" />
 
