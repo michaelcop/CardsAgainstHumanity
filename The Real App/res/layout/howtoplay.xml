@@ -5,18 +5,18 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    
     <TextView
         android:id="@+id/rulesLabel"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_below="@+id/HowToPlayLabel"
         android:layout_centerHorizontal="true"
-        android:maxLines="25"
+        android:maxLines="16"
         android:scrollbars="vertical"
         android:text="@string/rules"
         android:textColor="@color/White"
         android:textSize="15sp" />
+
     <Button
         android:id="@+id/GotIt"
         android:layout_width="190dp"
