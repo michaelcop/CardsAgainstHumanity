@@ -698,6 +698,7 @@ private class DownloadWebpageText extends AsyncTask {
 						else
 							currentUser.submitted = false;
 						
+						
 						if(currentUser.whiteCardsList.size() <1)
 						{
 							card1.setVisibility(card1.INVISIBLE);
