@@ -62,6 +62,7 @@ public class Game extends HttpServlet implements DataSource {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
 			UserID =  Integer.parseInt(User);
@@ -70,6 +71,7 @@ public class Game extends HttpServlet implements DataSource {
 			this.setGame((String) request.getParameter("Game").toString());
 			GameID =  Integer.parseInt(Game);
 		}
+		
 		try {
 		    System.out.println("Loading driver...");
 		    Class.forName("com.mysql.jdbc.Driver");
@@ -78,7 +80,7 @@ public class Game extends HttpServlet implements DataSource {
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		FriendsList v = new FriendsList();
+		Game v = new Game();
         try {
 			connection = v.getConnection();
 			System.out.println("connection made");
@@ -90,7 +92,7 @@ public class Game extends HttpServlet implements DataSource {
 		PrintWriter out = response.getWriter();
 		
 		//Multiple Queries will need to be run here.
-		if(connection != null){
+		if(connection != null && User != null && Game != null){
 				Statement stmt;
 				ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7;
 				try {
@@ -231,6 +233,14 @@ public class Game extends HttpServlet implements DataSource {
 						
 				
 					}
+					//Reset variables
+					HandText = "";
+					HandIDs = "";
+					NumPlayers = 0;
+					Game = null;
+					User = null;
+					GameID = 0;
+					UserID = 0;
 					
 					rs.close();
 					rs3.close();
@@ -241,6 +251,11 @@ public class Game extends HttpServlet implements DataSource {
 					e.printStackTrace();
 				}
 				
+			}
+			else
+			{
+				//User, game, or connection is null print out blank
+				out.print("");
 			}
 		
 			//out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players);
