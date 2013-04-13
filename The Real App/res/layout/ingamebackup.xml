@@ -137,102 +137,108 @@
 
         <!-- CARD LAYOUT -->
 
-        <RelativeLayout
+        <LinearLayout
             android:baselineAligned="false"
             android:id="@+id/cardLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="3" >
 
             <!-- CARDS 1 AND 2 -->
 
-     <!-- CARDS 3 AND 4 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:orientation="vertical" >
 
-     <!-- CARDS 5, 6, AND 7 -->
+                <TextView
+                    android:id="@+id/c1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/white"
+                    android:hint="@string/defaultCard"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="vertical"
+                    android:text="@string/card1" />
 
-         <TextView
-             android:id="@+id/c1"
-             android:layout_width="100dp"
-             android:layout_height="wrap_content"
-             android:layout_alignParentBottom="true"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:background="@drawable/white"
-             android:hint="@string/defaultCard"
-             android:paddingLeft="8dp"
-             android:paddingTop="5dp"
-             android:scrollbars="vertical"
-             android:text="@string/card1" 
-             android:layout_marginBottom="10dp"
-             android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/c2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/white"
+                    android:hint="@string/defaultCard"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="vertical"
+                    android:text="@string/card2" />
 
-         <TextView
-             android:id="@+id/c2"
-             android:layout_width="100dp"
-             android:layout_height="wrap_content"
-             android:layout_alignParentBottom="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="25dp"
-             android:background="@drawable/white"
-             android:hint="@string/defaultCard"
-             android:paddingLeft="8dp"
-             android:paddingTop="5dp"
-             android:scrollbars="vertical"
-             android:text="@string/card2"
-             android:layout_marginBottom="10dp"
-             android:layout_marginTop="10dp" />
+            </LinearLayout>
 
-         <TextView
-             android:id="@+id/c3"
-             android:layout_width="100dp"
-             android:layout_height="wrap_content"
-             android:layout_alignParentBottom="true"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="50dp"
-             android:background="@drawable/white"
-             android:hint="@string/defaultCard"
-             android:paddingLeft="8dp"
-             android:paddingTop="5dp"
-             android:scrollbars="vertical"
-             android:text="@string/card3"
-             android:layout_marginBottom="10dp"
-             android:layout_marginTop="10dp" />
+            <!-- CARDS 3 AND 4 -->
 
-         <TextView
-             android:id="@+id/c4"
-             android:layout_width="100dp"
-             android:layout_height="wrap_content"
-             android:layout_alignParentBottom="true"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="75dp"
-             android:background="@drawable/white"
-             android:hint="@string/defaultCard"
-             android:paddingLeft="8dp"
-             android:paddingTop="5dp"
-             android:scrollbars="vertical"
-             android:text="@string/card4"
-             android:layout_marginBottom="10dp"
-             android:layout_marginTop="10dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:orientation="vertical" >
 
-         <TextView
-             android:id="@+id/c5"
-             android:layout_width="100dp"
-             android:layout_height="match_parent"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginLeft="100dp"
-             android:background="@drawable/white"
-             android:hint="@string/defaultCard"
-             android:paddingLeft="8dp"
-             android:paddingTop="5dp"
-             android:scrollbars="vertical"
-             android:layout_marginBottom="10dp"
-             android:layout_marginTop="10dp"
-             android:text="@string/card5" />
+                <TextView
+                    android:id="@+id/c3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/white"
+                    android:hint="@string/defaultCard"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="vertical"
+                    android:text="@string/card3" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/c4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:background="@drawable/white"
+                    android:hint="@string/defaultCard"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="vertical"
+                    android:text="@string/card4" />
+
+            </LinearLayout>
+
+            <!-- CARDS 5, 6, AND 7 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/c5"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/white"
+                    android:hint="@string/defaultCard"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:scrollbars="vertical"
+                    android:text="@string/card5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
