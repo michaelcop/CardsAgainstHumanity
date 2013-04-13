@@ -764,6 +764,7 @@ private class DownloadWebpageText extends AsyncTask {
 						else
 							currentUser.submitted = false;
 						
+						/*
 						String lastWinningWhite = data.get(whiteCardsEndIndex+2);
 						String lastBlackCard = data.get(whiteCardsEndIndex+3);
 						String lastWinningUser = data.get(whiteCardsEndIndex+4);
@@ -774,6 +775,7 @@ private class DownloadWebpageText extends AsyncTask {
 							chatBox.setText("Last winning user = " + lastWinningUser + "\nLast winning white card = " + 
 						lastWinningWhite + "\nLast black card = " + lastBlackCard);
 						}
+						*/
 						
 						if(currentUser.whiteCardsList.size() <1)
 						{
