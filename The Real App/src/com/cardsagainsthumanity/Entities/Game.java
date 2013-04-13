@@ -527,7 +527,7 @@ public class Game extends Activity
 	{
 		//URL contains the userID and gameID
 		//passing in cardID as text see the buttons
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?UserID=" + userId + "&GameID="+gameId + "&WhiteCard="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/PlayWhiteCard?User=" + userId + "&Game="+gameId + "&Card="+text;
     	check = "PlayWhiteCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -545,7 +545,7 @@ public class Game extends Activity
 	{
 		//URL contains the userID and gameID
 		//passing in cardID as text see the buttons
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?UserID=" + userId + "&GameID="+gameId + "&CzarCard="+text;
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/CzarSelectCard?User=" + userId + "&Game="+gameId + "&Card="+text;
     	check = "CzarSelectCard";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -562,7 +562,8 @@ public class Game extends Activity
 	public void refreshUser()
 	{
 		//URL contains the userID and gameID
-		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?UserID=" + userId + "&GameID="+gameId;
+		//Toast.makeText(Game.this, "Refresh User = " + userId + " , GameID = " + gameId, Toast.LENGTH_LONG).show();
+		String stringUrl = "http://54.225.225.185:8080/ServerAPP/RefreshGame?User=" + userId + "&Game="+gameId;
     	check = "RefreshGame";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -609,7 +610,8 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	//results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;staci;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
+	        	Toast.makeText(Game.this, "results = " + results, Toast.LENGTH_SHORT).show();
+	        	//results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;a;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	            if(results!=null){
