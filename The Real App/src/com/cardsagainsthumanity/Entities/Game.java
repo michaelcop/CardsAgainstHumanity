@@ -780,7 +780,7 @@ private class DownloadWebpageText extends AsyncTask {
 						//function fgggggggor I am card czar and find out what people played
 					}
 	            	
-	            	else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
+	            	else if(resultArray!=null && resultArray[0].equals("PlayerDeleted"))
 	            	{
 	            		Toast.makeText(Game.this, "Leaving Game", Toast.LENGTH_SHORT).show();
 	            		//handles the leave game/quit game code only when in post execute
