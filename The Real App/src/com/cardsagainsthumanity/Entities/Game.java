@@ -127,10 +127,12 @@ public class Game extends Activity
 		
 		card1.setOnClickListener(new OnClickListener()
 		{
-
+			
 			@Override
 			public void onClick(View arg0) 
 			{
+				if(currentUser.submitted.equals("Submitted"))
+					return;
 				//submissionID =  (String) card1.getHint();
 				/*
 				 * Card czar selects a card which corresponds to this button
@@ -176,6 +178,8 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
+				if(currentUser.submitted.equals("Submitted"))
+					return;
 				if(userName.equals(currentUser.currentCzar))
 				{
 					//get text off card and post to server and post which user the card belonged to 
@@ -210,6 +214,8 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
+				if(currentUser.submitted.equals("Submitted"))
+					return;
 				if(userName.equals(currentUser.currentCzar))
 				{
 					//get text off card and post to server and post which user the card belonged to 
@@ -243,6 +249,8 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
+				if(currentUser.submitted.equals("Submitted"))
+					return;
 				if(userName.equals(currentUser.currentCzar))
 				{
 					//get text off card and post to server and post which user the card belonged to 
@@ -277,6 +285,8 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
+				if(currentUser.submitted.equals("Submitted"))
+					return;
 				if(userName.equals(currentUser.currentCzar))
 				{
 					//get text off card and post to server and post which user the card belonged to 
@@ -614,6 +624,7 @@ private class DownloadWebpageText extends AsyncTask {
 	        	//results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;a;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
+	        	//add Submitted or NotSubmitted
 	            if(results!=null){
 	            	
 	            	String[] resultArray = results.split(";");
@@ -646,6 +657,7 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.whiteCardsList.add(data.get(i+1));
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
+						currentUser.submitted = data.get(whiteCardsEndIndex+1);
 						
 						if(currentUser.whiteCardsList.size() <1)
 						{
@@ -741,6 +753,11 @@ private class DownloadWebpageText extends AsyncTask {
 						 */
 						//function fgggggggor I am card czar and find out what people played
 					}
+	            	
+	            	else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
+	            	{
+	            		Toast.makeText(Game.this, "Leaving Game", Toast.LENGTH_SHORT).show();
+	            	}
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("PlayWhiteCard"))
 	            	{

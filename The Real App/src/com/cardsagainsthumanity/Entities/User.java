@@ -15,6 +15,7 @@ public class User
 	public List<Integer> whiteCardsID;
 	public String blackCard;
 	public int userScore;
+	public String submitted;
 	
 	User()
 	{
