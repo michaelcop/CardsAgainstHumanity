@@ -178,7 +178,7 @@ public class InviteFriends extends Activity
                 		//Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 					}
 					else if(resultArray!=null && resultArray[0].equals("Invited")){
-						//Toast.makeText(context,  "Invited!", Toast.LENGTH_LONG).show();
+						Toast.makeText(context,  "Invited!", Toast.LENGTH_LONG).show();
 					}
 					else{
                 		//Toast.makeText(context, results, Toast.LENGTH_LONG).show();
