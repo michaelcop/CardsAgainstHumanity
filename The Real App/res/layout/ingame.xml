@@ -66,21 +66,24 @@
         android:layout_above="@+id/chatBox"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:weightSum="2"
+         >
 
         <!-- BLACK CARD AND PLAYER LIST LAYOUT -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:weightSum="2" >
 
             <!-- BLACK CARD -->
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight=".5" >
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/blackcard"
@@ -105,7 +108,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".5" >
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/listLabel"
@@ -139,14 +142,16 @@
             android:id="@+id/cardLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:weightSum="3" >
 
             <!-- CARDS 1 AND 2 -->
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.33"
+                android:layout_weight="1"
+                android:weightSum="1"
                 android:orientation="vertical" >
 
                 <TextView
@@ -180,7 +185,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.33"
+                android:layout_weight="1"
+                android:weightSum="1"
                 android:orientation="vertical" >
 
                 <TextView
@@ -214,14 +220,15 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.33"
+                android:layout_weight="1"
+                android:weightSum="1"
                 android:orientation="horizontal" >
 
                 <TextView
                     android:id="@+id/c5"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight=".5"
+                    android:layout_weight="1"
                     android:background="@drawable/white"
                     android:hint="@string/defaultCard"
                     android:paddingLeft="8dp"
