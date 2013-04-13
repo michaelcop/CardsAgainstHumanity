@@ -44,7 +44,7 @@ public class GameLobby extends Activity
 	int numPlayersInGame = 0;
 	private String userName;
 	
-	private int m_interval = 45000; // 45 seconds by default, can be changed later
+	private int m_interval = 30000; // 30 seconds by default, can be changed later
 	private Handler m_handler;
 	
 	final Context context = this;
@@ -80,6 +80,7 @@ public class GameLobby extends Activity
 		//refreshGameLobby();
 		//startRepeatingTask();
 	}
+	
 	/*
 	Runnable m_statusChecker = new Runnable()
 	{
@@ -88,7 +89,10 @@ public class GameLobby extends Activity
 	          //updateStatus(); //this function can change value of m_interval.
 	    	 //if activity in foreground refresh else do nothing
 	    	 if(isInFront)
+	    	 {
 	    		 refreshGameLobby();
+	    		 Toast.makeText(GameLobby.this, "In Game Lobby", Toast.LENGTH_SHORT).show();
+	    	 }
 	         m_handler.postDelayed(m_statusChecker, m_interval);
 	     }
 	};
@@ -162,15 +166,6 @@ public class GameLobby extends Activity
 				  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
 						exitURLHandler();//deal with exiting on post execute
-						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-	                	SharedPreferences.Editor spEditor = othSettings.edit();
-	                	spEditor.remove("inGame").commit();
-	                	spEditor.remove("CurGameID").commit();
-	                	Intent mainMenuIntent = new Intent(context, MainMenu.class);
-	                 	mainMenuIntent.putExtra("userName", userName);
-	                 	mainMenuIntent.putExtra("userId", userId);
-	                 	startActivityForResult(mainMenuIntent, 0);
-						GameLobby.this.finish();
 					} 
 				
 				}) 
@@ -319,6 +314,19 @@ private class DownloadWebpageText extends AsyncTask {
 				    	startActivity(intent);
 	            	} //End close lobby --------------------------------------------------------------------
 	            	
+	            	else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
+	            	{
+						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
+	                	SharedPreferences.Editor spEditor = othSettings.edit();
+	                	spEditor.remove("inGame").commit();
+	                	spEditor.remove("CurGameID").commit();
+	                	Intent mainMenuIntent = new Intent(context, MainMenu.class);
+	                 	mainMenuIntent.putExtra("userName", userName);
+	                 	mainMenuIntent.putExtra("userId", userId);
+	                 	startActivityForResult(mainMenuIntent, 0);
+						GameLobby.this.finish();
+	            	}
+	            	
 					else if(resultArray[0]=="none") {
 						//Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
 					}
@@ -403,15 +411,6 @@ private class DownloadWebpageText extends AsyncTask {
 						  .setNeutralButton("Quit Game",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
 								exitURLHandler();//deal with exiting on post execute
-								SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
-			                	SharedPreferences.Editor spEditor = othSettings.edit();
-			                	spEditor.remove("inGame").commit();
-			                	spEditor.remove("CurGameID").commit();
-			                	Intent mainMenuIntent = new Intent(context, MainMenu.class);
-			                 	mainMenuIntent.putExtra("userName", userName);
-			                 	mainMenuIntent.putExtra("userId", userId);
-			                 	startActivityForResult(mainMenuIntent, 0);
-								GameLobby.this.finish();
 							} 
 						
 						}) 
