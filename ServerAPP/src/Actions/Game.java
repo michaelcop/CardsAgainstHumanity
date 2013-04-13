@@ -53,6 +53,7 @@ public class Game extends HttpServlet implements DataSource {
 	private String HandIDs = "";
 	private String HandText = "";
 	private int NumCards;
+	private boolean IsCardSubmitted = false;
 	
 	//Black card variables
 	private String BlackCards = "";
@@ -178,15 +179,13 @@ public class Game extends HttpServlet implements DataSource {
 							rs4.close();
 							
 							//Output for CardCzar
-							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumSubmitted+";"+SubmittedCardString+BlackCardText);
+							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumSubmitted+";"+SubmittedCardString+BlackCardText+";"+IsCardSubmitted);
 						
 						}
 						// If User is not the Czar
 						else if(CzarID != UserID)
 						{
-							//out.println("Not Czar");
-							//Return the user's cards in hand
-							rs5 = stmt.executeQuery("SELECT PlayerHand FROM tblPlayers WHERE PlayerUserID = "+UserID+" AND PlayerGameID = "+GameID+";");
+							rs5 = stmt.executeQuery("SELECT PlayerHand, SubmittedCard FROM tblPlayers WHERE PlayerUserID = "+UserID+" AND PlayerGameID = "+GameID+";");
 							
 //							if(!rs5.isBeforeFirst())
 //							{
@@ -202,6 +201,19 @@ public class Game extends HttpServlet implements DataSource {
 							{
 								//out.print("rs5 before:"+HandIDs);
 								HandIDs = rs5.getString(1);
+								
+								out.print("Submitted CardID:"+ rs5.getInt(2));
+								//Check if user submitted a card
+								if(rs5.getInt(2) > 0)
+								{
+									//Set submitted to true
+									IsCardSubmitted = true;
+								}
+								else
+								{
+									//Card has not been submitted
+									IsCardSubmitted = false;
+								}
 								//out.print("rs5 after:"+HandIDs);
 							}
 							
@@ -229,8 +241,7 @@ public class Game extends HttpServlet implements DataSource {
 							
 							
 							//Print Info
-							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumCards+";"+HandText+BlackCardText);
-						}
+							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumCards+";"+HandText+BlackCardText+ ";"+IsCardSubmitted);						}
 						
 				
 					}
