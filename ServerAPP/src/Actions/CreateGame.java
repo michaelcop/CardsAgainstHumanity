@@ -115,7 +115,8 @@ public class CreateGame extends HttpServlet implements DataSource {
 						
 						//Code to grab first 5 from gameDeck - rebuild game deck and UserHand
                         String UserHand =  "";
-                        String[] Temp = GameDeck.split(";");
+                        String[] Temp = null;
+                        Temp = GameDeck.split(";");
                         GameDeck = "";
                         for(int i = 0; i<(Temp.length); i++){
                                 if(i<=4){
