@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -27,9 +30,29 @@ public class SubmitCard extends HttpServlet implements DataSource {
 	 */
 	private static final long serialVersionUID = -972529346689447377L;
 	private String User =  null;
-	private int UserID;
+	private int UserID = 0;
 	private String Card = null;
-	private int CardID;
+	private int CardID = 0;
+	private String Game = null;
+	private int GameID = 0;
+	
+	private int CurrentRound = 0;
+	private int MaxRounds = 0;
+	private int NewCzarID = 0;
+	
+	private String WinningCardText = null;
+	private int WinningCardID;
+	private String WinningPlayer = null;
+	
+	
+	private int RoundWinningPlayerID = 0;
+	private int CurrentScore = 0;
+	
+	private String blackCards = "";
+	private String blackCard = "";
+	
+	
+	
 	Connection connection = null;
 
 	
@@ -38,6 +61,14 @@ public class SubmitCard extends HttpServlet implements DataSource {
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
 			UserID =  Integer.parseInt(User);
+		}
+		if(request.getParameter("Game") != null){ 
+			this.setGame((String) request.getParameter("Game").toString());
+			GameID =  Integer.parseInt(Game);
+		}
+		if(request.getParameter("Card") != null){ 
+			this.setCard((String) request.getParameter("Card").toString());
+			CardID =  Integer.parseInt(Card);
 		}
 		
 		try {
@@ -48,7 +79,7 @@ public class SubmitCard extends HttpServlet implements DataSource {
 		    throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		FriendsList v = new FriendsList();
+		SubmitCard v = new SubmitCard();
         try {
 			connection = v.getConnection();
 			System.out.println("connection made");
@@ -58,23 +89,180 @@ public class SubmitCard extends HttpServlet implements DataSource {
 		}
 		
 		PrintWriter out = response.getWriter();
-		if(connection != null){
+		if(connection != null && User != null && Card != null){
 				Statement stmt;
-				ResultSet rs;
+				ResultSet rs2, rs3, rs5, rs6, rs19;
+				int rs, rs4, rs7, rs8, rs9, rs20;
 				try {
 					stmt = connection.createStatement();
-					//QUERY HERE NEEDS TO CHANGE TO RETURN PLAYERS IN GAME
-					rs = stmt.executeQuery("QUERY");
-					if(!rs.isBeforeFirst()){
-						out.println("None in the List");
-					}
-					else{
-						out.print("Successful");
-						while(rs.next()){
-							out.print("; List");
+					
+					//Check to see if User is Card Czar
+					rs2 = stmt.executeQuery("SELECT GameJudge, GameRounds, GameCurRound FROM tblGames WHERE GameID = "+ GameID +";");
+					
+					//Get Card CzarID
+					if(rs2.next())
+					{
+						
+						//Get game round information
+						MaxRounds = rs2.getInt(2);
+						CurrentRound = rs2.getInt(3);
+						
+						//User is the Card Czar
+						if(rs2.getInt(1) == UserID)
+						{
+							//Look up submitted cards to see if they equal the card the Czar is submitting
+							rs3 = stmt.executeQuery("SELECT PlayerUserID, PlayerScore FROM tblPlayers WHERE SubmittedCard = "+ CardID +" AND PlayerGameID = "+ GameID +";");
+							
+							//Get player that won the round
+							if(rs3.next())
+							{
+								RoundWinningPlayerID = rs3.getInt(1);
+								
+								//Get current score
+								CurrentScore = rs3.getInt(2);
+									
+								//Increment score and update player score
+								CurrentScore = CurrentScore+1;
+									
+								rs4 = stmt.executeUpdate("UPDATE tblPlayers SET tblPlayers.PlayerScore = "+CurrentScore+" WHERE PlayerGameID = "+ GameID +" AND PlayerUserID = "+ RoundWinningPlayerID +";");
+								
+								if(rs4!=0)
+								{
+									//Score Updated
+									//out.print("Score Updated");
+								}
+							}
+						
+							//Get players to update new czar
+							rs5 = stmt.executeQuery("SELECT PlayerUserID FROM tblPlayers WHERE PlayerGameID = "+ GameID +" AND PlayerStatus = 1 ORDER BY PlayerUserID;");
+							
+							if(rs5.isBeforeFirst())
+							{
+								//Pick next Czar
+								while(rs5.next()){
+									//Get next user in list, after the current czar
+									if(rs5.getInt(1) == UserID)
+									{
+										break;
+									}
+								}
+								
+								if(rs5.next())
+								{
+									//Set card czar to next user in list
+									NewCzarID = rs5.getInt(1);
+								}
+								else
+								{
+									//Pick card czar from the head of the list
+									rs5.first();
+									NewCzarID = rs5.getInt(1);
+									//out.print("first() :" + rs5.getInt(1));
+								}
+								
+								//Update new Card Czar
+								//Done in rs7
+								out.print("NewCzar: "+ NewCzarID);
+							}
+							
+							//out.print("NewCzar: "+ NewCzarID);
+							//====================== GAME ROUND ===================================
+								
+							//Increment round number for game
+							CurrentRound = CurrentRound + 1;
+							
+							//Check if current round equals max round
+							if(CurrentRound <= MaxRounds )
+							{
+								
+								rs7 = stmt.executeUpdate("UPDATE tblGames SET GameCurRound = "+ CurrentRound +", GameJudge = "+ NewCzarID +" WHERE GameID = "+ GameID +";");
+								
+								//Check if update round was successful
+								if(rs7==0)
+								{
+									//Error
+									out.print("Error: Unable to update round.");
+								}
+								else
+								{
+									//Successful
+									//Update black card
+									
+									//Remove all submitted Cards for game
+									rs8 = stmt.executeUpdate("UPDATE tblPlayers SET SubmittedCard = 0 WHERE PlayerGameID = "+GameID+";");
+									
+									if(rs8!=0)
+									{
+										//Update successful
+										out.print("Submitted cards updated");
+									}
+									
+									//Update the new black card
+									//Update Last winning white and black cards
+									 rs19 = stmt.executeQuery("SELECT GameBlackCards FROM tblGames WHERE GameID = "+GameID+";");
+                                     if(rs19.next())
+                                     {
+                                         blackCards = rs19.getString(1);
+                                         String[] blackCardListArray = blackCards.split(";");
+                                         blackCard = blackCardListArray[0];
+                                         List<String> blackCardList = new ArrayList<String>(Arrays.asList(blackCardListArray));
+                                         blackCardList.remove(0);
+                                         blackCards = null;
+                                         for(String x: blackCardList)
+                                         {
+                                             if(blackCards==null)
+                                             {
+                                            	 blackCards=x;
+                                             }
+                                             else
+                                             {
+                                                 blackCards=blackCards+ ";" + x;
+                                             }                                        
+                                         }
+
+                                         rs20 =  stmt.executeUpdate("UPDATE tblGames SET LastBlackCard="+blackCard+", LastWhiteCard = "+CardID+",GameBlackCards='"+blackCards+"', LastWinningPlayer = "+RoundWinningPlayerID+" WHERE GameID = "+GameID+";");
+                                     }
+								}
+								
+							}
+							else
+							{
+								
+								//Game over
+								out.print("GameOver;");
+								
+								//Remove players and game records
+								
+							}
+							//========================== END ========================================
+							
+						}
+						//Not the Card Czar
+						else
+						{
+							//Set submitted card in players table
+							rs = stmt.executeUpdate("UPDATE tblPlayers SET SubmittedCard = "+ CardID +" WHERE PlayerGameID = "+ GameID +" AND PlayerUserID = "+UserID+";");
+							
+							//Check if update was successful
+							if(rs!= 0)
+							{
+								//Update successful
+								out.print("Success");
+							}
+							else
+							{
+								
+								//Error
+								//out.print("Error: Unable to submit card");
+							}
 						}
 					}
-					rs.close();
+					
+					
+					
+
+					
+					
 					stmt.close();
 					connection.close();
 				} catch (SQLException e) {
@@ -83,9 +271,29 @@ public class SubmitCard extends HttpServlet implements DataSource {
 				}
 				
 			}
+			else
+			{
+				out.print("");
+			}
 		
 		}
 		
+
+
+
+	private void setGame(String strGame) {
+		// TODO Auto-generated method stub
+		Game = strGame;
+	}
+
+
+
+
+	private void setCard(String strCard) {
+		// TODO Auto-generated method stub
+		Card = strCard;
+	}
+
 
 
 
