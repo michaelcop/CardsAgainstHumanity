@@ -133,7 +133,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				if(currentUser.submitted != null && currentUser.submitted.equals("Submitted"))
+				if(currentUser.submitted)
 					return;
 				//submissionID =  (String) card1.getHint();
 				/*
@@ -166,7 +166,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				if(currentUser.submitted != null && currentUser.submitted.equals("Submitted"))
+				if(currentUser.submitted)
 					return;
 				currentCardSelected = 2;
 				
@@ -188,7 +188,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				if(currentUser.submitted != null && currentUser.submitted.equals("Submitted"))
+				if(currentUser.submitted)
 					return;
 				currentCardSelected = 3;
 
@@ -209,7 +209,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				if(currentUser.submitted != null && currentUser.submitted.equals("Submitted"))
+				if(currentUser.submitted)
 					return;
 				currentCardSelected = 4;
 				
@@ -230,7 +230,7 @@ public class Game extends Activity
 			@Override
 			public void onClick(View arg0) 
 			{
-				if(currentUser.submitted != null && currentUser.submitted.equals("Submitted"))
+				if(currentUser.submitted)
 					return;
 				currentCardSelected = 5;
 
@@ -682,7 +682,11 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.whiteCardsList.add(data.get(i+1));
 						}
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
-						currentUser.submitted = data.get(whiteCardsEndIndex+1);
+						String tempSubmittedString = data.get(whiteCardsEndIndex+1);
+						if(tempSubmittedString.equals("true"))
+							currentUser.submitted = true;
+						else
+							currentUser.submitted = false;
 						
 						if(currentUser.whiteCardsList.size() <1)
 						{

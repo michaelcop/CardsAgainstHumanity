@@ -15,10 +15,11 @@ public class User
 	public List<Integer> whiteCardsID;
 	public String blackCard;
 	public int userScore;
-	public String submitted;
+	public boolean submitted;
 	
 	User()
 	{
+		submitted = false;
 		otherUsers = new ArrayList<String>();
 		otherUsersScore = new ArrayList<Integer>();
 		whiteCardsList = new ArrayList<String>();
