@@ -214,7 +214,7 @@ public class GameLobby extends Activity
 		//Toast.makeText(GameLobby.this, "GameID = " + gameID, Toast.LENGTH_SHORT).show();
 		String stringUrl = "http://54.225.225.185:8080/ServerAPP/LeaveGame?Game="+gameId+"&User="+userId;
 		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-    	check = "LeaveGame";
+    	check = "PlayerDeleted";
     	ConnectivityManager connMgr = (ConnectivityManager) 
 		getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -294,7 +294,7 @@ private class DownloadWebpageText extends AsyncTask {
 	                	SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 	                	SharedPreferences.Editor spEditor = othSettings.edit();
 	                	spEditor.remove("CurGameID").commit();
-	                	spEditor.putBoolean("inGame", false).commit();
+	                	spEditor.remove("inGame").commit();
 	                	//End erasing
 	                	
 	                	//Inform user of logout status on game close
@@ -305,16 +305,16 @@ private class DownloadWebpageText extends AsyncTask {
 	                	//End logout message  --------------JK
 	                	
 						//close activity
-						GameLobby.this.finish();
-						Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-				    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				    	intent.putExtra("userName", userName);
-				    	intent.putExtra("userId", userId);
-				    	intent.putExtra("EXIT", true);
-				    	startActivity(intent);
+						Intent mainMenuIntent = new Intent(getApplicationContext(), MainMenu.class);
+				    	mainMenuIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				    	mainMenuIntent.putExtra("userName", userName);
+				    	mainMenuIntent.putExtra("userId", userId);
+				    	mainMenuIntent.putExtra("EXIT", true);
+				    	startActivity(mainMenuIntent);
+				    	GameLobby.this.finish();
 	            	} //End close lobby --------------------------------------------------------------------
 	            	
-	            	else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
+	            	/*else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
 	            	{
 						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 	                	SharedPreferences.Editor spEditor = othSettings.edit();
@@ -325,7 +325,7 @@ private class DownloadWebpageText extends AsyncTask {
 	                 	mainMenuIntent.putExtra("userId", userId);
 	                 	startActivityForResult(mainMenuIntent, 0);
 						GameLobby.this.finish();
-	            	}
+	            	}*/
 	            	
 					else if(resultArray[0]=="none") {
 						//Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
