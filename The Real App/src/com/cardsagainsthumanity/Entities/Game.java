@@ -771,7 +771,7 @@ private class DownloadWebpageText extends AsyncTask {
 						if(lastWinningWhite != null && lastBlackCard != null && lastWinningUser != null
 							&& !lastWinningWhite.equals("") && !lastBlackCard.equals("") && !lastWinningUser.equals(""))
 						{
-							chatBox.setText("Last winning user = )" + lastWinningUser + "\nLast winning white card = " + 
+							chatBox.setText("Last winning user = " + lastWinningUser + "\nLast winning white card = " + 
 						lastWinningWhite + "\nLast black card = " + lastBlackCard);
 						}
 						
