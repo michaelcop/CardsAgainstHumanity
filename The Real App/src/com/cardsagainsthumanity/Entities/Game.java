@@ -112,7 +112,7 @@ public class Game extends Activity
 		
 
 		 message = (EditText)findViewById(R.id.messageInput);
-		//chatBox.setMovementMethod(new ScrollingMovementMethod());
+		chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
 		card3.setMovementMethod(new ScrollingMovementMethod());
@@ -126,7 +126,8 @@ public class Game extends Activity
 		//Drawable selected = res.getDrawable(R.drawable.selectedCard);
 		
 		//android.view.Display display = ((android.view.WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		//Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		Display display = getWindowManager().getDefaultDisplay();
 		
 		@SuppressWarnings("deprecation")
 		int width = display.getWidth();
@@ -726,7 +727,7 @@ private class DownloadWebpageText extends AsyncTask {
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	        	//add Submitted or NotSubmitted
-	        	//RefreshGame;0;1;David2;0;David2;0;;Major League Baseball has banned __________ for giving players an unfair advantage.;false
+	        	//results = "RefreshGame;0;1;David2;0;David2;0;;Major League Baseball has banned __________ for giving players an unfair advantage.;false;lastWinWhite;lastblac;last win user";
 	            if(results!=null){
 	            	
 	            	String[] resultArray = results.split(";");
@@ -772,7 +773,7 @@ private class DownloadWebpageText extends AsyncTask {
 						
 						//Toast.makeText(Game.this, "Black Card = " + currentUser.blackCard, Toast.LENGTH_SHORT).show();
 						
-						/*
+						
 						String lastWinningWhite = data.get(whiteCardsEndIndex+3);
 						String lastBlackCard = data.get(whiteCardsEndIndex+4);
 						String lastWinningUser = data.get(whiteCardsEndIndex+5);
@@ -783,7 +784,7 @@ private class DownloadWebpageText extends AsyncTask {
 							chatBox.setText("Last winning user = " + lastWinningUser + "\nLast winning white card = " + 
 						lastWinningWhite + "\nLast black card = " + lastBlackCard);
 						}
-						*/
+						
 						
 						if(currentUser.whiteCardsList.size() <1)
 						{
