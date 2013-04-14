@@ -771,7 +771,7 @@ private class DownloadWebpageText extends AsyncTask {
 						//Toast.makeText(Game.this, "getblack = " + data.get(whiteCardsEndIndex+1), Toast.LENGTH_SHORT).show();
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
 						String tempSubmittedString = data.get(whiteCardsEndIndex+1);
-						Toast.makeText(Game.this, "tempSubmittedString = " + tempSubmittedString, Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "tempSubmittedString = " + tempSubmittedString, Toast.LENGTH_SHORT).show();
 						if(tempSubmittedString.equals("true"))
 							currentUser.submitted = true;
 						else
@@ -929,14 +929,14 @@ private class DownloadWebpageText extends AsyncTask {
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("Success"))
 	            	{
-	            		if(resultArray[1] == "Success")
-	            		{
+	            		//if(resultArray[1] == "Success")
+	            	//	{
 	            			Toast.makeText(Game.this, "Successfully submitted the card", Toast.LENGTH_SHORT).show();
-	            		}
-	            		else
-	            		{
-	            			Toast.makeText(Game.this, "Error submitting card", Toast.LENGTH_SHORT).show();
-	            		}
+	            		//}
+	            		//else
+	            		//{
+	            		//	Toast.makeText(Game.this, "Error submitting card", Toast.LENGTH_SHORT).show();
+	            		//}
 	            	}
 	            	
 					else if(resultArray[0]=="none") {
