@@ -111,7 +111,7 @@ public class Game extends Activity
 		submit = (Button) findViewById(R.id.submit);
 		
 
-		 message = (EditText)findViewById(R.id.messageInput);
+		message = (EditText)findViewById(R.id.messageInput);
 		chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
