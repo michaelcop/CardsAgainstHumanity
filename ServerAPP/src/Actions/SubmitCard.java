@@ -42,7 +42,11 @@ public class SubmitCard extends HttpServlet implements DataSource {
 	
 	private String WinningCardText = null;
 	private int WinningCardID;
-	private String WinningPlayer = null;
+	
+	private int GameWinningPlayerID = 0;
+	private String GameWinningPlayer = null;
+	
+	private String LosingPlayerIDs = null;
 	
 	
 	private int RoundWinningPlayerID = 0;
@@ -91,8 +95,8 @@ public class SubmitCard extends HttpServlet implements DataSource {
 		PrintWriter out = response.getWriter();
 		if(connection != null && User != null && Card != null){
 				Statement stmt;
-				ResultSet rs2, rs3, rs5, rs6, rs19;
-				int rs, rs4, rs7, rs8, rs9, rs20;
+				ResultSet rs2, rs3, rs5, rs6, rs19, rs15, rs16;
+				int rs, rs4, rs7, rs8, rs9, rs20, rs21, rs22;
 				try {
 					stmt = connection.createStatement();
 					
@@ -162,7 +166,7 @@ public class SubmitCard extends HttpServlet implements DataSource {
 								
 								//Update new Card Czar
 								//Done in rs7
-								out.print("NewCzar: "+ NewCzarID);
+								//out.print("NewCzar: "+ NewCzarID);
 							}
 							
 							//out.print("NewCzar: "+ NewCzarID);
@@ -227,11 +231,70 @@ public class SubmitCard extends HttpServlet implements DataSource {
 							}
 							else
 							{
+								//============================ GAME OVER ============================
+								
+								//Get player with the highest score in game - Winner of Game
+								rs15 = stmt.executeQuery("SELECT PlayerUserID FROM tblPlayers WHERE PlayerGameID = "+ GameID +" AND PlayerScore = (SELECT Max(PlayerScore) FROM tblPlayers GROUP BY PlayerGameID HAVING PlayerGameID = "+GameID+") ORDER BY PlayerID LIMIT 1;");
+								
+								if(rs15.next())
+								{
+									//Game Winner
+									GameWinningPlayerID = rs15.getInt(1);
+									
+									//out.print("Game Winner: "+GameWinningPlayerID+";");
+									
+									//Update winner stats in Users table
+									rs21 = stmt.executeUpdate("UPDATE tblUsers SET UserWins = UserWins+1 WHERE UserID = "+GameWinningPlayerID+";");
+									
+									if(rs21==0)
+									{
+										//Error
+										//out.print("Error: unable to update game wins.");
+									}
+									
+									
+									//Get losing player IDs
+									rs16 = stmt.executeQuery("SELECT PlayerUserID FROM tblPlayers WHERE PlayerGameID = "+GameID+" AND PlayerStatus = 1 AND PlayerUserID NOT In("+GameWinningPlayerID+");");
+									
+									//Build SQL In string of losing players
+									if(rs16.isBeforeFirst())
+									{
+										LosingPlayerIDs = "";
+										while(rs16.next())
+										{
+											LosingPlayerIDs = LosingPlayerIDs + rs16.getString(1) + ",";
+										}
+										//trim comma off string
+										LosingPlayerIDs = LosingPlayerIDs.substring(0, LosingPlayerIDs.lastIndexOf(","));
+										
+										//out.print("Losing Player IDs: "+LosingPlayerIDs+";");
+										
+										//Update losses for other players
+										rs22 = stmt.executeUpdate("UPDATE tblUsers SET UserLosses = UserLosses+1 WHERE UserID In ("+LosingPlayerIDs+");");
+										
+										//Check if successful
+										if(rs22==0)
+										{
+											//Error
+											//out.print("Error: unable to udate game losses.");
+										}
+										
+										
+									}
+									
+								}
+								else
+								{
+									//Error
+									//out.print("Error: Unable to determine game winner");
+								}
 								
 								//Game over
 								out.print("GameOver;");
 								
 								//Remove players and game records
+								
+								//============================ END GAME OVER ========================
 								
 							}
 							//========================== END ========================================
@@ -248,6 +311,65 @@ public class SubmitCard extends HttpServlet implements DataSource {
 							{
 								//Update successful
 								out.print("Success");
+								
+								 //Remove card from hand and add a new one
+                                rs2 = stmt.executeQuery("SELECT PlayerHand FROM tblPlayers WHERE PlayerUserID="+ UserID + ";");
+                                if(rs2.next()){
+                                        String Hand = rs2.getString(1);
+                                        String[] Cards = Hand.split(";");
+                                        List<String> cardsList = new ArrayList<String>(Arrays.asList(Cards));
+                                        if(cardsList.contains(Integer.toString(CardID))){
+                                                cardsList.remove(Integer.toString(CardID));
+                                        }
+                                        else{
+                                                out.print("Card Not in Hand");
+                                        }
+                                        
+                                        rs3 = stmt.executeQuery("SELECT GameDeck FROM tblGames WHERE GameID="+GameID+";");
+                                        if(rs3.next()){
+                                                String Deck = rs3.getString(1);
+                                                String[] deckCards = Deck.split(";");
+                                                List<String> deckList = new ArrayList<String>(Arrays.asList(deckCards));
+                                                String newCard = deckList.get(0);
+                                                deckList.remove(0);
+                                                
+                                                cardsList.add(newCard);
+                                                //put deck back together
+                                                Deck = null;
+                                                for(String x: deckList)
+                                                {
+                                                    if(Deck==null){
+                                                            Deck = x;
+                                                    }
+                                                    else{
+                                                            Deck = Deck + ";" + x;
+                                                    }
+                                                }
+                                                
+                                       
+                                             rs4 = stmt.executeUpdate("UPDATE tblGames SET GameDeck='"+Deck+"' WHERE GameID="+GameID +";");
+                                        }
+                                        else{
+                                                //out.print("No Deck");
+                                        }
+                                        //put hand back together
+                                        Hand = null;
+                                        for(String x: cardsList){
+                                                if(Hand==null){
+                                                        Hand = x;
+                                                }
+                                                else{
+                                                        Hand = Hand + ";" + x;
+                                                }
+                                        }
+                                        rs7 = stmt.executeUpdate("UPDATE tblPlayers SET PlayerHand='"+Hand+"' WHERE PlayerUserID="+UserID+" AND PlayerGameID="+ GameID +";");
+                                }
+                                else
+                                {
+                                	//No Hand
+                                }
+								
+								
 							}
 							else
 							{
