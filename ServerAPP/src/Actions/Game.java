@@ -71,6 +71,51 @@ public class Game extends HttpServlet implements DataSource {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		
+		IsCardSubmitted = false;
+		int UserID=0;
+		int GameID=0;
+		Connection connection = null;
+		
+		int CurrentRound;
+		
+		//Player In game variables
+		int NumPlayers=0;
+		String Players=null;
+		String LastBlackCard="";
+		String LastWhiteCard="";
+		String LastWinningPlayer="";
+		String LastBlackCardID="";
+		String LastWhiteCardID="";
+		String LastWinningPlayerID="";
+		
+		
+		//Card Czar Information
+		String CzarName = "";
+		int CzarID=0;
+		int NumSubmitted = 0;
+		 String SubmittedCardString = "";
+		
+		//Player card Info - (If User is not the Czar)
+		String Hand = "";
+		String HandIDs = "";
+		String HandText = "";
+		int NumCards=0;
+		boolean IsCardSubmitted = false;
+		
+		//Black card variables
+		String BlackCards = "";
+		String BlackCardID=null;
+		String BlackCardText = "";
+		
+		
+		
+		
+		
+		PrintWriter out = response.getWriter();
+
+		
+		
+		
 		if(request.getParameter("User") != null){ 
 			this.setUser((String) request.getParameter("User").toString());
 			UserID =  Integer.parseInt(User);
@@ -78,6 +123,10 @@ public class Game extends HttpServlet implements DataSource {
 		if(request.getParameter("Game") != null){ 
 			this.setGame((String) request.getParameter("Game").toString());
 			GameID =  Integer.parseInt(Game);
+		}
+		else if(request.getParameter("User") != null && request.getParameter("Game") != null){
+			out.print("");
+			return;
 		}
 		
 		try {
@@ -97,7 +146,6 @@ public class Game extends HttpServlet implements DataSource {
 			e.printStackTrace();
 		}
 		
-		PrintWriter out = response.getWriter();
 		
 		//Multiple Queries will need to be run here.
 		if(connection != null && User != null && Game != null){
@@ -124,7 +172,7 @@ public class Game extends HttpServlet implements DataSource {
 					}
 					
 					// get current round, black cards list, and game judge
-					rs = stmt.executeQuery("SELECT GameCurRound, GameBlackCards, GameJudge, LastBlackCard, LastWhiteCard, LastWinningPlayer FROM tblGames WHERE GameID = "+GameID+";");
+					rs = stmt.executeQuery("SELECT GameCurRound, GameBlackCards, GameJudge, LastBlackCard, LastWhiteCard, LastWinningPlayer, GameRounds FROM tblGames WHERE GameID = "+GameID+";");
 					
 					if(rs.next())
 					{
@@ -135,14 +183,21 @@ public class Game extends HttpServlet implements DataSource {
 						LastBlackCardID = rs.getString(4);
 						LastWhiteCardID = rs.getString(5);
 						LastWinningPlayerID = rs.getString(6);
-						
-						
+						int GameRounds = rs.getInt(7);
+						if((GameRounds+1)==(CurrentRound)){
+							out.print("GameOver;"+LastWinningPlayerID);
+							return;
+						}
+						//out.println(LastWinningPlayerID);
 						//out.println(CzarID+"");
 						//Get CardCzar User name
 						rs7 = stmt.executeQuery("SELECT UserID, Username FROM tblUsers WHERE UserID In("+CzarID+","+LastWinningPlayerID+");");
 						//out.println("SELECT UserID, Username FROM tblUsers WHERE UserID In("+CzarID+","+LastWinningPlayerID+");");
 						CzarName="Test";
-						LastWinningPlayer="";
+						LastWinningPlayer=null;
+						
+						//out.print("CzarID : " + CzarID);
+						
 						while(rs7.next())
 						{
 							if(rs7.getString(1).equals(Integer.toString(CzarID))){
@@ -151,9 +206,13 @@ public class Game extends HttpServlet implements DataSource {
 							else if(rs7.getString(1).equals(LastWinningPlayerID)){
 								LastWinningPlayer = rs7.getString(2);
 							}
+							//out.println("UserID : " + rs7.getString(1) + " Username: " + rs7.getString(2));
 							
 						}
-						
+						//out.println(LastWinningPlayer);
+						if(LastWinningPlayer==null){
+							LastWinningPlayer=CzarName;
+						}
 						//Parse Black cards here to get top card
 						//String BlackCards= "";
                         String[] blackList = BlackCards.split(";");
@@ -227,6 +286,7 @@ public class Game extends HttpServlet implements DataSource {
 							
 							if(rs5.next())
 							{
+								HandIDs="";
 								//out.print("rs5 before:"+HandIDs);
 								HandIDs = rs5.getString(1);
 								
@@ -259,6 +319,7 @@ public class Game extends HttpServlet implements DataSource {
 							else{
 								//out.print("Successful");
 								NumCards = 0;
+								HandText="";
 								while(rs6.next()){
 									//out.print("; List");
 									HandText = HandText + rs6.getInt(1) + ";" + rs6.getString(2) + ";";
