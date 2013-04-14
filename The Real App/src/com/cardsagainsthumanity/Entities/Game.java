@@ -728,6 +728,7 @@ private class DownloadWebpageText extends AsyncTask {
 	            //check the result for the what's needed to move on
 	        	//add Submitted or NotSubmitted
 	        	//results = "RefreshGame;0;3;a;0;David2;0;justin;0;a;5;4;An honest cop with nothing left to lose.;64;Bingeing and purging.;287;The true meaning of Christmas.;524;The harsh light of day.;526;The shambling corpse of Larry King.;While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on __________.;false;;;";
+	        	//results = "RefreshGame;0;3;a;0;David2;0;justin;0;a;0;;While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on ________.;false;;;";
 	            if(results!=null){
 	            	
 	            	String[] resultArray = results.split(";");
@@ -762,11 +763,15 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.whiteCardsID.add(Integer.parseInt(data.get(i)));
 							currentUser.whiteCardsList.add(data.get(i+1));
 						}
+						if(whiteCardsStartIndex == whiteCardsEndIndex)
+						{
+							whiteCardsEndIndex++;
+						}
 						//Toast.makeText(Game.this, whiteCardsStartIndex + " : " + whiteCardsEndIndex, Toast.LENGTH_SHORT).show();
 						//Toast.makeText(Game.this, "getblack = " + data.get(whiteCardsEndIndex+1), Toast.LENGTH_SHORT).show();
 						currentUser.blackCard = data.get(whiteCardsEndIndex);
 						String tempSubmittedString = data.get(whiteCardsEndIndex+1);
-						//Toast.makeText(Game.this, "tempSubmittedString = " + tempSubmittedString, Toast.LENGTH_SHORT).show();
+						Toast.makeText(Game.this, "tempSubmittedString = " + tempSubmittedString, Toast.LENGTH_SHORT).show();
 						if(tempSubmittedString.equals("true"))
 							currentUser.submitted = true;
 						else
@@ -783,9 +788,9 @@ private class DownloadWebpageText extends AsyncTask {
 						String lastWinningUser = "";
 						if(data.size() > whiteCardsEndIndex + 2)
 						{
-						lastWinningWhite = data.get(whiteCardsEndIndex+2);
-						lastBlackCard = data.get(whiteCardsEndIndex+3);
-						lastWinningUser = data.get(whiteCardsEndIndex+4);
+							lastWinningWhite = data.get(whiteCardsEndIndex+2);
+							lastBlackCard = data.get(whiteCardsEndIndex+3);
+							lastWinningUser = data.get(whiteCardsEndIndex+4);
 						}
 						
 						if(lastWinningWhite != null && lastBlackCard != null && lastWinningUser != null
