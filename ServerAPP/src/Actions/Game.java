@@ -41,6 +41,13 @@ public class Game extends HttpServlet implements DataSource {
 	//Player In game variables
 	private int NumPlayers;
 	private String Players;
+	private String LastBlackCard="";
+	private String LastWhiteCard="";
+	private String LastWinningPlayer="";
+	private String LastBlackCardID="";
+	private String LastWhiteCardID="";
+	private String LastWinningPlayerID="";
+	
 	
 	//Card Czar Information
 	private String CzarName = "";
@@ -95,7 +102,7 @@ public class Game extends HttpServlet implements DataSource {
 		//Multiple Queries will need to be run here.
 		if(connection != null && User != null && Game != null){
 				Statement stmt;
-				ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7;
+				ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
 				try {
 					stmt = connection.createStatement();
 					
@@ -117,7 +124,7 @@ public class Game extends HttpServlet implements DataSource {
 					}
 					
 					// get current round, black cards list, and game judge
-					rs = stmt.executeQuery("SELECT GameCurRound, GameBlackCards, GameJudge FROM tblGames WHERE GameID = "+GameID+";");
+					rs = stmt.executeQuery("SELECT GameCurRound, GameBlackCards, GameJudge, LastBlackCard, LastWhiteCard, LastWinningPlayer FROM tblGames WHERE GameID = "+GameID+";");
 					
 					if(rs.next())
 					{
@@ -125,27 +132,44 @@ public class Game extends HttpServlet implements DataSource {
 						CurrentRound = rs.getInt(1);
 						BlackCards = rs.getString(2);
 						CzarID = rs.getInt(3);
+						LastBlackCardID = rs.getString(4);
+						LastWhiteCardID = rs.getString(5);
+						LastWinningPlayerID = rs.getString(6);
 						
 						
+				
 						//Get CardCzar User name
-						rs7 = stmt.executeQuery("SELECT Username FROM tblUsers WHERE UserID = "+CzarID+";");
+						rs7 = stmt.executeQuery("SELECT UserID, Username FROM tblUsers WHERE UserID In("+CzarID+","+LastWinningPlayerID+");");
 						
-						if(rs7.next())
+						while(rs7.next())
 						{
-							CzarName = rs7.getString(1);
+							if(rs7.getString(1).equals(CzarID)){
+								CzarName = rs7.getString(2);
+							}
+							else if(rs7.getString(1).equals(LastWinningPlayerID)){
+								LastWinningPlayer = rs7.getString(2);
+							}
+							
 						}
 						
 						//Parse Black cards here to get top card
 						//String BlackCards= "";
                         String[] blackList = BlackCards.split(";");
                         BlackCardID = blackList[0];
-						
 						//Use top black card ID to get Black Card text
-						rs2 = stmt.executeQuery("SELECT CardText FROM tblCards WHERE CardID = "+ BlackCardID +";");
+                        rs2 = stmt.executeQuery("SELECT CardID, CardText FROM tblCards WHERE CardID In("+LastBlackCardID+","+LastWhiteCardID+","+BlackCardID+");");
 						
-						if(rs2.next())
+						while(rs2.next())
 						{
-							BlackCardText = rs2.getString(1);
+							if(rs2.getString(1).equals(BlackCardID)){
+								BlackCardText = rs2.getString(2);
+							}
+							else if(rs2.getString(1).equals(LastBlackCardID)){
+								LastBlackCard= rs2.getString(2);
+							}
+							else if(rs2.getString(1).equals(LastWhiteCardID)){
+								LastWhiteCard= rs2.getString(2);
+							}
 						}
 						rs2.close();
 						
@@ -179,7 +203,7 @@ public class Game extends HttpServlet implements DataSource {
 							rs4.close();
 							
 							//Output for CardCzar
-							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumSubmitted+";"+SubmittedCardString+BlackCardText+";"+IsCardSubmitted);
+							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumSubmitted+";"+SubmittedCardString+BlackCardText+";"+IsCardSubmitted+";"+LastWhiteCard+";"+LastBlackCard+";"+LastWinningPlayer);
 						
 						}
 						// If User is not the Czar
@@ -241,7 +265,7 @@ public class Game extends HttpServlet implements DataSource {
 							
 							
 							//Print Info
-							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumCards+";"+HandText+BlackCardText+ ";"+IsCardSubmitted);						}
+							out.print("RefreshGame;"+CurrentRound+";"+NumPlayers+";"+Players+CzarName+";"+NumCards+";"+HandText+BlackCardText+ ";"+IsCardSubmitted+";"+LastWhiteCard+";"+LastBlackCard+";"+LastWinningPlayer);						}
 						
 				
 					}
