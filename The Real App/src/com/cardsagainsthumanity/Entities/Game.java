@@ -876,6 +876,8 @@ private class DownloadWebpageText extends AsyncTask {
 						
 						if(currentUser.submitted)
 							submit.setEnabled(false);
+						else
+							submit.setEnabled(true);
 						
 						//Toast.makeText(Game.this, "Black Card = " + currentUser.blackCard, Toast.LENGTH_SHORT).show();
 						//Toast.makeText(Game.this, "data size = " + data.size(), Toast.LENGTH_LONG).show();
