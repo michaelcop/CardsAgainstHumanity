@@ -160,7 +160,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	card1.setEnabled(false);
+						 	submit.setEnabled(false);
 							return true;
 					 }
 						//submissionID =  (String) card1.getHint();
@@ -215,7 +215,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	card2.setEnabled(false);
+						 	submit.setEnabled(false);
 							return true;
 					 }
 						currentCardSelected = 2;
@@ -260,7 +260,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	card3.setEnabled(false);
+						 	submit.setEnabled(false);
 							return true;
 					 }
 					currentCardSelected = 3;
@@ -304,7 +304,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	card4.setEnabled(false);
+						 	submit.setEnabled(false);
 							return true;
 					 }
 						currentCardSelected = 4;
@@ -348,7 +348,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	card5.setEnabled(false);
+						 	submit.setEnabled(false);
 							return false;
 					 }
 						currentCardSelected = 5;
