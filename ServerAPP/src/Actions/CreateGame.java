@@ -1,6 +1,9 @@
 package Actions;
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -78,7 +81,7 @@ public class CreateGame extends HttpServlet implements DataSource {
 				}
  			
  			    if(User!= null){
- 				
+ 			    	
 					Statement stmt, stmt2, stmt3, stmt4, stmt5;
  					ResultSet rs,rs4, rs5;
  					int rs2, rs3;
@@ -162,7 +165,7 @@ public class CreateGame extends HttpServlet implements DataSource {
 						//Create game record
 						//System.out.println("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound, GameDeck) VALUES (" + rounds + "," + UserID +"," + 0 + ",'"+ GameDeck +"');");
 						
-						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound, GameDeck, GameBlackCards) VALUES (" + rounds + "," + UserID +"," + 0 + ",'"+ GameDeck +"','"+ BlackCards +"');");                           
+						rs2 = stmt2.executeUpdate("INSERT INTO tblGames (GameRounds, GameJudge, GameCurRound, GameDeck, GameBlackCards) VALUES (" + rounds + "," + UserID +"," + 1 + ",'"+ GameDeck +"','"+ BlackCards +"');");                           
 						System.out.println(rs2);
 						if(rs2!=0){
 							//out.println("Game Created!\n");

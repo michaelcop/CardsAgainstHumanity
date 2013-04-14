@@ -66,7 +66,7 @@ public class Login extends HttpServlet implements DataSource {
 					else{
 						//User was found now check if password is correct
 						if(rs.getString(3).equals(password)){
-							out.println("User: " + User + " login successful!");
+							out.println("User:" + rs.getInt(1));
 						}
 						else if(rs.getString(3).equals(password) == false){
 							//password was incorrect

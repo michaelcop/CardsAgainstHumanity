@@ -290,7 +290,7 @@ public class SubmitCard extends HttpServlet implements DataSource {
 								}
 								
 								//Game over
-								out.print("GameOver;");
+								//out.print("GameOver;");
 								
 								//Remove players and game records
 								
