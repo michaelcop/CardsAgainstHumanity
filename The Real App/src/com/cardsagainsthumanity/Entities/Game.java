@@ -392,7 +392,7 @@ public class Game extends Activity
 				//Will send submissionID to something
 				if(currentCardSelected == 1)
 				{
-					if(userName.equals(currentUser.currentCzar))
+					if(userName.equalsIgnoreCase(currentUser.currentCzar))
 					{
 						//get text off card and post to server and post which user the card belonged to 
 						String cardText = card1.getText().toString();
@@ -419,7 +419,7 @@ public class Game extends Activity
 				}
 				else if(currentCardSelected == 2)
 				{
-					if(userName.equals(currentUser.currentCzar))
+					if(userName.equalsIgnoreCase(currentUser.currentCzar))
 					{
 						//get text off card and post to server and post which user the card belonged to 
 						String cardText = card2.getText().toString();
@@ -445,7 +445,7 @@ public class Game extends Activity
 				}
 				else if(currentCardSelected == 3)
 				{
-					if(userName.equals(currentUser.currentCzar))
+					if(userName.equalsIgnoreCase(currentUser.currentCzar))
 					{
 						//get text off card and post to server and post which user the card belonged to 
 						String cardText = card3.getText().toString();
@@ -471,7 +471,7 @@ public class Game extends Activity
 				}
 				else if(currentCardSelected == 4)
 				{
-					if(userName.equals(currentUser.currentCzar))
+					if(userName.equalsIgnoreCase(currentUser.currentCzar))
 					{
 						//get text off card and post to server and post which user the card belonged to 
 						String cardText = card4.getText().toString();
@@ -497,7 +497,7 @@ public class Game extends Activity
 				}
 				else if(currentCardSelected == 5)
 				{
-					if(userName.equals(currentUser.currentCzar))
+					if(userName.equalsIgnoreCase(currentUser.currentCzar))
 					{
 						//get text off card and post to server and post which user the card belonged to 
 						String cardText = card5.getText().toString();
@@ -807,6 +807,11 @@ private class DownloadWebpageText extends AsyncTask {
         if(result!=null){
         	String results = (String) result.toString();
         	if(results!=null){
+        		card1.setVisibility(card1.INVISIBLE);
+				card2.setVisibility(card2.INVISIBLE);
+				card3.setVisibility(card3.INVISIBLE);
+				card4.setVisibility(card4.INVISIBLE);
+				card5.setVisibility(card5.INVISIBLE);
 	        	results = results.trim();
 	        	//Toast.makeText(Game.this, "results = " + results, Toast.LENGTH_SHORT).show();
 	        	//results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;a;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
@@ -872,7 +877,7 @@ private class DownloadWebpageText extends AsyncTask {
 						String lastWinningWhite ="";
 						String lastBlackCard = "";
 						String lastWinningUser = "";
-						if(data.size() > whiteCardsEndIndex + 2)
+						if(data.size() > whiteCardsEndIndex + 3)
 						{
 							lastWinningWhite = data.get(whiteCardsEndIndex+2);
 							lastBlackCard = data.get(whiteCardsEndIndex+3);
@@ -886,7 +891,7 @@ private class DownloadWebpageText extends AsyncTask {
 						lastWinningWhite + "\nLast black card = " + lastBlackCard);
 						}
 						
-						
+						/*
 						if(currentUser.whiteCardsList.size() <1)
 						{
 							card1.setVisibility(card1.INVISIBLE);
@@ -918,6 +923,7 @@ private class DownloadWebpageText extends AsyncTask {
 							card5.setVisibility(card5.INVISIBLE);
 						}
 						
+						*/
 						//clear text to make sure we dont leave old stuff and
 						//keep the new items only showing
 						card1.setText("");
@@ -926,19 +932,41 @@ private class DownloadWebpageText extends AsyncTask {
 						card4.setText("");
 						card5.setText("");
 						
-						if(!currentUser.currentCzar.equals(userName) || (currentUser.currentCzar.equals(userName) && currentUser.whiteCardsList.size() == currentUser.otherUsers.size() - 1))
+						//Toast.makeText(Game.this, "WhiteCardsListSize = " + currentUser.whiteCardsList.size() + " , otherUsersSize = " + currentUser.otherUsers.size(), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "1" + (currentUser.currentCzar.equals(userName) && currentUser.whiteCardsList.size() == (currentUser.otherUsers.size() - 1)), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "2" + (!currentUser.currentCzar.equals(userName) || (currentUser.currentCzar.equals(userName) && currentUser.whiteCardsList.size() == (currentUser.otherUsers.size() - 1))), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "3" + (!currentUser.currentCzar.equals(userName)), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "currentCzar = " + currentUser.currentCzar + " , username = " + userName, Toast.LENGTH_SHORT).show();
+						
+						if(!currentUser.currentCzar.equalsIgnoreCase(userName) || (currentUser.currentCzar.equalsIgnoreCase(userName) && currentUser.whiteCardsList.size() == (currentUser.otherUsers.size() - 1)))
 						{
+							
 							if(currentUser.whiteCardsList.size() > 0)
+							{
+								card1.setVisibility(card1.VISIBLE);
 								card1.setText(currentUser.whiteCardsList.get(0));
+							}
 							if(currentUser.whiteCardsList.size() > 1)
+							{
+								card2.setVisibility(card2.VISIBLE);
 								card2.setText(currentUser.whiteCardsList.get(1));
+							}
 							if(currentUser.whiteCardsList.size() > 2)
+							{
+								card3.setVisibility(card3.VISIBLE);
 								card3.setText(currentUser.whiteCardsList.get(2));
+							}
 							if(currentUser.whiteCardsList.size() > 3)
+							{
+								card4.setVisibility(card4.VISIBLE);
 								card4.setText(currentUser.whiteCardsList.get(3));
+							}
 							if(currentUser.whiteCardsList.size() > 4)
+							{
+								card5.setVisibility(card5.VISIBLE);
 								card5.setText(currentUser.whiteCardsList.get(4));
-							blackCard.setText(currentUser.blackCard);	
+							}
+							
 						}
 						blackCard.setText(currentUser.blackCard);
 						
@@ -952,7 +980,7 @@ private class DownloadWebpageText extends AsyncTask {
 						//put game round to gui
 						currentRound.setText("Currend Round = " + currentUser.gameRound);
 						
-						if(currentUser.currentCzar.equals(userName))
+						if(currentUser.currentCzar.equalsIgnoreCase(userName))
 						{
 							//this is the card czar deal with his cards
 							if(currentUser.whiteCardsList.size() < currentUser.otherUsers.size() - 1)
