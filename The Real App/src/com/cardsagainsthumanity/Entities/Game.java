@@ -987,7 +987,7 @@ private class DownloadWebpageText extends AsyncTask {
 							{
 								int numCardsLeft = currentUser.otherUsers.size()-1 - currentUser.whiteCardsList.size();
 								chatBox.setText("You are the Card Czar!\nWe are waiting on " + numCardsLeft + " cards" + "\n" + 
-												currentUser.whiteCardsList.size() + ":" + currentUser.otherUsers.size());
+												currentUser.whiteCardsList.size() + "/" + (currentUser.otherUsers.size()-1) );
 								
 							}
 							else
