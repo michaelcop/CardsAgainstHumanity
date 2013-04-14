@@ -162,7 +162,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	submit.setEnabled(false);
+						 	//submit.setEnabled(false);
 							return true;
 					 }
 						//submissionID =  (String) card1.getHint();
@@ -219,7 +219,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	submit.setEnabled(false);
+						 	//submit.setEnabled(false);
 							return true;
 					 }
 						currentCardSelected = 2;
@@ -264,7 +264,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	submit.setEnabled(false);
+						 	//submit.setEnabled(false);
 							return true;
 					 }
 					currentCardSelected = 3;
@@ -309,7 +309,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	submit.setEnabled(false);
+						 	//submit.setEnabled(false);
 							return true;
 					 }
 						currentCardSelected = 4;
@@ -354,7 +354,7 @@ public class Game extends Activity
 				 {
 					 if(currentUser.submitted)
 					 {
-						 	submit.setEnabled(false);
+						 	//submit.setEnabled(false);
 							return false;
 					 }
 						currentCardSelected = 5;
@@ -873,6 +873,9 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.submitted = true;
 						else
 							currentUser.submitted = false;
+						
+						if(currentUser.submitted)
+							submit.setEnabled(false);
 						
 						//Toast.makeText(Game.this, "Black Card = " + currentUser.blackCard, Toast.LENGTH_SHORT).show();
 						//Toast.makeText(Game.this, "data size = " + data.size(), Toast.LENGTH_LONG).show();
