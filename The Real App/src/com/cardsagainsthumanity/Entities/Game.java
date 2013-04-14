@@ -726,12 +726,14 @@ private class DownloadWebpageText extends AsyncTask {
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	        	//add Submitted or NotSubmitted
+	        	//RefreshGame;0;1;David2;0;David2;0;;Major League Baseball has banned __________ for giving players an unfair advantage.;false
 	            if(results!=null){
 	            	
 	            	String[] resultArray = results.split(";");
 	            	if(resultArray!=null && resultArray[0].equals("RefreshGame")){
 	            		//lets delete the contents of the the arraylist other users and whiteCardsList
 	            		currentUser.whiteCardsList.clear();
+	            		currentUser.whiteCardsID.clear();
 	            		currentUser.otherUsers.clear();
 	            		currentUser.otherUsersScore.clear();
 		            	ArrayList<String> data;
@@ -749,7 +751,9 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.otherUsersScore.add(Integer.parseInt(data.get(i+1)));
 						}
 						currentUser.currentCzar = data.get(userNameEndIndex);
+						//Toast.makeText(Game.this, "CurrentCzar = " + currentUser.currentCzar, Toast.LENGTH_SHORT).show();
 						int numWhiteCards = Integer.parseInt(data.get(userNameEndIndex + 1));
+						//Toast.makeText(Game.this, "numWhiteCards = " + numWhiteCards, Toast.LENGTH_SHORT).show();
 						int whiteCardsStartIndex = userNameEndIndex + 2;
 						int whiteCardsEndIndex = (numWhiteCards*2) + whiteCardsStartIndex;
 						for(int i=whiteCardsStartIndex; i<whiteCardsEndIndex; i+=2)
@@ -757,17 +761,21 @@ private class DownloadWebpageText extends AsyncTask {
 							currentUser.whiteCardsID.add(Integer.parseInt(data.get(i)));
 							currentUser.whiteCardsList.add(data.get(i+1));
 						}
-						currentUser.blackCard = data.get(whiteCardsEndIndex);
-						String tempSubmittedString = data.get(whiteCardsEndIndex+1);
+						//Toast.makeText(Game.this, whiteCardsStartIndex + " : " + whiteCardsEndIndex, Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "getblack = " + data.get(whiteCardsEndIndex+1), Toast.LENGTH_SHORT).show();
+						currentUser.blackCard = data.get(whiteCardsEndIndex+1);
+						String tempSubmittedString = data.get(whiteCardsEndIndex+2);
 						if(tempSubmittedString.equals("true"))
 							currentUser.submitted = true;
 						else
 							currentUser.submitted = false;
 						
+						//Toast.makeText(Game.this, "Black Card = " + currentUser.blackCard, Toast.LENGTH_SHORT).show();
+						
 						/*
-						String lastWinningWhite = data.get(whiteCardsEndIndex+2);
-						String lastBlackCard = data.get(whiteCardsEndIndex+3);
-						String lastWinningUser = data.get(whiteCardsEndIndex+4);
+						String lastWinningWhite = data.get(whiteCardsEndIndex+3);
+						String lastBlackCard = data.get(whiteCardsEndIndex+4);
+						String lastWinningUser = data.get(whiteCardsEndIndex+5);
 						
 						if(lastWinningWhite != null && lastBlackCard != null && lastWinningUser != null
 							&& !lastWinningWhite.equals("") && !lastBlackCard.equals("") && !lastWinningUser.equals(""))
