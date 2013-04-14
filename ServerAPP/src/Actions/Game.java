@@ -188,7 +188,7 @@ public class Game extends HttpServlet implements DataSource {
 							}
 							else{
 								//out.print("Successful");
-								//NumSubmitted = 0;
+								NumSubmitted = 0;
 								SubmittedCardString = "";
 								while(rs4.next()){
 									//out.print("; List");
