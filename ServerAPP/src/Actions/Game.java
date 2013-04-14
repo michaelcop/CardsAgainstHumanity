@@ -184,6 +184,8 @@ public class Game extends HttpServlet implements DataSource {
 						LastWhiteCardID = rs.getString(5);
 						LastWinningPlayerID = rs.getString(6);
 						int GameRounds = rs.getInt(7);
+						
+						
 						if((GameRounds+1)==(CurrentRound)){
 							out.print("GameOver;"+LastWinningPlayerID);
 							return;
