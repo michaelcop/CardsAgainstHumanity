@@ -137,15 +137,15 @@ public class Game extends HttpServlet implements DataSource {
 						LastWinningPlayerID = rs.getString(6);
 						
 						
-				
+						//out.println(CzarID+"");
 						//Get CardCzar User name
 						rs7 = stmt.executeQuery("SELECT UserID, Username FROM tblUsers WHERE UserID In("+CzarID+","+LastWinningPlayerID+");");
-						
-						CzarName="";
+						//out.println("SELECT UserID, Username FROM tblUsers WHERE UserID In("+CzarID+","+LastWinningPlayerID+");");
+						CzarName="Test";
 						LastWinningPlayer="";
 						while(rs7.next())
 						{
-							if(rs7.getString(1).equals(CzarID)){
+							if(rs7.getString(1).equals(Integer.toString(CzarID))){
 								CzarName = rs7.getString(2);
 							}
 							else if(rs7.getString(1).equals(LastWinningPlayerID)){
@@ -230,7 +230,7 @@ public class Game extends HttpServlet implements DataSource {
 								//out.print("rs5 before:"+HandIDs);
 								HandIDs = rs5.getString(1);
 								
-								out.print("Submitted CardID:"+ rs5.getInt(2));
+								//out.print("Submitted CardID:"+ rs5.getInt(2));
 								//Check if user submitted a card
 								if(rs5.getInt(2) > 0)
 								{
