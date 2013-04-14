@@ -839,7 +839,7 @@ private class DownloadWebpageText extends AsyncTask {
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
 						//now lets take that data an update it with the local fields in Game.java
-						currentUser.gameRound = Integer.parseInt(data.get(0)) + 1;
+						currentUser.gameRound = Integer.parseInt(data.get(0));
 						int numOtherUsers = Integer.parseInt(data.get(1));
 						int userNameStartIndex = 2;
 						int userNameEndIndex = userNameStartIndex + (numOtherUsers *2);
