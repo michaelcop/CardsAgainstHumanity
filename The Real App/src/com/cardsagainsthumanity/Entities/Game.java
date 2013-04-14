@@ -111,7 +111,7 @@ public class Game extends Activity
 		submit = (Button) findViewById(R.id.submit);
 		
 
-		message = (EditText)findViewById(R.id.messageInput);
+		 message = (EditText)findViewById(R.id.messageInput);
 		chatBox.setMovementMethod(new ScrollingMovementMethod());
 		card1.setMovementMethod(new ScrollingMovementMethod());
 		card2.setMovementMethod(new ScrollingMovementMethod());
@@ -147,19 +147,13 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
-		    	if(event.getAction() == MotionEvent.ACTION_DOWN)
-		    	{
-
-		    		 card1.bringToFront();
-		    		 card2.invalidate();
-		    		 card3.invalidate();
-		    		 card4.invalidate();
-		    		 card5.invalidate();
-		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
+					 {
+						 	card1.setEnabled(false);
 							return true;
+					 }
 						//submissionID =  (String) card1.getHint();
 						/*
 						 * Card czar selects a card which corresponds to this button
@@ -199,19 +193,13 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
-				if(event.getAction() == MotionEvent.ACTION_DOWN)
-		    	{
-
-		    		 card1.invalidate();
-		    		 card2.bringToFront();
-		    		 card3.invalidate();
-		    		 card4.invalidate();
-		    		 card5.invalidate();
-		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
+					 {
+						 	card2.setEnabled(false);
 							return true;
+					 }
 						currentCardSelected = 2;
 						
 						//submissionID = (String) card2.getHint();
@@ -241,19 +229,13 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
-				if(event.getAction() == MotionEvent.ACTION_DOWN)
-		    	{
-
-		    		 card1.invalidate();
-		    		 card2.invalidate();
-		    		 card3.bringToFront();
-		    		 card4.invalidate();
-		    		 card5.invalidate();
-		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
+					 {
+						 	card3.setEnabled(false);
 							return true;
+					 }
 					currentCardSelected = 3;
 
 					//submissionID = (String) card3.getHint();
@@ -282,19 +264,13 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
-				if(event.getAction() == MotionEvent.ACTION_DOWN)
-		    	{
-
-		    		 card1.invalidate();
-		    		 card2.invalidate();
-		    		 card3.invalidate();
-		    		 card4.bringToFront();
-		    		 card5.invalidate();
-		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
+					 {
+						 	card4.setEnabled(false);
 							return true;
+					 }
 						currentCardSelected = 4;
 						
 						//submissionID = (String) card4.getHint();
@@ -323,19 +299,13 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
-				if(event.getAction() == MotionEvent.ACTION_DOWN)
-		    	{
-
-		    		 card1.invalidate();
-		    		 card2.invalidate();
-		    		 card3.invalidate();
-		    		 card4.invalidate();
-		    		 card5.bringToFront();
-		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
+					 {
+						 	card5.setEnabled(false);
 							return false;
+					 }
 						currentCardSelected = 5;
 
 						//submissionID = (String) card5.getHint();
@@ -384,6 +354,7 @@ public class Game extends Activity
 						int tempIndex = currentUser.whiteCardsList.indexOf(cardText);
 						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						czarSelectCard(cardText);
+						
 					}
 					else
 					{
@@ -395,6 +366,11 @@ public class Game extends Activity
 						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
+					card1.setBackgroundResource(R.drawable.white);
+					card2.setBackgroundResource(R.drawable.white);
+					card3.setBackgroundResource(R.drawable.white);
+					card4.setBackgroundResource(R.drawable.white);
+					card5.setBackgroundResource(R.drawable.white);
 				}
 				else if(currentCardSelected == 2)
 				{
@@ -416,6 +392,11 @@ public class Game extends Activity
 						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
+					card1.setBackgroundResource(R.drawable.white);
+					card2.setBackgroundResource(R.drawable.white);
+					card3.setBackgroundResource(R.drawable.white);
+					card4.setBackgroundResource(R.drawable.white);
+					card5.setBackgroundResource(R.drawable.white);
 				}
 				else if(currentCardSelected == 3)
 				{
@@ -437,6 +418,11 @@ public class Game extends Activity
 						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
+					card1.setBackgroundResource(R.drawable.white);
+					card2.setBackgroundResource(R.drawable.white);
+					card3.setBackgroundResource(R.drawable.white);
+					card4.setBackgroundResource(R.drawable.white);
+					card5.setBackgroundResource(R.drawable.white);
 				}
 				else if(currentCardSelected == 4)
 				{
@@ -458,6 +444,11 @@ public class Game extends Activity
 						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
+					card1.setBackgroundResource(R.drawable.white);
+					card2.setBackgroundResource(R.drawable.white);
+					card3.setBackgroundResource(R.drawable.white);
+					card4.setBackgroundResource(R.drawable.white);
+					card5.setBackgroundResource(R.drawable.white);
 				}
 				else if(currentCardSelected == 5)
 				{
@@ -479,6 +470,11 @@ public class Game extends Activity
 						cardText = currentUser.whiteCardsID.get(tempIndex) + "";
 						playWhiteCard(cardText);
 					}
+					card1.setBackgroundResource(R.drawable.white);
+					card2.setBackgroundResource(R.drawable.white);
+					card3.setBackgroundResource(R.drawable.white);
+					card4.setBackgroundResource(R.drawable.white);
+					card5.setBackgroundResource(R.drawable.white);
 				}
 				
 			}
@@ -778,6 +774,11 @@ private class DownloadWebpageText extends AsyncTask {
 	            	
 	            	String[] resultArray = results.split(";");
 	            	if(resultArray!=null && resultArray[0].equals("RefreshGame")){
+	            		card1.setVisibility(card1.INVISIBLE);
+						card2.setVisibility(card2.INVISIBLE);
+						card3.setVisibility(card3.INVISIBLE);
+						card4.setVisibility(card4.INVISIBLE);
+						card5.setVisibility(card5.INVISIBLE);
 	            		//lets delete the contents of the the arraylist other users and whiteCardsList
 	            		currentUser.whiteCardsList.clear();
 	            		currentUser.whiteCardsID.clear();
@@ -942,6 +943,7 @@ private class DownloadWebpageText extends AsyncTask {
 						 */
 						//function fgggggggor I am card czar and find out what people played
 					}
+	            	
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("PlayerDeleted"))
 	            	{
