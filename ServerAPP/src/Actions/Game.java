@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,6 +47,9 @@ public class Game extends HttpServlet implements DataSource {
 	private String LastBlackCardID="";
 	private String LastWhiteCardID="";
 	private String LastWinningPlayerID="";
+	
+	private int GameWinningPlayerID = 0;
+	private String GameWinnerName = "";
 	
 	
 	//Card Czar Information
@@ -150,7 +153,7 @@ public class Game extends HttpServlet implements DataSource {
 		//Multiple Queries will need to be run here.
 		if(connection != null && User != null && Game != null){
 				Statement stmt;
-				ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
+				ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10;
 				try {
 					stmt = connection.createStatement();
 					
@@ -187,7 +190,45 @@ public class Game extends HttpServlet implements DataSource {
 						
 						
 						if((GameRounds+1)==(CurrentRound)){
-							out.print("GameOver;"+LastWinningPlayerID);
+							//out.print("GameOver;"+LastWinningPlayerID);
+							
+							//Get player with the highest score in game - Winner of Game
+							rs9 = stmt.executeQuery("SELECT PlayerUserID FROM tblPlayers WHERE PlayerGameID = "+ GameID +" AND PlayerScore = (SELECT Max(PlayerScore) FROM tblPlayers GROUP BY PlayerGameID HAVING PlayerGameID = "+GameID+") ORDER BY PlayerID LIMIT 1;");
+							
+							if(rs9.next())
+							{
+								//Reset Game Winner name and ID
+								GameWinningPlayerID = 0;
+								GameWinnerName = "";
+								
+								//Game Winner ID
+								GameWinningPlayerID = rs9.getInt(1);
+								
+								//Get Game Winner Username
+								rs10 = stmt.executeQuery("SELECT Username FROM tblUsers WHERE  UserID = "+GameWinningPlayerID+";");
+								
+								if(rs10.next())
+								{
+									//Username
+									GameWinnerName = rs10.getString(1);
+								}
+								else
+								{
+									//Error
+								}
+								
+								rs10.close();
+								
+							}
+							else
+							{
+								//Error
+							}
+							
+							rs9.close();
+							
+							//Display results - Game winner
+							out.print("GameOver;"+GameWinnerName);
 							return;
 						}
 						//out.println(LastWinningPlayerID);
@@ -340,6 +381,9 @@ public class Game extends HttpServlet implements DataSource {
 					HandText = "";
 					HandIDs = "";
 					NumPlayers = 0;
+					//Reset Game Winner name and ID
+					GameWinningPlayerID = 0;
+					GameWinnerName = "";
 					Game = null;
 					User = null;
 					GameID = 0;
