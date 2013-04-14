@@ -146,6 +146,15 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
+				if(event.getAction() == MotionEvent.ACTION_DOWN)
+		    	{
+
+		    		 card1.bringToFront();
+		    		 card2.invalidate();
+		    		 card3.invalidate();
+		    		 card4.invalidate();
+		    		 card5.invalidate();
+		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
@@ -189,6 +198,15 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
+				if(event.getAction() == MotionEvent.ACTION_DOWN)
+		    	{
+
+		    		 card1.invalidate();
+		    		 card2.bringToFront();
+		    		 card3.invalidate();
+		    		 card4.invalidate();
+		    		 card5.invalidate();
+		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
@@ -222,6 +240,15 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
+				if(event.getAction() == MotionEvent.ACTION_DOWN)
+		    	{
+
+		    		 card1.invalidate();
+		    		 card2.invalidate();
+		    		 card3.bringToFront();
+		    		 card4.invalidate();
+		    		 card5.invalidate();
+		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
@@ -254,6 +281,15 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
+				if(event.getAction() == MotionEvent.ACTION_DOWN)
+		    	{
+
+		    		 card1.invalidate();
+		    		 card2.invalidate();
+		    		 card3.invalidate();
+		    		 card4.bringToFront();
+		    		 card5.invalidate();
+		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
@@ -286,6 +322,15 @@ public class Game extends Activity
 			@Override
 			public boolean onTouch(View v, MotionEvent event) 
 			{
+				if(event.getAction() == MotionEvent.ACTION_DOWN)
+		    	{
+
+		    		 card1.invalidate();
+		    		 card2.invalidate();
+		    		 card3.invalidate();
+		    		 card4.invalidate();
+		    		 card5.bringToFront();
+		    	}
 				 if (event.getAction() == MotionEvent.ACTION_UP)
 				 {
 					 if(currentUser.submitted)
