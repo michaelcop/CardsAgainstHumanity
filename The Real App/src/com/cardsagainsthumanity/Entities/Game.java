@@ -722,12 +722,12 @@ private class DownloadWebpageText extends AsyncTask {
         	String results = (String) result.toString();
         	if(results!=null){
 	        	results = results.trim();
-	        	Toast.makeText(Game.this, "results = " + results, Toast.LENGTH_SHORT).show();
+	        	//Toast.makeText(Game.this, "results = " + results, Toast.LENGTH_SHORT).show();
 	        	//results = "RefreshGame;0;4;a;0;b;1;c;2;d;4;a;3;387;Making a pouty face.;399;Parting the Red Sea.;521;The economy.;What am I giving up for Lent?";
 	        	//results = "RefreshGame;5;3;bob;35;jeff;5;jane;6;jeff;9;jane;czar;2;card1ID;card1 descrpiton;card2ID,card2 description;black card description";
 	            //check the result for the what's needed to move on
 	        	//add Submitted or NotSubmitted
-	        	//results = "RefreshGame;0;1;David2;0;David2;0;;Major League Baseball has banned __________ for giving players an unfair advantage.;false;lastWinWhite;lastblac;last win user";
+	        	//results = "RefreshGame;0;3;a;0;David2;0;justin;0;a;5;4;An honest cop with nothing left to lose.;64;Bingeing and purging.;287;The true meaning of Christmas.;524;The harsh light of day.;526;The shambling corpse of Larry King.;While the United States raced the Soviet Union to the moon, the Mexican government funneled millions of pesos into research on __________.;false;;;";
 	            if(results!=null){
 	            	
 	            	String[] resultArray = results.split(";");
@@ -764,19 +764,29 @@ private class DownloadWebpageText extends AsyncTask {
 						}
 						//Toast.makeText(Game.this, whiteCardsStartIndex + " : " + whiteCardsEndIndex, Toast.LENGTH_SHORT).show();
 						//Toast.makeText(Game.this, "getblack = " + data.get(whiteCardsEndIndex+1), Toast.LENGTH_SHORT).show();
-						currentUser.blackCard = data.get(whiteCardsEndIndex+1);
-						String tempSubmittedString = data.get(whiteCardsEndIndex+2);
+						currentUser.blackCard = data.get(whiteCardsEndIndex);
+						String tempSubmittedString = data.get(whiteCardsEndIndex+1);
+						//Toast.makeText(Game.this, "tempSubmittedString = " + tempSubmittedString, Toast.LENGTH_SHORT).show();
 						if(tempSubmittedString.equals("true"))
 							currentUser.submitted = true;
 						else
 							currentUser.submitted = false;
 						
 						//Toast.makeText(Game.this, "Black Card = " + currentUser.blackCard, Toast.LENGTH_SHORT).show();
+						//Toast.makeText(Game.this, "data size = " + data.size(), Toast.LENGTH_LONG).show();
+						//Toast.makeText(Game.this, "white cards end index = " + whiteCardsEndIndex, Toast.LENGTH_LONG).show();
 						
-						
-						String lastWinningWhite = data.get(whiteCardsEndIndex+3);
-						String lastBlackCard = data.get(whiteCardsEndIndex+4);
-						String lastWinningUser = data.get(whiteCardsEndIndex+5);
+						//if(1==1)
+							//return;
+						String lastWinningWhite ="";
+						String lastBlackCard = "";
+						String lastWinningUser = "";
+						if(data.size() > whiteCardsEndIndex + 2)
+						{
+						lastWinningWhite = data.get(whiteCardsEndIndex+2);
+						lastBlackCard = data.get(whiteCardsEndIndex+3);
+						lastWinningUser = data.get(whiteCardsEndIndex+4);
+						}
 						
 						if(lastWinningWhite != null && lastBlackCard != null && lastWinningUser != null
 							&& !lastWinningWhite.equals("") && !lastBlackCard.equals("") && !lastWinningUser.equals(""))
