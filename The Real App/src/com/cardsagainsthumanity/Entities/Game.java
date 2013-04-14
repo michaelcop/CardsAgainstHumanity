@@ -774,11 +774,6 @@ private class DownloadWebpageText extends AsyncTask {
 	            	
 	            	String[] resultArray = results.split(";");
 	            	if(resultArray!=null && resultArray[0].equals("RefreshGame")){
-	            		card1.setVisibility(card1.INVISIBLE);
-						card2.setVisibility(card2.INVISIBLE);
-						card3.setVisibility(card3.INVISIBLE);
-						card4.setVisibility(card4.INVISIBLE);
-						card5.setVisibility(card5.INVISIBLE);
 	            		//lets delete the contents of the the arraylist other users and whiteCardsList
 	            		currentUser.whiteCardsList.clear();
 	            		currentUser.whiteCardsID.clear();
