@@ -141,6 +141,8 @@ public class Game extends HttpServlet implements DataSource {
 						//Get CardCzar User name
 						rs7 = stmt.executeQuery("SELECT UserID, Username FROM tblUsers WHERE UserID In("+CzarID+","+LastWinningPlayerID+");");
 						
+						CzarName="";
+						LastWinningPlayer="";
 						while(rs7.next())
 						{
 							if(rs7.getString(1).equals(CzarID)){
@@ -158,7 +160,9 @@ public class Game extends HttpServlet implements DataSource {
                         BlackCardID = blackList[0];
 						//Use top black card ID to get Black Card text
                         rs2 = stmt.executeQuery("SELECT CardID, CardText FROM tblCards WHERE CardID In("+LastBlackCardID+","+LastWhiteCardID+","+BlackCardID+");");
-						
+						BlackCardText="";
+						LastBlackCard="";
+						LastWhiteCard="";
 						while(rs2.next())
 						{
 							if(rs2.getString(1).equals(BlackCardID)){
