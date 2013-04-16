@@ -318,22 +318,26 @@ private class DownloadWebpageText extends AsyncTask {
 				    	startActivity(mainMenuIntent);
 				    	GameLobby.this.finish();
 	            	} //End close lobby --------------------------------------------------------------------
-	            	
-	            	/*else if(resultArray!=null && resultArray[0].equals("LeaveGame"))
-	            	{
+
+					else {
 						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 	                	SharedPreferences.Editor spEditor = othSettings.edit();
-	                	spEditor.remove("inGame").commit();
 	                	spEditor.remove("CurGameID").commit();
-	                	Intent mainMenuIntent = new Intent(context, MainMenu.class);
-	                 	mainMenuIntent.putExtra("userName", userName);
-	                 	mainMenuIntent.putExtra("userId", userId);
-	                 	startActivityForResult(mainMenuIntent, 0);
-						GameLobby.this.finish();
-	            	}*/
-	            	
-					else if(resultArray[0]=="none") {
-						//Toast.makeText(GameLobby.this, "Error1", Toast.LENGTH_SHORT).show();
+	                	spEditor.remove("inGame").commit();
+	                	//End erasing
+	                	
+	                	//Inform user of logout status on game close
+	                	if(!othSettings.contains("CurGameID") && !othSettings.contains("inGame"))
+	                		Toast.makeText(context, "An error has occurred. You've been removed from the game", Toast.LENGTH_SHORT).show();
+	                	
+						//close activity
+						Intent mainMenuIntent = new Intent(getApplicationContext(), MainMenu.class);
+				    	mainMenuIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				    	mainMenuIntent.putExtra("userName", userName);
+				    	mainMenuIntent.putExtra("userId", userId);
+				    	mainMenuIntent.putExtra("EXIT", true);
+				    	startActivity(mainMenuIntent);
+				    	GameLobby.this.finish();
 					}
 	
 	            }
