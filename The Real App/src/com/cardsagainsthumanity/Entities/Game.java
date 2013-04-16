@@ -909,6 +909,7 @@ private class DownloadWebpageText extends AsyncTask {
 						{
 							chatBox.setText("Last winning user = " + lastWinningUser + "\nLast winning white card = " + 
 						lastWinningWhite + "\nLast black card = " + lastBlackCard);
+							currentRound.setText("Game Over!");
 						}
 						
 						/*
