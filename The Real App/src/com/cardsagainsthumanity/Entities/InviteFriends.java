@@ -42,6 +42,7 @@ public class InviteFriends extends Activity
 	private String User1Id;
 	private String GameId;	
 	ArrayList<String> testStrings;
+	String ID;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -121,7 +122,7 @@ public class InviteFriends extends Activity
         			{
         				//Delete
         				String[] temp = b.getHint().toString().split(":");
-        				String ID = temp[1];
+        				ID = temp[1];
         				String stringUrl = "http://54.225.225.185:8080/ServerAPP/InviteToGame?UserInvited="+ID+"&Game="+GameId+"&UserInviting="+User1Id;        
         	    		//Toast.makeText(context, stringUrl, Toast.LENGTH_LONG).show();
 
@@ -178,6 +179,10 @@ public class InviteFriends extends Activity
                 		//Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 					}
 					else if(resultArray!=null && resultArray[0].equals("Invited")){
+						Button C = (Button) findViewById((5000+Integer.parseInt(ID)));
+						
+						C.setText("Invited");
+						C.setEnabled(false);
 						Toast.makeText(context,  "Invited!", Toast.LENGTH_LONG).show();
 					}
 					else{
