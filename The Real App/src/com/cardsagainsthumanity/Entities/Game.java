@@ -894,6 +894,25 @@ private class DownloadWebpageText extends AsyncTask {
 						
 						//if(1==1)
 							//return;
+						
+						if(currentUser.currentCzar.equalsIgnoreCase(userName))
+						{
+							/*
+							 * Shuffling the czars cards
+							 */
+							Map<String, Integer> tempCardShuffle = new HashMap<String, Integer>();
+							for(int i=0; i<currentUser.whiteCardsList.size(); i++)
+							{
+								tempCardShuffle.put(currentUser.whiteCardsList.get(i), currentUser.whiteCardsID.get(i));
+							}
+							Collections.shuffle(currentUser.whiteCardsList);
+							currentUser.whiteCardsID.clear();
+							for(int i=0; i<currentUser.whiteCardsList.size(); i++)
+							{
+								currentUser.whiteCardsID.add(tempCardShuffle.get(currentUser.whiteCardsList.get(i)));
+							}
+						}
+						
 						String lastWinningWhite ="";
 						String lastBlackCard = "";
 						String lastWinningUser = "";
