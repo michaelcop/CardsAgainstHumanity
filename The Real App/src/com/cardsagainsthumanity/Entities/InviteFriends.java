@@ -179,8 +179,14 @@ public class InviteFriends extends Activity
                 		//Toast.makeText(context, "Should be making table", Toast.LENGTH_LONG).show();
 					}
 					else if(resultArray!=null && resultArray[0].equals("Invited")){
-						Button C = (Button) findViewById((5000+Integer.parseInt(ID)));
-						
+						Button C;
+						if(resultArray.length==2){
+							C = (Button) findViewById(5000+Integer.parseInt(resultArray[1]));
+
+						}
+						else{
+							 C = (Button) findViewById((5000+Integer.parseInt(ID)));
+						}
 						C.setText("Invited");
 						C.setEnabled(false);
 						Toast.makeText(context,  "Invited!", Toast.LENGTH_LONG).show();
