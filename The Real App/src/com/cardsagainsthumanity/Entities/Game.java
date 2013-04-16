@@ -140,6 +140,12 @@ public class Game extends Activity
 		card4.setWidth(width/5);
 		card5.setWidth(width/5);
 		
+//		card1.setHeight(height/5);
+//		card2.setHeight(height/5);
+//		card3.setHeight(height/5);
+//		card4.setHeight(height/5);
+//		card5.setHeight(height/5);
+//		
 		//New stuff is here!
 		card1.setOnTouchListener(new OnTouchListener()
 		{

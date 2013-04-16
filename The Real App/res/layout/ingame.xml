@@ -5,33 +5,7 @@
     android:background="@color/black"
     android:orientation="vertical" xmlns:app="weight:http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/messageInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@color/DarkGray"
-        android:editable="false"
-        android:ems="10"
-        android:hint="@string/hint"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
-
-    <TextView
-        android:id="@+id/chatBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/messageInput"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/messageInput"
-        android:background="@color/SteelBlue"
-        android:lines="3"
-        android:maxLines="3"
-        android:scrollbars="vertical"
-        android:text="@string/test"
-        android:textColor="@color/white" />
-
+    
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
@@ -39,9 +13,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/playerRound"
-        android:layout_toRightOf="@+id/chatBox"
-        android:textColor="@color/white"
-        android:text="@string/submit" />
+        android:text="@string/submit"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/playerRound"
@@ -53,10 +26,22 @@
         android:background="@color/Gray"
         android:text="@string/round"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="12dp"
+        android:textColor="@color/black"
+        android:textSize="12dp" />
+    
+    <TextView
+        android:id="@+id/chatBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/submit"
+        android:background="@color/LightGrey"
+        android:lines="3"
+        android:maxLines="3"
+        android:scrollbars="vertical"
+        android:text="@string/test"
         android:textColor="@color/black" />
-
-  
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,6 +80,7 @@
                     android:background="@drawable/rectangle"
                     android:hint="@string/defaultCard"
                     android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:paddingTop="5dp"
                     android:scrollbars="vertical"
                     android:text="@string/blackText"
@@ -127,7 +113,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/listLabel"
                     android:layout_margin="5dp"
-                    android:background="@color/SteelBlue"
+                    android:background="@color/LightGrey"
+                    android:textColor = "@color/Black"
                     android:lines="7"
                     android:maxLines="7" />
             </RelativeLayout>
@@ -220,6 +207,14 @@
              android:text="@string/card5" />
 
         </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/chatBox"
+        android:orientation="vertical" >
     </LinearLayout>
 
 </RelativeLayout>

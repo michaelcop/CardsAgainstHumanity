@@ -103,6 +103,10 @@ public class JoinGame extends Activity
 	            labelTV.setText("Invited by "+ testStrings.get(++current));
 	            labelTV.setTextColor(Color.WHITE);
 	            //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+
+	            labelTV.setPadding(10, 0, 5, 0);
+	            tr.setBackgroundResource(R.drawable.friendsrow);
+	            
 	            tr.addView(labelTV);
 	            
 	            //Creating join buttons
