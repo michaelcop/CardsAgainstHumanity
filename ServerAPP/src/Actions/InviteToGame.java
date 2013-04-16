@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 import java.io.*;
 import java.sql.*;
 import java.util.logging.Logger;
@@ -95,7 +95,7 @@ public class InviteToGame extends HttpServlet implements DataSource {
 					rs = stmt.executeUpdate("INSERT INTO tblPlayers (PlayerGameID, PlayerUserID, PlayerStatus, InvitedByUserID) VALUES ("+GameID+","+ InvitedUserID+",0,"+InvitingUserID+");");
 					
 					if(rs!=0){
-						out.println("Invited");
+						out.println("Invited;"+InvitedUserID);
 					}
 					else{
 						out.println("Error: Unable to invite to game");
