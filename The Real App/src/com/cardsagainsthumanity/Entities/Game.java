@@ -546,7 +546,7 @@ public class Game extends Activity
         	gameId = Integer.parseInt(g);}
         	userId = extras.getString("userId");
         	userName = extras.getString("userName");
-        	Toast.makeText(Game.this, "GameID = " + gameId + " , UserID = " + userId + " , UserName = " + userName, Toast.LENGTH_LONG).show();
+        	//Toast.makeText(Game.this, "GameID = " + gameId + " , UserID = " + userId + " , UserName = " + userName, Toast.LENGTH_LONG).show();
 		}
 
 		TextView vd = (TextView) findViewById(R.id.textView3);
@@ -1018,7 +1018,7 @@ private class DownloadWebpageText extends AsyncTask {
 						playerList.setText(playerListString);
 						
 						//put game round to gui
-						currentRound.setText("Currend Round = " + currentUser.gameRound);
+						currentRound.setText("Current Round = " + currentUser.gameRound);
 						
 						if(currentUser.currentCzar.equalsIgnoreCase(userName))
 						{
