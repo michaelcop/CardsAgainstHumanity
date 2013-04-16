@@ -32,6 +32,8 @@
         android:layout_height="220dp"
         android:layout_above="@+id/ReturnToMenu"
         android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/joinGameTitle"
         android:stretchColumns="0,1" >

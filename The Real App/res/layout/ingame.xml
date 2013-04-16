@@ -37,8 +37,8 @@
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/submit"
         android:background="@color/LightGrey"
-        android:lines="3"
-        android:maxLines="3"
+        android:lines="6"
+        android:maxLines="6"
         android:scrollbars="vertical"
         android:text="@string/test"
         android:textColor="@color/black" />
