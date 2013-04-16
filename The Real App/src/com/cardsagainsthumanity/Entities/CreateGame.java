@@ -108,7 +108,8 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 	        	ConnectivityManager connMgr = (ConnectivityManager) 
 	    		getSystemService(Context.CONNECTIVITY_SERVICE);
 	            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-	            error.setText("creating");
+	            //error.setText("creating");
+	            Toast.makeText(CreateGame.this, "Creating your game!", Toast.LENGTH_LONG).show();
 	            
 	            if (networkInfo != null && networkInfo.isConnected())
 	            {
