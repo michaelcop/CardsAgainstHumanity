@@ -94,7 +94,7 @@ public class Game extends Activity
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ingame);
 
-        //getActionBar().setDisplayShowTitleEnabled(false);
+        getActionBar().setDisplayShowTitleEnabled(false);
 		
 		//Please don't move these :<
 		chatBox = (TextView) findViewById(R.id.chatBox);

@@ -25,6 +25,7 @@
         android:layout_alignTop="@+id/chatBox"
         android:background="@drawable/ingamebox"
         android:text="@string/round"
+        android:paddingLeft="3dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:textSize="12dp" />
