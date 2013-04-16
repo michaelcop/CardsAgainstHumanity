@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -159,7 +159,7 @@ public class Game extends HttpServlet implements DataSource {
 					
 					
 					//Get Players in Game
-					rs3 = stmt.executeQuery("SELECT Username, PlayerScore FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE PlayerGameID = "+ GameID +" AND PlayerStatus = 1 GROUP BY Username, PlayerScore;");
+					rs3 = stmt.executeQuery("SELECT Username, PlayerScore FROM tblUsers INNER JOIN tblPlayers ON tblUsers.UserID = tblPlayers.PlayerUserID WHERE PlayerGameID = "+ GameID +" AND PlayerStatus = 1 GROUP BY Username, PlayerScore ORDER BY PlayerScore DESC;");
 					
 					if(!rs3.isBeforeFirst()){
 						//out.println("None in the List");
