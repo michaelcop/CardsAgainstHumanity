@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -228,7 +228,13 @@ public class Game extends HttpServlet implements DataSource {
 							rs9.close();
 							
 							//Display results - Game winner
-							out.print("GameOver;"+GameWinnerName);
+							//out.print("GameOver;"+GameWinnerName);
+							//Display List of players (highest score first)
+							
+							//trim semicolon off Player string
+							Players = Players.substring(0, Players.lastIndexOf(";"));
+							
+							out.print("GameOver;"+NumPlayers+";"+Players);
 							return;
 						}
 						//out.println(LastWinningPlayerID);
