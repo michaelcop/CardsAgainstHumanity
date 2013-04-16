@@ -114,7 +114,7 @@ public class StartActivity extends Activity
 	            results = (String) result.toString();
 	            results = results.trim();
 	            //check the result for the what's needed to move on
-	            String[] resultArr = results.split(":"); 
+	            String[] resultArr = results.split(";"); 
              if(resultArr[0].equals("User")){
              	
             	            	
