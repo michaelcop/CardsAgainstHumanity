@@ -88,6 +88,7 @@
                     android:paddingTop="5dp"
                     android:scrollbars="vertical"
                     android:text="@string/blackText"
+             		android:drawableBottom="@drawable/cardlogoblack"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
