@@ -1090,6 +1090,7 @@ private class DownloadWebpageText extends AsyncTask {
 							playerListString += currentUser.otherUsers.get(i) + " : " + currentUser.otherUsersScore.get(i) + "\n";
 						}
 						playerList.setText(playerListString);
+						currentRound.setText("Game Over!");
 						
 	            		chatBox.setText("The winner is " + winner);
 	            		card1.setVisibility(card1.INVISIBLE);
