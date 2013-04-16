@@ -17,6 +17,7 @@
         android:src="@drawable/ohmenulogo" />
 
  <!--  Create Game -->
+ <ScrollView >
     <ImageButton
         android:id="@+id/createButton"
         android:layout_width="wrap_content"
@@ -64,6 +65,7 @@
         android:layout_below="@+id/createButton"
         android:contentDescription="@string/logo_descrip"
         android:src="@drawable/joingame" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/error"

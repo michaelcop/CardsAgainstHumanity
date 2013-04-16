@@ -302,6 +302,7 @@ public class FriendsList extends Activity
 					if(resultArray!=null && resultArray[0].equals("Added") && resultArray.length==2){
                 		//Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
                 		TextView add = (TextView) findViewById(R.id.AddFriendBox);
+                		add.setText("");
                 		Friends.add(add.getText().toString());
 					// ADD ROW TO TABLE
                         TableRow tr = new TableRow(FriendsList.this);
