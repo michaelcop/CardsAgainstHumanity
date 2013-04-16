@@ -1071,7 +1071,7 @@ private class DownloadWebpageText extends AsyncTask {
 	            	
 	            	else if(resultArray!=null && resultArray[0].equals("GameOver"))
 	            	{
-	            		String winner = resultArray[1];
+	            		String winner = resultArray[2];
 	            		ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
