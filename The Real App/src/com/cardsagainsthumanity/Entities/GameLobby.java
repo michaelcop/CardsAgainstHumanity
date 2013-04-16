@@ -77,7 +77,7 @@ public class GameLobby extends Activity
 		//Toast.makeText(GameLobby.this, userName, Toast.LENGTH_LONG).show();
 		
 		m_handler = new Handler();
-		//refreshGameLobby();
+		refreshGameLobby();
 		//startRepeatingTask();
 	}
 	
@@ -275,7 +275,7 @@ private class DownloadWebpageText extends AsyncTask {
 						
 						GameLobby.this.gameSizeTextView.setText(playersInGame);
 						//changing numPlayersInGame >= 0 to test Game.java and get in the Game easier
-						if(numPlayersInGame >= 0)
+						if(numPlayersInGame >= 3)
 						{
 							//stopRepeatingTask();
 							//go to start game activity and kill the game lobby activity
