@@ -152,7 +152,7 @@ public class StartPage extends Activity {
 	            results = (String) result.toString();
 	            results = results.trim();
 	            //check the result for the what's needed to move on
-	            String[] resultArr = results.split(":"); 
+	            String[] resultArr = results.split(";"); 
                 if(resultArr[0].equals("User")){
                 	
                 	//Store Username and ID in SharedPref ------------------------------
@@ -178,6 +178,15 @@ public class StartPage extends Activity {
                 	//Store hash to file
                     spEditor.putString("digest", sha1).commit();			         	
                 	//End store password -------------------------------------------------------------------------
+                    
+                    //Check login from new device while in game
+                    if(resultArr.length > 2)
+                    {
+                    	spEditor.putBoolean("inGame", true).commit();
+                    	spEditor.putString("CurGameID", resultArr[2]);
+                    }
+                    
+                    //End check
                 	
                     //Start MainMenu -----------------------------------------------------------------------------
                 	Intent mainMenuIntent = new Intent(v.getContext(), MainMenu.class);
