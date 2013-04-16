@@ -880,13 +880,6 @@ private class DownloadWebpageText extends AsyncTask {
 						else
 							currentUser.submitted = false;
 						
-						if(currentUser.submitted)
-						{
-							submit.setEnabled(false);
-							chatBox.append("Waiting for others to submit cards");
-						}
-						else
-							submit.setEnabled(true);
 						
 						//Toast.makeText(Game.this, "Black Card = " + currentUser.blackCard, Toast.LENGTH_SHORT).show();
 						//Toast.makeText(Game.this, "data size = " + data.size(), Toast.LENGTH_LONG).show();
@@ -1036,6 +1029,14 @@ private class DownloadWebpageText extends AsyncTask {
 										currentUser.whiteCardsList.size() + ":" + currentUser.otherUsers.size());
 							}
 						}
+						
+						if(currentUser.submitted)
+						{
+							submit.setEnabled(false);
+							chatBox.append("Waiting for others to submit cards");
+						}
+						else
+							submit.setEnabled(true);
 						
 						//game round, list of users in game, current czar, your list of white cards,
 						//the black card from the czar,
