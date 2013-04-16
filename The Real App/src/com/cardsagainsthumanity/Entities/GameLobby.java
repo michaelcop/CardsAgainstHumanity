@@ -286,6 +286,11 @@ private class DownloadWebpageText extends AsyncTask {
 			            	startActivity(myIntent);
 			            	GameLobby.this.finish();
 						}
+						else
+						{
+							//Toast still waiting on others to join game
+							Toast.makeText(context, "Waiting on others to join game", Toast.LENGTH_SHORT).show();
+						}
 					} //End game from lobby -------------------------------------------------------------
 	            	
 	            	//Close lobby if player gone --------------------------------------------------------
