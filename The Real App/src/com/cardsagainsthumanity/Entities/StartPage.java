@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StartPage extends Activity {
 	
@@ -182,13 +183,15 @@ public class StartPage extends Activity {
                 	Intent mainMenuIntent = new Intent(v.getContext(), MainMenu.class);
                 	mainMenuIntent.putExtra("userName", userName);
                 	mainMenuIntent.putExtra("userId", userId);
-                	login.setText("");
+                	//login.setText("");
                 	startActivityForResult(mainMenuIntent, 0);
                 	StartPage.this.finish();	//Close login page when MainMenu starts ---------------------------
                 	
                 }
                 else{
-                	login.setText(results);
+                	//login.setText(results);
+                	Toast.makeText(StartPage.this, results,Toast.LENGTH_LONG).show();
+
                 }
 	            
 	            
