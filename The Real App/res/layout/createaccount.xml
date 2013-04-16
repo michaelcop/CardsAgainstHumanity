@@ -68,26 +68,6 @@
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/Create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/error"
-        android:layout_alignLeft="@+id/confirmpassword"
-        android:layout_marginLeft="15dp"
-        android:text="@string/ca_create"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/error"
-        android:layout_alignRight="@+id/confirmpassword"
-        android:layout_marginRight="15dp"
-        android:text="@string/cancel"
-        android:textColor="@color/White" />
-
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
@@ -97,5 +77,25 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/Create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/confirmpassword"
+        android:layout_below="@+id/confirmpassword"
+        android:layout_marginTop="19dp"
+        android:text="@string/ca_create"
+        android:textColor="@color/White" />
+
+    <Button
+        android:id="@+id/Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Create"
+        android:layout_alignBottom="@+id/Create"
+        android:layout_alignRight="@+id/confirmpassword"
+        android:text="@string/cancel"
+        android:textColor="@color/White" />
 
 </RelativeLayout>

@@ -77,6 +77,9 @@ public class CreateAccount extends Activity
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
 	        	confirm = confirmPassword.getText().toString();
+	        	
+	        	userName = userName.trim();
+	        	
 	        	if(userName.length()==0 || password.length()==0){
 	        		error.setText("Username and password must not be blank");
 	        		

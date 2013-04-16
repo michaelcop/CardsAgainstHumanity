@@ -65,6 +65,8 @@ public class StartPage extends Activity {
 	        	userName = inputUsername.getText().toString();
 	        	password = inputPassword.getText().toString();
 	        	
+	        	userName = userName.trim();
+	        	
 	        	loginProgress = (ProgressBar) findViewById(R.id.loginProgressBar);
 	        	
 	        	
