@@ -155,6 +155,7 @@ public class MainMenu extends Activity
 			@Override
 			public void onClick(View v) 
 			{
+				Toast.makeText(context, "Checking for friends", Toast.LENGTH_SHORT).show();
 				String stringUrl = "http://54.225.225.185:8080/ServerAPP/FriendsList?User="+userName;
 				mProgress = (ProgressBar) findViewById(R.id.progressBar1);
 	        	check = "Friends";
