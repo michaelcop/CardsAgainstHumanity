@@ -40,7 +40,7 @@
         android:background="@drawable/ingamebox"
         android:lines="7"
         android:paddingLeft="5dp"
-         android:paddingTop="5dp"
+         android:paddingTop="2dp"
         android:maxLines="7"
         android:scrollbars="vertical"
         android:textColor="@color/white" 
@@ -151,6 +151,7 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:layout_marginTop="30dp"
+             android:drawableBottom="@drawable/cardlogo"
              android:text="@string/card1" />
 
          <TextView
@@ -167,6 +168,7 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card2"
+             android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp" />
 
          <TextView
@@ -184,6 +186,7 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card3"
+             android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp" />
 
          <TextView
@@ -201,6 +204,7 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:text="@string/card4"
+             android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp" />
 
          <TextView
@@ -216,6 +220,7 @@
              android:paddingRight="8dp"
              android:paddingTop="5dp"
              android:scrollbars="vertical"
+             android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp"
              android:text="@string/card5" />
 
