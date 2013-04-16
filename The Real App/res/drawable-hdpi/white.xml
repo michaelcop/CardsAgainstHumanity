@@ -6,9 +6,13 @@
 			android:bottomLeftRadius="0dp"
    		    android:topLeftRadius="0dp"
 			android:topRightRadius="0dp"/>  
+			
    			<size 
        			android:width="100dp"
        			android:height="90dp"/>
+   			
    			<stroke  android:width="2dip" android:color="@color/LightGrey"/>  
+   			
+   			
 
 </shape>
