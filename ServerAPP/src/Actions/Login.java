@@ -1,4 +1,4 @@
-package Actions;
+package src.Actions;
 import java.io.*;
 import java.sql.*;
 import java.util.logging.Logger;
@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 public class Login extends HttpServlet implements DataSource {
 
 	private String User =  null;
+	private int UserID = 0;
 	Connection connection = null;
 	private String password =  null;
 
@@ -54,7 +55,7 @@ public class Login extends HttpServlet implements DataSource {
 			if(User!= null){
 				
 				Statement stmt;
-				ResultSet rs;
+				ResultSet rs, rs2;
 				try {
 					stmt = connection.createStatement();
 					rs = stmt.executeQuery("SELECT * FROM tblUsers WHERE Username = '" + User + "';");
@@ -64,9 +65,30 @@ public class Login extends HttpServlet implements DataSource {
 						out.println("Username: " + User + " was not found in Users table.");
 					}
 					else{
+						//out.print("Pass: "+password);
+						//out.print("getString: "+rs.getString(3));
+						
+						//Reset UserID
+						UserID = 0;
+						
 						//User was found now check if password is correct
 						if(rs.getString(3).equals(password)){
-							out.println("User:" + rs.getInt(1));
+							//out.println("User:" + rs.getInt(1));
+							
+							UserID = rs.getInt(1);
+							
+							//Check if user is in game
+							rs2 = stmt.executeQuery("SELECT PlayerGameID FROM tblPlayers WHERE PlayerUserID = "+UserID+" AND PlayerStatus = 1;");
+							
+							if(rs2.next()){
+								out.println("User;" + UserID + ";"+ rs2.getInt(1));
+							}
+							else
+							{
+								out.println("User;" + UserID);
+							}
+							
+							rs2.close();
 						}
 						else if(rs.getString(3).equals(password) == false){
 							//password was incorrect
@@ -74,6 +96,9 @@ public class Login extends HttpServlet implements DataSource {
 						}
 						
 					}
+					
+					//Reset UserID
+					UserID = 0;
 						
 					rs.close();
 					stmt.close();
