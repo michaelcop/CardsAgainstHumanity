@@ -183,7 +183,7 @@ public class StartPage extends Activity {
                     if(resultArr.length > 2)
                     {
                     	spEditor.putBoolean("inGame", true).commit();
-                    	spEditor.putString("CurGameID", resultArr[2]);
+                    	spEditor.putString("CurGameID", resultArr[2]).commit();
                     }
                     
                     //End check
