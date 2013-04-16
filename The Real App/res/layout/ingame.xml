@@ -23,10 +23,10 @@
         android:layout_alignLeft="@+id/submit"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/chatBox"
-        android:background="@color/Gray"
+        android:background="@drawable/ingamebox"
         android:text="@string/round"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="12dp" />
     
     <TextView
@@ -36,12 +36,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/submit"
-        android:background="@color/LightGrey"
+        android:background="@drawable/ingamebox"
         android:lines="6"
         android:maxLines="6"
         android:scrollbars="vertical"
-        android:text="@string/test"
-        android:textColor="@color/black" />
+        android:textColor="@color/black" 
+        
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,28 +96,30 @@
                 android:layout_weight="1" >
 
                 <TextView
-                    android:id="@+id/listLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/playerList"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/white" />
-
-                <TextView
                     android:id="@+id/playerList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_gravity="center_vertical|right"
+                    android:gravity="right"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/listLabel"
                     android:layout_margin="5dp"
-                    android:background="@color/LightGrey"
+                    android:background="@drawable/ingamebox"
                     android:textColor = "@color/Black"
                     android:lines="7"
                     android:maxLines="7" />
+
+                <TextView
+                    android:id="@+id/listLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/playerList"
+                    android:text="@string/playerList"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white" />
+
             </RelativeLayout>
         </LinearLayout>
 
