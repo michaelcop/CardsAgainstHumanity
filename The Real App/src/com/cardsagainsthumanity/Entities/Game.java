@@ -1072,6 +1072,25 @@ private class DownloadWebpageText extends AsyncTask {
 	            	else if(resultArray!=null && resultArray[0].equals("GameOver"))
 	            	{
 	            		String winner = resultArray[1];
+	            		ArrayList<String> data;
+						data = new ArrayList<String>(Arrays.asList(resultArray));
+						data.remove(0);//we are removing the check data field
+						currentUser.otherUsers.clear();
+	            		currentUser.otherUsersScore.clear();
+	            		int numOtherUsers = Integer.parseInt(data.get(0));
+	            		data.remove(0);
+	            		for(int i=0; i<(numOtherUsers * 2); i+=2)
+						{
+							currentUser.otherUsers.add(data.get(i));
+							currentUser.otherUsersScore.add(Integer.parseInt(data.get(i+1)));
+						}
+	            		String playerListString = "";
+						for(int i=0; i<currentUser.otherUsers.size(); i++)
+						{
+							playerListString += currentUser.otherUsers.get(i) + " : " + currentUser.otherUsersScore.get(i) + "\n";
+						}
+						playerList.setText(playerListString);
+						
 	            		chatBox.setText("The winner is " + winner);
 	            		card1.setVisibility(card1.INVISIBLE);
 						card2.setVisibility(card2.INVISIBLE);
