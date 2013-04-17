@@ -1054,9 +1054,9 @@ private class DownloadWebpageText extends AsyncTask {
 						if(currentUser.otherUsers.size() <3)
 						{
 							Intent intent = new Intent(getApplicationContext(), GameLobby.class);
-					    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					    	//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					    	intent.putExtra("userName", userName);
-					    	intent.putExtra("gameId", gameId);
+					    	intent.putExtra("gameId", Integer.toString(gameId));
 					    	intent.putExtra("userId", userId);
 					    	startActivity(intent);
 							Game.this.finish();
