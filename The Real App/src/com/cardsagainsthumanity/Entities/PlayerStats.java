@@ -46,9 +46,9 @@ public class PlayerStats extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.playerstats);
 		context = this;
-		playerNameStat= (TextView) findViewById(R.id.PlayerNameStat);
-		gamesWonTextView= (TextView) findViewById(R.id.GamesWonStat);
-		gamesLostTextView= (TextView) findViewById(R.id.GamesLostStat);
+		playerNameStat = (TextView) findViewById(R.id.PlayerNameStat);
+		gamesWonTextView = (TextView) findViewById(R.id.GamesWonStat);
+		gamesLostTextView = (TextView) findViewById(R.id.GamesLostStat);
 
 		//refreshPlayerStats();
         //getActionBar().setDisplayShowTitleEnabled(false);
@@ -129,7 +129,7 @@ private class DownloadWebpageText extends AsyncTask {
 		            	ArrayList<String> data;
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
-						playerNameStat.setText(userName);
+						playerNameStat.setText(userName.toUpperCase());
 						gamesWonTextView.setText("Games won: " + data.get(0));
 						gamesLostTextView.setText("Games lost: " + data.get(0));
 					}

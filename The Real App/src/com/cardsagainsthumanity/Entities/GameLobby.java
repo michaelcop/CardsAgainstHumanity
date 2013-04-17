@@ -260,7 +260,7 @@ private class DownloadWebpageText extends AsyncTask {
 	        	results = results.trim();
 	        	
 	            //check the result for the what's needed to move on
-	        	//Toast.makeText(GameLobby.this, "In post execute", Toast.LENGTH_SHORT).show();
+	        	//Toast.makeText(GameLobby.this, "Game Lobby results = " + result, Toast.LENGTH_LONG).show();
 	            if(results!=null){
 					//error.setText("");
 	            	String[] resultArray = results.split(";");
