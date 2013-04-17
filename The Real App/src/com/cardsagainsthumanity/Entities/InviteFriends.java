@@ -189,7 +189,7 @@ public class InviteFriends extends Activity
 						}
 						C.setText("Invited");
 						C.setEnabled(false);
-						Toast.makeText(context,  "Invited!", Toast.LENGTH_LONG).show();
+						Toast.makeText(context,  "Invited!", Toast.LENGTH_SHORT).show();
 					}
 					else{
                 		//Toast.makeText(context, results, Toast.LENGTH_LONG).show();

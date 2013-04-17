@@ -244,7 +244,7 @@ public class JoinGame extends Activity
 						else if(resultArray!=null && resultArray[0].equals("PlayerDeleted")){
 							gameList = (TableLayout) findViewById(R.id.gameTable);
 							gameList.removeView((TableRow)findViewById(deletingID));
-							Toast.makeText(context, "Removed Game Invite", Toast.LENGTH_LONG).show();
+							Toast.makeText(context, "Removed Game Invite", Toast.LENGTH_SHORT).show();
 						}
 						else{
 	                		//Toast.makeText(context, "You broke it.", Toast.LENGTH_LONG).show();
