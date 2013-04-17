@@ -91,7 +91,7 @@ public class CreateAccount extends Activity
 	        	}
 	        	if(userName.length() < 5 || password.length() < 5)
 	        	{
-	        		Toast.makeText(CreateAccount.this, "Error user name and password must be atleast 5 characters.  Try Again!", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(CreateAccount.this, "Error user name and password must be atleast 5 characters.  Try Again!", Toast.LENGTH_SHORT).show();
 	        		inputUsername.setText("");
 	        		inputPassword.setText("");
 	        		confirmPassword.setText("");
@@ -168,7 +168,7 @@ public class CreateAccount extends Activity
 	            }
 	            else
 	            {
-	        		Toast.makeText(CreateAccount.this, "User already exists", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(CreateAccount.this, "User already exists", Toast.LENGTH_SHORT).show();
 	            }
         	}
         }

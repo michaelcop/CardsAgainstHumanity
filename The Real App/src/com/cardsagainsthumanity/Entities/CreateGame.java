@@ -109,7 +109,7 @@ public class CreateGame extends Activity implements OnItemSelectedListener
 	    		getSystemService(Context.CONNECTIVITY_SERVICE);
 	            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 	            //error.setText("creating");
-	            Toast.makeText(CreateGame.this, "Creating your game!", Toast.LENGTH_LONG).show();
+	            Toast.makeText(CreateGame.this, "Creating your game!", Toast.LENGTH_SHORT).show();
 	            
 	            if (networkInfo != null && networkInfo.isConnected())
 	            {

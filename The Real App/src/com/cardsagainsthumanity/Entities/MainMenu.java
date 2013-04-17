@@ -254,7 +254,7 @@ public class MainMenu extends Activity
 		                	if(!othSettings.contains("UserName") && !othSettings.contains("digest"))
 		                		Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show();
 		                	else
-		                		Toast.makeText(context, "Logout failed", Toast.LENGTH_LONG).show();
+		                		Toast.makeText(context, "Logout failed", Toast.LENGTH_SHORT).show();
 		                	//End logout message  --------------JK
 		                	
 							//close activity

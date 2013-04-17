@@ -201,7 +201,7 @@ public class StartPage extends Activity {
                 }
                 else{
                 	//login.setText(results);
-                	Toast.makeText(StartPage.this, results,Toast.LENGTH_LONG).show();
+                	Toast.makeText(StartPage.this, results,Toast.LENGTH_SHORT).show();
 
                 }
 	            

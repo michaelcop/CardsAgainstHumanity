@@ -64,7 +64,7 @@ public class InviteFriends extends Activity
 			callUrl("http://54.225.225.185:8080/ServerAPP/CurrentFriends?User="+UserName);
 		}
 		else{
-    		Toast.makeText(context, "No User", Toast.LENGTH_LONG).show();
+    		Toast.makeText(context, "No User", Toast.LENGTH_SHORT).show();
 		}
 		//error = (TextView) findViewById(R.id.error);
 
