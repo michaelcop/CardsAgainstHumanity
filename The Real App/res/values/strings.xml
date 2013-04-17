@@ -122,4 +122,6 @@
         <item>5</item>
     </string-array>
      <string name="use_dr">Use Default Rounds</string>
+     
+     <string name="currentPlayer">Current Player</string>
 </resources>

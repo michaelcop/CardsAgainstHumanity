@@ -98,4 +98,13 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/ohlogo" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/currentPlayer"
+        android:textColor="@color/white" />
+
 </RelativeLayout>
