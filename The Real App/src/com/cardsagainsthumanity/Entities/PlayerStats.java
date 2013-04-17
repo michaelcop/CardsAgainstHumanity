@@ -130,8 +130,8 @@ private class DownloadWebpageText extends AsyncTask {
 						data = new ArrayList<String>(Arrays.asList(resultArray));
 						data.remove(0);//we are removing the check data field
 						playerNameStat.setText(userName);
-						gamesWonTextView.setText("Games won = " + data.get(0));
-						gamesLostTextView.setText("Games lost = " + data.get(1));
+						gamesWonTextView.setText("Games won: " + data.get(0));
+						gamesLostTextView.setText("Games lost: " + data.get(0));
 					}
 					else {
 		        		Toast.makeText(PlayerStats.this, results, Toast.LENGTH_SHORT).show();
