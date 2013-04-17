@@ -34,16 +34,6 @@
         android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/NumberofRoundsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:text="@string/numRounds"
-        android:textColor="@color/white" />
-
-    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +44,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White"
         android:textStyle="bold" />
+    
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/textView1"
+        android:background="@android:color/white" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -71,5 +68,15 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/NumberofRoundsLabel" />
+
+    <TextView
+        android:id="@+id/NumberofRoundsLabel"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/numRounds"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -14,30 +14,35 @@
         android:text="@string/returntomenu"
         android:textColor="@color/White" />
 
-    <ScrollView 
-        android:id="@+id/ScrollView01" 
-        android:layout_width="wrap_content" 
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnAddFriend"
         android:layout_above="@+id/ReturnToMenu"
-        android:layout_centerHorizontal="true">
- 
-	    <TableLayout
-	        android:id="@+id/friendsTable"
-	        android:layout_width="250dp"
-	        android:layout_height="220dp"
-	        android:layout_marginBottom="17dp"
-	        android:stretchColumns="0,1" >
-	
-	        <TextView
-	            android:id="@+id/error"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/error" />
-	
-	 	</TableLayout>
-	 	
-	</ScrollView>
+        android:layout_below="@+id/btnAddFriend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp" >
+
+        <TableLayout
+            android:id="@+id/friendsTable"
+            android:layout_width="250dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="17dp"
+            android:stretchColumns="0,1" >
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error" />
+        </TableLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ScrollView01"
+        android:background="@android:color/white" />
 
     <TextView
         android:id="@+id/FriendsList"
@@ -50,16 +55,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White" />
 
-    <EditText
-        android:id="@+id/AddFriendBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
         android:layout_below="@+id/FriendsList"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:background="@color/White"
-        android:ems="10"
-        android:inputType="text" />
+        android:background="@android:color/white" />
 
     <Button
         android:id="@+id/btnAddFriend"
@@ -69,6 +70,8 @@
         android:layout_centerHorizontal="true"
         android:text="@string/friend_invite"
         android:textColor="@color/White" />
+    
+    
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -77,5 +80,19 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/AddFriendBox"
         android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/AddFriendBox"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:layout_centerHorizontal="true"
+        android:background="@color/White"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
