@@ -326,12 +326,38 @@ public class FriendsList extends Activity
 							public void onClick(View v) {
 								//cancel
 								//Delete
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			       	           	 
+		        				// set title
+		        				alertDialogBuilder.setTitle("Confirm Cancel Friend Request");
+		        	 
+		        				// set dialog message
+		        				alertDialogBuilder
+		        					.setMessage("Are you sure you want to cancel friend request?")
+		        					.setCancelable(true)
+		        					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+		        						public void onClick(DialogInterface dialog,int id) {
+		        							String[] temp = A.getHint().toString().split(":");
+		    		        				String ID = temp[1];
+		    		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
+		    					        	//error.setText("USER ID FOR DELETION IS: " +ID);
+		    		        				callUrl(stringUrl);
+		        						}
+		        					  })
+		        					  
+		        					.setNegativeButton("No",new DialogInterface.OnClickListener() {
+		        						public void onClick(DialogInterface dialog,int id) {
+		        							dialog.cancel();
+		        						}
+		        					
+		        					});
+		        	 
+		        					// create alert dialog
+		        					AlertDialog alertDialog = alertDialogBuilder.create();
+		        					// show it
+		        					alertDialog.show();
 								
-		        				String[] temp = A.getHint().toString().split(":");
-		        				String ID = temp[1];
-		        				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
-					        	//error.setText("USER ID FOR DELETION IS: " +ID);
-		        				callUrl(stringUrl);
+		        				
 							}
                         	
                         	
@@ -364,12 +390,37 @@ public class FriendsList extends Activity
                 			@Override
                 			public void onClick(View v) 
                 			{
-                				//Delete
-                				String[] temp = button.getHint().toString().split(":");
-                				String ID = temp[1];
-                				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
-        			        	//error.setText("USER ID FOR DELETION IS: " +ID);
-                				callUrl(stringUrl);
+                				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+               	           	 
+                				// set title
+                				alertDialogBuilder.setTitle("Confirm Delete Friend");
+                	 
+                				// set dialog message
+                				alertDialogBuilder
+                					.setMessage("Are you sure you want to delete this friend?")
+                					.setCancelable(true)
+                					.setPositiveButton("Delete",new DialogInterface.OnClickListener() {
+                						public void onClick(DialogInterface dialog,int id) {
+                							//Delete
+                            				String[] temp = button.getHint().toString().split(":");
+                            				String ID = temp[1];
+                            				String stringUrl = "http://54.225.225.185:8080/ServerAPP/DeclineFriend?User="+User1Id+"&User2="+ID;
+                    			        	//error.setText("USER ID FOR DELETION IS: " +ID);
+                            				callUrl(stringUrl);
+                						}
+                					  })
+                					  
+                					.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                						public void onClick(DialogInterface dialog,int id) {
+                							dialog.cancel();
+                						}
+                					
+                					});
+                	 
+                					// create alert dialog
+                					AlertDialog alertDialog = alertDialogBuilder.create();
+                					// show it
+                					alertDialog.show();	
                 			}
                 			
                 		});
