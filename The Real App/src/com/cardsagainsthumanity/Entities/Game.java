@@ -1051,6 +1051,16 @@ private class DownloadWebpageText extends AsyncTask {
 						 * submitted
 						 */
 						//function fgggggggor I am card czar and find out what people played
+						if(currentUser.otherUsers.size() <3)
+						{
+							Intent intent = new Intent(getApplicationContext(), GameLobby.class);
+					    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					    	intent.putExtra("userName", userName);
+					    	intent.putExtra("gameId", gameId);
+					    	intent.putExtra("userId", userId);
+					    	startActivity(intent);
+							Game.this.finish();
+						}
 					}
 	            	
 	            	
