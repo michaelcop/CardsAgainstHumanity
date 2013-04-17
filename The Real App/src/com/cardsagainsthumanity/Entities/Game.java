@@ -1033,7 +1033,7 @@ private class DownloadWebpageText extends AsyncTask {
 						if(currentUser.submitted)
 						{
 							submit.setEnabled(false);
-							chatBox.append("Waiting for others to submit cards" +"\n");
+							chatBox.append("\n" + "Waiting for others to submit cards" +"\n");
 						}
 						else
 							submit.setEnabled(true);
