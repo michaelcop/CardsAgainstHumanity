@@ -80,15 +80,24 @@ public class FriendsList extends Activity
 				if(Friends.size()<=49){
 					TextView add = (TextView) findViewById(R.id.AddFriendBox);
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
-					if(User2!="" && User2!=null && UserName!=null && (!User2.equals(UserName))){
+					User2 = User2.toLowerCase();
+					if(User2!="" && User2!=null && UserName!=null && (!User2.equalsIgnoreCase(UserName))){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
+						Friends.add(User2);
 						mProgress = (ProgressBar) findViewById(R.id.progressBar1);
                 		
 						callUrl(stringUrl);}
-					}
-				else{
-					error.setText("You may only have 50 friends");
 					
+					if(Friends.contains(User2)){
+	            		Toast.makeText(context, "That friend seems to already be in your friends list. If they are not visible in the list, try reloading the page.", Toast.LENGTH_SHORT).show();
+					}
+					if(User2.equalsIgnoreCase(UserName)){
+	            		Toast.makeText(context, "You can't be your own friend... Even if you don't have any others.", Toast.LENGTH_SHORT).show();						
+					}
+				}
+				else{
+					
+            		Toast.makeText(context, "You may only have 50 friends", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
