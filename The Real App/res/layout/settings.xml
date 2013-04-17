@@ -16,36 +16,29 @@
         android:textColor="@color/White"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
         android:layout_below="@+id/textView2"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/setting_notific"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/White"
-        android:visibility="invisible" />
+        android:background="@android:color/white" />
 
-    <ToggleButton
-        android:id="@+id/toggleNotificationsButton"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/LogOutButton"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_toRightOf="@+id/textView1"
-        android:textColor="@color/White"
-        android:visibility="invisible" />
+        android:layout_above="@+id/SaveButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:text="@string/setting_switch"
+        android:textColor="@color/White" />
 
     <TextView
         android:id="@+id/DefaultRoundsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toggleNotificationsButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
+        android:layout_below="@+id/view1"
         android:text="@string/defaultRounds"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/White"
@@ -59,36 +52,35 @@
         android:layout_alignRight="@+id/DefaultRoundsText"
         android:layout_below="@+id/DefaultRoundsText" />
 
+    <ToggleButton
+        android:id="@+id/toggleNotificationsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingRoundsSpinner"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:visibility="invisible" />
+
     <Button
         android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
+        android:layout_alignRight="@+id/toggleNotificationsButton"
         android:layout_below="@+id/LogOutButton"
+        android:layout_marginRight="31dp"
         android:text="@string/returntomenu"
-        android:textColor="@color/White"
-        android:layout_marginRight="5dp" />
+        android:textColor="@color/White" />
 
     <Button
         android:id="@+id/SaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/toggleNotificationsButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/toggleNotificationsButton"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginBottom="37dp"
+        android:layout_marginLeft="49dp"
         android:clickable="false"
         android:text="@string/setting_save"
-        android:textColor="@color/White" />
-
-    <Button
-        android:id="@+id/LogOutButton"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/SaveButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:text="@string/setting_switch"
         android:textColor="@color/White" />
 
 </RelativeLayout>

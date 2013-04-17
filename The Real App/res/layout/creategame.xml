@@ -52,15 +52,6 @@
         android:layout_below="@+id/textView1"
         android:background="@android:color/white" />
 
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/error"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
-
     <Spinner
         android:id="@+id/roundSpinner"
         android:layout_width="wrap_content"
@@ -78,5 +69,14 @@
         android:layout_centerHorizontal="true"
         android:text="@string/numRounds"
         android:textColor="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/roundSpinner"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>
