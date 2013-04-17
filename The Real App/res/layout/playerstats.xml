@@ -15,35 +15,42 @@
         android:textColor="@color/White" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/stat_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/White"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/PlayerNameStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
-        android:text="@string/player_name"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
+    
+    <View
+    android:layout_width="fill_parent"
+    android:layout_below="@+id/PlayerNameStat"
+    android:layout_height="1dp"
+    android:background="@android:color/white"/>
+    
+    <View
+    android:layout_width="fill_parent"
+    android:layout_below="@+id/GamesWonStat"
+    android:layout_height="1dp"
+    android:background="@android:color/white"/>
+    
+    <View
+    android:layout_width="fill_parent"
+    android:layout_below="@+id/GamesLostStat"
+    android:layout_height="1dp"
+    android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/GamesLostStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/GamesWonStat"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/GamesWonStat"
         android:layout_marginTop="40dp"
         android:text="@string/games_lost"
+        android:padding="3dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
@@ -55,6 +62,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
         android:text="@string/games_won"
+        android:padding="3dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:textColorHint="@color/White" />
@@ -68,5 +76,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/stat_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/White"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -153,8 +153,7 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:layout_marginTop="30dp"
-             android:drawableBottom="@drawable/cardlogo"
-             android:text="@string/card1" />
+             android:drawableBottom="@drawable/cardlogo"/>
 
          <TextView
              android:id="@+id/c2"
@@ -169,7 +168,6 @@
              android:paddingRight="8dp"
              android:paddingTop="5dp"
              android:scrollbars="vertical"
-             android:text="@string/card2"
              android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp" />
 
@@ -187,7 +185,6 @@
              android:paddingRight="8dp"
              android:paddingTop="5dp"
              android:scrollbars="vertical"
-             android:text="@string/card3"
              android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp" />
 
@@ -205,7 +202,6 @@
              android:paddingRight="8dp"
              android:paddingTop="5dp"
              android:scrollbars="vertical"
-             android:text="@string/card4"
              android:drawableBottom="@drawable/cardlogo"
              android:layout_marginTop="30dp" />
 
@@ -223,8 +219,7 @@
              android:paddingTop="5dp"
              android:scrollbars="vertical"
              android:drawableBottom="@drawable/cardlogo"
-             android:layout_marginTop="30dp"
-             android:text="@string/card5" />
+             android:layout_marginTop="30dp" />
 
         </RelativeLayout>
     </LinearLayout>
