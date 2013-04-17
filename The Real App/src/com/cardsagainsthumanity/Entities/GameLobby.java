@@ -324,14 +324,15 @@ private class DownloadWebpageText extends AsyncTask {
 					else {
 						SharedPreferences othSettings = getSharedPreferences(SPREF_USER, 0);
 	                	SharedPreferences.Editor spEditor = othSettings.edit();
-	                	spEditor.remove("CurGameID").commit();
-	                	spEditor.remove("inGame").commit();
+
 	                	//End erasing
 	                	
 	                	//Inform user of logout status on game close
 	                	if(!othSettings.contains("CurGameID") && !othSettings.contains("inGame"))
 	                		Toast.makeText(context, "An error has occurred. You've been removed from the game", Toast.LENGTH_SHORT).show();
 	                	
+	                	spEditor.remove("CurGameID").commit();
+	                	spEditor.remove("inGame").commit();
 						//close activity
 						Intent mainMenuIntent = new Intent(getApplicationContext(), MainMenu.class);
 				    	mainMenuIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
