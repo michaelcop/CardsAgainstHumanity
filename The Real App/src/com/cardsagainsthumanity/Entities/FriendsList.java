@@ -81,19 +81,18 @@ public class FriendsList extends Activity
 					TextView add = (TextView) findViewById(R.id.AddFriendBox);
 					User2 = (String) add.getText().toString().replaceAll("\\s", "");
 					User2 = User2.toLowerCase();
-					if(User2!="" && User2!=null && UserName!=null && (!User2.equalsIgnoreCase(UserName))){
+					if(Friends.contains(User2)){
+	            		Toast.makeText(context, "That friend seems to already be in your friends list. If they are not visible in the list, try reloading the page.", Toast.LENGTH_SHORT).show();
+					}
+					else if(User2.equalsIgnoreCase(UserName)){
+	            		Toast.makeText(context, "You can't be your own friend... Even if you don't have any others.", Toast.LENGTH_SHORT).show();						
+					}
+					else if(User2!="" && User2!=null && UserName!=null && (!User2.equalsIgnoreCase(UserName))){
 						String stringUrl = "http://54.225.225.185:8080/ServerAPP/AddFriend?User="+User1Id+"&User2="+User2;
 						Friends.add(User2);
 						mProgress = (ProgressBar) findViewById(R.id.progressBar1);
                 		
 						callUrl(stringUrl);}
-					
-					if(Friends.contains(User2)){
-	            		Toast.makeText(context, "That friend seems to already be in your friends list. If they are not visible in the list, try reloading the page.", Toast.LENGTH_SHORT).show();
-					}
-					if(User2.equalsIgnoreCase(UserName)){
-	            		Toast.makeText(context, "You can't be your own friend... Even if you don't have any others.", Toast.LENGTH_SHORT).show();						
-					}
 				}
 				else{
 					
