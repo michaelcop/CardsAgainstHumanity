@@ -374,8 +374,12 @@ public class FriendsList extends Activity
                 		//Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                 		String UserIdReturned =  resultArray[1];
                 		Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
-						
-                		t.removeView((TableRow)findViewById(Integer.parseInt(UserIdReturned)));
+                		if(findViewById(Integer.parseInt(UserIdReturned)).getClass().equals(TableRow.class)){
+                			t.removeView((TableRow)findViewById(Integer.parseInt(UserIdReturned)));
+                		}
+                		else{
+                			Toast.makeText(context, "Problem removing row from table.", Toast.LENGTH_SHORT).show();
+                		}
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted"))
 					{
