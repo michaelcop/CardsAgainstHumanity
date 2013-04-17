@@ -23,34 +23,35 @@
         android:layout_marginTop="37dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
-    
+
     <View
-    android:layout_width="fill_parent"
-    android:layout_below="@+id/PlayerNameStat"
-    android:layout_height="1dp"
-    android:background="@android:color/white"/>
-    
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/PlayerNameStat"
+        android:background="@android:color/white" />
+
     <View
-    android:layout_width="fill_parent"
-    android:layout_below="@+id/GamesWonStat"
-    android:layout_height="1dp"
-    android:background="@android:color/white"/>
-    
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/GamesWonStat"
+        android:background="@android:color/white" />
+
     <View
-    android:layout_width="fill_parent"
-    android:layout_below="@+id/GamesLostStat"
-    android:layout_height="1dp"
-    android:background="@android:color/white"/>
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/GamesLostStat"
+        android:background="@android:color/white" />
 
     <TextView
         android:id="@+id/GamesLostStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/GamesWonStat"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="@string/games_lost"
         android:padding="3dp"
+        android:text="@string/games_lost"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
@@ -61,8 +62,8 @@
         android:layout_below="@+id/PlayerNameStat"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:text="@string/games_won"
         android:padding="3dp"
+        android:text="@string/games_won"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white"
         android:textColorHint="@color/White" />
@@ -87,5 +88,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/White"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GamesLostStat"
+        android:layout_above="@+id/ReturnToMenu"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ohlogo" />
 
 </RelativeLayout>
