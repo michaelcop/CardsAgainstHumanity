@@ -4,18 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/Black" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="@string/setting_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/White"
-        android:textStyle="bold" />
-
     <View
         android:id="@+id/view1"
         android:layout_width="fill_parent"
@@ -52,15 +40,6 @@
         android:layout_alignRight="@+id/DefaultRoundsText"
         android:layout_below="@+id/DefaultRoundsText" />
 
-    <ToggleButton
-        android:id="@+id/toggleNotificationsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/settingRoundsSpinner"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/White"
-        android:visibility="invisible" />
-
     <Button
         android:id="@+id/ReturnToMenu"
         android:layout_width="wrap_content"
@@ -82,5 +61,25 @@
         android:clickable="false"
         android:text="@string/setting_save"
         android:textColor="@color/White" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/setting_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/White"
+        android:textStyle="bold" />
+
+    <ToggleButton
+        android:id="@+id/toggleNotificationsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingRoundsSpinner"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:visibility="invisible" />
 
 </RelativeLayout>
