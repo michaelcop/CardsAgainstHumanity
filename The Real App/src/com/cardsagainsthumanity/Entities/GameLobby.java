@@ -129,11 +129,13 @@ public class GameLobby extends Activity
         switch (item.getItemId())
         {
 
-        case R.id.menu_preferences:
-        	//Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
-            Intent set = new Intent(GameLobby.this, Settings.class);
-            startActivityForResult(set, 0);
-            return true;
+        //Commented out settings option, as there's no option there of used when in a game
+        // and log out from there introduces a bug
+//        case R.id.menu_preferences:
+//        	//Toast.makeText(MainMenu.this, "Settings is Selected", Toast.LENGTH_SHORT).show();
+//            Intent set = new Intent(GameLobby.this, Settings.class);
+//            startActivityForResult(set, 0);
+//            return true;
          
         case R.id.invite_friend:
         	 Intent setFriend = new Intent(GameLobby.this, InviteFriends.class);

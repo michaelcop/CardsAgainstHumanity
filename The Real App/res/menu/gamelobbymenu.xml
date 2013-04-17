@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/invite_friend" android:icon="@drawable/add_friend" android:title="Invite Friend" android:showAsAction="always"></item>
-    <item android:id="@+id/menu_preferences" android:icon="@drawable/settingsicon" android:title="Settings" android:showAsAction="always"></item>
+    <!--  <item android:id="@+id/menu_preferences" android:icon="@drawable/settingsicon" android:title="Settings" android:showAsAction="always"></item> -->
     <item android:id="@+id/exit_button" android:icon="@drawable/exiticon" android:title="Exit" android:showAsAction="always"></item>
     <item android:id="@+id/refresh_button" android:icon="@drawable/refreshicon" android:title="Refresh" android:showAsAction="always"></item>
 </menu>
