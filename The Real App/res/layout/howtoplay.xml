@@ -9,25 +9,15 @@
         android:id="@+id/rulesLabel"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_above="@+id/GotIt"
+        android:layout_above="@+id/view1"
         android:layout_below="@+id/HowToPlayLabel"
         android:layout_centerHorizontal="true"
-        android:maxLines="16"
         android:layout_marginTop="5dp"
         android:scrollbars="vertical"
+        android:layout_marginBottom="4dp"
         android:text="@string/rules"
         android:textColor="@color/White"
         android:textSize="15sp" />
-
-    <Button
-        android:id="@+id/GotIt"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp"
-        android:text="@string/htp_gotit"
-        android:textColor="@color/White" />
 
     <TextView
         android:id="@+id/HowToPlayLabel"
@@ -43,5 +33,28 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/HowToPlayLabel"
+        android:background="@android:color/white" />
+
+    <Button
+        android:id="@+id/GotIt"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/htp_gotit"
+        android:textColor="@color/White" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/GotIt"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/white" />
 
 </RelativeLayout>
