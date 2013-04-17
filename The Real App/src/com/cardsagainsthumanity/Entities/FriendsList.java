@@ -378,7 +378,7 @@ public class FriendsList extends Activity
                 			t.removeView((TableRow)findViewById(Integer.parseInt(UserIdReturned)));
                 		}
                 		else{
-                			Toast.makeText(context, "Problem removing row from table.", Toast.LENGTH_SHORT).show();
+                			Toast.makeText(context, "Problem removing row from table. Reload the page and the user will be removed.", Toast.LENGTH_SHORT).show();
                 		}
 					}
 					else if(resultArray!=null && resultArray[0].equals("Accepted"))
