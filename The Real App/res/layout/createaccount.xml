@@ -98,4 +98,12 @@
         android:text="@string/cancel"
         android:textColor="@color/White" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/error"
+        android:src="@drawable/ohlogo" />
+
 </RelativeLayout>
